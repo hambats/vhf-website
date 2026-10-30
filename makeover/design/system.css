@@ -1,0 +1,117 @@
+/* VHF "Field Journal" design system — reference implementation.
+   Replace `.X` with your file's wrapper class (e.g. `.vhf-g`) and `x-` with its prefix (e.g. `vhf-g-`).
+   Copy only what your page uses. Everything stays scoped under the wrapper. */
+
+.X{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a25c3b;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  --r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.X *{box-sizing:border-box}
+.X a{text-decoration:none!important}
+.X h1,.X h2,.X h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.X h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.X h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.X h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.X h1 em,.X h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.X p{max-width:62ch}
+.X .x-sec{margin-top:var(--sec)}
+
+/* Eyebrow */
+.X .x-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.X .x-eye::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.X .x-dark .x-eye,.X .x-hero .x-eye{color:var(--tan)}
+.X .x-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted)}
+
+/* Hero */
+.X .x-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(420px,62vh,640px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.X .x-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.X .x-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.X .x-hero__in{position:relative;padding:clamp(28px,6vw,72px);max-width:760px}
+.X .x-hero h1{color:var(--cream)}
+.X .x-hero h1 em{color:var(--tan)}
+.X .x-hero p{color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px)}
+.X .x-furrow{position:absolute;left:0;right:0;bottom:0;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+/* Compact hero for text pages */
+.X .x-hero--compact{min-height:0;background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.X .x-hero--compact::before{display:none}
+.X .x-hero--compact h1{color:var(--ink)}
+.X .x-hero--compact p{color:var(--muted)}
+.X .x-hero--compact .x-eye{color:var(--clay)}
+.X .x-hero--compact .x-furrow{color:var(--olive);opacity:.18}
+/* Furrow SVG markup (place inside hero / CTA band):
+   <svg class="x-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg> */
+
+/* Buttons */
+.X .x-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.X .x-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s,transform .18s}
+.X .x-btn svg{width:16px;height:16px;transition:transform .18s}
+.X .x-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.X .x-btn:hover svg{transform:translateX(3px)}
+.X .x-btn--navy{background:var(--navy);border-color:var(--navy)}
+.X .x-btn--navy:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.X .x-btn--outline{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.X .x-btn--outline:hover{background:#e6ecf2;border-color:var(--navy)}
+.X .x-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.X .x-btn--light:hover{background:#fff;border-color:#fff}
+.X .x-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.X .x-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.X a:focus-visible,.X button:focus-visible,.X summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.X .x-dark a:focus-visible,.X .x-hero a:focus-visible{outline-color:var(--tan)}
+/* Arrow: <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> */
+
+/* Section head */
+.X .x-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.X .x-head p{margin:0;color:var(--muted)}
+.X .x-link{font-weight:600;color:var(--navy)!important;border-bottom:2px solid currentColor;padding-bottom:2px}
+
+/* Cards */
+.X .x-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px}
+.X .x-card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);overflow:hidden;color:var(--ink)!important;transition:transform .2s,box-shadow .2s}
+.X .x-card:nth-child(3n+2){border-top-color:var(--navy)}
+.X .x-card:nth-child(3n+3){border-top-color:var(--clay)}
+.X a.x-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.X .x-card img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.X .x-card__body{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+.X .x-card__body p{color:var(--muted);flex:1}
+.X .x-tag{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--clay-soft);color:#7d4329;font:600 12.5px/1 var(--sans);letter-spacing:.04em}
+
+/* Dark band + stats */
+.X .x-dark{background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px);position:relative;overflow:hidden}
+.X .x-dark--navy{background:var(--navy-deep)}
+.X .x-dark h2,.X .x-dark h3{color:var(--cream)}
+.X .x-dark p{color:var(--cream);opacity:.9}
+.X .x-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px}
+.X .x-stat b{display:block;font:600 clamp(40px,5vw,64px)/1 var(--serif);color:var(--tan);margin-bottom:10px}
+.X .x-stat span{font-size:15px;line-height:1.45;opacity:.9}
+
+/* Quote */
+.X .x-quote{margin:0;position:relative;padding-top:36px}
+.X .x-quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font:700 96px/1 var(--serif);color:var(--clay);opacity:.85}
+.X .x-quote p{font:italic 400 clamp(22px,2.6vw,32px)/1.4 var(--serif);max-width:none}
+.X .x-quote cite{display:block;margin-top:14px;font:600 12.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--muted)}
+
+/* Callout */
+.X .x-note{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--clay);border-radius:var(--r-sm);padding:18px 22px}
+.X .x-crisis{background:#e6ecf2;border-left-color:var(--navy)}
+
+/* Split (image + text) */
+.X .x-split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.X .x-split img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg)}
+
+/* Reveal (JS adds .x-anim to wrapper, then .in per element) */
+.X.x-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.X.x-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.X.x-anim .reveal{opacity:1;transform:none;transition:none}.X *{transition:none!important}}
+
+@media (max-width:800px){
+  .X{font-size:16px}
+  .X .x-split{grid-template-columns:1fr}
+  .X .x-split img{aspect-ratio:16/10}
+  .X .x-hero{min-height:480px}
+  .X .x-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+}
+
+/* Reveal JS (add to the existing inline script, after .is-on is set):
+   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('x-anim');
+   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+   w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})} */

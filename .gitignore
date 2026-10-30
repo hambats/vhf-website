@@ -1,0 +1,14 @@
+# Secrets: never commit the Squarespace key
+.env
+.env.*
+
+# Squarespace OAuth tokens (grant access to the store)
+squarespace-tokens.json
+
+# Kept out of the public GitHub repo (internal docs, local engine history)
+*.md
+exports/
+updates/
+.claude/
+content/site-review-*.html
+node_modules/

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Farm Map Demo</title>
+<!-- Demo only (Oct 26, 2026): the farm's real terrain (USGS 3DEP elevation) under a USGS NAIP aerial photo, with live Mills River weather (Open-Meteo)
+     and the farm's own photos on the pin. Data baked by scripts/bake-farm-terrain.mjs into demos/farm-map/. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--olive:#5c6642;--olive-deep:#3d4529;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.6 "Work Sans",system-ui,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:24px}
+.eye{display:flex;align-items:center;gap:12px;margin:0 0 12px;font:600 12.5px/1 "Work Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.eye::before{content:"";width:28px;height:2px;background:currentColor}
+h1{font:600 clamp(30px,4vw,48px)/1.08 Fraunces,Georgia,serif;margin:0 0 10px;letter-spacing:-.015em}
+h1 em{font-style:italic;font-weight:400;color:var(--clay)}
+.lead{margin:0 0 22px;color:var(--muted);max-width:62ch}
+.map{position:relative;height:clamp(480px,72vh,720px);border-radius:22px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(#dfe8ee,#f6f1e3);transition:background .8s;touch-action:pan-y;cursor:grab;user-select:none}
+.map.drag{cursor:grabbing}
+.map canvas{display:block;width:100%;height:100%}
+.ui{position:absolute;z-index:3;display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(255,253,247,.86);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ui button{border:0;background:transparent;padding:8px 13px;border-radius:999px;font:600 12.5px/1 "Work Sans",sans-serif;color:var(--ink);cursor:pointer}
+.ui button:hover{background:rgba(0,0,0,.06)}
+.ui button[aria-pressed="true"]{background:var(--olive);color:var(--cream)}
+.ui--mode{left:14px;top:14px}
+.ui--wx{right:14px;top:14px;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100% - 200px);border-radius:18px}
+.wx{position:absolute;z-index:3;left:14px;bottom:14px;min-width:220px;padding:14px 16px;border-radius:16px;background:rgba(255,253,247,.9);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.wx small{display:block;font:600 10.5px/1.2 "Work Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.wx b{font:600 34px/1 Fraunces,serif;margin-right:8px}
+.wx span{font-size:14.5px;color:var(--ink)}
+.wx p{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.wx i{display:inline-block;transition:transform .5s;font-style:normal}
+.zoom{right:72px;bottom:18px}.zoom button{min-width:34px;font-size:15px}
+.compass{position:absolute;z-index:3;right:16px;bottom:16px;width:46px;height:46px;border-radius:50%;background:rgba(255,253,247,.9);border:1px solid rgba(0,0,0,.08);display:grid;place-items:center}
+.compass svg{width:30px;height:30px}
+.lbl{position:absolute;z-index:2;left:0;top:0;transform:translate(-50%,-100%);white-space:nowrap;pointer-events:none;font:600 12px/1.2 "Work Sans",sans-serif;color:var(--ink);background:rgba(255,253,247,.9);border:1px solid rgba(0,0,0,.1);padding:5px 9px;border-radius:999px;box-shadow:0 6px 16px -10px rgba(0,0,0,.5)}
+.lbl--farm{pointer-events:auto;cursor:pointer;background:var(--clay);color:var(--cream);border-color:transparent;font-size:13px;padding:7px 12px}
+.lbl--farm:hover{background:#8f4f31}
+.lbl--peak{background:rgba(255,253,247,.75);font-weight:500}
+.tip{position:absolute;z-index:4;pointer-events:none;font:600 11.5px/1 "Work Sans",sans-serif;color:var(--cream);background:rgba(38,38,34,.82);padding:6px 8px;border-radius:6px;transform:translate(12px,12px);display:none}
+.card{position:absolute;z-index:5;right:14px;top:66px;bottom:14px;width:min(360px,calc(100% - 28px));display:none;flex-direction:column;border-radius:18px;overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.card.on{display:flex}
+.card__img{position:relative;flex:1;min-height:180px;background:#222}
+.card__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.card__nav{position:absolute;inset:auto 10px 10px auto;display:flex;gap:6px}
+.card__nav button,.card__x{width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,253,247,.92);font:600 16px/1 "Work Sans",sans-serif;cursor:pointer}
+.card__x{position:absolute;top:10px;right:10px;z-index:2}
+.card__txt{padding:16px 18px 18px}
+.card__txt h2{font:600 22px/1.15 Fraunces,serif;margin:0 0 4px}
+.card__txt p{margin:0;font-size:14px;color:var(--muted)}
+.card__txt .cap{margin-top:10px;color:var(--ink);font-size:14.5px}
+.src{margin:10px 2px 0;font-size:12.5px;color:var(--muted)}
+.src a{color:var(--navy)}
+@media (max-width:760px){.zoom{right:auto;left:14px;bottom:auto;top:62px}.ui--wx{top:auto;bottom:118px;right:10px;left:10px;max-width:none;justify-content:center}.wx{right:14px;min-width:0}.compass{bottom:auto;top:66px;right:14px}.card{top:10px;bottom:10px;right:10px;width:calc(100% - 20px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eye">Find the farm</p>
+  <h1>Where healing <em>takes root</em></h1>
+  <p class="lead">The real land around Veterans Healing Farm in Mills River, built from USGS elevation data and an aerial photograph, with the weather happening at the farm right now. Drag to turn it, scroll or pinch to zoom in, and tap the farm pin for photos.</p>
+  <div class="map" id="map">
+    <div class="ui ui--mode" role="group" aria-label="Map style"><button type="button" data-mode="0" aria-pressed="true">Aerial</button><button type="button" data-mode="1" aria-pressed="false">Topo</button></div>
+    <div class="ui ui--wx" role="group" aria-label="Weather"><button type="button" data-wx="live" aria-pressed="true">Live</button><button type="button" data-wx="clear" aria-pressed="false">Clear</button><button type="button" data-wx="clouds" aria-pressed="false">Clouds</button><button type="button" data-wx="rain" aria-pressed="false">Rain</button><button type="button" data-wx="storm" aria-pressed="false">Storm</button><button type="button" data-wx="snow" aria-pressed="false">Snow</button><button type="button" data-wx="fog" aria-pressed="false">Fog</button><button type="button" data-wx="night" aria-pressed="false">Night</button></div>
+    <div class="wx" aria-live="polite"><small>Right now at the farm</small><b id="wx-t">--</b><span id="wx-c">Loading weather&hellip;</span><p id="wx-w"></p></div>
+    <div class="ui zoom" role="group" aria-label="Zoom"><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="out" aria-label="Zoom out">&minus;</button><button type="button" data-zoom="home">Reset</button></div>
+    <div class="compass" aria-hidden="true"><svg viewBox="0 0 30 30" id="compass"><path d="M15 3l4 12h-8z" fill="#a8603e"/><path d="M15 27l-4-12h8z" fill="#9a9a8e"/><text x="15" y="2.6" font-size="0" fill="none">N</text></svg></div>
+    <button type="button" class="lbl lbl--farm" id="lbl-farm">&#9679; Veterans Healing Farm</button>
+    <div class="lbl lbl--peak" id="lbl-peak"></div>
+    <div class="tip" id="tip"></div>
+    <div class="card" id="card" role="dialog" aria-label="Farm photos">
+      <button type="button" class="card__x" id="card-x" aria-label="Close">&times;</button>
+      <div class="card__img"><img id="card-img" alt=""><div class="card__nav"><button type="button" id="card-prev" aria-label="Previous photo">&lsaquo;</button><button type="button" id="card-next" aria-label="Next photo">&rsaquo;</button></div></div>
+      <div class="card__txt"><h2>Veterans Healing Farm</h2><p>138 Kimzey Road, Mills River, NC 28759 &middot; <span id="card-elev"></span></p><p class="cap" id="card-cap"></p></div>
+    </div>
+  </div>
+  <p class="src">Terrain: USGS 3DEP (via AWS Terrain Tiles), heights shown 2&times;. Aerial photo: USGS NAIP. Weather: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. Map area about 4 &times; 4 km (2.5 &times; 2.5 mi).</p>
+</div>
+
+<script type="module">
+const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js');
+const $=id=>document.getElementById(id),box=$('map');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,SMALL=innerWidth<760;
+const T=await (await fetch('farm-map/terrain.json')).json();
+
+/* ---------- Renderer, camera, lights ---------- */
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio||1,SMALL?1.5:2));
+r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;r.toneMapping=THREE.ACESFilmicToneMapping;box.prepend(r.domElement);
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(32,1,1,2000);
+const hemi=new THREE.HemisphereLight('#eef3ff','#5b5340',1.1),sun=new THREE.DirectionalLight('#fff4e0',2.6);
+sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-80,right:80,top:80,bottom:-80,near:1,far:400});sun.shadow.bias=-.0004;sun.shadow.normalBias=.4;
+scene.add(hemi,sun,sun.target);
+
+/* ---------- Terrain: real heights, 2x vertical, aerial photo or topo paper with contour lines ---------- */
+const N=T.n,SIZE=100,UPM=SIZE/(T.sizeKm*1000),VS=2,K=UPM*VS,BASE=-7;
+const g=new THREE.PlaneGeometry(SIZE,SIZE,N-1,N-1);g.rotateX(-Math.PI/2);
+const pos=g.attributes.position;for(let k=0;k<pos.count;k++)pos.setY(k,(T.h[k]-T.min)*K);g.computeVertexNormals();
+const hAt=(x,z)=>{const fx=clamp((x+SIZE/2)/SIZE*(N-1),0,N-1.001),fz=clamp((z+SIZE/2)/SIZE*(N-1),0,N-1.001),i=fx|0,j=fz|0,u=fx-i,v=fz-j,H=T.h;
+  return((H[j*N+i]*(1-u)+H[j*N+i+1]*u)*(1-v)+(H[(j+1)*N+i]*(1-u)+H[(j+1)*N+i+1]*u)*v)};
+const yAt=(x,z)=>(hAt(x,z)-T.min)*K;
+const aerial=new THREE.TextureLoader().load('farm-map/aerial.jpg');aerial.colorSpace=THREE.SRGBColorSpace;aerial.anisotropy=r.capabilities.getMaxAnisotropy();
+const uTopo={value:0};
+const tmat=new THREE.MeshStandardMaterial({map:aerial,roughness:.95,metalness:0});
+tmat.onBeforeCompile=s=>{s.uniforms.uTopo=uTopo;s.uniforms.uMinE={value:T.min};s.uniforms.uMPU={value:1/K};
+  s.vertexShader='varying float vElev;uniform float uMinE;uniform float uMPU;\n'+s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvElev=uMinE+position.y*uMPU;');
+  s.fragmentShader='varying float vElev;uniform float uTopo;uniform float uMinE;\n'+s.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
+  float fw=max(fwidth(vElev),1e-4);
+  float l10=1.-smoothstep(.0,1.1,abs(fract(vElev/10.+.5)-.5)*10./fw);
+  float l50=1.-smoothstep(.2,1.7,abs(fract(vElev/50.+.5)-.5)*50./fw);
+  float tt=clamp((vElev-uMinE)/260.,0.,1.);
+  vec3 paper=mix(vec3(.66,.71,.45),vec3(.82,.72,.50),tt);
+  diffuseColor.rgb=mix(diffuseColor.rgb,paper,uTopo);
+  diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.13,.12,.07),clamp(l10*mix(.10,.32,uTopo)+l50*mix(.30,.62,uTopo),0.,1.));`)};
+const land=new THREE.Mesh(g,tmat);land.castShadow=land.receiveShadow=true;scene.add(land);
+/* Soil-and-rock sides make it read as a cut-out block of land. */
+const strata=(()=>{const cv=document.createElement('canvas');cv.width=8;cv.height=256;const x=cv.getContext('2d');
+  const bands=[['#3d3222',14],['#5a4630',26],['#8a5a3a',50],['#a8703f',52],['#9a8a6e',40],['#7c7464',44],['#615a4d',30]];let y=0;for(const[b,hh]of bands){x.fillStyle=b;x.fillRect(0,y,8,hh);y+=hh}
+  const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;return t})();
+const side=(()=>{const P=[],U=[],I=[];const edge=(get)=>{const o=P.length/3;for(let k=0;k<N;k++){const[x,z]=get(k),y=yAt(x,z);P.push(x,y,z,x,BASE,z);U.push(k/(N-1),0,k/(N-1),1);if(k<N-1){const a=o+k*2;I.push(a,a+2,a+1,a+1,a+2,a+3)}}};
+  const s=SIZE/2,st=k=>-s+SIZE*k/(N-1);
+  edge(k=>[st(k),s]);edge(k=>[s,s-SIZE*k/(N-1)]);edge(k=>[s-SIZE*k/(N-1),-s]);edge(k=>[-s,st(k)]);
+  const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(P,3));sg.setAttribute('uv',new THREE.Float32BufferAttribute(U,2));sg.setIndex(I);sg.computeVertexNormals();
+  const m=new THREE.Mesh(sg,new THREE.MeshStandardMaterial({map:strata,roughness:1,side:THREE.DoubleSide}));m.castShadow=true;return m})();
+scene.add(side);
+const base=new THREE.Mesh(new THREE.BoxGeometry(SIZE,.6,SIZE),new THREE.MeshStandardMaterial({color:'#4e483c',roughness:1}));base.position.y=BASE-.3;scene.add(base);
+
+/* ---------- The farm pin ---------- */
+const farmY=yAt(0,0),pin=new THREE.Group();pin.position.set(0,farmY,0);scene.add(pin);
+const stem=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,6.5,8),new THREE.MeshStandardMaterial({color:'#2b2a24'}));stem.position.y=3.25;stem.castShadow=true;pin.add(stem);
+const headMat=new THREE.MeshStandardMaterial({color:'#a8603e',roughness:.4,emissive:'#ff9a55',emissiveIntensity:0});
+const head=new THREE.Mesh(new THREE.SphereGeometry(1.15,24,16),headMat);head.position.y=7;head.castShadow=true;pin.add(head);
+const ringMat=new THREE.MeshBasicMaterial({color:'#e07a45',transparent:true,depthWrite:false,side:THREE.DoubleSide});
+const ring=new THREE.Mesh(new THREE.RingGeometry(1.4,1.9,48).rotateX(-Math.PI/2),ringMat);ring.position.y=.25;pin.add(ring);
+/* The highest ground in view gets a label too. */
+let pk=0;for(let k=1;k<T.h.length;k++)if(T.h[k]>T.h[pk])pk=k;
+const peak=new THREE.Vector3(-SIZE/2+SIZE*(pk%N)/(N-1),0,-SIZE/2+SIZE*Math.floor(pk/N)/(N-1));peak.y=yAt(peak.x,peak.z)+.6;
+const ft=m=>Math.round(m*3.28084).toLocaleString('en-US');
+$('lbl-peak').textContent='Ridge top · '+ft(T.h[pk])+' ft';$('card-elev').textContent='about '+ft(hAt(0,0))+' ft above sea level';
+
+/* ---------- Weather: clouds (with shadows), rain, snow, fog, lightning, day and night ---------- */
+const mergePlain=list=>{let n=0;const gs=list.map(x=>{const q=x.index?x.toNonIndexed():x;n+=q.attributes.position.count;return q});const P=new Float32Array(n*3);let o=0;for(const q of gs){P.set(q.attributes.position.array,o*3);o+=q.attributes.position.count}
+  const m=new THREE.BufferGeometry();m.setAttribute('position',new THREE.BufferAttribute(P,3));m.computeVertexNormals();return m};
+const cloudGeo=mergePlain([[0,0,0,4],[3.6,.4,.6,3.1],[-3.5,.2,-.4,3.3],[1.2,1.9,.3,2.7],[-1.4,1.6,-.2,2.5],[5.8,-.4,0,2.2],[-5.6,-.5,.3,2]].map(([x,y,z,s])=>new THREE.IcosahedronGeometry(s,1).scale(1,.72,1).translate(x,y,z)));
+const CMAX=SMALL?14:22,cloudMat=new THREE.MeshLambertMaterial({color:'#ffffff',flatShading:true,transparent:true,opacity:.96});
+const clouds=new THREE.InstancedMesh(cloudGeo,cloudMat,CMAX);clouds.castShadow=true;clouds.frustumCulled=false;scene.add(clouds);
+const CL=[...Array(CMAX)].map((_,i)=>({x:(Math.random()-.5)*150,z:(Math.random()-.5)*150,y:27+Math.random()*10,s:1.7+Math.random()*1.5,r:Math.random()*6.3,seen:0}));
+const fallGeo=(n,lines)=>{const P=[],S=[],E=[];for(let i=0;i<n;i++){const x=(Math.random()-.5)*110,y=Math.random()*46,z=(Math.random()-.5)*110,s=Math.random();for(let k=0;k<(lines?2:1);k++){P.push(x,y,z);S.push(s);E.push(k)}}
+  const q=new THREE.BufferGeometry();q.setAttribute('position',new THREE.Float32BufferAttribute(P,3));q.setAttribute('aSeed',new THREE.Float32BufferAttribute(S,1));q.setAttribute('aEnd',new THREE.Float32BufferAttribute(E,1));return q};
+const WU={uTime:{value:0},uWind:{value:new THREE.Vector2()},uRain:{value:0},uSnow:{value:0},uPR:{value:r.getPixelRatio()}};
+const rain=new THREE.LineSegments(fallGeo(SMALL?1400:2600,true),new THREE.ShaderMaterial({uniforms:WU,transparent:true,depthWrite:false,
+  vertexShader:'attribute float aSeed;attribute float aEnd;uniform float uTime;uniform vec2 uWind;\nvoid main(){float y=mod(position.y-uTime*(34.+aSeed*14.),46.);vec3 q=vec3(position.x+uWind.x*(46.-y)*.09,y,position.z+uWind.y*(46.-y)*.09);q+=aEnd*vec3(uWind.x*.05,1.5,uWind.y*.05);gl_Position=projectionMatrix*modelViewMatrix*vec4(q,1.);}',
+  fragmentShader:'uniform float uRain;void main(){gl_FragColor=vec4(.42,.5,.6,uRain*.7);}'}));rain.frustumCulled=false;scene.add(rain);
+const snow=new THREE.Points(fallGeo(SMALL?1200:2200,false),new THREE.ShaderMaterial({uniforms:WU,transparent:true,depthWrite:false,
+  vertexShader:'attribute float aSeed;uniform float uTime;uniform vec2 uWind;uniform float uPR;\nvoid main(){float y=mod(position.y-uTime*(2.2+aSeed*1.8),46.);vec3 q=vec3(position.x+sin(uTime*.7+aSeed*40.)*1.4+uWind.x*(46.-y)*.04,y,position.z+cos(uTime*.6+aSeed*30.)*1.4+uWind.y*(46.-y)*.04);vec4 mv=modelViewMatrix*vec4(q,1.);gl_Position=projectionMatrix*mv;gl_PointSize=uPR*(1.4+aSeed*1.8)*160./-mv.z;}',
+  fragmentShader:'uniform float uSnow;void main(){float d=length(gl_PointCoord-.5);gl_FragColor=vec4(1.,1.,1.,uSnow*smoothstep(.5,.15,d));}'}));snow.frustumCulled=false;scene.add(snow);
+const stars=(()=>{const P=[];for(let i=0;i<700;i++){const a=Math.random()*6.283,e=.12+Math.random()*1.3,R=600;P.push(Math.cos(a)*Math.cos(e)*R,Math.sin(e)*R,Math.sin(a)*Math.cos(e)*R)}
+  const q=new THREE.BufferGeometry();q.setAttribute('position',new THREE.Float32BufferAttribute(P,3));return new THREE.Points(q,new THREE.PointsMaterial({color:'#e8eefc',size:1.6,sizeAttenuation:false,transparent:true,opacity:0,fog:false}))})();scene.add(stars);
+scene.fog=new THREE.FogExp2('#dfe8ee',0);
+
+const PRESET={clear:{cover:.08,code:0},clouds:{cover:.85,code:3},rain:{cover:.97,code:63},storm:{cover:1,code:95},snow:{cover:.9,code:73,temp:29},fog:{cover:.5,code:45},night:{cover:.15,code:0,night:true}};
+const WMO={0:'Clear sky',1:'Mostly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Freezing fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',56:'Freezing drizzle',57:'Freezing drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',66:'Freezing rain',67:'Freezing rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Rain showers',82:'Heavy showers',85:'Snow showers',86:'Snow showers',95:'Thunderstorm',96:'Thunderstorm, hail',99:'Thunderstorm, hail'};
+const target={cover:.1,rain:0,snow:0,fog:0,storm:0,night:0,wind:new THREE.Vector2(.6,.2)},cur={cover:.1,rain:0,snow:0,fog:0,night:0};
+let live=null,mode='live',sunDir=new THREE.Vector3(-.5,.6,.4).normalize();
+const fromCode=(code,cover,isNight,windDeg,windMph)=>{target.cover=cover;target.rain=[51,53,55,56,57].includes(code)?.35:[61,80].includes(code)?.55:[63,66,81].includes(code)?.8:[65,67,82,95,96,99].includes(code)?1:0;
+  target.snow=[71,85].includes(code)?.5:[73,77,86].includes(code)?.8:code===75?1:0;target.fog=[45,48].includes(code)?1:0;target.storm=code>=95?1:0;target.night=isNight?1:0;
+  const a=(windDeg+180)*Math.PI/180,sp=Math.min(1.6,(windMph||4)/10);target.wind.set(Math.sin(a)*sp,-Math.cos(a)*sp)};
+function sunPos(date,lat,lon){const rd=Math.PI/180,d=(date-Date.UTC(2000,0,1,12))/864e5,gq=(357.529+.98560028*d)*rd,q=280.459+.98564736*d,L=(q+1.915*Math.sin(gq)+.02*Math.sin(2*gq))*rd,e=(23.439-3.6e-7*d)*rd;
+  const ra=Math.atan2(Math.cos(e)*Math.sin(L),Math.cos(L)),dec=Math.asin(Math.sin(e)*Math.sin(L)),gmst=(18.697374558+24.06570982441908*d)%24,ha=(gmst*15+lon)*rd-ra,la=lat*rd;
+  return{el:Math.asin(Math.sin(la)*Math.sin(dec)+Math.cos(la)*Math.cos(dec)*Math.cos(ha)),az:Math.atan2(-Math.sin(ha),Math.tan(dec)*Math.cos(la)-Math.sin(la)*Math.cos(ha))}}
+const compassPts=['N','NE','E','SE','S','SW','W','NW'];
+function showWx(t,code,wind,deg,hum,note){$('wx-t').textContent=Math.round(t)+'°F';$('wx-c').textContent=WMO[code]||'—';
+  $('wx-w').innerHTML=(wind!=null?'Wind '+Math.round(wind)+' mph '+compassPts[Math.round(deg/45)%8]+' <i style="transform:rotate('+(deg+180)+'deg)">&uarr;</i>':'')+(hum!=null?' &middot; Humidity '+hum+'%':'')+(note?'<br>'+note:'')}
+function setMode(m){mode=m;document.querySelectorAll('[data-wx]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.wx===m)));
+  if(m==='live'){if(live){fromCode(live.weather_code,live.cloud_cover/100,!live.is_day,live.wind_direction_10m,live.wind_speed_10m);showWx(live.temperature_2m,live.weather_code,live.wind_speed_10m,live.wind_direction_10m,live.relative_humidity_2m,'Updated '+new Date(live.time).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}))}
+    const sp=sunPos(new Date(),T.farm.lat,T.farm.lon);sunDir.set(Math.sin(sp.az)*Math.cos(sp.el),Math.max(.08,Math.sin(sp.el)),-Math.cos(sp.az)*Math.cos(sp.el)).normalize()}
+  else{const p=PRESET[m];fromCode(p.code,p.cover,p.night,315,7);showWx(p.temp||(p.night?48:61),p.code,7,315,null,'Preview, not live');sunDir.set(-.55,.62,.45).normalize()}}
+document.querySelectorAll('[data-wx]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.wx)));
+fetch(`https://api.open-meteo.com/v1/forecast?latitude=${T.farm.lat}&longitude=${T.farm.lon}&current=temperature_2m,relative_humidity_2m,weather_code,cloud_cover,wind_speed_10m,wind_direction_10m,is_day&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FNew_York`)
+  .then(x=>x.json()).then(d=>{live=d.current;if(mode==='live')setMode('live')}).catch(()=>{$('wx-c').textContent='Weather unavailable';if(mode==='live')setMode('clear')});
+setMode('live');
+
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));topoT=+b.dataset.mode}));
+let topoT=0;
+
+/* ---------- Photos on the pin (the farm's own) ---------- */
+const CDN='https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/';
+const PHOTOS=[['246956cc-d80f-460d-8dd4-850906881b75/DSCF3190_social.jpg','Veterans and neighbors gathered on the lawn in front of the farmhouse'],
+  ['95296052-a30b-4a7c-9e68-2fcc0f6325f8/270228391_2440700559398373_2882075345675960739_n.jpg','Volunteer beekeepers in white suits inspecting a hive'],
+  ['35b20aa3-60c5-4859-8436-d7d1fdaa0f7a/495169928_18496385902062494_4951551376175696518_n.jpg','Volunteers working in the garden beds'],
+  ['f7b05dd3-13e2-4433-9324-30c4cbeeba00/491899961_18496385872062494_462201267309705385_n.jpg','A farm workshop in progress'],
+  ['7e86b555-ade2-41cd-ad3d-3778958c585e/20250531_092554.jpg','A morning event at the farm'],
+  ['8c1e98ce-a3bf-437e-bea9-4b2bfcfb27bf/IMG_1567.jpeg','Veterans and volunteers at the farm']];
+let ph=0;const showPh=()=>{$('card-img').src=CDN+PHOTOS[ph][0]+'?format=750w';$('card-img').alt=PHOTOS[ph][1];$('card-cap').textContent=PHOTOS[ph][1]+' ('+(ph+1)+' of '+PHOTOS.length+')'};
+const openCard=()=>{showPh();$('card').classList.add('on')};
+$('lbl-farm').addEventListener('click',openCard);$('card-x').addEventListener('click',()=>$('card').classList.remove('on'));
+$('card-prev').addEventListener('click',()=>{ph=(ph+PHOTOS.length-1)%PHOTOS.length;showPh()});$('card-next').addEventListener('click',()=>{ph=(ph+1)%PHOTOS.length;showPh()});
+
+/* ---------- Orbit by dragging, zoom with the scroll wheel or a pinch (toward the spot under the pointer), gentle auto-turn, height readout on hover ---------- */
+const DMIN=28,DMAX=SMALL?300:260,DHOME=SMALL?230:185;
+let az=-.5,el=.62,dist=DHOME,distGoal=DHOME,dragging=false,lastX=0,lastY=0,idleT=0,downX=0,downY=0;
+const look=new THREE.Vector3(0,4,0),lookGoal=look.clone(),HOME=look.clone(),pts=new Map();let pinch0=0,pinchD0=0;
+const ray=new THREE.Raycaster(),ndc=new THREE.Vector2(),hp=new THREE.Vector3(),pinScr=new THREE.Vector3();
+/* The spot on the land under a screen point (marches along the ray against the height grid). */
+function pick(x,y){ndc.set(x/box.clientWidth*2-1,-(y/box.clientHeight)*2+1);ray.setFromCamera(ndc,cam);const o=ray.ray.origin,d=ray.ray.direction,s=Math.max(.25,dist/160);
+  for(let t=0;t<dist+260;t+=s){hp.copy(o).addScaledVector(d,t);if(Math.abs(hp.x)>SIZE/2||Math.abs(hp.z)>SIZE/2)continue;if(hp.y<=yAt(hp.x,hp.z))return hp}return null}
+function zoomTo(nd,x,y){nd=clamp(nd,DMIN,DMAX);const f=1-nd/distGoal,at=x!=null?pick(x,y):null;
+  if(f>0&&at)lookGoal.lerp(at,f);else if(f<0)lookGoal.lerp(HOME,Math.min(1,-f*.9));
+  lookGoal.x=clamp(lookGoal.x,-SIZE/2,SIZE/2);lookGoal.z=clamp(lookGoal.z,-SIZE/2,SIZE/2);lookGoal.y=Math.max(2,lookGoal.y);distGoal=nd;idleT=0}
+box.addEventListener('wheel',e=>{if(e.target.closest('.card'))return;e.preventDefault();const b=box.getBoundingClientRect();zoomTo(distGoal*Math.exp(e.deltaY*(e.deltaMode?.05:.0015)),e.clientX-b.left,e.clientY-b.top)},{passive:false});
+box.addEventListener('pointerdown',e=>{if(e.target.closest('.ui,.card,.lbl--farm,.zoom'))return;pts.set(e.pointerId,[e.clientX,e.clientY]);box.setPointerCapture(e.pointerId);
+  if(pts.size===2){const[a,c]=[...pts.values()];pinch0=Math.hypot(a[0]-c[0],a[1]-c[1]);pinchD0=distGoal;dragging=false;return}
+  dragging=true;lastX=downX=e.clientX;lastY=downY=e.clientY;box.classList.add('drag')});
+box.addEventListener('pointermove',e=>{const b=box.getBoundingClientRect();if(pts.has(e.pointerId))pts.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pts.size===2&&pinch0){const[a,c]=[...pts.values()];zoomTo(pinchD0*pinch0/Math.max(20,Math.hypot(a[0]-c[0],a[1]-c[1])),(a[0]+c[0])/2-b.left,(a[1]+c[1])/2-b.top);return}
+  if(dragging){az-=(e.clientX-lastX)*.006;el=clamp(el+(e.clientY-lastY)*.004,.22,1.35);lastX=e.clientX;lastY=e.clientY;idleT=0}
+  hover(e.clientX-b.left,e.clientY-b.top)});
+const endPtr=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch0=0;if(!dragging)return;dragging=false;box.classList.remove('drag');const b=box.getBoundingClientRect();
+  if(e.type==='pointerup'&&Math.hypot(e.clientX-downX,e.clientY-downY)<6&&nearPin(e.clientX-b.left,e.clientY-b.top))openCard()};
+box.addEventListener('pointerup',endPtr);box.addEventListener('pointercancel',endPtr);
+box.addEventListener('pointerleave',()=>{$('tip').style.display='none'});
+const nearPin=(x,y)=>Math.hypot(x-pinScr.x,y-pinScr.y)<26;
+function hover(x,y){const tip=$('tip'),at=pick(x,y);box.style.cursor=nearPin(x,y)?'pointer':'';
+  if(at&&!dragging){tip.style.display='block';tip.style.left=x+'px';tip.style.top=y+'px';tip.textContent=ft(hAt(at.x,at.z))+' ft'}else tip.style.display='none'}
+document.querySelectorAll('[data-zoom]').forEach(bt=>bt.addEventListener('click',()=>{const z=bt.dataset.zoom;if(z==='home'){lookGoal.copy(HOME);distGoal=DHOME;idleT=0}else zoomTo(distGoal*(z==='in'?.6:1.6),box.clientWidth/2,box.clientHeight/2)}));
+
+/* ---------- Loop ---------- */
+const fit=()=>{const w=box.clientWidth,h=box.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()};new ResizeObserver(fit).observe(box);fit();
+const m4=new THREE.Matrix4(),qq=new THREE.Quaternion(),vv=new THREE.Vector3(),ss=new THREE.Vector3(),Y=new THREE.Vector3(0,1,0),sky=new THREE.Color(),sky2=new THREE.Color(),tmpC=new THREE.Color();
+const SKY={day:['#cfe0ec','#f6f1e3'],grey:['#b9c0c4','#e1e1da'],night:['#0f1a2c','#2b3f56'],fog:['#d7d9d3','#ecebe4']};
+let prev=performance.now()/1000,flash=0,nextFlash=0;
+function frame(){const t=performance.now()/1000,dt=Math.min(.05,t-prev);prev=t;
+  for(const k of['cover','rain','snow','fog','night'])cur[k]+=(target[k]-cur[k])*Math.min(1,dt*1.5);
+  WU.uWind.value.lerp(target.wind,Math.min(1,dt));WU.uTime.value=t;WU.uRain.value=cur.rain;WU.uSnow.value=cur.snow;
+  uTopo.value+=(topoT-uTopo.value)*Math.min(1,dt*4);
+  if(!dragging){idleT+=dt;if(idleT>3&&!RM)az+=dt*.035}
+  dist+=(distGoal-dist)*Math.min(1,dt*7);look.lerp(lookGoal,Math.min(1,dt*7));
+  cam.position.set(look.x+Math.sin(az)*Math.cos(el)*dist,look.y+Math.sin(el)*dist,look.z+Math.cos(az)*Math.cos(el)*dist);cam.lookAt(look);
+  /* Light: the sun dims under clouds and gives way to moonlight at night; lightning flashes in storms. */
+  if(target.storm&&t>nextFlash){flash=1;nextFlash=t+2.5+Math.random()*6}flash=Math.max(0,flash-dt*3.5);
+  const dim=1-.72*cur.cover-.2*cur.rain,n=cur.night;
+  sun.position.copy(sunDir).multiplyScalar(150);sun.intensity=(2.8*dim)*(1-n)+.45*n;sun.color.set(n>.5?'#9fb4e0':'#fff1dc');
+  hemi.intensity=(1.15-.25*cur.cover)*(1-.75*n)+flash*2.2;hemi.color.set(n>.5?'#7d8fc0':'#eef3ff');
+  headMat.emissiveIntensity=.2+n*2.2;stars.material.opacity=n*(1-cur.cover)*.95;
+  const pal=n>.5?SKY.night:cur.fog>.5?SKY.fog:cur.cover>.7?SKY.grey:SKY.day;sky.lerp(tmpC.set(pal[0]),Math.min(1,dt*2));sky2.lerp(tmpC.set(pal[1]),Math.min(1,dt*2));
+  if(flash>0){sky.lerp(tmpC.set('#ffffff'),flash*.5)}
+  box.style.background=`linear-gradient(#${sky.getHexString()},#${sky2.getHexString()})`;
+  scene.fog.color.copy(sky2);scene.fog.density=cur.fog*.012+cur.rain*.0025+cur.snow*.003;
+  /* Clouds drift with the wind; how many show depends on cloud cover. */
+  const want=Math.round(cur.cover*CMAX),grey=Math.min(1,cur.cover*.6+cur.rain*.6);cloudMat.color.set('#ffffff').lerp(tmpC.set(n>.5?'#3a4258':'#8d949a'),grey);
+  CL.forEach((c,i)=>{c.seen+=((i<want?1:0)-c.seen)*Math.min(1,dt*1.6);if(!RM){c.x+=WU.uWind.value.x*dt*2.2;c.z+=WU.uWind.value.y*dt*2.2}
+    if(c.x>80)c.x-=160;if(c.x<-80)c.x+=160;if(c.z>80)c.z-=160;if(c.z<-80)c.z+=160;
+    qq.setFromAxisAngle(Y,c.r);m4.compose(vv.set(c.x,c.y,c.z),qq,ss.setScalar(c.s*Math.max(.001,c.seen)));clouds.setMatrixAt(i,m4)});
+  clouds.instanceMatrix.needsUpdate=true;
+  const pk_=clamp(dist/170,.14,1.1);pin.scale.setScalar(pk_);
+  const pulse=(t*.6)%1;ring.scale.setScalar(1+pulse*2.4);ringMat.opacity=(1-pulse)*.8;
+  r.render(scene,cam);
+  /* HTML labels follow their spots in 3D. */
+  const place=(el_,v)=>{vv.copy(v).project(cam);const x=(vv.x+1)/2*box.clientWidth,y=(1-vv.y)/2*box.clientHeight;el_.style.transform=`translate(${x}px,${y}px) translate(-50%,-100%)`;el_.style.display=vv.z<1?'':'none';return[x,y]};
+  const[px,py]=place($('lbl-farm'),vv.set(0,farmY+9.6*pk_,0));vv.set(0,farmY+7*pk_,0).project(cam);pinScr.set((vv.x+1)/2*box.clientWidth,(1-vv.y)/2*box.clientHeight,0);
+  place($('lbl-peak'),peak.clone().setY(peak.y+1.5));
+  $('compass').style.transform=`rotate(${az*180/Math.PI}deg)`;
+  if(!RM||dragging)requestAnimationFrame(frame);else setTimeout(()=>requestAnimationFrame(frame),250)}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+frame();
+</script>
+</body>
+</html>

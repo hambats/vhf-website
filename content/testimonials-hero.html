@@ -1,0 +1,73 @@
+<!--
+  Testimonials page hero card, for a Squarespace Code block.
+  Paste everything below into one Code block at the top of /testimonials
+  (Code block "Display Source" off). All CSS is scoped to .vhf-hero, so it
+  won't affect the rest of the site. "Field Journal" makeover (Oct 26, 2026):
+  Fraunces headings, Work Sans body. Photo is already in the site's library.
+  Mirrors the hero in testimonials-full.html (which is what gets pasted).
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-hero{--olive:#5c6642;--olive-deep:#3d4529;--navy:#3f5a78;--clay:#a8603e;--cream:#f9f7f1;--tan:#ddd6b8;--ink:#262622;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  position:relative;display:flex;align-items:flex-end;min-height:clamp(440px,66vh,660px);max-width:1200px;margin:0 auto;border-radius:22px;overflow:hidden;
+  background:var(--olive-deep);color:var(--cream);font-family:var(--sans);font-size:17px;line-height:1.65}
+.vhf-hero *{box-sizing:border-box}
+.vhf-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-hero .vhf-hero__photo{margin:0;position:absolute;inset:0}
+.vhf-hero .vhf-hero__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.vhf-hero .vhf-hero__photo figcaption{position:absolute;right:18px;top:18px;z-index:2;padding:6px 12px;border-radius:999px;background:rgba(38,38,34,.6);color:var(--cream);font-size:13px}
+.vhf-hero .vhf-hero__text{position:relative;z-index:2;padding:clamp(28px,6vw,72px);padding-bottom:clamp(44px,7vw,88px);max-width:780px}
+.vhf-hero .vhf-hero__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tan)}
+.vhf-hero .vhf-hero__eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-hero .vhf-hero__title{margin:0 0 .4em;font:600 clamp(40px,6vw,76px)/1.02 var(--serif);letter-spacing:-.02em;text-wrap:balance;color:var(--cream)}
+.vhf-hero .vhf-hero__title em{font-style:italic;font-weight:400;color:var(--tan)}
+.vhf-hero .vhf-hero__lede{margin:0 0 26px;max-width:62ch;font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--cream);opacity:.92}
+.vhf-hero .vhf-hero__quote{position:relative;margin:0 0 30px;padding:4px 0 4px 22px;border-left:2px solid var(--tan)}
+.vhf-hero .vhf-hero__quote p{margin:0 0 8px;font:italic 400 clamp(20px,2.2vw,26px)/1.35 var(--serif);color:var(--cream)}
+.vhf-hero .vhf-hero__quote cite{font:600 12.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--tan)}
+.vhf-hero .vhf-hero__actions{display:flex;flex-wrap:wrap;gap:12px}
+.vhf-hero .vhf-hero__btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);text-decoration:none!important;border:2px solid var(--cream);transition:background-color .18s,border-color .18s}
+.vhf-hero .vhf-hero__btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-hero .vhf-hero__btn:hover svg{transform:translateX(3px)}
+.vhf-hero .vhf-hero__btn--primary{background:var(--cream);color:var(--olive-deep)!important}
+.vhf-hero .vhf-hero__btn--primary:hover{background:#fff;border-color:#fff}
+.vhf-hero .vhf-hero__btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-hero .vhf-hero__btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-hero .vhf-hero__btn:focus-visible{outline:3px solid var(--tan);outline-offset:3px}
+.vhf-hero .vhf-hero__furrow{position:absolute;left:0;right:0;bottom:0;z-index:2;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+@media (prefers-reduced-motion:reduce){.vhf-hero *{transition:none!important}}
+@media (max-width:800px){
+  .vhf-hero{min-height:560px;font-size:16px}
+  .vhf-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+  .vhf-hero .vhf-hero__photo figcaption{display:none}
+  .vhf-hero .vhf-hero__actions{flex-direction:column}
+}
+</style>
+
+<section class="vhf-hero" aria-labelledby="vhf-hero-title">
+  <figure class="vhf-hero__photo">
+    <img
+      src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910471420-G13FY2ZO07MI3TIE69E8/VHF%2B2.jpg?format=2500w"
+      alt="Veterans and volunteers gathered around the Veterans Healing Farm sign in front of the farmhouse"
+      loading="eager">
+    <figcaption>The Veterans Healing Farm community, Mills River, NC</figcaption>
+  </figure>
+  <div class="vhf-hero__text">
+    <p class="vhf-hero__eyebrow">Testimonials</p>
+    <h1 class="vhf-hero__title" id="vhf-hero-title">What people are saying about <em>the farm</em></h1>
+    <p class="vhf-hero__lede">
+      Veterans, volunteers, partners, and neighbors on what happens at the
+      farm, in their own words.
+    </p>
+    <blockquote class="vhf-hero__quote">
+      <p>&ldquo;I hope there are 1000s such places around the nation.&rdquo;</p>
+      <cite>&mdash; E.G. Sebastian, LOYCAL, Hendersonville, NC</cite>
+    </blockquote>
+    <div class="vhf-hero__actions">
+      <a class="vhf-hero__btn vhf-hero__btn--primary" href="/donate">Donate <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="vhf-hero__btn vhf-hero__btn--ghost" href="/volunteer">Volunteer</a>
+    </div>
+  </div>
+  <svg class="vhf-hero__furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>

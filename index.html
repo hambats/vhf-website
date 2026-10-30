@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VHF Website Builds</title>
+<style>
+:root{--bg:#f9f7f1;--card:#fffdf7;--line:#e4dfcc;--ink:#2c2c2c;--muted:#5f5f58;--olive:#5c6642;--navy:#3f5a78;--tan:#ddd6b8;--clay:#a8603e;--sel:#eef0e6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1f1a;--card:#262922;--line:#3a3d33;--ink:#ecebe4;--muted:#b3b1a6;--olive:#a9b585;--navy:#9db6d3;--tan:#5a5640;--clay:#d99573;--sel:#30352a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Work Sans",system-ui,sans-serif}
+header{padding:20px 16px 12px;border-bottom:1px solid var(--line)}
+h1{margin:0;font:600 22px/1.2 "Epilogue",system-ui,sans-serif;color:var(--olive)}
+header p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.wrap{display:grid;grid-template-columns:360px minmax(0,1fr);min-height:calc(100vh - 80px)}
+nav{border-right:1px solid var(--line);overflow:auto;padding:12px}
+nav h2{margin:16px 4px 8px;font:600 12px/1 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.item{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;color:inherit;font:inherit;cursor:pointer}
+.item:hover,.item[aria-current="true"]{background:var(--sel);border-color:var(--olive)}
+.item b{display:block;font-size:15px}
+.item small{display:block;color:var(--muted);font-size:12.5px}
+.tag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:600;vertical-align:1px;background:var(--tan);color:var(--ink)}
+.tag.warn{background:var(--clay);color:#fff}
+main{display:flex;flex-direction:column;min-width:0}
+.bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--card)}
+.bar b{font-size:16px}
+.bar a{color:var(--navy);font-size:14px}
+.bar a.mk{background:#a8603e;color:#fff;border-radius:999px;padding:2px 10px;font-weight:600}
+.bar a.mk.off{background:#3f5a78}
+.bar .note{flex-basis:100%;color:var(--muted);font-size:13px}
+iframe{flex:1;width:100%;border:0;background:#f9f7f1;min-height:70vh}
+.done{margin:0;padding:0 4px;list-style:none;font-size:13.5px;color:var(--muted)}
+.done li{margin-bottom:6px}
+@media (max-width:800px){.wrap{grid-template-columns:1fr}nav{border-right:0;border-bottom:1px solid var(--line);max-height:45vh}}
+</style>
+</head>
+<body>
+<header>
+  <h1>VHF Website Builds</h1>
+  <p>The VHF dev site: every page rebuilt for veteranshealingfarm.org, previewed offline inside the site header and footer. Each file is the exact code pasted into one Squarespace Code block. Develop here, paste into the copy page, then swap. Links jump between pages. Fonts fall back and photos need internet.</p>
+  <p><label>Header &amp; footer: <select id="chromeMode"><option value="new">New design</option><option value="live">Current live</option><option value="none">None</option></select></label> <span style="color:var(--muted)">New: <code>site/new-header.html</code>, <code>site/new-footer.html</code>. Live copy: <code>site/header.html</code>, <code>site/footer.html</code> (re-pull with <code>node scripts/pull-chrome.mjs --force</code>). Edit, then reload. Live menus are static offline; the new ones work (CSS only).</span></p>
+</header>
+<div class="wrap">
+<nav aria-label="Generated files">
+  <h2>Page copies (unlinked)</h2>
+  <div id="list"></div>
+  <h2>Writing</h2>
+  <div id="docs"></div>
+  <h2>Live-site edits (no file)</h2>
+  <ul class="done">
+    <li><b>/donate:</b> Amazon Wish List link fixed to a.co/03oqI0PZ</li>
+    <li><b>/about, /donate:</b> "13th year" (was 11th / 12th)</li>
+  </ul>
+</nav>
+<main>
+  <div class="bar" id="bar"></div>
+  <iframe id="view" title="Preview"></iframe>
+</main>
+</div>
+<script>
+var SITE='https://www.veteranshealingfarm.org';
+var ADMIN='https://lychee-porcupine-awgb.squarespace.com';
+var PAGES=[
+  {t:'Home',f:'content/home-full.html',copy:'/home-1',orig:'/',note:'Oct 26, 2026: Field Journal makeover, in sync with the copy page. Sits above the native newsletter section, which stays native for the sign-up form. From Nov 9 a year-end giving card replaces the 5K (LAST_5K_DAY). Swap last (Phase 6).'},
+  {t:'Home (3D edition)',f:'content/home-3d.html',orig:'/',tag:'Draft',note:'Oct 26, 2026: experimental fresh copy of Home with live three.js scenes (farm valley hero with Morning/Midday/Dusk sky, honeycomb behind the stats, growing autumn tree with fireflies in the closing band) plus a 5K countdown, ticker and tilt cards. Same copy and links as Home. No copy page yet: make one (e.g. /home-3d) to test on Squarespace before deciding.'},
+  {t:'Testimonials',f:'content/testimonials-full.html',copy:'/testimonials-1',orig:'/testimonials',tag:'Waiting',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Includes the director\'s testimonies (Robert LeHeup, Vietnam Memorial Wall, volunteers). Swap waits on Al confirming LeHeup is OK with his full name. Board stories requested by email (draft) for V2. Oct 28, 2026 (evening): the three.js firefly stories section (from demos/firefly-testimonials.html) is now the page HERO, replacing the photo hero card; its heading is the page h1. Needs push to the copy page.'},
+  {t:'Testimonials hero card',f:'content/testimonials-hero.html',copy:'/testimonials-1',orig:'/testimonials',note:'Reference only; the full Testimonials file includes this hero.'},
+  {t:'Resources',f:'content/resources-full.html',copy:'/resources-1',orig:'/resources',tag:'Ready',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Ready to swap (Phase 1).'},
+  {t:'Volunteer',f:'content/volunteer-full.html',copy:'/volunteer-1',orig:'/volunteer',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. The Bee and Herb cards now link /beekeeping and /herb-squad: swap after Phase 1b, or those links 404. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Lead Beekeeper wording fixed. Squad card ids bee-squad, herb-squad, garden-squad must stay. Swap Phase 2.'},
+  {t:'Contact Us',f:'content/contact-full.html',copy:'/contact-1',orig:'/contact',tag:'Waiting',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Email is operations@veteranshealingfarm.org: waiting on Al to confirm that inbox works and which address is public. Swap after his answer.'},
+  {t:'Newsletters',f:'content/newsletters-full.html',copy:'/newsletters-1',orig:'/newsletters',tag:'Ready',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. All 45 issues, native sign-up block below the Code block. Test one sign-up from /newsletters-1. Monthly upkeep: add one line + Latest issue card. Ready to swap (Phase 1).'},
+  {t:'990 Forms',f:'content/i990-full.html',copy:'/i990-forms-1',orig:'/i990-forms',tag:'Ready',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Live /i990-forms is NOINDEX: turn Hide off now (Phase 0) or at the swap; fixes Charity Navigator\'s 990-on-website score. Ready to swap.'},
+  {t:'Sponsors',f:'content/sponsors-full.html',copy:'/sponsors-1',orig:'/sponsors',tag:'Ready',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. 44 sponsors in 4 groups. SEO title set Oct 26 (was Gallery 1). Ready to swap.'},
+  {t:'In the News',f:'content/news-full.html',copy:'/news-copy',orig:'/news',tag:'Ready',note:'Oct 26, 2026: Field Journal makeover, in sync with the copy page. 50 stories, leads with the 2023 Nonprofit of the Year award. Ready to swap.'},
+  {t:'FAQ',f:'content/faq-full.html',copy:'/faq-1',orig:'/faq',tag:'Ready',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. On Squarespace as /faq-1 since Oct 26, SEO title set. 30 questions; after editing them run node scripts/faq-jsonld.mjs. Ready to swap (Phase 1b).'},
+  {t:'Donate',f:'content/donate-full.html',copy:'/donate-1',orig:'/donate',tag:'Ready',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. PayPal (monthly OK). The 100% claim is replaced by tax-deductible + EIN. Swap with the Privacy Policy re-paste, then test PayPal end to end.'},
+  {t:'Our Mission & Farm',f:'content/about-full.html',copy:'/about-1',orig:'/about',tag:'Push',warn:1,note:'NEEDS PUSH: the copy /about-1 still has the OLD design; paste this (makeover) file. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Live /about is NOINDEX: turn Hide off (Phase 0). Download is the 2025 Year-End Report PDF. Swap Phase 4.'},
+  {t:'Our Team (Staff)',f:'content/staff-full.html',copy:'/staff-new-1',orig:'/staff-new',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Bee, Herb and Garden leads link to their program pages, so swap after those (or point them at /volunteer#...). Swap Phase 3.'},
+  {t:'Board of Directors',f:'content/board-full.html',copy:'/board-1',orig:'/board',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. After the Nov 2026 meeting: Lauterbach becomes Secretary, remove Jeanine Davis\'s card. Oct 26, 2026: Field Journal makeover, in sync with the copy page. SEO title set Oct 26 (was Board (Copy)). Lauterbach becomes Secretary and Jeanine Davis\'s card comes off after the Nov 2026 meeting (marked in the file). Swap Phase 3.'},
+  {t:'Event Calendar',f:'content/events-full.html',copy:'/events-1',orig:'/events',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Squad More info buttons now go to /beekeeping, /herb-squad and /garden, so swap Events after those pages go live (Phase 1b). Oct 26, 2026: Field Journal makeover, in sync with the copy page. Public copy (not disabled). Real calendar key restored Oct 26 after the makeover paste; calendar verified loading (5K shows, board meetings filtered). The key is never in this file. Garden links reach /garden-1 in preview. Swap Phase 5, well before Nov 8.'},
+  {t:'Programs, part A',f:'content/programs-a.html',copy:'/programs-copy',orig:'/programs',note:'Oct 26, 2026: Field Journal makeover, in sync with the copy page. Live /programs is NOINDEX: turn Hide off (Phase 0). Swap Phase 4 together with part B.'},
+  {t:'Programs, part B',f:'content/programs-b.html',copy:'/programs-copy',orig:'/programs',note:'Oct 26, 2026: Field Journal makeover, in sync with the copy page. Clay teaser links /clay. Swap Phase 4 with part A.'},
+  {t:'Beekeeping (Bee Squad)',f:'content/beekeeping-full.html',copy:'/beekeeping-1',orig:'/beekeeping',tag:'Waiting',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. LIVE /beekeeping-1 still has the key placeholder: put the real key in (its calendar won\'t load until then). Waiting on Michael Morano\'s review (draft email). Swap Phase 1b after his sign-off.'},
+  {t:'Clay & Camaraderie',f:'content/clay-full.html',copy:'/clay-1',orig:'/clay',tag:'Ready',note:'Fixed by Rob Oct 26 (real key in place). Oct 26, 2026: Field Journal makeover, in sync with the copy page. Signed off by Sophia Oct 25. 5 photos still served from GitHub Pages; move to the Asset Library. Swap Phase 1b once fixed.'},
+  {t:'Garden Group',f:'content/garden-full.html',copy:'/garden-1',orig:'/garden',tag:'Waiting',note:'Oct 26, 2026: Field Journal makeover, in sync with the copy page. Real key in place. Waiting on Maddie\'s sign-off (PDF sent Oct 24). Volunteer, FAQ and Events link /garden, so swap it before or with them (Phase 1b).'},
+  {t:'Herb Squad',f:'content/herb-full.html',copy:'/herb-1',orig:'/herb-squad',tag:'Waiting',note:'Oct 28, 2026 (evening): Rebecca answered: her email directorofplantmedicinevhf@gmail.com, 46 plants, and her own bio, all applied. Needs push. Still waiting on her schedule, gear and photo answers. Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Oct 26, 2026: Field Journal makeover, in sync with the copy page. Real key in place. Waiting on Rebecca\'s review (draft email): bio, contact email (info@aurumapotheca.com?), plant count, title. Swap Phase 1b after her sign-off.'},
+  {t:'Privacy Policy',f:'content/privacy-policy.html',copy:'/privacy-policy',tag:'Live',note:'Oct 28, 2026: REDO ADOPTED (new copy, alt text, responsive images; see the Oct 28 review). Needs push. Live since Oct 23 (older version). This file is the makeover + Oct 26 services update (Kick It Events + Race Roster, Constant Contact, GitHub Pages). Re-paste on Donate swap day.'}
+];
+var DOCS=[
+  {t:'Full site review + redo, Oct 28, 2026 (report)',f:'content/site-review-2026-10-28.html'},
+  {t:'Redo brief (spec for the redo/ pages)',f:'redo/BRIEF.md'},
+  {t:'Project status: every file, live state (start here)',f:'content/project-status.md'},
+  {t:'Update engine (what needs pasting; run node scripts/engine.mjs)',f:'engine.html'},
+  {t:'Swap-day packet (start here)',f:'swap-day.html'},
+  {t:'Review log (open items from review)',f:'content/review-log.md'},
+  {t:'Getting to V1: launch checklist',f:'content/v1-checklist.md'},
+  {t:'SEO title list (all pages)',f:'content/seo-titles.md'},
+  {t:'Roadmap V0 (now) to V5',f:'content/roadmap-v0-v5.md'},
+  {t:'Morning plan, Oct 26, 2026 (index of plans)',f:'content/morning-plan-2026-10-26.md'},
+  {t:'Whole-site review, Oct 26, 2026',f:'content/site-review-2026-10-26.md'},
+  {t:'Plan: grant-focused SEO & AI answers',f:'content/grant-seo-plan.md'},
+  {t:'Plan: VHF TV integration review & concept',f:'content/tv-integration-review.md'},
+  {t:'Plan: staff updates without Claude',f:'content/staff-update-guide-plan.md'},
+  {t:'Plan: newsletters as web pages',f:'content/newsletter-web-plan.md'},
+  {t:'Testimonials page plan',f:'content/testimonials-page.md'},
+  {t:'Veteran testimonial request',f:'content/veteran-testimonial-request.md'},
+  {t:'SEO titles, descriptions & AI crawlers',f:'content/seo-metadata.md'},
+  {t:'llms.txt (upload to Squarespace)',f:'content/llms.txt'},
+  {t:'Launch checklist (swap, search, AI crawlers)',f:'content/launch-checklist.md'},
+  {t:'Crisis-line Announcement Bar steps',f:'site/announcement-bar.md'},
+  {t:'Questions: Bee & Herb squads',f:'content/questions-bee-herb.md'},
+  {t:'Questions: Clay & Garden',f:'content/questions-clay-garden.md'}
+];
+var list=document.getElementById('list'),bar=document.getElementById('bar'),view=document.getElementById('view');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* Redo: the Oct 28, 2026 full new-copy rewrite lives in redo/ (spec: redo/BRIEF.md, review:
+   content/site-review-2026-10-28.html). Each page has a Redo / Current toggle; the URL is the hub
+   with #redo/<file>, and browsing stays in the redo until switched back. (The Oct 26 makeover used
+   the same switch with makeover/; it was adopted into content/ and is kept only as reference.) */
+var MK='redo/',mk=false,cur=null,curBtn=null;
+var REDO=['content/home-full.html','content/about-full.html','content/programs-a.html','content/programs-b.html','content/garden-full.html','content/clay-full.html','content/news-full.html']; // the other 15 were adopted into content/ on Oct 28, 2026
+function hasMk(p){return REDO.indexOf(p.f)>=0}
+function srcOf(p){return (mk&&hasMk(p)?MK:'')+p.f}
+function show(p,btn,useMk){
+  [].forEach.call(document.querySelectorAll('.item'),function(b){b.removeAttribute('aria-current')});
+  btn.setAttribute('aria-current','true');
+  if(useMk!==undefined)mk=!!useMk;cur=p;curBtn=btn;
+  var src=srcOf(p);view.src=src;
+  var h='<b>'+esc(p.t)+(src!==p.f?' (redo)':'')+'</b>';
+  if(hasMk(p))h+=src!==p.f?'<a class="mk off" href="#'+esc(p.f)+'" data-mk="0">Show current (staged)</a>':'<a class="mk" href="#'+esc(MK+p.f)+'" data-mk="1">Show redo</a>';
+  h+='<a href="'+esc(src)+'" target="_blank">Open file</a>';
+  if(p.copy)h+='<a href="'+SITE+p.copy+'" target="_blank">Copy on site</a><a href="'+ADMIN+p.copy+'" target="_blank">Copy (logged-in preview)</a>';
+  if(p.orig)h+='<a href="'+SITE+p.orig+'" target="_blank">Current live page</a>';
+  h+='<span class="note">'+esc(src)+(p.note?' · '+esc(p.note):'')+'</span>';
+  bar.innerHTML=h;
+  try{history.replaceState(null,'','#'+src)}catch(e){}
+}
+bar.addEventListener('click',function(e){var a=e.target.closest('a[data-mk]');if(!a||!cur)return;e.preventDefault();show(cur,curBtn,a.getAttribute('data-mk')==='1')});
+function add(host,p){
+  var b=document.createElement('button');b.className='item';b.type='button';
+  b.innerHTML='<b>'+esc(p.t)+(p.tag?'<span class="tag'+(p.warn?' warn':'')+'">'+esc(p.tag)+'</span>':'')+'</b><small>'+esc(p.copy||p.f.replace('content/',''))+'</small>';
+  b.onclick=function(){show(p,b)};host.appendChild(b);return b;
+}
+/* Offline link handling: site-relative links jump to the matching local page; anything
+   without a local copy opens on the live site in a new tab. */
+var pendingHash='';
+function pageFor(path){
+  path=path.replace(/\/+$/,'')||'/';
+  for(var k=0;k<PAGES.length;k++){var p=PAGES[k];if(p.orig===path||p.copy===path)return k}
+  return path==='/home'?0:-1;
+}
+function scrollInFrame(hash){
+  if(!hash)return;
+  try{var d=view.contentDocument,el=d.getElementById(decodeURIComponent(hash));if(el)el.scrollIntoView()}catch(e){}
+}
+view.addEventListener('load',function(){
+  var d;try{d=view.contentDocument;if(!d)return}catch(e){return}
+  scrollInFrame(pendingHash);pendingHash='';
+  d.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a||e.defaultPrevented)return;
+    var raw=a.getAttribute('href');
+    if(!raw||raw.charAt(0)==='#'||/^(mailto|tel|sms|javascript):/i.test(raw))return;
+    if(/^https?:\/\//i.test(raw)){a.target='_blank';a.rel='noopener';return}
+    if(raw.charAt(0)!=='/')return;
+    e.preventDefault();
+    var m=raw.match(/^([^#?]*)[^#]*(#.*)?$/),path=m[1],hash=m[2]?m[2].slice(1):'',k=pageFor(path);
+    if(k<0){window.open(SITE+raw,'_blank','noopener');return}
+    if(srcOf(PAGES[k])===view.getAttribute('src')){scrollInFrame(hash);return}
+    pendingHash=hash;btns[k].click();
+  });
+});
+var btns=PAGES.map(function(p){return add(list,p)});
+DOCS.forEach(function(p){add(document.getElementById('docs'),p)});
+var start=decodeURIComponent(location.hash.slice(1));if(start.indexOf(MK)===0){mk=true;start=start.slice(MK.length)}
+var i=PAGES.findIndex(function(p){return p.f===start});
+show(PAGES[i<0?0:i],btns[i<0?0:i]);
+</script>
+<script src="site/vendor/less.min.js"></script>
+<script>
+/* Site chrome: wraps each content page in the live header/footer, styled by the pulled
+   Squarespace CSS plus site/custom.less compiled here (so offline LESS edits show up). */
+var chromeMode=document.getElementById('chromeMode');
+try{chromeMode.value=localStorage.getItem('vhfChromeMode')||'new'}catch(e){}
+chromeMode.addEventListener('change',function(){try{localStorage.setItem('vhfChromeMode',chromeMode.value)}catch(e){}view.contentWindow.location.reload()});
+function getText(u){return fetch(u,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(u);return r.text()})}
+var chromeAssets=Promise.all([getText('site/header.html'),getText('site/footer.html'),getText('site/new-header.html'),getText('site/new-footer.html'),getText('site/live/chrome.json'),getText('site/live/css-order.json'),getText('site/custom.less'),getText(MK+'site/new-header.html'),getText(MK+'site/new-footer.html'),getText(MK+'site/custom.less')])
+  .then(function(a){
+    return Promise.all([less.render(a[6]),less.render(a[9])]).then(function(o){return{live:{header:a[0],footer:a[1]},fresh:{header:a[2],footer:a[3]},mkFresh:{header:a[7],footer:a[8]},meta:JSON.parse(a[4]),css:JSON.parse(a[5]),custom:o[0].css,mkCustom:o[1].css}});
+  }).catch(function(e){console.warn('site chrome unavailable',e);return null});
+function isMkSrc(src){return String(src).indexOf(MK)===0}
+function isPageFile(src){if(isMkSrc(src))src=src.slice(MK.length);return PAGES.some(function(p){return p.f===src&&/\.html$/.test(p.f)&&!/hero\.html$/.test(p.f)})}
+function wrapChrome(d,c){
+  var base=new URL('site/live/',location.href).href;
+  c.css.forEach(function(f){var l=d.createElement('link');l.rel='stylesheet';l.href=base+f;d.head.appendChild(l)});
+  var st=d.createElement('style');st.id='vhf-custom';st.textContent=isMkSrc(view.getAttribute('src'))?c.mkCustom:c.custom;d.head.appendChild(st);
+  var fix=d.createElement('style');fix.textContent='#header{position:relative!important}body{margin:0}'+(chromeMode.value==='live'?'':'#siteWrapper{overflow:visible}');d.head.appendChild(fix);
+  d.body.className=(d.body.className+' '+c.meta.bodyClass).trim();
+  var w=d.createElement('div');w.id='siteWrapper';w.className=c.meta.wrapperClass;
+  var main=d.createElement('main');main.id='page';main.className='container';main.setAttribute('role','main');
+  while(d.body.firstChild)main.appendChild(d.body.firstChild);
+  var set=chromeMode.value==='live'?c.live:isMkSrc(view.getAttribute('src'))?c.mkFresh:c.fresh;
+  w.insertAdjacentHTML('beforeend',set.header);w.appendChild(main);w.insertAdjacentHTML('beforeend',set.footer);
+  d.body.appendChild(w);
+}
+/* run before the link handler's own load listener so its links include header/footer */
+function maybeWrap(){
+  var d;try{d=view.contentDocument}catch(e){return}
+  if(!d||d.readyState!=='complete'||chromeMode.value==='none'||!isPageFile(view.getAttribute('src'))||d.getElementById('siteWrapper'))return;
+  chromeAssets.then(function(c){if(c&&!d.getElementById('siteWrapper'))wrapChrome(d,c)});
+}
+view.addEventListener('load',maybeWrap);
+maybeWrap();
+</script>
+</body>
+</html>

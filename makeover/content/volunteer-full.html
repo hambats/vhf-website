@@ -1,0 +1,231 @@
+<!-- VHF Volunteer page, full layout for one Squarespace Code block. Styles scoped to .vhf-v. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-v{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a25c3b;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;--r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-v:not(.is-on){display:none}
+.vhf-v *{box-sizing:border-box}
+.vhf-v a{text-decoration:none!important}
+.vhf-v h1,.vhf-v h2,.vhf-v h3{font-family:var(--serif);font-weight:600;color:var(--ink);text-wrap:balance}
+.vhf-v h2{margin:0 0 12px;font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-v h1 em,.vhf-v h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-v p{max-width:62ch}
+.vhf-v .sec{margin-top:var(--sec)}
+.vhf-v .sec-intro{margin:0 0 32px;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted)}
+.vhf-v .vhf-v-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-v .vhf-v-eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+/* Photo hero */
+.vhf-v .vhf-v-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(440px,64vh,660px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.vhf-v .vhf-v-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.vhf-v .vhf-v-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-v .vhf-v-hero__text{position:relative;z-index:2;padding:clamp(28px,6vw,72px) clamp(24px,6vw,72px) clamp(52px,7vw,88px);max-width:760px}
+.vhf-v .vhf-v-hero .vhf-v-eyebrow{color:var(--tan)}
+.vhf-v .vhf-v-hero h1{margin:0 0 18px;font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em;color:var(--cream)}
+.vhf-v .vhf-v-hero h1 em{color:var(--tan)}
+.vhf-v .vhf-v-hero p{margin:0 0 28px;font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--cream);opacity:.92}
+.vhf-v .vhf-v-furrow{position:absolute;z-index:2;left:0;right:0;bottom:0;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+/* Buttons */
+.vhf-v .vhf-v-actions{display:flex;flex-wrap:wrap;gap:12px}
+.vhf-v .vhf-v-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s}
+.vhf-v .vhf-v-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-v .vhf-v-btn:hover svg{transform:translateX(3px)}
+.vhf-v .vhf-v-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-v .vhf-v-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-v .vhf-v-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-v .vhf-v-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-v a:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-v .vhf-v-hero a:focus-visible,.vhf-v .vhf-v-band a:focus-visible,.vhf-v .vhf-v-squad--committee a:focus-visible{outline-color:var(--tan)}
+/* Facts */
+.vhf-v .vhf-v-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vhf-v .vhf-v-fact{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:28px 26px}
+.vhf-v .vhf-v-fact:nth-child(2){border-top-color:var(--navy)}
+.vhf-v .vhf-v-fact:nth-child(3){border-top-color:var(--clay)}
+.vhf-v .vhf-v-fact svg{width:34px;height:34px;margin-bottom:14px;color:var(--clay)}
+.vhf-v .vhf-v-fact h3{margin:0 0 8px;font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-v .vhf-v-fact p{margin:0;font-size:16px;line-height:1.6;color:var(--muted)}
+/* Squad cards */
+.vhf-v .vhf-v-squads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.vhf-v .vhf-v-squad{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:120px;transition:transform .2s,box-shadow .2s}
+.vhf-v .vhf-v-squad:nth-child(3n+2){border-top-color:var(--navy)}
+.vhf-v .vhf-v-squad:nth-child(3n+3){border-top-color:var(--clay)}
+.vhf-v .vhf-v-squad:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vhf-v .vhf-v-squad img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.vhf-v .vhf-v-squad__body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
+.vhf-v .vhf-v-squad h3{margin:0 0 6px;font-size:clamp(22px,2.2vw,26px);line-height:1.2}
+.vhf-v .vhf-v-lead{margin:0 0 14px;font:600 12.5px/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--clay)}
+.vhf-v .vhf-v-squad p.d{margin:0 0 16px;font-size:16px;line-height:1.65;color:var(--ink)}
+.vhf-v .vhf-v-tags{margin:0 0 20px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.vhf-v .vhf-v-tags li{font:600 12.5px/1 var(--sans);letter-spacing:.04em;color:#7d4329;background:var(--clay-soft);border-radius:999px;padding:6px 12px}
+.vhf-v .vhf-v-contact{margin:0;font-size:14.5px;color:var(--muted);line-height:1.55}
+.vhf-v .vhf-v-contact:first-of-type{margin-top:auto}
+.vhf-v .vhf-v-tags+.vhf-v-contact{margin-top:auto}
+.vhf-v .vhf-v-contact+.vhf-v-contact{margin-top:10px}
+.vhf-v .vhf-v-contact a{display:block;color:var(--navy)!important;font-weight:600;overflow-wrap:anywhere}
+.vhf-v .vhf-v-squad--committee{background:var(--navy-deep);border-color:var(--navy-deep);color:var(--cream);position:relative}
+.vhf-v .vhf-v-squad--committee .vhf-v-squad__body{justify-content:center;padding:clamp(28px,4vw,44px)}
+.vhf-v .vhf-v-squad--committee h3,.vhf-v .vhf-v-squad--committee p.d{color:var(--cream)}
+.vhf-v .vhf-v-squad--committee .vhf-v-lead{color:var(--tan)}
+.vhf-v .vhf-v-squad--committee .vhf-v-tags li{background:rgba(249,247,241,.14);color:var(--cream)}
+.vhf-v .vhf-v-squad--committee .vhf-v-contact,.vhf-v .vhf-v-squad--committee .vhf-v-contact a{color:var(--cream)!important}
+.vhf-v .vhf-v-squad--committee .vhf-v-contact a{color:var(--tan)!important}
+/* Numbered steps */
+.vhf-v .vhf-v-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);counter-reset:s;margin:0;padding:0;list-style:none}
+.vhf-v .vhf-v-steps li{position:relative;padding:22px 0 0;border-top:2px solid var(--ink);counter-increment:s}
+.vhf-v .vhf-v-steps li::before{content:counter(s,decimal-leading-zero);display:block;margin-bottom:14px;font:400 clamp(52px,6vw,76px)/1 var(--serif);font-style:italic;letter-spacing:-.03em;color:var(--clay)}
+.vhf-v .vhf-v-steps h3{margin:0 0 8px;font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-v .vhf-v-steps p{margin:0;font-size:16px;line-height:1.6;color:var(--muted)}
+.vhf-v .vhf-v-steps a{color:var(--navy)!important;font-weight:600;text-decoration:underline!important}
+/* Closing CTA band */
+.vhf-v .vhf-v-band{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px) clamp(24px,6vw,72px) clamp(56px,7vw,92px);display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(28px,4vw,56px);align-items:center}
+.vhf-v .vhf-v-band>div{position:relative}
+.vhf-v .vhf-v-band .vhf-v-eyebrow{color:var(--tan)}
+.vhf-v .vhf-v-band h2{margin-bottom:12px;color:var(--cream)}
+.vhf-v .vhf-v-band p{margin:0 0 26px;font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:var(--cream);opacity:.9}
+.vhf-v .vhf-v-visit{background:var(--paper);border-radius:var(--r);padding:26px;font-size:15.5px;line-height:1.6;color:var(--ink)}
+.vhf-v .vhf-v-visit b{display:block;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:8px}
+.vhf-v .vhf-v-visit div+div{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.vhf-v .vhf-v-visit a{color:var(--navy)!important;font-weight:600;overflow-wrap:anywhere}
+.vhf-v .vhf-v-visit a:focus-visible{outline-color:var(--navy)}
+/* Reveal */
+.vhf-v.vhf-v-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-v.vhf-v-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-v.vhf-v-anim .reveal{opacity:1;transform:none;transition:none}.vhf-v *{transition:none!important}}
+@media (max-width:960px){.vhf-v .vhf-v-facts{grid-template-columns:1fr}}
+@media (max-width:800px){
+.vhf-v{font-size:16px}
+.vhf-v .vhf-v-hero{min-height:500px}
+.vhf-v .vhf-v-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+.vhf-v .vhf-v-squads,.vhf-v .vhf-v-steps,.vhf-v .vhf-v-band{grid-template-columns:1fr}
+.vhf-v .vhf-v-actions{flex-direction:column;align-items:stretch}
+}
+</style>
+
+<div class="vhf-v">
+
+<section class="vhf-v-hero" aria-labelledby="vhf-v-title">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/46d9a589-c8ab-436c-861e-9b956714c3ff/354445366_273279878701270_3752085779626479171_n.jpg?format=2500w" alt="A smiling volunteer kneeling in the farm's flower garden">
+  <div class="vhf-v-hero__text">
+    <p class="vhf-v-eyebrow">Volunteer</p>
+    <h1 id="vhf-v-title">Get your hands <em>dirty</em> with us</h1>
+    <p>You don't have to be a veteran to volunteer. Our community is veterans, families, caregivers, and anyone who just wants to help, and we'd love to have you.</p>
+    <div class="vhf-v-actions">
+      <a class="vhf-v-btn vhf-v-btn--light" href="https://docs.google.com/forms/d/e/1FAIpQLSdch1--q6vjJnXZubbxmRi--Pvere9oscqMA7M7La46CGwf5A/viewform?usp=header" target="_blank" rel="noopener">Sign up to volunteer <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="vhf-v-btn vhf-v-btn--ghost" href="#vhf-v-squads">See the squads</a>
+    </div>
+  </div>
+  <svg class="vhf-v-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<section class="sec" aria-labelledby="vhf-v-why">
+  <p class="vhf-v-eyebrow">Why volunteer</p>
+  <h2 id="vhf-v-why">What it's like to volunteer here</h2>
+  <p class="sec-intro">Come when you can, help with what interests you, and learn as you go.</p>
+  <div class="vhf-v-facts">
+    <div class="vhf-v-fact reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <h3>No required time</h3>
+      <p>There's no set commitment of time or duties. Come and go as you please, and pitch in where you'd like.</p>
+    </div>
+    <div class="vhf-v-fact reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20c-2-3-2-8 2-11 3-2 7-2 9-5 1 5 0 10-4 13-2 2-5 3-7 3z"/><path d="M7 20c2-4 5-7 9-9"/></svg>
+      <h3>No experience needed</h3>
+      <p>Every squad teaches as you go. You'll learn organic farming, flower design, herbs, bees, and more.</p>
+    </div>
+    <div class="vhf-v-fact reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>
+      <h3>You're truly needed</h3>
+      <p>We have a very small staff, so most grants and donations go straight into the farm and events. Volunteers make the rest happen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="vhf-v-squads" aria-labelledby="vhf-v-sq">
+  <p class="vhf-v-eyebrow">The squads</p>
+  <h2 id="vhf-v-sq">Find your squad</h2>
+  <p class="sec-intro">Pick the work that suits you best. You can join more than one.</p>
+  <div class="vhf-v-squads">
+
+    <article class="vhf-v-squad reveal" id="garden-squad">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/8508d7f6-a86a-4cb4-8c1b-ff72b7cdcd8c/20230330_144521.jpg?format=750w" alt="Volunteers shoveling compost beside the greenhouse" loading="lazy">
+      <div class="vhf-v-squad__body">
+        <h3>Garden Group</h3>
+        <p class="vhf-v-lead">With Maddie McCann, Director of Agriculture</p>
+        <p class="d">Grow vegetables and flowers: work the soil, pull weeds, plant starts, run the irrigation pumps, tend the greenhouse, and pick produce, including our heirloom tomatoes. The flowers become bouquets we give out at the VA, and Sam Raph teaches free flower design workshops each summer.</p>
+        <ul class="vhf-v-tags"><li>No experience needed</li><li>Outdoors</li></ul>
+        <p class="vhf-v-contact"><a href="/garden">Meet the Garden Group &rarr;</a></p>
+        <p class="vhf-v-contact">Interested? Email <a href="mailto:veteranshealingfarm@gmail.com?subject=Garden%20Group%20volunteer">veteranshealingfarm@gmail.com</a></p>
+      </div>
+    </article>
+
+    <article class="vhf-v-squad reveal" id="herb-squad">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/7b43c610-67d4-48ac-8124-96e454a716e6/IMG_1381.jpg?format=750w" alt="Volunteers in sun hats tending the herb beds" loading="lazy">
+      <div class="vhf-v-squad__body">
+        <h3>Medicinal Herb Squad</h3>
+        <p class="vhf-v-lead">Led by Rebecca Vann, Plant Medicine Director</p>
+        <p class="d">Grow local medicinal herbs like echinacea, valerian, skullcap, lemon balm, ginseng, goldenseal, black cohosh, and chamomile. Then help turn them into tinctures, teas, balms, and salves for our veterans and volunteers. Rebecca also teaches free summer workshops for members.</p>
+        <ul class="vhf-v-tags"><li>No experience needed</li><li>Free workshops</li></ul>
+        <p class="vhf-v-contact">Interested? Email <a href="mailto:info@aurumapotheca.com?subject=Medicinal%20Herb%20Squad%20volunteer">info@aurumapotheca.com</a></p>
+      </div>
+    </article>
+
+    <article class="vhf-v-squad reveal" id="bee-squad">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/95296052-a30b-4a7c-9e68-2fcc0f6325f8/270228391_2440700559398373_2882075345675960739_n.jpg?format=750w" alt="Volunteer beekeepers in white suits inspecting a hive" loading="lazy">
+      <div class="vhf-v-squad__body">
+        <h3>Bee Squad</h3>
+        <p class="vhf-v-lead">Work with our Lead Beekeeper</p>
+        <p class="d">Raise and care for our honeybees: build and clean hives, bring in wild swarms, split colonies, collect honey, and keep the hives healthy.</p>
+        <ul class="vhf-v-tags"><li>No experience needed</li><li>Outdoors</li></ul>
+        <p class="vhf-v-contact">Interested? Email <a href="mailto:veteranshealingfarm@gmail.com?subject=Bee%20Squad%20volunteer">veteranshealingfarm@gmail.com</a> and we'll connect you with our Lead Beekeeper.</p>
+      </div>
+    </article>
+
+    <article class="vhf-v-squad vhf-v-squad--committee reveal">
+      <div class="vhf-v-squad__body">
+        <h3>Committees</h3>
+        <p class="vhf-v-lead">Help without the heavy lifting</p>
+        <p class="d">Plenty of the work doesn't involve physical labor. Volunteer committees run the back end of the farm. If you have any of these skills, new members are welcome and needed.</p>
+        <ul class="vhf-v-tags"><li>Marketing</li><li>Social media</li><li>Events</li><li>Membership</li><li>Website development</li><li>Fundraising</li><li>Community outreach</li></ul>
+        <p class="vhf-v-contact">Interested? Email <a href="mailto:veteranshealingfarm@gmail.com?subject=Committee%20volunteer">veteranshealingfarm@gmail.com</a></p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="vhf-v-how">
+  <p class="vhf-v-eyebrow">How to join</p>
+  <h2 id="vhf-v-how">How to get started</h2>
+  <p class="sec-intro">Three steps, and then we'll see you at the farm.</p>
+  <ol class="vhf-v-steps reveal">
+    <li><h3>Fill out the form</h3><p>Start with our short <a href="https://docs.google.com/forms/d/e/1FAIpQLSdch1--q6vjJnXZubbxmRi--Pvere9oscqMA7M7La46CGwf5A/viewform?usp=header" target="_blank" rel="noopener">volunteer form</a>.</p></li>
+    <li><h3>Pick a squad</h3><p>Email the contact for the squad that interests you, or tell us on the form.</p></li>
+    <li><h3>Come out to the farm</h3><p>Stop by during farm hours. No set schedule; come when you can.</p></li>
+  </ol>
+</section>
+
+<section class="vhf-v-band" aria-labelledby="vhf-v-ready">
+  <svg class="vhf-v-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  <div>
+    <p class="vhf-v-eyebrow">Join us</p>
+    <h2 id="vhf-v-ready">Ready to help?</h2>
+    <p>Whether you can give an afternoon or a whole season, there's a place for you here. Let's have fun!</p>
+    <div class="vhf-v-actions">
+      <a class="vhf-v-btn vhf-v-btn--light" href="https://docs.google.com/forms/d/e/1FAIpQLSdch1--q6vjJnXZubbxmRi--Pvere9oscqMA7M7La46CGwf5A/viewform?usp=header" target="_blank" rel="noopener">Sign up to volunteer <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="vhf-v-btn vhf-v-btn--ghost" href="tel:8285956111">Call (828) 595-6111</a>
+    </div>
+  </div>
+  <div class="vhf-v-visit">
+    <div><b>Where</b>138 Kimzey Road<br>Mills River, NC 28759</div>
+    <div><b>Farm hours</b>Tuesday to Friday, 8:30am to 4:30pm.<br>Saturday hours vary, so please call.<br>Closed Sundays and Mondays.</div>
+    <div><b>Questions</b><a href="mailto:veteranshealingfarm@gmail.com">veteranshealingfarm@gmail.com</a></div>
+  </div>
+</section>
+
+</div>
+<script>
+(function(){var w=document.querySelector(".vhf-v");if(!w)return;w.classList.add("is-on");
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver"in window){w.classList.add("vhf-v-anim");
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+w.querySelectorAll(".reveal").forEach(function(el){io.observe(el)})}})();
+</script>

@@ -1,0 +1,98 @@
+<!-- VHF new site header (offline design). Self-contained: styles scoped to .vhf-hd, no JS (CSS-only dropdowns and mobile menu).
+     Squarespace can't swap its native header for custom markup directly; see CLAUDE.md for how this would go live. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-hd{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  position:sticky;top:0;z-index:50;font-family:var(--sans);color:var(--ink);background:var(--cream);box-shadow:0 1px 0 var(--line)}
+.vhf-hd *{box-sizing:border-box}
+.vhf-hd a{text-decoration:none!important;color:inherit}
+.vhf-hd ul{list-style:none;margin:0;padding:0}
+/* crisis strip: calm navy-deep */
+.vhf-hd-top{background:var(--navy-deep);color:var(--cream);font-size:13.5px;line-height:1.45}
+.vhf-hd-top>div{max-width:1280px;margin:0 auto;padding:8px 24px;display:flex;justify-content:space-between;align-items:center;gap:6px 24px;flex-wrap:wrap}
+.vhf-hd-top a{font-weight:600;color:var(--tan)}
+.vhf-hd-top a:hover{color:#fff}
+.vhf-hd-top .vhf-hd-crisis b{font-weight:600;color:#fff}
+.vhf-hd-top .vhf-hd-crisis a{text-decoration:underline!important;text-decoration-color:rgba(221,214,184,.5)!important;text-underline-offset:3px}
+.vhf-hd-crisis em{font-style:normal;white-space:nowrap}
+.vhf-hd-crisis i{font-style:normal;opacity:.45;margin:0 8px}
+.vhf-hd-phone{color:rgba(249,247,241,.85)}
+/* main bar */
+.vhf-hd-bar{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
+.vhf-hd-brand{display:flex;align-items:center;gap:14px;margin-right:auto;min-width:0}
+.vhf-hd-brand img{display:block;width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 1px var(--line)}
+.vhf-hd-brand span{display:block;font:600 22px/1.05 var(--serif);color:var(--olive-deep);letter-spacing:-.015em}
+.vhf-hd-brand small{display:flex;align-items:center;gap:8px;margin-top:6px;font:600 11.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-hd-brand small::before{content:"";width:18px;height:2px;background:currentColor;border-radius:2px}
+.vhf-hd-nav>ul{display:flex;align-items:center;gap:2px}
+.vhf-hd-nav li{position:relative}
+.vhf-hd-nav li>a,.vhf-hd-nav li>span{display:block;padding:10px 14px;border-radius:999px;font-size:16px;font-weight:500;color:var(--ink);cursor:pointer;transition:background-color .15s,color .15s}
+.vhf-hd-nav li>span::after{content:"";display:inline-block;width:6px;height:6px;margin:0 0 3px 8px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);opacity:.55}
+.vhf-hd-nav li:hover>a,.vhf-hd-nav li:hover>span,.vhf-hd-nav li:focus-within>a,.vhf-hd-nav li:focus-within>span{background:#ecede2;color:var(--olive-deep)}
+.vhf-hd-sub{display:none;position:absolute;left:0;top:100%;min-width:250px;padding:8px;margin-top:8px;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:14px;box-shadow:0 24px 48px -28px rgba(38,38,34,.5)}
+.vhf-hd-nav li:nth-child(2) .vhf-hd-sub,.vhf-hd-nav li:nth-child(5) .vhf-hd-sub{border-top-color:var(--navy)}
+.vhf-hd-nav li:nth-child(3) .vhf-hd-sub{border-top-color:var(--clay)}
+.vhf-hd-sub::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.vhf-hd li:hover>.vhf-hd-sub,.vhf-hd li:focus-within>.vhf-hd-sub{display:block}
+.vhf-hd-sub a{display:block;padding:9px 12px;border-radius:6px;font-size:15px;color:var(--ink)}
+.vhf-hd-sub a:hover,.vhf-hd-sub a:focus-visible{background:#ecede2;color:var(--olive-deep)}
+/* Donate pill (olive primary) */
+.vhf-hd-cta{display:inline-flex;align-items:center;padding:13px 24px;border-radius:999px;background:var(--olive);border:2px solid var(--olive);color:var(--cream)!important;font:600 15px/1 var(--sans);white-space:nowrap;transition:background-color .18s,border-color .18s}
+.vhf-hd-cta:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-hd a:focus-visible,.vhf-hd span:focus-visible,.vhf-hd-toggle:focus-visible~.vhf-hd-burger{outline:3px solid var(--navy);outline-offset:2px}
+.vhf-hd .vhf-hd-top a:focus-visible{outline-color:var(--tan);border-radius:3px}
+.vhf-hd-toggle{position:absolute;opacity:0;pointer-events:none}
+.vhf-hd-burger{display:none;align-items:center;gap:10px;padding:11px 18px;border:2px solid var(--olive);border-radius:999px;color:var(--olive-deep);font:600 15px/1 var(--sans);cursor:pointer;user-select:none}
+.vhf-hd-burger i{display:block;width:18px;height:2px;background:currentColor;box-shadow:0 6px 0 currentColor,0 -6px 0 currentColor}
+@media (max-width:1020px){
+  .vhf-hd-bar{flex-wrap:wrap;gap:12px 14px}
+  .vhf-hd-burger{display:inline-flex;order:1}
+  .vhf-hd-cta{order:2}
+  .vhf-hd-nav{display:none;order:9;flex-basis:100%;padding:8px 0 12px;border-top:1px solid var(--line)}
+  .vhf-hd-toggle:checked~.vhf-hd-nav{display:block}
+  .vhf-hd-toggle:checked~.vhf-hd-burger{background:var(--olive);color:var(--cream)}
+  .vhf-hd-nav>ul{display:block}
+  .vhf-hd-nav li>a,.vhf-hd-nav li>span{border-radius:6px;padding:12px 8px}
+  .vhf-hd-nav li>span,.vhf-hd-nav>ul>li>a{font:600 19px/1.2 var(--serif);color:var(--olive-deep)}
+  .vhf-hd-nav li>span{cursor:default}
+  .vhf-hd-nav li>span::after{display:none}
+  .vhf-hd-sub{display:block;position:static;min-width:0;margin:0 0 8px 8px;padding:0 0 0 12px;border:0;border-left:2px solid var(--tan);border-radius:0;background:transparent;box-shadow:none}
+  .vhf-hd-sub::before{display:none}
+  .vhf-hd-sub a{padding:9px 8px}
+}
+@media (max-width:520px){.vhf-hd-top>div{padding:7px 16px;justify-content:center;text-align:center;font-size:13px}.vhf-hd-crisis i{display:none}.vhf-hd-crisis em{display:inline-block;margin:2px 6px}.vhf-hd-top .vhf-hd-phone{display:none}.vhf-hd-bar{padding:12px 16px}.vhf-hd-brand span{font-size:18px}.vhf-hd-brand img{width:46px;height:46px}.vhf-hd-cta{padding:11px 18px}}
+@media (prefers-reduced-motion:reduce){.vhf-hd *{transition:none!important}}
+</style>
+<header class="vhf-hd" id="vhf-hd">
+  <div class="vhf-hd-top"><div>
+    <span class="vhf-hd-crisis" role="region" aria-label="Veterans Crisis Line">Veteran in crisis? <em><a href="tel:988">Call <b>988</b>, then press 1</a></em><i aria-hidden="true">|</i><em><a href="sms:838255">Text <b>838255</b></a></em><i aria-hidden="true">|</i><em><a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">Chat online</a></em><i aria-hidden="true">|</i><em>Emergency: <a href="tel:911">call 911</a></em></span>
+    <span class="vhf-hd-phone">Call the farm: <a href="tel:8285956111">(828) 595-6111</a></span>
+  </div></div>
+  <div class="vhf-hd-bar">
+    <a class="vhf-hd-brand" href="/" aria-label="Veterans Healing Farm, home">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/2d1e4ec4-8a12-448c-80c4-6cfb6089dc43/VHF_Logo-2015.png?format=500w" alt="" width="56" height="56">
+      <span>Veterans Healing Farm<small>Mills River, NC</small></span>
+    </a>
+    <input class="vhf-hd-toggle" type="checkbox" id="vhf-hd-t" aria-label="Show menu">
+    <label class="vhf-hd-burger" for="vhf-hd-t"><i></i>Menu</label>
+    <nav class="vhf-hd-nav" aria-label="Main">
+      <ul>
+        <li><span tabindex="0">About</span>
+          <div class="vhf-hd-sub">
+            <a href="/about">Our Mission &amp; Farm</a><a href="/staff-new">Our Staff</a><a href="/board">Board</a><a href="/sponsors">Our Sponsors</a><a href="/testimonials">Testimonials</a><a href="/contact">Contact Us</a><a href="/faq">FAQ</a><a href="/i990-forms">990 Forms</a>
+          </div></li>
+        <li><span tabindex="0">Programs</span>
+          <div class="vhf-hd-sub"><a href="/programs">All Programs</a><a href="/garden">Garden Group</a><a href="/herb-squad">Herb Squad</a><a href="/beekeeping">Bee Squad</a><a href="/clay">Clay &amp; Camaraderie</a></div></li>
+        <li><span tabindex="0">Get involved</span>
+          <div class="vhf-hd-sub"><a href="/volunteer">Volunteer</a><a href="/donate">Donate</a></div></li>
+        <li><span tabindex="0">Events</span>
+          <div class="vhf-hd-sub"><a href="/events">Event Calendar</a><a href="/women-warriors-luncheon">Women Warriors’ Keynote Luncheon</a></div></li>
+        <li><span tabindex="0">Media</span>
+          <div class="vhf-hd-sub"><a href="/resources">Resources</a><a href="/newsletters">Newsletters</a><a href="/news">In the News</a><a href="/videos">Videos</a><a href="/galleries">Galleries</a></div></li>
+        <li><a href="https://veteranshealingfarm.myspreadshop.com/all">Shop</a></li>
+      </ul>
+    </nav>
+    <a class="vhf-hd-cta" href="/donate">Donate</a>
+  </div>
+</header>

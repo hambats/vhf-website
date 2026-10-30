@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Firefly Testimonials Demo</title>
+<!-- Demo only (Oct 28, 2026): three.js firefly testimonials for the VHF Testimonials page. Not in the hub's PAGES; if adopted, the section moves into content/testimonials-full.html scoped like the others. Quotes are copied from that page. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--olive:#5c6642;--olive-deep:#3d4529;--navy:#3f5a78;--clay:#a8603e;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58}
+body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Work Sans",system-ui,sans-serif}
+.demo-note{max-width:1200px;margin:0 auto;padding:20px 24px 0;font-size:14px;color:var(--muted)}
+.vhf-ff{position:relative;max-width:1200px;margin:16px auto 64px;padding:0 24px}
+.vhf-ff .fld{position:relative;min-height:680px;border-radius:22px;overflow:hidden;isolation:isolate;background:radial-gradient(70% 60% at 70% 18%,#2f4560 0%,#1d2b3d 55%,#141d28 100%);color:var(--cream)}
+.vhf-ff canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.vhf-ff .hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:52%;z-index:1;pointer-events:none}
+.vhf-ff .head{position:relative;z-index:3;max-width:560px;padding:clamp(32px,5vw,60px);pointer-events:none}
+.vhf-ff .eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 "Work Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#e8b98f}
+.vhf-ff h2{font:600 clamp(32px,4vw,50px)/1.08 Fraunces,Georgia,serif;letter-spacing:-.015em;margin:0 0 14px}
+.vhf-ff h2 em{font-style:italic;font-weight:400;color:#f3d38a}
+.vhf-ff .head p{margin:0;max-width:44ch;color:#c9d1d9}
+/* The story a firefly is "telling" fades in over the dark field, then out again. No box. */
+.vhf-ff .say{position:absolute;z-index:3;left:50%;bottom:clamp(36px,6vw,64px);width:min(640px,calc(100% - 48px));transform:translateX(-50%);margin:0;text-align:center;pointer-events:none;opacity:0;transition:opacity .9s ease}
+.vhf-ff .say.on{opacity:1}
+.vhf-ff .say q{display:block;font:400 italic clamp(18px,2.1vw,23px)/1.5 Fraunces,Georgia,serif;color:#fbf6e4;text-shadow:0 0 18px rgba(243,211,138,.35),0 1px 2px rgba(0,0,0,.6);quotes:"\201C" "\201D"}
+.vhf-ff .say .who{display:block;margin-top:12px;font:600 12px/1.4 "Work Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#e8d79c}
+.vhf-ff .say .who span{display:block;margin-top:4px;font-weight:500;letter-spacing:.04em;text-transform:none;font-size:13px;color:#aeb8c2}
+/* Invisible, focusable hit targets that follow each story firefly (keyboard + screen readers). */
+.vhf-ff .hit{position:absolute;z-index:4;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer}
+.vhf-ff .hit:focus-visible{outline:2px solid #f3d38a;outline-offset:2px}
+.vhf-ff .tip{position:absolute;z-index:3;right:20px;top:20px;font:600 11px/1 "Work Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8f9aa6}
+/* Fallback when three.js can't load: show the stories as a plain list. */
+.vhf-ff .list{display:none;position:relative;z-index:3;margin:0;padding:0 clamp(32px,5vw,60px) 60px;list-style:none;columns:2 300px;column-gap:28px}
+.vhf-ff .list li{break-inside:avoid;margin:0 0 18px;font:italic 16px/1.5 Fraunces,Georgia,serif;color:#e9e4d4}
+.vhf-ff .list li span{display:block;margin-top:6px;font:500 13px/1.4 "Work Sans",sans-serif;font-style:normal;color:#aeb8c2}
+.vhf-ff.no3d .list{display:block}.vhf-ff.no3d .say,.vhf-ff.no3d .tip{display:none}
+@media (max-width:700px){.vhf-ff .fld{min-height:700px}.vhf-ff .tip{display:none}}
+</style>
+</head>
+<body>
+<p class="demo-note">Demo: three.js firefly testimonials. Eight fireflies flash and go dark like real ones over the Blue Ridge. Every few seconds one glows warmer and a real story from the Testimonials page fades in below. Hover, tap or Tab to a firefly to hear one.</p>
+
+<section class="vhf-ff" aria-labelledby="ff-h">
+  <div class="fld">
+    <div class="head">
+      <p class="eye">In their words</p>
+      <h2 id="ff-h">Stories that <em>light up</em> the farm</h2>
+      <p>What veterans, volunteers and friends say about their time here.</p>
+    </div>
+    <svg class="hills" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <!-- Blue Ridge: long, rounded ridgelines with uneven knobs and saddles, stacked back to front and paler with distance like the haze. -->
+      <path d="M0 118 C40 112 80 100 120 96 C170 92 200 104 240 108 C290 112 320 90 370 74 C400 66 430 70 460 80 C510 96 560 104 620 100 C680 96 720 84 760 80 C800 76 830 86 870 92 C930 100 980 88 1030 70 C1060 60 1090 66 1120 78 C1150 88 1180 92 1200 92 V360 H0Z" fill="#3a5170"/>
+      <path d="M0 160 C60 158 100 146 150 140 C210 134 250 150 300 156 C350 162 380 150 420 134 C450 124 490 120 530 128 C590 140 640 158 700 156 C750 154 780 136 830 130 C880 124 930 138 980 146 C1040 154 1090 138 1130 128 C1160 122 1185 126 1200 130 V360 H0Z" fill="#2f4562"/>
+      <path d="M0 200 C70 196 120 186 170 184 C240 182 280 198 340 204 C400 210 450 192 500 182 C540 174 580 178 620 188 C680 202 740 208 800 200 C850 194 890 180 940 176 C990 172 1030 186 1080 194 C1130 202 1170 196 1200 192 V360 H0Z" fill="#253851"/>
+      <path d="M0 246 C100 240 170 230 240 230 C320 230 370 246 450 250 C530 254 590 238 660 232 C730 226 800 236 870 244 C950 252 1030 246 1100 238 C1150 232 1180 234 1200 236 V360 H0Z" fill="#1d2c40"/>
+      <path d="M0 296 C180 286 340 292 500 290 C700 288 860 280 1000 286 C1100 290 1160 292 1200 290 V360 H0Z" fill="#1f271b"/>
+    </svg>
+    <canvas aria-hidden="true"></canvas>
+    <ul class="list"></ul>
+    <figure class="say" aria-live="off"><q></q><figcaption class="who"></figcaption></figure>
+    <span class="tip" aria-hidden="true">Hover &middot; tap &middot; Tab</span>
+  </div>
+</section>
+
+<script type="module">
+/* Quotes copied from content/testimonials-full.html (kept short enough to read in one glance). */
+const STORIES=[
+  ['Great caring people. Truly focus on helping Veterans. Complete cycle for the Veteran, body, mind, and soul.','Mark Trexler','Survival Innovations Inc, Mills River, NC'],
+  ['Veteran’s Healing Farm is an awesome retreat for Vets looking to interact, relax, communicate and be part of an amazing community.','Harpreet Cheema','HealthBook, LLC, Arden, NC'],
+  ['Veterans Healing Farm is a good therapy facility for Veterans, who also learn how to grow a productive garden.','Wanda R Schwerer','Aura Home Women Vets, Asheville, NC'],
+  ['I have volunteered here numerous times. The people and atmosphere are always welcoming. Support your local veterans!','Valerie O’Brien','Volunteer'],
+  ['They care about helping veterans. The folks at VHF exemplify servant leadership.','Jeff Herold','Warrior Leadership LLC, Covington, GA'],
+  ['A phenomenal nonprofit that offers veterans free classes and the opportunity to be around other veterans who care about their well-being.','Lisa Rosencrans',''],
+  ['Awesome place working to make a difference for veterans in our community.','David Ray',''],
+  ['Phenomenal mission in a beautiful setting with amazing people. Highly recommend!','Sarah Fiel','Home Theory, Kannapolis, NC'],
+  ['I felt the names under my fingers and a profound respect for all of them. I won’t forget.','Sukey Pratt','Volunteer, Traveling Vietnam Wall'],
+  ['Thanks to those working the information tents, I was able to find two names from my hometown.','Carl Z','Traveling Vietnam Wall visitor'],
+  ['Great place growing vegetables by veterans!','Ronald Kuebler','Hendersonville Hope Aktion Club, Flat Rock, NC'],
+  ['This organization is doing amazing things to help our Veterans. Those at the Farm have a heart for our Veterans.','Selena Maxie','Haven Farms Ministries, Denver, NC']
+];
+
+const root=document.querySelector('.vhf-ff'),fld=root.querySelector('.fld'),canvas=fld.querySelector('canvas');
+const say=fld.querySelector('.say'),sq=say.querySelector('q'),sw=say.querySelector('.who');
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+fld.querySelector('.list').innerHTML=STORIES.map(([q,n,o])=>`<li>“${esc(q)}”<span>${esc(n)}${o?', '+esc(o):''}</span></li>`).join('');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let THREE;
+try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js')}catch(e){root.classList.add('no3d');throw e}
+
+const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio||1,2));
+const scene=new THREE.Scene(),cam=new THREE.OrthographicCamera(0,1,0,1,-10,10);
+let W=1,H=1;
+
+/* Soft round glow, drawn once and shared by every firefly. */
+const glow=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d'),gr=g.createRadialGradient(64,64,0,64,64,64);
+  gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.1,'rgba(255,255,255,.95)');gr.addColorStop(.28,'rgba(255,255,255,.3)');gr.addColorStop(1,'rgba(255,255,255,0)');
+  g.fillStyle=gr;g.fillRect(0,0,128,128);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t})();
+
+const GREEN=new THREE.Color('#d8f27a'),WARM=new THREE.Color('#fff0a8'),rand=(a,b)=>a+Math.random()*(b-a);
+
+/* One flash: snaps on in about a tenth of a second, then fades out over half a second. x is seconds since it started. */
+const env=x=>x<0?0:x<.1?x/.1:Math.max(0,1-(x-.1)/.5)**2;
+/* The teller's slower glow: eases on, lingers, fades. */
+const envSlow=x=>x<0?0:x<.2?x/.2:Math.max(0,1-(x-.2)/1.1)**2;
+/* A firefly's own rhythm: dark most of the time, a single or double flash every few seconds. */
+const blink=(f,t)=>{const u=(t+f.off)%f.per;return Math.min(1,env(u)+(f.dbl?env(u-.45)*.8:0))};
+
+/* Eight fireflies, spread on a loose, staggered 4 x 2 grid between the heading and the story line. They share all the stories. */
+const N=8,mk=()=>({per:rand(4.5,8.5),off:rand(0,9),dbl:Math.random()<.3,ph:rand(0,6.3),spd:rand(.3,.9)});
+const ffs=Array.from({length:N},(_,i)=>{
+  const cols=4,cx=i%4,cy=i<4?0:1;
+  /* DoubleSide: the y-down camera flips sprite winding, and front-face culling would hide them. */
+  const m=new THREE.SpriteMaterial({map:glow,color:GREEN.clone(),side:THREE.DoubleSide,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending});
+  const sp=new THREE.Sprite(m);scene.add(sp);
+  const b=document.createElement('button');b.type='button';b.className='hit';b.setAttribute('aria-label','Hear a story');fld.appendChild(b);
+  return{...mk(),sp,b,s:null,hx:.06+.88*(cx+.5+(cy?.2:-.2)+rand(-.12,.12))/cols,gy:(cy+.5+rand(-.25,.25))/2,hy:0,x:0,y:0,lift:0}});
+
+function size(){const b=fld.getBoundingClientRect();W=b.width;H=b.height;r.setSize(W,H,false);
+  const narrow=W<700;ffs.forEach(f=>f.hy=(narrow?.36:.32)+f.gy*(narrow?.24:.22));
+  cam.left=0;cam.right=W;cam.top=0;cam.bottom=H;cam.updateProjectionMatrix()}
+size();addEventListener('resize',size);
+
+/* The teller: one firefly at a time glows warmer and the next story fades in below.
+   It moves on by itself; hovering, tapping or tabbing to a firefly makes that one the teller. */
+let teller=null,toldAt=-99,nextAt=1.5,si=Math.floor(Math.random()*STORIES.length),swapT=0;
+const clock=new THREE.Clock();
+function tell(f,hold){
+  if(f===teller)return;teller=f;toldAt=clock.getElapsedTime();nextAt=toldAt+(hold?14:9);
+  f.s=STORIES[si++%STORIES.length];
+  clearTimeout(swapT);say.classList.remove('on');
+  swapT=setTimeout(()=>{const[q,n,o]=f.s;sq.textContent=q;sw.innerHTML=`${esc(n)}${o?`<span>${esc(o)}</span>`:''}`;say.classList.add('on')},say.textContent.trim()?650:200)}
+function quiet(){teller=null;clearTimeout(swapT);say.classList.remove('on')}
+const nextTeller=()=>{const rest=ffs.filter(f=>f!==teller);return rest[Math.floor(Math.random()*rest.length)]};
+
+let mx=-1e4,my=-1e4;
+const pick=()=>{let best=null,bd=Math.max(34,W/24);for(const f of ffs){const d=Math.hypot(f.x-mx,f.y-my);if(d<bd){bd=d;best=f}}return best};
+fld.addEventListener('pointermove',e=>{const b=fld.getBoundingClientRect();mx=e.clientX-b.left;my=e.clientY-b.top;const f=pick();fld.style.cursor=f?'pointer':'';if(f)tell(f,true)});
+fld.addEventListener('pointerleave',()=>{mx=my=-1e4});
+ffs.forEach(f=>{f.b.addEventListener('focus',()=>tell(f,true));f.b.addEventListener('click',()=>{teller=null;tell(f,true)})});
+addEventListener('keydown',e=>{if(e.key==='Escape')quiet()});
+
+/* Pause when scrolled away. */
+let vis=true,raf=0;new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis)loop()}).observe(fld);
+function loop(){cancelAnimationFrame(raf);if(!vis)return;raf=requestAnimationFrame(loop);
+  const t=clock.getElapsedTime();
+  if(t>nextAt)tell(nextTeller(),false);
+  for(const f of ffs){
+    const me=f===teller;
+    /* The teller glows slowly every 2.2 seconds while its story shows; the rest flash and go dark on their own time. */
+    const k=RM?(me?1:.45):me?envSlow((t-toldAt)%2.2):blink(f,t);
+    f.ph+=RM?0:.01*f.spd*(me?.2:1);
+    /* They drift slowly and climb a little while lit, like the J-shaped flash of eastern fireflies. */
+    f.lift+=(k-f.lift)*.2;
+    f.x=(f.hx+Math.sin(f.ph)*.03+Math.sin(f.ph*2.3)*.01)*W;f.y=(f.hy+Math.cos(f.ph*1.3)*.025)*H-f.lift*8;
+    const s=(W<700?30:Math.max(34,W/28))*(me?1.5:1)*(.6+.4*k);
+    f.sp.position.set(f.x,f.y,0);f.sp.scale.set(s,s,1);
+    /* Fade by opacity, not by darkening the color: a dark glow still writes alpha and shows as a black speck. */
+    f.sp.material.color.copy(me?WARM:GREEN);f.sp.material.opacity=Math.min(1,k*(me?1.2:1));f.sp.visible=k>.01;
+    f.b.style.transform=`translate(${f.x}px,${f.y}px)`}
+  r.render(scene,cam);
+}
+loop();
+</script>
+</body>
+</html>

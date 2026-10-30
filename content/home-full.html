@@ -1,0 +1,295 @@
+<!-- VHF Home page, full layout for one Squarespace Code block. Styles scoped to .vhf-h. Keep the native newsletter section below this block (its form posts to Squarespace). Field Journal makeover. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-h:not(.is-on){display:none}
+.vhf-h{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  --r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto;padding-bottom:clamp(48px,7vw,88px)}
+.vhf-h *{box-sizing:border-box}
+.vhf-h a{text-decoration:none!important}
+.vhf-h h1,.vhf-h h2,.vhf-h h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-h h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-h h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-h h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-h h1 em,.vhf-h h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-h p{max-width:62ch}
+.vhf-h .vhf-h-sec{margin-top:var(--sec)}
+.vhf-h .vhf-h-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-h .vhf-h-eye::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-h .vhf-h-dark .vhf-h-eye,.vhf-h .vhf-h-hero .vhf-h-eye{color:var(--tan)}
+.vhf-h .vhf-h-lead{margin:0;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted)}
+/* Hero */
+.vhf-h .vhf-h-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(480px,72vh,720px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep);box-shadow:var(--shadow)}
+.vhf-h .vhf-h-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vhf-h .vhf-h-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-h .vhf-h-hero__in{position:relative;padding:clamp(28px,6vw,72px) clamp(28px,6vw,72px) clamp(52px,7vw,88px);max-width:780px}
+.vhf-h .vhf-h-hero h1{color:var(--cream);margin-bottom:22px}
+.vhf-h .vhf-h-hero h1 em{color:var(--tan)}
+.vhf-h .vhf-h-hero p{margin:0;color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px)}
+.vhf-h .vhf-h-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+/* Buttons */
+.vhf-h .vhf-h-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-h .vhf-h-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s,transform .18s}
+.vhf-h .vhf-h-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-h .vhf-h-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-h .vhf-h-btn:hover svg{transform:translateX(3px)}
+.vhf-h .vhf-h-btn--navy{background:var(--navy);border-color:var(--navy)}
+.vhf-h .vhf-h-btn--navy:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.vhf-h .vhf-h-btn--outline{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.vhf-h .vhf-h-btn--outline:hover{background:#e6ecf2;border-color:var(--navy)}
+.vhf-h .vhf-h-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-h .vhf-h-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-h .vhf-h-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-h .vhf-h-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-h a:focus-visible,.vhf-h button:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-h .vhf-h-dark a:focus-visible,.vhf-h .vhf-h-hero a:focus-visible{outline-color:var(--tan)}
+.vhf-h .vhf-h-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.vhf-h .vhf-h-head>div{max-width:640px}
+.vhf-h .vhf-h-link{font-weight:600;color:var(--navy)!important;border-bottom:2px solid currentColor;padding-bottom:2px}
+/* Featured news card (overlaps hero) */
+.vhf-h .vhf-h-news{position:relative;z-index:3;display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:clamp(20px,4vw,48px);align-items:center;margin:-44px clamp(12px,4vw,48px) 0;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--clay);border-radius:var(--r);padding:clamp(20px,3vw,32px);box-shadow:var(--shadow)}
+.vhf-h .vhf-h-news[hidden]{display:none}
+.vhf-h .vhf-h-news img{display:block;width:100%;border-radius:10px}
+.vhf-h .vhf-h-tag{display:inline-block;margin-bottom:14px;padding:6px 12px;border-radius:999px;background:var(--clay-soft);color:#7d4329;font:600 12.5px/1 var(--sans);letter-spacing:.04em}
+.vhf-h .vhf-h-news h2{font-size:clamp(26px,3vw,36px);margin-bottom:14px}
+.vhf-h .vhf-h-news dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0 0 24px;font-size:16px;line-height:1.45}
+.vhf-h .vhf-h-news dt{font:600 12px/1.6 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--clay)}
+.vhf-h .vhf-h-news dd{margin:0;color:var(--ink)}
+.vhf-h .vhf-h-more{list-style:none;margin:22px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px}
+.vhf-h .vhf-h-more a{color:var(--navy)!important;font-weight:600}
+.vhf-h .vhf-h-more a:hover{text-decoration:underline!important}
+/* How (split) */
+.vhf-h .vhf-h-how{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.vhf-h .vhf-h-how__fig{position:relative;margin:0;isolation:isolate}
+.vhf-h .vhf-h-how__fig img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.vhf-h .vhf-h-how__fig::after{content:"";position:absolute;left:-14px;bottom:-14px;width:46%;height:46%;border:2px solid var(--tan);border-radius:var(--r-lg);z-index:-1}
+.vhf-h .vhf-h-how p{margin:0 0 16px}
+.vhf-h .vhf-h-pillars{list-style:none;margin:24px 0 8px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vhf-h .vhf-h-pillars li{display:flex;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px;font-size:15px;font-weight:500;line-height:1.35}
+.vhf-h .vhf-h-pillars li:last-child{grid-column:span 2}
+.vhf-h .vhf-h-pillars svg{width:22px;height:22px;flex:none;color:var(--olive)}
+/* Dark stat band */
+.vhf-h .vhf-h-dark{position:relative;overflow:hidden;background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px) clamp(28px,6vw,72px) clamp(52px,7vw,88px)}
+.vhf-h .vhf-h-dark h2,.vhf-h .vhf-h-dark h3{color:var(--cream)}
+.vhf-h .vhf-h-dark p{color:var(--cream);opacity:.9}
+.vhf-h .vhf-h-dark .vhf-h-lead{color:var(--cream);opacity:.85}
+.vhf-h .vhf-h-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:40px}
+.vhf-h .vhf-h-stat{border-top:1px solid rgba(221,214,184,.35);padding-top:20px}
+.vhf-h .vhf-h-stat b{display:block;font:600 clamp(40px,5vw,64px)/1 var(--serif);letter-spacing:-.02em;color:var(--tan);margin-bottom:12px}
+.vhf-h .vhf-h-stat span{font-size:15px;line-height:1.45;opacity:.9}
+.vhf-h .vhf-h-statfoot{margin:36px 0 0;font-size:14px}
+.vhf-h .vhf-h-statfoot a{color:var(--tan)!important;font-weight:600;border-bottom:1px solid currentColor}
+/* Ways cards */
+.vhf-h .vhf-h-ways{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vhf-h .vhf-h-way{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:30px 28px;color:var(--ink)!important;transition:transform .2s,box-shadow .2s}
+.vhf-h .vhf-h-way:nth-child(2){border-top-color:var(--navy)}
+.vhf-h .vhf-h-way:nth-child(3){border-top-color:var(--clay)}
+.vhf-h .vhf-h-way:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vhf-h .vhf-h-way__n{font:italic 400 15px/1 var(--serif);color:var(--clay);margin-bottom:18px}
+.vhf-h .vhf-h-way h3{margin:0 0 10px}
+.vhf-h .vhf-h-way p{margin:0 0 22px;font-size:16px;line-height:1.6;color:var(--muted);flex:1}
+.vhf-h .vhf-h-way span{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--sans);color:var(--navy)}
+/* Gallery */
+.vhf-h .vhf-h-gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:230px 230px;gap:14px}
+.vhf-h .vhf-h-gallery img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+.vhf-h .vhf-h-gallery img:first-child{grid-row:span 2;border-radius:var(--r-lg)}
+/* Quotes */
+.vhf-h .vhf-h-quotes{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.vhf-h .vhf-h-q{margin:0;position:relative}
+.vhf-h .vhf-h-q p{margin:0 0 16px;font:italic 400 19px/1.5 var(--serif);max-width:none}
+.vhf-h .vhf-h-q figcaption{font:600 12.5px/1.5 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.vhf-h .vhf-h-q figcaption b{display:block;color:var(--ink)}
+.vhf-h .vhf-h-q--lead{padding-top:40px}
+.vhf-h .vhf-h-q--lead::before{content:"\201C";position:absolute;top:-22px;left:-4px;font:700 110px/1 var(--serif);color:var(--clay);opacity:.85}
+.vhf-h .vhf-h-oq{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.vhf-h .vhf-h-q--lead p{font-size:clamp(22px,2.6vw,32px);line-height:1.4}
+.vhf-h .vhf-h-qside{display:grid;gap:22px}
+.vhf-h .vhf-h-qside .vhf-h-q{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--clay);border-radius:var(--r-sm);padding:22px 24px}
+.vhf-h .vhf-h-quotes-cta{margin-top:32px}
+/* CTA band */
+.vhf-h .vhf-h-band{position:relative;overflow:hidden;margin-top:var(--sec);padding:clamp(40px,6vw,80px) clamp(28px,6vw,72px) clamp(60px,8vw,96px);background:var(--navy-deep);color:var(--cream);border-radius:var(--r-lg);text-align:center}
+.vhf-h .vhf-h-band .vhf-h-eye{justify-content:center;color:var(--tan)}
+.vhf-h .vhf-h-band blockquote{margin:0 auto;max-width:34em}
+.vhf-h .vhf-h-band blockquote p{margin:0 auto 18px;font:italic 400 clamp(24px,3vw,38px)/1.35 var(--serif);color:var(--cream);max-width:none}
+.vhf-h .vhf-h-band cite{font:600 12.5px/1 var(--sans);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--tan)}
+.vhf-h .vhf-h-band .vhf-h-acts{justify-content:center;margin-top:36px}
+.vhf-h .vhf-h-band a:focus-visible{outline-color:var(--tan)}
+/* Reveal */
+.vhf-h.vhf-h-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-h.vhf-h-anim .reveal.in{opacity:1;transform:none}
+@media (max-width:960px){.vhf-h .vhf-h-stats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:800px){
+.vhf-h{font-size:16px}
+.vhf-h .vhf-h-hero{min-height:520px}
+.vhf-h .vhf-h-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+.vhf-h .vhf-h-news{margin:-28px 10px 0}
+.vhf-h .vhf-h-news,.vhf-h .vhf-h-how,.vhf-h .vhf-h-ways,.vhf-h .vhf-h-quotes{grid-template-columns:1fr}
+.vhf-h .vhf-h-news img{max-width:320px}
+.vhf-h .vhf-h-how__fig img{aspect-ratio:16/10}
+.vhf-h .vhf-h-how__fig::after{display:none}
+.vhf-h .vhf-h-pillars{grid-template-columns:1fr}
+.vhf-h .vhf-h-pillars li:last-child{grid-column:auto}
+.vhf-h .vhf-h-gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+.vhf-h .vhf-h-gallery img{aspect-ratio:1/1;height:auto}
+.vhf-h .vhf-h-gallery img:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10}
+.vhf-h .vhf-h-acts{flex-direction:column;align-items:stretch}
+}
+@media (max-width:480px){.vhf-h .vhf-h-stats{grid-template-columns:1fr}.vhf-h .vhf-h-news dl{grid-template-columns:1fr;gap:2px}.vhf-h .vhf-h-news dd{margin-bottom:8px}}
+@media (prefers-reduced-motion:reduce){.vhf-h.vhf-h-anim .reveal{opacity:1;transform:none;transition:none}.vhf-h *{transition:none!important}.vhf-h .vhf-h-way:hover{transform:none}}
+.vhf-h .vhf-h-hero::before{z-index:1}
+.vhf-h .vhf-h-hero>:not(img){z-index:2}
+</style>
+
+<div class="vhf-h">
+
+<section class="vhf-h-hero" aria-labelledby="vhf-h-title">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/246956cc-d80f-460d-8dd4-850906881b75/DSCF3190_social.jpg?format=2500w" alt="Veterans and neighbors gathered on the lawn in front of the farmhouse">
+  <div class="vhf-h-hero__in">
+    <p class="vhf-h-eye">Veterans Healing Farm &middot; Mills River, NC</p>
+    <h1 id="vhf-h-title">Healing that grows from the <em>ground</em> up</h1>
+    <p>Enhancing the mental, emotional, and physical well-being of our nation's veterans and their families in Western North Carolina. We cultivate healing through nature, connection, and purpose.</p>
+    <div class="vhf-h-acts">
+      <a class="vhf-h-btn vhf-h-btn--light" href="/about">Learn more <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="vhf-h-btn vhf-h-btn--ghost" href="/donate">Donate</a>
+    </div>
+  </div>
+  <svg class="vhf-h-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<section class="vhf-h-news" data-feature="5k" aria-labelledby="vhf-h-news-h">
+  <a href="https://raceroster.com/events/2026/114213/veterans-day-5k" target="_blank" rel="noopener"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/50dae0e6-d3a1-408b-9a85-9bacd4f763d7/838091483_1097397666169135_5360053753291727509_n.jpg?format=750w" alt="Veterans Day 5K Run poster: November 8, 2026, Mills River Park"></a>
+  <div>
+    <span class="vhf-h-tag">Now registering</span>
+    <h2 id="vhf-h-news-h">2026 Veterans Day 5K</h2>
+    <dl>
+      <dt>Date</dt><dd>Sunday, November 8, 2026</dd>
+      <dt>Times</dt><dd>Fun run loop 9:45 AM &middot; Race start 10:00 AM</dd>
+      <dt>Where</dt><dd>Mills River Park, 124 Town Center Dr.</dd>
+    </dl>
+    <a class="vhf-h-btn vhf-h-btn--navy" href="https://raceroster.com/events/2026/114213/veterans-day-5k" target="_blank" rel="noopener">Register for the 5K <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <ul class="vhf-h-more">
+      <li><a href="/events">Upcoming workshops and events &rarr;</a></li>
+      <li><a href="https://a.co/03oqI0PZ" target="_blank" rel="noopener">New! Our Amazon Wish List &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="vhf-h-news" data-feature="giving" hidden aria-labelledby="vhf-h-give-h">
+  <a href="https://www.paypal.com/donate/?hosted_button_id=HBZS92KCQGMUL" target="_blank" rel="noopener"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/b92fc8fe-041a-4377-974a-a90baf265d36/20250531_100041.jpg?format=750w" alt="Veterans in beekeeping suits gathered at the farm"></a>
+  <div>
+    <span class="vhf-h-tag">Year-end giving</span>
+    <h2 id="vhf-h-give-h">Help veterans heal this season</h2>
+    <dl>
+      <dt>When</dt><dd>Giving Tuesday is December 1, 2026, and every gift this season helps</dd>
+      <dt>How</dt><dd>Give online through PayPal, one time or monthly. You don't need a PayPal account.</dd>
+      <dt>Who</dt><dd>A 501(c)(3) serving veterans and families in Western NC since 2013</dd>
+    </dl>
+    <a class="vhf-h-btn vhf-h-btn--navy" href="https://www.paypal.com/donate/?hosted_button_id=HBZS92KCQGMUL" target="_blank" rel="noopener">Give to the farm <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <ul class="vhf-h-more">
+      <li><a href="/donate">More ways to give &rarr;</a></li>
+      <li><a href="https://a.co/03oqI0PZ" target="_blank" rel="noopener">Our Amazon Wish List &rarr;</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="vhf-h-sec vhf-h-how" aria-labelledby="vhf-h-how-h">
+  <figure class="vhf-h-how__fig reveal"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/b92fc8fe-041a-4377-974a-a90baf265d36/20250531_100041.jpg?format=1500w" alt="Veterans in beekeeping suits gathered at the farm" loading="lazy"></figure>
+  <div class="reveal">
+    <p class="vhf-h-eye">Our approach</p>
+    <h2 id="vhf-h-how-h">How healing happens here</h2>
+    <p>We create a safe, peaceful environment that fosters connection and growth. Our farm-based therapies promote emotional, mental, and physical well-being for veterans and their families.</p>
+    <p>Everything we grow is given back to our veteran community and other local organizations in need.</p>
+    <ul class="vhf-h-pillars">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20c-2-3-2-8 2-11 3-2 7-2 9-5 1 5 0 10-4 13-2 2-5 3-7 3z"/><path d="M7 20c2-4 5-7 9-9"/></svg>Organic farming</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 4v10l-7 4-7-4V7z"/><path d="M12 8l3.5 2v4L12 16l-3.5-2v-4z"/></svg>Beekeeping</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V10"/><path d="M12 14c-4 0-6-3-6-7 4 0 6 3 6 7z"/><path d="M12 11c0-4 2-7 6-7 0 4-2 7-6 7z"/></svg>Medicinal herb gardening</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13"/><path d="M2 19h20"/><path d="M8 9h8M8 13h5"/></svg>Therapeutic workshops &amp; activities</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M15 14.5c3 0 6 1.8 6 5.5"/></svg>Community &amp; camaraderie</li>
+    </ul>
+    <div class="vhf-h-acts"><a class="vhf-h-btn" href="/programs">Explore our programs <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</section>
+
+<section class="vhf-h-sec vhf-h-dark reveal" aria-labelledby="vhf-h-impact-h">
+  <p class="vhf-h-eye">2026 at a glance</p>
+  <h2 id="vhf-h-impact-h">One year on the farm</h2>
+  <p class="vhf-h-lead">What our veterans, volunteers, and partners grew together in 2026.</p>
+  <div class="vhf-h-stats">
+    <div class="vhf-h-stat"><b>2,683 lbs</b><span>of fresh produce donated</span></div>
+    <div class="vhf-h-stat"><b>852</b><span>participants in 96 therapeutic workshops</span></div>
+    <div class="vhf-h-stat"><b>411</b><span>volunteers</span></div>
+    <div class="vhf-h-stat"><b>500+</b><span>bouquets grown and donated</span></div>
+  </div>
+  <p class="vhf-h-statfoot">From our <a href="/s/VHF_Impact-Report-2026.pdf" target="_blank" rel="noopener">2026 Year-End Report</a>. <a href="/about">See our mission and full impact</a></p>
+  <svg class="vhf-h-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<section class="vhf-h-sec" aria-labelledby="vhf-h-join-h">
+  <div class="vhf-h-head reveal"><div>
+    <p class="vhf-h-eye">Get involved</p>
+    <h2 id="vhf-h-join-h">Be part of the mission</h2>
+    <p class="vhf-h-lead">There's a place for everyone at the farm, whether you bring your hands, your business, or a gift.</p>
+  </div></div>
+  <div class="vhf-h-ways">
+    <a class="vhf-h-way reveal" href="/volunteer"><span class="vhf-h-way__n" aria-hidden="true">No. 01</span><h3>Volunteer</h3><p>Get your hands in the soil and support veterans directly.</p><span>Sign up to volunteer &rarr;</span></a>
+    <a class="vhf-h-way reveal" href="/sponsors"><span class="vhf-h-way__n" aria-hidden="true">No. 02</span><h3>Sponsor</h3><p>Partner with us to expand our healing programs.</p><span>Become a sponsor &rarr;</span></a>
+    <a class="vhf-h-way reveal" href="/donate"><span class="vhf-h-way__n" aria-hidden="true">No. 03</span><h3>Donate</h3><p>Your gift supports farm programs and services for veterans.</p><span>Make a donation &rarr;</span></a>
+  </div>
+</section>
+
+<section class="vhf-h-sec" aria-labelledby="vhf-h-life-h">
+  <div class="vhf-h-head reveal"><div>
+    <p class="vhf-h-eye">From the field</p>
+    <h2 id="vhf-h-life-h">Life on the farm</h2>
+    <p class="vhf-h-lead">Planting herbs, tending bees, sharing meals, and building friendships that last.</p>
+  </div></div>
+  <div class="vhf-h-gallery reveal">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/8c1e98ce-a3bf-437e-bea9-4b2bfcfb27bf/IMG_1567.jpeg?format=1500w" alt="Veterans and volunteers at the farm" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f7b05dd3-13e2-4433-9324-30c4cbeeba00/491899961_18496385872062494_462201267309705385_n.jpg?format=500w" alt="A farm workshop in progress" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/35b20aa3-60c5-4859-8436-d7d1fdaa0f7a/495169928_18496385902062494_4951551376175696518_n.jpg?format=500w" alt="Volunteers working in the garden beds" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/46f33e0f-66c6-41c5-9887-9ce5040a65a4/MOAA.jpg?format=500w" alt="Veterans gathered with community partners" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/7e86b555-ade2-41cd-ad3d-3778958c585e/20250531_092554.jpg?format=500w" alt="A morning event at the farm" loading="lazy">
+  </div>
+</section>
+
+<section class="vhf-h-sec" aria-labelledby="vhf-h-say-h">
+  <div class="vhf-h-head reveal"><div>
+    <p class="vhf-h-eye">In their words</p>
+    <h2 id="vhf-h-say-h">What people are saying</h2>
+  </div></div>
+  <div class="vhf-h-quotes">
+    <figure class="vhf-h-q vhf-h-q--lead reveal"><p><span class="vhf-h-oq">&ldquo;</span>They are a wonderful asset for the veteran community. They give away thousands of pounds of produce and hundreds of bouquets of flowers to veterans every year, and they provide a family to many veterans.&rdquo;</p><figcaption><b>Don Blackwell</b>Raven's Wing Studios, East Flat Rock, NC</figcaption></figure>
+    <div class="vhf-h-qside">
+      <figure class="vhf-h-q reveal"><p>&ldquo;I have volunteered here numerous times. The people and atmosphere are always welcoming. Support your local veterans!&rdquo;</p><figcaption><b>Valerie O'Brien</b>Volunteer</figcaption></figure>
+      <figure class="vhf-h-q reveal"><p>&ldquo;Phenomenal mission in a beautiful setting with amazing people. Highly recommend!&rdquo;</p><figcaption><b>Sarah Fiel</b>Home Theory, Kannapolis, NC</figcaption></figure>
+    </div>
+  </div>
+  <div class="vhf-h-quotes-cta"><a class="vhf-h-btn vhf-h-btn--outline" href="/testimonials">Read more stories <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+</section>
+
+<section class="vhf-h-band reveal" aria-label="Get involved">
+  <p class="vhf-h-eye">Words to grow by</p>
+  <blockquote>
+    <p>&ldquo;Healing is not an overnight process. It is a daily cleansing of pain, it is a daily healing of your life.&rdquo;</p>
+    <cite>&mdash; Leon Brown</cite>
+  </blockquote>
+  <div class="vhf-h-acts">
+    <a class="vhf-h-btn vhf-h-btn--light" href="/donate">Donate <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-h-btn vhf-h-btn--ghost" href="/volunteer">Volunteer</a>
+  </div>
+  <svg class="vhf-h-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>
+(function(){var r=document.querySelectorAll('.vhf-h');for(var i=0;i<r.length;i++)r[i].classList.add('is-on');
+/* Reveal on scroll (hidden state only added from JS, so content shows if JS fails). */
+if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+for(var k=0;k<r.length;k++){r[k].classList.add('vhf-h-anim');r[k].querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}}
+/* Feature swap: the 5K shows through the end of this date (America/New_York); the day after, the year-end giving card shows. To change the cutoff, edit LAST_5K_DAY (YYYY-MM-DD). With no JS the 5K stays. */
+var LAST_5K_DAY='2026-11-08',today;
+try{today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());}catch(e){return;}
+if(/^\d{4}-\d{2}-\d{2}$/.test(today)&&today>LAST_5K_DAY){var a=document.querySelectorAll('.vhf-h [data-feature="5k"]'),g=document.querySelectorAll('.vhf-h [data-feature="giving"]'),j;for(j=0;j<a.length;j++)a[j].hidden=true;for(j=0;j<g.length;j++)g[j].hidden=false;}
+})();
+</script>

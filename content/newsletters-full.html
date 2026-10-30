@@ -1,0 +1,208 @@
+<!-- VHF Newsletters page (/newsletters), one Squarespace Code block. Styles scoped to .vhf-n. A native Newsletter block sits BELOW this Code block for sign-ups (#vhf-n-signup points at it).
+     EACH MONTH: 1) copy the top <li> line in the current year's list and change its link, month and subject; 2) put the same link, month and subject in the "Latest issue" card (marked data-latest). Year counts update themselves.
+     EACH JANUARY: copy a whole <details> year block for the new year (id="nl-YYYY", open) and add its chip to the "Jump to a year" row. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-n:not(.is-on){display:none}
+.vhf-n{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-text:#a45d3c;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;--serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;--r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-n *{box-sizing:border-box}
+.vhf-n img{max-width:100%;height:auto}
+.vhf-n .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.vhf-n a{text-decoration:none!important}
+.vhf-n h1,.vhf-n h2,.vhf-n h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-n h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-n h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-n h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-n h1 em,.vhf-n h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-n p{max-width:62ch}
+.vhf-n .sec{margin-top:var(--sec)}
+.vhf-n .sec-intro{margin:0 0 26px;color:var(--muted)}
+.vhf-n-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-n-eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-n-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+.vhf-n-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s}
+.vhf-n-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-n-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-n-btn:hover svg{transform:translateX(3px)}
+.vhf-n-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-n-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-n-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-n-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-n-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-n a:focus-visible,.vhf-n summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-n-dark a:focus-visible,.vhf-n-band a:focus-visible,.vhf-n-hero a:focus-visible{outline-color:var(--tan)}
+.vhf-n-band{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px) clamp(28px,6vw,72px) clamp(52px,7vw,88px);scroll-margin-top:120px}
+.vhf-n-band h2{color:var(--cream)}
+.vhf-n-band h2 em{color:var(--tan)}
+.vhf-n-band p{margin:0;color:var(--cream);opacity:.9}
+.vhf-n-band .vhf-n-eyebrow{color:var(--tan)}
+.vhf-n.vhf-n-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-n.vhf-n-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-n.vhf-n-anim .reveal{opacity:1;transform:none;transition:none}.vhf-n *{transition:none!important}}
+@media (max-width:800px){.vhf-n{font-size:16px}.vhf-n-acts{flex-direction:column;align-items:stretch}}
+.vhf-n-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.vhf-n-chips a{padding:9px 18px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font:600 14px/1 var(--sans);color:var(--navy)!important;transition:border-color .18s,background-color .18s}
+.vhf-n-chips a:hover{border-color:var(--navy);background:#e6ecf2}
+.vhf-n-year{border-top:1px solid var(--line);scroll-margin-top:120px}
+.vhf-n-year:last-of-type{border-bottom:1px solid var(--line)}
+.vhf-n-year summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:16px;padding:22px 4px}
+.vhf-n-year summary::-webkit-details-marker{display:none}
+.vhf-n-year summary span{font:600 clamp(28px,3vw,38px)/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.vhf-n-year summary small{font:600 12.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-n-year summary::after{content:"";margin-left:auto;width:10px;height:10px;border-right:2px solid var(--olive);border-bottom:2px solid var(--olive);transform:rotate(45deg);transition:transform .18s;align-self:center}
+.vhf-n-year[open] summary::after{transform:rotate(-135deg)}
+.vhf-n-hero{position:relative;display:grid;grid-template-columns:1.25fr 1fr;background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.vhf-n-hero__text{position:relative;z-index:1;padding:clamp(32px,6vw,72px) clamp(28px,6vw,72px) clamp(52px,7vw,88px);display:flex;flex-direction:column;justify-content:center}
+.vhf-n-hero .vhf-n-eyebrow{color:var(--tan)}
+.vhf-n-hero h1{color:var(--cream)}
+.vhf-n-hero h1 em{color:var(--tan)}
+.vhf-n-hero p{margin:0 0 28px;font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--cream);opacity:.92}
+.vhf-n-hero figure{margin:0;position:relative;min-height:340px}
+.vhf-n-hero img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.vhf-n-hero figure::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(61,69,41,.55),rgba(61,69,41,0) 40%)}
+.vhf-n-latest{display:flex;flex-direction:column;gap:6px;padding:20px 24px;border-radius:var(--r);background:rgba(249,247,241,.08);border:1px solid rgba(249,247,241,.22);border-left:4px solid var(--clay);max-width:30em;transition:background-color .18s}
+.vhf-n-latest:hover{background:rgba(249,247,241,.14)}
+.vhf-n-latest small{font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tan)}
+.vhf-n-latest b{font:600 26px/1.2 var(--serif);color:var(--cream)}
+.vhf-n-latest span{font-size:15px;color:var(--cream);opacity:.88}
+.vhf-n-acts{margin-top:22px}
+.vhf-n-grid{list-style:none;margin:0 0 30px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:16px}
+.vhf-n-grid li:nth-child(3n+2) a{border-top-color:var(--navy)}
+.vhf-n-grid li:nth-child(3n+3) a{border-top-color:var(--clay)}
+.vhf-n-grid a{display:flex;flex-direction:column;gap:8px;height:100%;min-height:150px;padding:22px 22px 20px;border-radius:var(--r);background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);color:var(--ink)!important;transition:transform .2s,box-shadow .2s}
+.vhf-n-grid a::after{content:"Read issue →";margin-top:auto;padding-top:8px;font:600 13.5px/1 var(--sans);color:var(--navy)}
+.vhf-n-grid a:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vhf-n-grid b{font:600 24px/1.15 var(--serif);letter-spacing:-.01em}
+.vhf-n-grid span{font-size:15px;line-height:1.45;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.vhf-n-grid em{align-self:flex-start;font:600 11px/1 var(--sans);font-style:normal;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:var(--clay-soft);color:#7d4329}
+.vhf-n-band p{font-size:clamp(17px,1.5vw,19px)}
+@media (max-width:800px){
+.vhf-n-hero{grid-template-columns:1fr}
+.vhf-n-hero figure{order:-1;aspect-ratio:16/10;min-height:0}
+.vhf-n-hero figure::after{background:linear-gradient(0deg,rgba(61,69,41,.6),rgba(61,69,41,0) 45%)}
+.vhf-n-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+.vhf-n-grid a{min-height:130px;padding:18px}
+}
+@media (max-width:420px){.vhf-n-grid{grid-template-columns:1fr}}
+</style>
+
+<div class="vhf-n">
+
+<section class="vhf-n-hero" aria-labelledby="vhf-n-title">
+  <div class="vhf-n-hero__text">
+    <p class="vhf-n-eyebrow">Newsletters</p>
+    <h1 id="vhf-n-title">News from the farm, every <em>month</em></h1>
+    <p>Our monthly email brings you upcoming workshops and events, harvest news and stories from the farm in Mills River, NC. Read the latest issue, or browse every one back to 2022.</p>
+    <a class="vhf-n-latest" data-latest href="https://myemail.constantcontact.com/Front-Lines-to-5K-at-the-Farm.html?soid=1139174151403&amp;aid=8M4Y5qqT2hs" target="_blank" rel="noopener">
+      <small>Latest issue</small>
+      <b>October 2026</b>
+      <span>Front Lines to 5K at the Farm</span><span class="sr"> (opens in a new tab)</span>
+    </a>
+    <div class="vhf-n-acts">
+      <a class="vhf-n-btn vhf-n-btn--light" href="#vhf-n-signup">Get it by email <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <svg class="vhf-n-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </div>
+  <figure>
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f4b53f97-2550-45a0-aa63-a31555aee663/image000000%282%29.jpg?format=750w"
+         srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f4b53f97-2550-45a0-aa63-a31555aee663/image000000%282%29.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f4b53f97-2550-45a0-aa63-a31555aee663/image000000%282%29.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f4b53f97-2550-45a0-aa63-a31555aee663/image000000%282%29.jpg?format=1000w 953w"
+         sizes="(min-width: 800px) 560px, 100vw" width="953" height="1600" alt="A workshop participant laughing while hammering flower petals onto a white T-shirt on the farm's covered porch" fetchpriority="high" decoding="async">
+  </figure>
+</section>
+
+<section class="sec" aria-labelledby="vhf-n-arch">
+  <p class="vhf-n-eyebrow">The archive</p>
+  <h2 id="vhf-n-arch">Every newsletter <em>issue</em> since 2022</h2>
+  <p class="sec-intro">Newest first. Each issue opens in a new tab.</p>
+  <nav class="vhf-n-chips" aria-label="Jump to a year"><a href="#nl-2026">2026</a><a href="#nl-2025">2025</a><a href="#nl-2024">2024</a><a href="#nl-2023">2023</a><a href="#nl-2022">2022</a></nav>
+  <details class="vhf-n-year" id="nl-2026" open>
+    <summary><span>2026</span><small>10 issues</small></summary>
+    <ul class="vhf-n-grid">
+      <li><a href="https://myemail.constantcontact.com/Front-Lines-to-5K-at-the-Farm.html?soid=1139174151403&amp;aid=8M4Y5qqT2hs" target="_blank" rel="noopener"><b>October</b><span>Front Lines to 5K at the Farm</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/70f9f230-4a5c-4728-819f-381b5bcbd7bd" target="_blank" rel="noopener"><b>September</b><span>Pasta Making to Quail Hunting</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Don-t-Miss-Out--Limited-Seats-Available-.html?soid=1139174151403&amp;aid=F9YcbERxisw" target="_blank" rel="noopener"><b>August</b><span>Don&#x27;t Miss Out: Limited Seats Available!</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Celebrate-Wellness-at-Veterans-Healing-Farm.html?soid=1139174151403&amp;aid=D7vinqjpHlY" target="_blank" rel="noopener"><b>July</b><span>Celebrate Wellness at Veterans Healing Farm</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Join-Us--Summer-Workshops-and-Events-Await.html?soid=1139174151403&amp;aid=txM2PX5ao5A" target="_blank" rel="noopener"><b>June</b><span>Join Us! Summer Workshops and Events Await</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Community-Wellness-for-Veterans--Family--Caregivers-and-Volunteers.html?soid=1139174151403&amp;aid=CEBRxYxu_ag" target="_blank" rel="noopener"><b>May</b><span>Community Wellness for Veterans, Family, Caregivers and Volunteers</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Time-to-get-to-the-Farm.html?soid=1139174151403&amp;aid=RF_sK5x34Ws" target="_blank" rel="noopener"><b>April</b><span>Time to get to the Farm</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Spring-is-just-around-the-corner.html?soid=1139174151403&amp;aid=BoTE0IyQQvA" target="_blank" rel="noopener"><b>March</b><span>Spring is just around the corner</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/c5096817-475b-4fed-b112-ac14f321607b" target="_blank" rel="noopener"><b>February</b><span>Warm workshops for February</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Welcome-2026-.html?soid=1139174151403&amp;aid=lyQPGylaVFQ" target="_blank" rel="noopener"><b>January</b><span>Welcome 2026!</span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-n-year" id="nl-2025" open>
+    <summary><span>2025</span><small>12 issues</small></summary>
+    <ul class="vhf-n-grid">
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/14402fa5-4dbe-4726-8f72-925a17dc33a5" target="_blank" rel="noopener"><b>December</b><span>Tis the season at the Farm</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/22a7c7d0-991a-4bd4-a55d-93072b1f6669" target="_blank" rel="noopener"><b>November</b><span>Fun Holiday Events and Workshops</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/aa734c3f-f474-4769-a21b-6dde22da5487" target="_blank" rel="noopener"><b>October</b><span>Fall and Holiday Workshops and Events</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/dc3f61b4-3500-468f-846a-b05afabbeffb" target="_blank" rel="noopener"><b>September</b><span>New happenings at the Veterans Healing Farm</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Wonderful-Things-Happening-at-the-Farm.html?soid=1139174151403&amp;aid=u2FjLMl_xKI" target="_blank" rel="noopener"><b>August</b><span>Wonderful Things Happening at the Farm</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/17687e76-8b46-4169-9ceb-cb1d69f36251" target="_blank" rel="noopener"><b>July</b><span>July Workshops and Upcoming Events</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/52687dda-1722-46e7-a507-7e78c1860b1a" target="_blank" rel="noopener"><b>June</b><span>Fun for the Veteran Community of WNC</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/22bd77ec-0734-4766-984b-4ff2a7bed45b" target="_blank" rel="noopener"><b>May</b><span>Upcoming workshops and events</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/e65d82e5-11d8-47b3-bb4e-b86256a734db" target="_blank" rel="noopener"><b>April</b><span>Upcoming Events at the Farm</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/b6ac4caf-158e-4a72-8cc9-b0f17b4ab04d" target="_blank" rel="noopener"><b>March</b><span>New Workshops and Events at the Farm</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/And-away-we-go.html?soid=1139174151403&amp;aid=ValRBYnaMFw" target="_blank" rel="noopener"><b>February</b><span>And away we go</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/147f72a2-3b53-455c-8524-a4d6ae7dac47" target="_blank" rel="noopener"><b>January</b><span>Bluebirds to Swamp Rabbits</span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-n-year" id="nl-2024">
+    <summary><span>2024</span><small>12 issues</small></summary>
+    <ul class="vhf-n-grid">
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/d358f554-aae0-4d3c-a0f1-8ddbfac2d83b" target="_blank" rel="noopener"><b>December</b><span>VHF Holiday Party!</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/09dc1009-fc8a-4519-a2a5-97d381c84ee4" target="_blank" rel="noopener"><b>November</b><span>Veterans Healing Farm November News</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/4a070dcd-75b6-47a1-b6df-99ec71aa8e5e" target="_blank" rel="noopener"><b>October</b><span>After The Hurricane</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/3015d7db-1123-48c7-ac43-ae5ccc9978cd" target="_blank" rel="noopener"><b>September</b><span>We Continue to Serve the Veteran Community</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/12d498db-3e71-4690-9575-e0a47f659ac8" target="_blank" rel="noopener"><b>August</b><span>Veterans Healing Farm Important Community Announcement</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/4040c6e7-a450-47c6-b300-0b84d402cb88" target="_blank" rel="noopener"><b>July</b><span>Veterans Healing Farm Suspending Programming</span></a></li>
+      <li><a href="https://myemail-api.constantcontact.com/T-minus-2-months-and-2-weeks-.html?soid=1139174151403&amp;aid=pihXeuOzZ_0" target="_blank" rel="noopener"><b>June</b><span>T-minus 2 months and 2 weeks</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/4899da22-d7e2-4434-95b0-b06b9e5f1a1a" target="_blank" rel="noopener"><b>May</b><span>Attention Veterans of Western North Carolina</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Wonderful-Things-to-Share-in-April-and-May.html?soid=1139174151403&amp;aid=0rp0ZRtQgjs" target="_blank" rel="noopener"><b>April</b><span>Wonderful Things to Share in April and May</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/SPECIAL-EDITION.html?soid=1139174151403&amp;aid=9XNhUoYIgJQ" target="_blank" rel="noopener"><b>March</b><em>Special edition</em><span>Angels Needed</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Upcoming-workshops.html?soid=1139174151403&amp;aid=K0ijuHQAQtw" target="_blank" rel="noopener"><b>February</b><span>Upcoming workshops</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/c02e8e67-22dd-4fb2-9c3e-b326af30ad0f" target="_blank" rel="noopener"><b>January</b><span>Winter Programming at the Farm</span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-n-year" id="nl-2023">
+    <summary><span>2023</span><small>10 issues</small></summary>
+    <ul class="vhf-n-grid">
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/3881cb51-b86b-4dff-ad47-8618fa20dc2c" target="_blank" rel="noopener"><b>Year-end</b><span>What our Veterans did in 2023</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/356a30f1-4b58-4b74-9366-dec041f5e3ad" target="_blank" rel="noopener"><b>November</b><em>Special edition</em><span>Traveling Vietnam Memorial Wall</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/4008109f-137f-4458-a6ed-ea790069add7" target="_blank" rel="noopener"><b>October</b><span>Upcoming Events at the Farm</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/1afebf5e-e198-45b7-add7-2b96bc5211c7" target="_blank" rel="noopener"><b>September</b><span>Wonderful things for September at the Veterans Healing Farm</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/caded311-5655-47c0-9c01-77447a67aedf" target="_blank" rel="noopener"><b>August</b><span>Wonderful things happening in August</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Live-music--new-workshops--and-the-best-smash-burger-ever-.html?aid=O1mG6OgmUcA&amp;soid=1139174151403" target="_blank" rel="noopener"><b>July</b><span>Live music, new workshops, and the best smash burger ever!</span></a></li>
+      <li><a href="https://myemail.constantcontact.com/Wonderful-things-happening-in-June.html?aid=y8lFV3n5dWs&amp;soid=1139174151403" target="_blank" rel="noopener"><b>June</b><span>Wonderful things happening in June</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/e3f6c232-e756-4625-a2a8-ce8790b48d41" target="_blank" rel="noopener"><b>May</b><span>Veterans Resource Fair, Open House and Farm Tours</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/74f5efb5-41a3-4f1c-9f7e-9506a7a3da31" target="_blank" rel="noopener"><b>April</b><span>Wonderful Things to Share in April</span></a></li>
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/c8b36ceb-8919-439a-ad71-f9de9ada3405" target="_blank" rel="noopener"><b>March</b><span>Wonderful Events to Share</span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-n-year" id="nl-2022">
+    <summary><span>2022</span><small>1 issue</small></summary>
+    <ul class="vhf-n-grid">
+      <li><a href="https://campaignlp.constantcontact.com/em/1139174151403/ffb6d0eb-0883-42fd-9684-9f0de23a31b7" target="_blank" rel="noopener"><b>Year-end</b><span>Thank you for helping your Veterans</span></a></li>
+    </ul>
+  </details>
+</section>
+
+<section class="vhf-n-band reveal" id="vhf-n-signup" aria-labelledby="vhf-n-sign">
+  <p class="vhf-n-eyebrow">Stay in touch</p>
+  <h2 id="vhf-n-sign">Get the newsletter by <em>email</em></h2>
+  <p>One email a month with upcoming workshops, events and news from the farm. Sign up with the form just below.</p>
+  <svg class="vhf-n-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>
+(function(){
+  var w=document.querySelector('.vhf-n');w.classList.add('is-on');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-n-anim');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}
+  // Year counts follow the list; year chips open their (possibly collapsed) year before jumping to it.
+  w.querySelectorAll('.vhf-n-year').forEach(function(d){var n=d.querySelectorAll('li').length,c=d.querySelector('summary small');if(c)c.textContent=n+(n===1?' issue':' issues')});
+  w.querySelectorAll('.vhf-n-chips a').forEach(function(a){a.addEventListener('click',function(){var d=w.querySelector(a.getAttribute('href'));if(d)d.open=true})});
+})();
+</script>

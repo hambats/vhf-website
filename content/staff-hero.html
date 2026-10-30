@@ -1,0 +1,33 @@
+<!-- SUPERSEDED Oct 25, 2026: Staff is now one Code block, content/staff-full.html. Kept only for reference; do not paste. -->
+<!-- VHF Our Team (staff) HYBRID page, Code block 1 of 1: hero only. The staff cards, Public financials and join band are native Squarespace sections below it (styled by site/custom.less, "Staff page" block). Styles scoped to .vhf-s. -->
+<style>
+.vhf-s:not(.is-on){display:none}
+.vhf-s{--olive:#5c6642;--cream:#f9f7f1;--tan:#ddd6b8;font-family:"Work Sans",system-ui,sans-serif;max-width:1200px;margin:0 auto}
+.vhf-s *{box-sizing:border-box}
+.vhf-s-eyebrow{margin:0 0 14px;font-family:"Poppins",system-ui,sans-serif;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--tan)}
+.vhf-s-hero{display:grid;grid-template-columns:1fr 1.15fr;background:var(--olive);color:var(--cream);border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(44,44,44,.55)}
+.vhf-s-hero__text{padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;justify-content:center}
+.vhf-s-hero h1{margin:0 0 18px;font-family:"Epilogue","Helvetica Neue",Arial,sans-serif;font-weight:600;font-size:clamp(34px,4.6vw,56px);line-height:1.05;letter-spacing:-.01em;text-wrap:balance;color:var(--cream)}
+.vhf-s-hero p{margin:0;font-size:clamp(16px,1.4vw,18px);line-height:1.6;max-width:32em;color:var(--cream);opacity:.92}
+.vhf-s-hero .vhf-s-eyebrow{opacity:1;color:var(--tan)}
+.vhf-s-hero figure{margin:0;min-height:100%}
+.vhf-s-hero img{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:800px){
+.vhf-s-hero{grid-template-columns:1fr;border-radius:14px}
+.vhf-s-hero figure{order:-1;aspect-ratio:16/10;min-height:0}
+}
+</style>
+
+<div class="vhf-s">
+<section class="vhf-s-hero" aria-labelledby="vhf-s-title">
+  <div class="vhf-s-hero__text">
+    <p class="vhf-s-eyebrow">Our team</p>
+    <h1 id="vhf-s-title">The people behind the farm</h1>
+    <p>Our mission is to enhance the mental, emotional, and physical well-being of our nation's veterans and their families. Many of our staff are veterans themselves.</p>
+  </div>
+  <figure>
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910471420-G13FY2ZO07MI3TIE69E8/VHF%2B2.jpg?format=1000w" alt="Veterans Healing Farm staff and volunteers gathered around the farm sign">
+  </figure>
+</section>
+</div>
+<script>document.querySelector('.vhf-s').classList.add('is-on');</script>

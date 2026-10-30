@@ -1,0 +1,123 @@
+<!-- VHF preview mode (staff only): switch between the old site and the new copy pages, live, before the swap.
+     Paste this whole file into Squarespace: Settings → Advanced → Code Injection → HEADER. Remove it after the last swap.
+     Ways in (none is announced to the public):
+       - The small, faint "Site preview" link at the bottom right of the footer, on every old page.
+       - Add ?new=1 to any live address (e.g. /volunteer?new=1).
+       - Open any copy page directly (e.g. /home-1).
+     While on (per browser tab, sessionStorage):
+       - Links to live pages go to their copies (/volunteer → /volunteer-1), header menu included.
+       - A badge at bottom left: on a new page "New site preview · Back to old site"; on an old page "Old site · See new site"
+         (or "no new version yet" when that page has no copy). Each switch lands on the same page in the other version.
+       - "Back to old site" also turns preview off, so the old site behaves normally again.
+     PENDING copies are used only once they exist (one HEAD check per tab), so creating /newsletters-1 or publishing a draft needs no edit.
+     After the swap the copy addresses stop existing and the footer link has nowhere to go: delete this from Code Injection.
+     Keep MAP in step with the swap-day packet (swap-day.html) and the hub's PAGES copy paths. -->
+<script>
+(function(){
+  // live path → copy path (copies that exist on the live site as of Oct 25, 2026)
+  var MAP={
+    '/':'/home-1','/home':'/home-1',
+    '/about':'/about-1','/programs':'/programs-copy','/events':'/events-1',
+    '/resources':'/resources-1','/volunteer':'/volunteer-1','/donate':'/donate-1',
+    '/contact':'/contact-1','/testimonials':'/testimonials-1','/staff-new':'/staff-new-1',
+    '/board':'/board-1','/sponsors':'/sponsors-1'
+  };
+  // navigation-folder addresses in the live header that redirect to a page
+  var FOLDERS={'/about-us':'/about-1','/ways-to-support':'/donate-1','/events-workshops':'/events-1','/news-1':'/resources-1'};
+  // copies not created yet: used automatically once they exist
+  var PENDING={
+    '/newsletters':'/newsletters-1','/i990-forms':'/i990-forms-1','/news':'/news-copy',
+    '/faq':'/faq-1','/beekeeping':'/beekeeping-1','/garden':'/garden-1','/herb-squad':'/herb-1','/clay':'/clay-1'
+  };
+  var KEY='vhfPreview', CHECK='vhfPreviewPending';
+  var HOSTS=/^(www\.)?veteranshealingfarm\.org$/i;
+  function norm(p){p=(p||'/').replace(/\/+$/,'');return p===''?'/':p.toLowerCase()}
+  function store(k,v){try{if(v===undefined)return sessionStorage.getItem(k);if(v===null)sessionStorage.removeItem(k);else sessionStorage.setItem(k,v)}catch(e){return null}}
+  var known={};try{known=JSON.parse(store(CHECK)||'{}')}catch(e){}
+  function isCopy(p){p=norm(p);for(var k in MAP)if(MAP[k]===p)return true;for(var j in PENDING)if(PENDING[j]===p)return true;return false}
+  function liveOf(p){p=norm(p);for(var k in MAP)if(MAP[k]===p&&k!=='/home')return k;for(var j in PENDING)if(PENDING[j]===p)return j;return p}
+  function copyOf(p){p=norm(p);return MAP[p]||FOLDERS[p]||(known[p]?PENDING[p]:null)}
+  function cleanSearch(){return location.search.replace(/([?&])new=1(&|$)/,'$1').replace(/[?&]$/,'')}
+
+  var here=norm(location.pathname), onCopy=isCopy(here);
+
+  // ?new=1: turn preview on and jump to this page's new version, if it has one
+  if(/[?&]new=1(&|$)/.test(location.search)){
+    store(KEY,'1');
+    var c=copyOf(here);
+    if(c&&!onCopy){location.replace(c+cleanSearch()+location.hash);return}
+  }
+  if(onCopy)store(KEY,'1');
+  var on=store(KEY)==='1';
+
+  function target(href){
+    var u;try{u=new URL(href,location.href)}catch(e){return null}
+    if(!HOSTS.test(u.hostname)||u.pathname.indexOf('/s/')===0)return null;
+    var to=copyOf(u.pathname);
+    return to?to+u.search+u.hash:null;
+  }
+  function rewrite(root){
+    if(!root||!root.querySelectorAll)return;
+    var as=root.querySelectorAll('a[href]');
+    for(var i=0;i<as.length;i++){
+      var a=as[i];if(a.hasAttribute('data-vhf-orig')||a.hasAttribute('data-vhf-ui'))continue;
+      var t=target(a.getAttribute('href'));
+      if(t){a.setAttribute('data-vhf-orig',a.getAttribute('href'));a.setAttribute('href',t)}
+    }
+  }
+  function checkPending(done){
+    // re-check anything not yet found, so a copy created mid-session is picked up on the next page load
+    var todo=Object.keys(PENDING).filter(function(k){return known[k]!==true});
+    if(!todo.length)return done();
+    var left=todo.length;
+    todo.forEach(function(k){
+      fetch(PENDING[k],{method:'HEAD',credentials:'same-origin'}).then(function(r){known[k]=r.ok}).catch(function(){known[k]=false}).then(function(){
+        if(--left===0){store(CHECK,JSON.stringify(known));done()}
+      });
+    });
+  }
+
+  var PILL='font:600 12px/1 system-ui,sans-serif;padding:6px 10px;border-radius:999px;border:0;background:#f9f7f1;color:#4a5335;cursor:pointer;text-decoration:none';
+  function badge(){
+    var b=document.createElement('div');
+    b.setAttribute('role','status');b.setAttribute('data-vhf-ui','');
+    b.style.cssText='position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 10px 8px 14px;border-radius:999px;background:'+(onCopy?'#4a5335':'#3f5a78')+';color:#f9f7f1;font:500 13px/1.2 system-ui,sans-serif;box-shadow:0 8px 24px -10px rgba(0,0,0,.6)';
+    var label=document.createElement('span');b.appendChild(label);
+    function btn(text,fn){var x=document.createElement('button');x.type='button';x.textContent=text;x.style.cssText=PILL;x.addEventListener('click',fn);b.appendChild(x)}
+    function back(){store(KEY,null);location.href=liveOf(here)+location.search+location.hash}
+    if(onCopy){
+      label.textContent='New site preview';
+      btn('Back to old site',back);
+    }else{
+      var c=copyOf(here);
+      label.textContent=c?'Old site':'Old site (no new version yet)';
+      if(c)btn('See new site',function(){location.href=c+location.search+location.hash});
+      btn('Exit preview',function(){store(KEY,null);location.reload()});
+    }
+    document.body.appendChild(b);
+  }
+  // faint staff entry link at the bottom of the footer (old pages, preview off)
+  function footerLink(){
+    var f=document.getElementById('footer-sections')||document.querySelector('footer');if(!f)return;
+    var d=document.createElement('div');d.setAttribute('data-vhf-ui','');
+    d.style.cssText='text-align:right;padding:2px 14px 6px;font:400 11px/1 system-ui,sans-serif';
+    var a=document.createElement('a');a.setAttribute('data-vhf-ui','');a.textContent='Site preview';
+    a.href=(copyOf(here)||'/home-1')+location.search+location.hash;
+    a.style.cssText='color:inherit;opacity:.3;text-decoration:none';
+    a.addEventListener('click',function(){store(KEY,'1')});
+    d.appendChild(a);f.appendChild(d);
+  }
+
+  function start(){
+    if(!on){footerLink();return}
+    rewrite(document);
+    document.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('a[href]');if(!a||a.hasAttribute('data-vhf-ui'))return;
+      var t=target(a.getAttribute('href'));if(t)a.setAttribute('href',t);
+    },true);
+    if(window.MutationObserver)new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)rewrite(n.matches&&n.matches('a[href]')?n.parentNode:n)})})}).observe(document.body,{childList:true,subtree:true});
+    checkPending(function(){rewrite(document);badge()});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+})();
+</script>

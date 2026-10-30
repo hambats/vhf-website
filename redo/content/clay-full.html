@@ -1,0 +1,394 @@
+<!-- VHF Clay & Camaraderie page. One Squarespace Code block. Styles scoped to .vhf-clay. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+/* Program detail template ("Field Journal" makeover). Shared by clay, garden and herb pages; everything scoped to .vhf-clay. */
+.vhf-clay:not(.is-on){display:none}
+.vhf-clay{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-text:#a45d3c;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  --r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-clay *{box-sizing:border-box}
+.vhf-clay img{max-width:100%;height:auto}
+.vhf-clay .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.vhf-clay [hidden]{display:none!important}
+.vhf-clay a{text-decoration:none!important}
+.vhf-clay h1,.vhf-clay h2,.vhf-clay h3,.vhf-clay h4{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-clay h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-clay h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-clay h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-clay h1 em,.vhf-clay h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-clay .vhf-clay-dark h2 em,.vhf-clay .vhf-clay-band h2 em{color:var(--tan)}
+.vhf-clay p{max-width:62ch;margin:0 0 16px}
+.vhf-clay .vhf-clay-sec{margin-top:var(--sec)}
+.vhf-clay .vhf-clay-sec>p,.vhf-clay .vhf-clay-intro{color:var(--ink)}
+.vhf-clay .vhf-clay-intro{color:var(--muted);font-size:clamp(17px,1.5vw,19px);margin-bottom:28px}
+.vhf-clay .vhf-clay-tlink{color:var(--navy)!important;font-weight:500;border-bottom:1px solid currentColor}
+.vhf-clay .vhf-clay-tlink:hover{color:var(--navy-deep)!important}
+
+/* Eyebrow */
+.vhf-clay .vhf-clay-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay-text);max-width:none}
+.vhf-clay .vhf-clay-eye::before{content:"";flex:none;width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-clay .vhf-clay-dark .vhf-clay-eye,.vhf-clay .vhf-clay-hero .vhf-clay-eye,.vhf-clay .vhf-clay-band .vhf-clay-eye{color:var(--tan)}
+.vhf-clay .vhf-clay-byline{font:600 15px/1.4 var(--sans);color:var(--olive);margin:0 0 18px}
+
+/* Hero: photo, olive-deep overlay, furrow */
+.vhf-clay .vhf-clay-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(440px,64vh,640px);margin:0;border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep);box-shadow:var(--shadow)}
+.vhf-clay .vhf-clay-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.vhf-clay .vhf-clay-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.72) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-clay .vhf-clay-hero__in{position:relative;z-index:2;padding:clamp(28px,6vw,72px) clamp(28px,6vw,72px) clamp(48px,7vw,84px);max-width:780px}
+.vhf-clay .vhf-clay-hero h1{color:var(--cream)}
+.vhf-clay .vhf-clay-hero h1 em{color:var(--tan)}
+.vhf-clay .vhf-clay-hero p{color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px);max-width:36em}
+.vhf-clay .vhf-clay-hero .vhf-clay-eye{opacity:1}
+.vhf-clay .vhf-clay-furrow{position:absolute;left:0;right:0;bottom:0;z-index:2;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+
+/* Buttons */
+.vhf-clay .vhf-clay-acts,.vhf-clay .vhf-clay-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-clay .vhf-clay-reg{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;border-radius:999px;font:600 14px/1 var(--sans);border:2px solid var(--navy);background:var(--navy);color:var(--cream)!important;white-space:nowrap;transition:background-color .18s,border-color .18s}
+.vhf-clay .vhf-clay-reg:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.vhf-clay .vhf-clay-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s}
+.vhf-clay .vhf-clay-btn svg{width:16px;height:16px;flex:none;transition:transform .18s}
+.vhf-clay .vhf-clay-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-clay .vhf-clay-btn:hover svg{transform:translateX(3px)}
+.vhf-clay .vhf-clay-btn--navy{background:var(--navy);border-color:var(--navy)}
+.vhf-clay .vhf-clay-btn--navy:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.vhf-clay .vhf-clay-btn--o{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.vhf-clay .vhf-clay-btn--o:hover{background:#e6ecf2;border-color:var(--navy)}
+.vhf-clay .vhf-clay-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-clay .vhf-clay-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-clay .vhf-clay-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-clay .vhf-clay-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-clay .vhf-clay-btn--sm{padding:11px 20px;font-size:14px}
+.vhf-clay a:focus-visible,.vhf-clay button:focus-visible,.vhf-clay summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-clay .vhf-clay-dark a:focus-visible,.vhf-clay .vhf-clay-hero a:focus-visible,.vhf-clay .vhf-clay-band a:focus-visible,.vhf-clay .vhf-clay-slide a:focus-visible{outline-color:var(--tan)}
+
+/* Split: image + text */
+.vhf-clay .vhf-clay-split{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.vhf-clay .vhf-clay-split--rev{grid-template-columns:minmax(240px,.8fr) 1.2fr}
+.vhf-clay .vhf-clay-split>img,.vhf-clay .vhf-clay-split figure img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.vhf-clay .vhf-clay-split--rev>img{object-position:60% 26%}
+
+/* What you'll do: numbered journal list */
+.vhf-clay .vhf-clay-ways{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:0;counter-reset:w;border-top:1px solid var(--line)}
+.vhf-clay .vhf-clay-ways li{counter-increment:w;position:relative;padding:18px 0 18px 56px;border-bottom:1px solid var(--line);font-size:16px;line-height:1.6;color:var(--muted)}
+.vhf-clay .vhf-clay-ways li::before{content:counter(w,decimal-leading-zero);position:absolute;left:0;top:16px;font:600 22px/1 var(--serif);color:var(--clay-text)}
+.vhf-clay .vhf-clay-ways b{display:block;font:600 19px/1.3 var(--serif);color:var(--ink);margin-bottom:4px}
+
+/* Practical-info panel */
+.vhf-clay .vhf-clay-info{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:clamp(24px,3vw,34px);box-shadow:var(--shadow)}
+.vhf-clay .vhf-clay-info h3{margin-bottom:14px}
+.vhf-clay .vhf-clay-facts{margin:0;display:grid;gap:0}
+.vhf-clay .vhf-clay-facts>div{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--line)}
+.vhf-clay .vhf-clay-facts dt{font:600 12px/1.6 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-clay .vhf-clay-facts dd{margin:0;font-size:15.5px;line-height:1.55;color:var(--ink);overflow-wrap:anywhere}
+.vhf-clay .vhf-clay-facts a{color:var(--navy)!important;font-weight:500}
+.vhf-clay .vhf-clay-twocol{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+
+/* Cards */
+.vhf-clay .vhf-clay-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px}
+.vhf-clay .vhf-clay-card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);overflow:hidden;scroll-margin-top:120px}
+.vhf-clay .vhf-clay-card:nth-child(3n+2){border-top-color:var(--navy)}
+.vhf-clay .vhf-clay-card:nth-child(3n+3){border-top-color:var(--clay)}
+.vhf-clay .vhf-clay-card>img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.vhf-clay .vhf-clay-card__body{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+.vhf-clay .vhf-clay-card__body p{color:var(--muted)}
+.vhf-clay .vhf-clay-card .vhf-clay-lead{margin:0 0 12px;font:600 14px/1.4 var(--sans);color:var(--olive)}
+.vhf-clay .vhf-clay-tags{margin:0 0 18px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.vhf-clay .vhf-clay-tags li{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--clay-soft);color:#7d4329;font:600 12.5px/1 var(--sans);letter-spacing:.04em}
+.vhf-clay .vhf-clay-contact{margin:auto 0 0!important;padding-top:14px;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted)!important;line-height:1.5}
+.vhf-clay .vhf-clay-contact a{display:block;color:var(--navy)!important;font-weight:600;overflow-wrap:anywhere}
+
+/* Gallery */
+.vhf-clay .vhf-clay-gallery{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vhf-clay .vhf-clay-gallery li:nth-child(even){transform:translateY(18px)}
+.vhf-clay .vhf-clay-gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r)}
+
+/* Dark band + stats */
+.vhf-clay .vhf-clay-dark{background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px);position:relative;overflow:hidden}
+.vhf-clay .vhf-clay-dark--navy{background:var(--navy-deep)}
+.vhf-clay .vhf-clay-dark h2,.vhf-clay .vhf-clay-dark h3{color:var(--cream)}
+.vhf-clay .vhf-clay-dark p{color:var(--cream);opacity:.9}
+.vhf-clay .vhf-clay-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px;margin-top:28px}
+.vhf-clay .vhf-clay-stat b{display:block;font:600 clamp(40px,5vw,64px)/1 var(--serif);color:var(--tan);margin-bottom:10px}
+.vhf-clay .vhf-clay-stat span{display:block;font-size:15.5px;line-height:1.45;opacity:.9}
+
+/* Partner list */
+.vhf-clay .vhf-clay-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px}
+.vhf-clay .vhf-clay-list li{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--olive);border-radius:var(--r-sm);padding:14px 18px;font-size:15.5px;color:var(--ink)}
+
+/* Callout / status */
+.vhf-clay .vhf-clay-note,.vhf-clay .vhf-clay-status{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--clay);border-radius:var(--r-sm);padding:18px 22px;font-size:16px;line-height:1.55;color:var(--muted)}
+.vhf-clay .vhf-clay-status a{color:var(--navy)!important;text-decoration:underline!important;font-weight:500}
+.vhf-clay .vhf-clay-howreg{margin-top:20px}
+.vhf-clay .vhf-clay-howreg .vhf-clay-acts{margin-top:4px}
+
+/* Events (rendered by the inline script) */
+.vhf-clay .vhf-clay-evs{display:grid;gap:12px}
+.vhf-clay .vhf-clay-ev{display:grid;grid-template-columns:72px 1fr auto;gap:18px;align-items:center;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--olive);border-radius:var(--r);padding:16px 20px;margin-top:12px}
+.vhf-clay .vhf-clay-evs .vhf-clay-ev{margin-top:0}
+.vhf-clay .vhf-clay-date{text-align:center;line-height:1;color:var(--olive)}
+.vhf-clay .vhf-clay-date b{display:block;font:600 32px/1 var(--serif);color:var(--olive-deep)}
+.vhf-clay .vhf-clay-date span{display:block;margin-top:6px;font:600 11.5px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-clay .vhf-clay-ev h3{margin:0 0 4px;font-size:19px;line-height:1.3}
+.vhf-clay .vhf-clay-ev p,.vhf-clay .vhf-clay-meta{margin:0;font-size:14.5px;line-height:1.5;color:var(--muted)}
+.vhf-clay .vhf-clay-ex{margin:6px 0 0!important;font-size:15px;line-height:1.55;color:var(--ink)!important}
+.vhf-clay .vhf-clay-month{display:flex;align-items:center;gap:12px;margin:28px 0 0;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-clay .vhf-clay-month::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-clay .vhf-clay-tv{margin-bottom:22px}
+.vhf-clay .vhf-clay-slide{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--navy-deep);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.vhf-clay .vhf-clay-slide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.vhf-clay .vhf-clay-slide .vhf-clay-reg{position:absolute;right:3.4%;top:50%;transform:translateY(-50%);background:var(--cream);border-color:var(--cream);color:var(--navy-deep)!important;box-shadow:0 4px 18px rgba(0,0,0,.35)}
+/* Off screen until the TV page says the slide is up, so a missing slide never shows. */
+.vhf-clay .vhf-clay-await:not(.is-on):not(.live){position:absolute;left:-9999px;top:0;width:960px;visibility:hidden}
+.vhf-clay .vhf-clay-slidebar{margin:14px 0 0;font-size:15.5px;color:var(--muted)}
+.vhf-clay .vhf-clay-slidebar b{font:600 20px/1.3 var(--serif);color:var(--ink)}
+
+/* Closing CTA band */
+.vhf-clay .vhf-clay-band{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(40px,6vw,80px) clamp(28px,6vw,72px) clamp(56px,7vw,92px)}
+.vhf-clay .vhf-clay-band h2{color:var(--cream)}
+.vhf-clay .vhf-clay-band p{color:var(--cream);opacity:.9}
+.vhf-clay .vhf-clay-band__grid{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(24px,4vw,48px);align-items:center}
+.vhf-clay .vhf-clay-band .vhf-clay-contact{margin:0!important;padding:22px 24px;border:1px solid rgba(221,214,184,.35);border-radius:var(--r);background:rgba(249,247,241,.06);color:var(--cream)!important;font-size:15.5px}
+.vhf-clay .vhf-clay-band .vhf-clay-contact b{display:block;margin-bottom:6px;font:600 12.5px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tan)}
+.vhf-clay .vhf-clay-band .vhf-clay-contact a{color:var(--cream)!important;border-bottom:1px solid var(--tan);display:inline}
+
+.vhf-clay .vhf-clay-acts--gap{margin-top:48px}
+.vhf-clay .vhf-clay-stats--stack{grid-template-columns:1fr}
+.vhf-clay .vhf-clay-twocol>.vhf-clay-dark{padding:clamp(28px,4vw,48px)}
+.vhf-clay .vhf-clay-band__grid .vhf-clay-acts,.vhf-clay .vhf-clay-band__grid>.vhf-clay-actions{margin-top:0}
+
+/* Reveal on scroll (JS adds .vhf-clay-anim, then .in per element) */
+.vhf-clay.vhf-clay-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-clay.vhf-clay-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-clay.vhf-clay-anim .reveal{opacity:1;transform:none;transition:none}.vhf-clay *{transition:none!important}}
+
+@media (max-width:900px){
+.vhf-clay .vhf-clay-twocol,.vhf-clay .vhf-clay-band__grid{grid-template-columns:1fr}
+.vhf-clay .vhf-clay-gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:800px){
+.vhf-clay{font-size:16px}
+.vhf-clay .vhf-clay-split,.vhf-clay .vhf-clay-split--rev{grid-template-columns:1fr}
+.vhf-clay .vhf-clay-split>img,.vhf-clay .vhf-clay-split figure img{aspect-ratio:16/10}
+.vhf-clay .vhf-clay-split--rev>img{aspect-ratio:4/5;max-width:320px}
+.vhf-clay .vhf-clay-hero{min-height:500px}
+.vhf-clay .vhf-clay-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.62) 60%,rgba(38,44,26,.25) 100%)}
+.vhf-clay .vhf-clay-acts,.vhf-clay .vhf-clay-actions{flex-direction:column;align-items:stretch}
+.vhf-clay .vhf-clay-ev{grid-template-columns:56px 1fr;gap:12px;padding:14px}
+.vhf-clay .vhf-clay-ev .vhf-clay-act{grid-column:1/-1}
+.vhf-clay .vhf-clay-facts>div{grid-template-columns:1fr;gap:2px}
+.vhf-clay .vhf-clay-gallery li:nth-child(even){transform:none}
+}
+</style>
+
+<div class="vhf-clay">
+
+<section class="vhf-clay-hero" aria-labelledby="vhf-clay-title">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=2500w 2000w" sizes="(min-width: 1240px) 1200px, 100vw" width="2000" height="1372" alt="Veterans, family members, and volunteers working with clay around a big table in the farm's sunlit pottery studio" fetchpriority="high" decoding="async">
+  <div class="vhf-clay-hero__in">
+    <p class="vhf-clay-eye">Pottery program</p>
+    <h1 id="vhf-clay-title">Clay &amp; <em>Camaraderie</em></h1>
+    <p>Hands-on pottery at Veterans Healing Farm in Mills River, North Carolina. Learn to work with clay, slow down, and make friends around the studio table.</p>
+    <div class="vhf-clay-acts">
+      <a class="vhf-clay-btn vhf-clay-btn--light" href="#clay-upcoming">See upcoming workshops <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+  <svg class="vhf-clay-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<section class="vhf-clay-sec" aria-labelledby="vhf-clay-about">
+  <div class="vhf-clay-split">
+    <div class="reveal">
+      <p class="vhf-clay-eye">The program</p>
+      <h2 id="vhf-clay-about">Three ways to work with <em>clay</em></h2>
+      <p>Clay &amp; Camaraderie is our pottery program for active-duty service members, veterans, their families, and VHF volunteers. It pairs structured creative work with the calm, hands-on focus of shaping clay.</p>
+      <ul class="vhf-clay-ways">
+        <li><b>Beginner hand-building workshop</b>Four weeks of the basics: slab building, texture, underglazes, and sgraffito. We fire your pieces in our kiln, then you glaze them. Come unwind and learn something new.</li>
+        <li><b>Open studio</b>For anyone who has taken a pottery session with us or has pottery experience. Work on your own projects, with Sophia on hand to answer questions.</li>
+        <li><b>Seasonal workshops</b>Special projects through the year, like our two-part holiday ornament workshop. No pottery experience needed.</li>
+      </ul>
+    </div>
+    <img class="reveal" src="../upload/clay-hand-building-class.jpg" data-upload="clay-hand-building-class.jpg" sizes="(min-width: 800px) 560px, 100vw" width="2000" height="1500" alt="A student shapes a clay slab on a banding wheel during a hand-building class, with brushes and cut-out shapes on the table" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="vhf-clay-sec reveal" aria-label="At a glance">
+  <div class="vhf-clay-info">
+    <p class="vhf-clay-eye">At a glance</p>
+    <dl class="vhf-clay-facts">
+      <div><dt>Who</dt><dd>Active-duty service members, veterans, their families, and VHF volunteers</dd></div>
+      <div><dt>Where</dt><dd>The farm's pottery studio</dd></div>
+      <div><dt>Led by</dt><dd>Sophia Lauterbach, resident potter</dd></div>
+      <div><dt>When</dt><dd>Dates are on the <a href="/events">event calendar</a>. Open studio runs in seasonal sessions.</dd></div>
+      <div><dt>Sign up</dt><dd>Register through Regpack, which adds a $1 system charge. Please cancel at least 72 hours ahead.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="vhf-clay-sec" aria-labelledby="vhf-clay-potter">
+  <div class="reveal">
+    <p class="vhf-clay-eye">Meet the potter</p>
+    <h2 id="vhf-clay-potter">Meet our resident <em>potter</em></h2>
+    <p class="vhf-clay-byline vhf-clay-host">Sophia Lauterbach &middot; Dingbats Studio, Asheville</p>
+    <p>Sophia Lauterbach is the farm's resident potter. She leads Clay &amp; Camaraderie in our pottery studio, where students learn to work with clay side by side.</p>
+    <p>Away from the farm, Sophia runs Dingbats Studio, her own ceramics studio in Asheville. She hand-builds custom pieces to order: house-number plaques, pet portrait vases, sculptures, and whimsical garden pieces like her mushroom pollinator cups.</p>
+  </div>
+  <ul class="vhf-clay-gallery reveal" aria-label="Work by Sophia Lauterbach">
+    <li><img src="../upload/dingbats-studio-cat-portrait-vase.jpg" data-upload="dingbats-studio-cat-portrait-vase.jpg" sizes="(min-width: 800px) 290px, 50vw" width="623" height="625" alt="Hand-built ceramic cat vase with an orange face, standing among bamboo" loading="lazy" decoding="async"></li>
+    <li><img src="../upload/dingbats-studio-bird-and-mushrooms.jpg" data-upload="dingbats-studio-bird-and-mushrooms.jpg" sizes="(min-width: 800px) 290px, 50vw" width="1717" height="966" alt="Small ceramic sculpture of a black bird among mushrooms, held in two hands" loading="lazy" decoding="async"></li>
+    <li><img src="../upload/dingbats-studio-dog-and-cat-vases.jpg" data-upload="dingbats-studio-dog-and-cat-vases.jpg" sizes="(min-width: 800px) 290px, 50vw" width="648" height="856" alt="A ceramic dog vase and cat vase side by side" loading="lazy" decoding="async"></li>
+    <li><img src="../upload/dingbats-studio-garden-markers.jpg" data-upload="dingbats-studio-garden-markers.jpg" sizes="(min-width: 800px) 290px, 50vw" width="979" height="1305" alt="Hand-lettered ceramic garden markers for okra, zucchini, peppers, cucumbers, and chamomile" loading="lazy" decoding="async"></li>
+  </ul>
+  <div class="vhf-clay-acts vhf-clay-acts--gap">
+    <a class="vhf-clay-btn vhf-clay-btn--o vhf-clay-btn--sm" href="https://www.instagram.com/dingbatsstudio/" target="_blank" rel="noopener">See Dingbats Studio on Instagram<span class="sr"> (opens in a new tab)</span></a>
+  </div>
+</section>
+
+<section class="vhf-clay-sec" id="clay-upcoming" aria-labelledby="vhf-clay-up">
+  <p class="vhf-clay-eye">On the calendar</p>
+  <h2 id="vhf-clay-up">Upcoming Clay &amp; Camaraderie <em>workshops</em></h2>
+  <p class="vhf-clay-intro">Workshop and open studio dates for the next few months, from the farm calendar.</p>
+  <div class="vhf-clay-tv vhf-clay-await" id="vhf-clay-tv">
+    <div class="vhf-clay-slide"><iframe title="Pottery workshop slide" aria-hidden="true" tabindex="-1"></iframe><a class="vhf-clay-btn vhf-clay-reg" target="_blank" rel="noopener" hidden>Register now<span class="sr"> (opens in a new tab)</span></a></div>
+  </div>
+  <div id="vhf-clay-list"><div class="vhf-clay-status">Loading workshops&hellip; If nothing appears, see the <a href="/events">event calendar</a>.</div></div>
+</section>
+
+<section class="vhf-clay-band" aria-labelledby="vhf-clay-cta">
+  <div class="vhf-clay-band__grid">
+    <div>
+      <p class="vhf-clay-eye">Get in touch</p>
+      <h2 id="vhf-clay-cta">Questions about Clay &amp; <em>Camaraderie</em>?</h2>
+      <p>Email or call us with any pottery question. We're glad to help.</p>
+    </div>
+    <div class="vhf-clay-acts">
+      <a class="vhf-clay-btn vhf-clay-btn--light" href="mailto:veteranshealingfarm@gmail.com?subject=Clay%20%26%20Camaraderie">Email us <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="vhf-clay-btn vhf-clay-btn--ghost" href="tel:+18285956111">Call (828) 595-6111</a>
+      <a class="vhf-clay-btn vhf-clay-btn--ghost" href="/programs">Explore all programs</a>
+    </div>
+  </div>
+  <svg class="vhf-clay-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+
+<script>
+/* Content stays hidden in the Squarespace editor (scripts off there), so the block is sized small and grows to fit on the live page. */
+(function(){var r=document.querySelectorAll('.vhf-clay');for(var i=0;i<r.length;i++)r[i].classList.add('is-on');})();
+</script>
+<script>
+/* Live pottery workshops from the farm calendar + the farm TV's event slides. Modeled on events-full.html. */
+(function(){
+  var root=document.querySelector('.vhf-clay');
+  if(!root||root.getAttribute('data-cal'))return;
+  root.setAttribute('data-cal','1');
+
+  var CAL='vhf2023calendar@gmail.com', KEY='__VHF_CAL_KEY__', TZ='America/New_York', DAYS=120;
+  var TV='https://hambats.github.io/vhf-firetv-display/';
+  var MATCH=/pottery|clay|ceramic|hand.?build|wheel|glaz|ornament/i;
+  var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var WD=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var partsFmt=new Intl.DateTimeFormat('en-US',{timeZone:TZ,year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false,weekday:'short'});
+
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function nyParts(d){var o={};partsFmt.formatToParts(d).forEach(function(p){o[p.type]=p.value;});return {y:+o.year,m:+o.month-1,d:+o.day,h:(+o.hour)%24,mi:+o.minute,wd:WD.indexOf(o.weekday)};}
+  function todayStart(){var p=nyParts(new Date());return new Date(p.y,p.m,p.d);}
+  function isAllDay(ev){return !!(ev.start&&ev.start.date&&!ev.start.dateTime);}
+  function startInfo(ev){
+    if(isAllDay(ev)){var a=ev.start.date.split('-');var dt=new Date(+a[0],+a[1]-1,+a[2]);return {y:+a[0],m:+a[1]-1,d:+a[2],wd:dt.getDay()};}
+    var p=nyParts(new Date(ev.start.dateTime));return {y:p.y,m:p.m,d:p.d,wd:p.wd};
+  }
+  function t12(iso){var p=nyParts(new Date(iso));var h=p.h%12||12;return h+(p.mi?':'+(p.mi<10?'0':'')+p.mi:'')+(p.h>=12?'pm':'am');}
+  function timeLabel(ev){return isAllDay(ev)?'All day':t12(ev.start.dateTime)+' to '+t12(ev.end.dateTime);}
+  function isClosed(ev){return /farm\s+closed|^closed\b/i.test(ev.summary||'');}
+  function descText(html){
+    if(!html)return '';
+    var t=String(html).replace(/<br\s*\/?>/gi,'\n').replace(/<\/(p|div|li)>/gi,'\n').replace(/<[^>]+>/g,'');
+    var ta=document.createElement('textarea');ta.innerHTML=t;
+    return ta.value.replace(/\r/g,'').replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
+  }
+  function unwrap(u){
+    var g=u.match(/^https?:\/\/(www\.)?google\.com\/url\?q=([^&]+)/);
+    if(g){try{u=decodeURIComponent(g[2]);}catch(e){}}
+    return u;
+  }
+  var URL_RE=/https?:\/\/[^\s<>"]+/g;
+  function prep(ev){
+    if(ev._p)return ev._p;
+    var txt=descText(ev.description), first=txt.match(/https?:\/\/[^\s<>"]+/), reg=first?unwrap(first[0]):null;
+    var body=first?txt.replace(first[0],'').replace(/\n{3,}/g,'\n\n').trim():txt;
+    var title=(ev.summary||'').trim();
+    if(title&&body.toLowerCase().indexOf(title.toLowerCase())===0)body=body.slice(title.length).replace(/^[\s:\-]+/,'');
+    var ex=body.replace(URL_RE,'').replace(/\s+/g,' ').trim().replace(/\s*\b(register( here)?|sign up( here)?|(for )?more info( at)?|learn more( at)?|click here|info at)\s*[:\-]?\s*$/i,'').trim();
+    if(ex.length>150)ex=ex.slice(0,147).replace(/\s+\S*$/,'')+'\u2026';
+    ev._p={reg:/^https?:\/\//.test(reg||'')?reg:null,ex:ex};
+    return ev._p;
+  }
+  function where(ev){
+    if(!ev.location)return '';
+    return /^veterans healing farm/i.test(ev.location)?'At the farm':ev.location.split(',')[0];
+  }
+
+  // Shown under the status message whenever no workshop list is available.
+  var REG_INFO='<div class="vhf-clay-howreg"><p>New workshop dates go up on the event calendar, where you can register. Registration is through Regpack, which adds a $1 system charge. Please cancel at least 72 hours ahead.</p>'
+    +'<div class="vhf-clay-acts"><a class="vhf-clay-btn" href="/events">See the event calendar</a></div></div>';
+  function failMsg(){return '<div class="vhf-clay-status">We couldn\'t load the calendar right now. Please try again later, or call us at <a href="tel:+18285956111">(828) 595-6111</a>.</div>'+REG_INFO;}
+  function emptyMsg(){return '<div class="vhf-clay-status">No pottery workshops are posted right now. Check back soon, or call <a href="tel:+18285956111">(828) 595-6111</a> to ask about the next one.</div>'+REG_INFO;}
+
+  // Same id the TV gives the event (VHF_TV sources/calendar/index.mjs): slugified title + UTC start date.
+  function tvId(ev){
+    var slug=(ev.summary||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,60);
+    var day=isAllDay(ev)?ev.start.date:new Date(ev.start.dateTime).toISOString().slice(0,10);
+    return slug+'-'+day;
+  }
+  var tvOrigin=TV.match(/^https?:\/\/[^\/]+/)[0], slideWaits=[];
+  window.addEventListener('message',function(e){
+    var d=e.data;
+    if(e.origin!==tvOrigin||!d||d.source!=='vhf-tv-slide')return;
+    slideWaits.forEach(function(w){if(w.frame.contentWindow===e.source)w.cb(d);});
+  });
+  // Box stays hidden until the TV page reports a slide on screen.
+  function showSlide(box,evs){
+    var frame=box.querySelector('iframe'), reg=box.querySelector('.vhf-clay-reg'), byId={}, ids=evs.map(function(ev){var id=tvId(ev);byId[id]=ev;return id;});
+    box.classList.remove('live');reg.hidden=true;
+    slideWaits.push({frame:frame,cb:function(d){
+      var ev=byId[d.id];if(d.status!=='ready'||!ev)return;
+      var url=prep(ev).reg;
+      if(url){reg.href=url;reg.hidden=false;}else reg.hidden=true;
+      box.classList.add('live');
+    }});
+    frame.src=TV+'?slide='+ids.map(encodeURIComponent).join(',');
+  }
+
+  function card(ev){
+    var p=prep(ev), s=startInfo(ev), loc=where(ev);
+    return '<article class="vhf-clay-ev"><div class="vhf-clay-date"><b>'+s.d+'</b><span>'+WD[s.wd]+'</span></div>'
+      +'<div><h3>'+esc(ev.summary||'Workshop')+'</h3><p>'+esc(timeLabel(ev))+(loc?' \u00b7 '+esc(loc):'')+'</p>'
+      +(p.ex?'<p>'+esc(p.ex)+'</p>':'')+'</div>'
+      +'<div class="vhf-clay-act">'+(p.reg?'<a class="vhf-clay-btn vhf-clay-btn--sm" href="'+esc(p.reg)+'" target="_blank" rel="noopener">Register<span class="sr"> (opens in a new tab)</span></a>':'')+'</div></article>';
+  }
+
+  var min=todayStart(), max=new Date(min.getTime());max.setDate(max.getDate()+DAYS);
+  var url='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CAL)+'/events?key='+encodeURIComponent(KEY)+'&timeMin='+encodeURIComponent(min.toISOString())+'&timeMax='+encodeURIComponent(max.toISOString())+'&singleEvents=true&orderBy=startTime&maxResults=250&timeZone='+encodeURIComponent(TZ);
+  fetch(url).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){
+    var now=Date.now();
+    var evs=(d.items||[]).filter(function(ev){
+      var end=ev.end&&(ev.end.dateTime||ev.end.date);
+      return ev.summary&&!isClosed(ev)&&MATCH.test(ev.summary)&&end&&new Date(end).getTime()>now;
+    });
+    if(!evs.length){$('vhf-clay-list').innerHTML=emptyMsg();return;}
+    var html='', lastM=-1;
+    evs.forEach(function(ev){var s=startInfo(ev);if(s.m!==lastM){html+='<p class="vhf-clay-month">'+MONTHS[s.m]+' '+s.y+'</p>';lastM=s.m;}html+=card(ev);});
+    $('vhf-clay-list').innerHTML=html;
+    showSlide($('vhf-clay-tv'),evs.slice(0,8));
+  }).catch(function(){$('vhf-clay-list').innerHTML=failMsg();});
+})();
+</script>
+<script>
+/* Reveal on scroll (makeover). Content stays visible if this never runs. */
+(function(){var w=document.querySelector('.vhf-clay');if(!w||w.getAttribute('data-rv'))return;w.setAttribute('data-rv','1');
+if(!window.matchMedia||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;w.classList.add('vhf-clay-anim');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+w.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
+</script>

@@ -1,0 +1,420 @@
+<!-- VHF Testimonials page, full layout for one Squarespace Code block. Styles scoped to .vhf-t. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-t:not(.is-on){display:none}
+.vhf-t{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-text:#a45d3c;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  --r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-t *{box-sizing:border-box}
+.vhf-t img{max-width:100%;height:auto}
+.vhf-t .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.vhf-t a{text-decoration:none!important}
+.vhf-t h1,.vhf-t h2,.vhf-t h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-t h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-t h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-t h1 em,.vhf-t h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-t p{max-width:62ch}
+.vhf-t .vhf-sec{margin-top:var(--sec)}
+.vhf-t .vhf-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-t .vhf-eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-t .vhf-hero .vhf-eyebrow,.vhf-t .vhf-dark .vhf-eyebrow{color:var(--tan)}
+.vhf-t .vhf-sec__intro{margin:0 0 32px;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted)}
+/* Hero */
+.vhf-t .vhf-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(440px,66vh,660px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.vhf-t .vhf-hero figure{margin:0;position:absolute;inset:0}
+.vhf-t .vhf-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.vhf-t .vhf-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-t .vhf-hero figcaption{position:absolute;right:18px;top:18px;z-index:2;padding:6px 12px;border-radius:999px;background:rgba(38,38,34,.6);color:var(--cream);font-size:13px}
+.vhf-t .vhf-hero__text{position:relative;z-index:2;padding:clamp(28px,6vw,72px);padding-bottom:clamp(44px,7vw,88px);max-width:780px}
+.vhf-t .vhf-hero h1{color:var(--cream)}
+.vhf-t .vhf-hero h1 em{color:var(--tan)}
+.vhf-t .vhf-hero__lede{margin:0;color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px);line-height:1.6}
+.vhf-t .vhf-furrow{position:absolute;left:0;right:0;bottom:0;z-index:2;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+/* Buttons */
+.vhf-t .vhf-actions,.vhf-t .vhf-mid{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-t .vhf-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s}
+.vhf-t .vhf-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-t .vhf-btn:hover svg{transform:translateX(3px)}
+.vhf-t .vhf-btn--navy{background:var(--navy);border-color:var(--navy)}
+.vhf-t .vhf-btn--navy:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.vhf-t .vhf-btn--outline{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.vhf-t .vhf-btn--outline:hover{background:#e6ecf2}
+.vhf-t .vhf-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-t .vhf-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-t .vhf-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-t .vhf-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-t a:focus-visible,.vhf-t summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-t .vhf-hero a:focus-visible,.vhf-t .vhf-dark a:focus-visible,.vhf-t .vhf-dark summary:focus-visible,.vhf-t .vhf-ctaband a:focus-visible{outline-color:var(--tan)}
+/* Featured pull quote */
+.vhf-t .vhf-pullsec{margin-top:var(--sec);text-align:center}
+.vhf-t .vhf-bigquote{margin:0 auto;max-width:900px;position:relative;padding-top:72px}
+.vhf-t .vhf-bigquote::before{content:"\201C";position:absolute;top:-6px;left:50%;transform:translateX(-50%);font:700 140px/1 var(--serif);color:var(--clay);opacity:.85}
+.vhf-t .vhf-bigquote p{margin:0 auto;max-width:none;font:italic 400 clamp(30px,4.4vw,54px)/1.2 var(--serif);letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+.vhf-t .vhf-bigquote cite{display:inline-flex;align-items:center;gap:12px;margin-top:22px;font:600 12.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--muted)}
+.vhf-t .vhf-bigquote cite::before{content:"";width:28px;height:2px;background:var(--clay)}
+/* Story (dark band) */
+.vhf-t .vhf-dark{background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(32px,6vw,80px);position:relative;overflow:hidden}
+.vhf-t .vhf-dark h2{color:var(--cream)}
+.vhf-t .vhf-dark h2 em,.vhf-t .vhf-ctaband h2 em{color:var(--tan)}
+.vhf-t .vhf-dark .vhf-sec__intro{color:var(--cream);opacity:.85}
+.vhf-t .vhf-story{margin:0}
+.vhf-t .vhf-story p{margin:0 0 16px;font-size:17px;line-height:1.75;color:var(--cream);opacity:.92}
+.vhf-t .vhf-story p.vhf-pull{margin:0 0 26px;max-width:28ch;font:italic 400 clamp(26px,3.2vw,40px)/1.25 var(--serif);color:var(--tan);opacity:1}
+.vhf-t .vhf-story details{margin:8px 0 24px}
+.vhf-t .vhf-story summary{display:inline-flex;list-style:none;cursor:pointer;padding:13px 24px;border-radius:999px;border:2px solid rgba(249,247,241,.7);color:var(--cream);font:600 15px/1 var(--sans)}
+.vhf-t .vhf-story summary::-webkit-details-marker{display:none}
+.vhf-t .vhf-story summary:hover{background:rgba(249,247,241,.12)}
+.vhf-t .vhf-story details[open] summary{margin-bottom:22px}
+.vhf-t .vhf-story details[open] .vhf-open,.vhf-t .vhf-story details:not([open]) .vhf-close{display:none}
+.vhf-t .vhf-story .vhf-who{color:var(--tan)}
+.vhf-t .vhf-story .vhf-who b{color:var(--cream)}
+/* Quote cards (masonry via CSS columns) */
+.vhf-t .vhf-who{margin-top:auto;font-size:14px;line-height:1.45;color:var(--muted)}
+.vhf-t .vhf-who b{display:block;font:600 12.5px/1.5 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.vhf-t .vhf-cols,.vhf-t .vhf-grid{columns:3 280px;column-gap:20px}
+.vhf-t .vhf-q{position:relative;margin:0 0 20px;display:block;break-inside:avoid;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:26px 26px 24px;transition:transform .2s,box-shadow .2s}
+.vhf-t .vhf-q:hover,.vhf-t .vhf-feat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.vhf-t .vhf-q:nth-child(3n+2){border-top-color:var(--navy)}
+.vhf-t .vhf-q:nth-child(3n+3){border-top-color:var(--clay)}
+.vhf-t .vhf-q:nth-child(5n+4){background:var(--clay-soft);border-color:#ecd5c6;border-top-color:var(--clay)}
+.vhf-t .vhf-q p{margin:0 0 14px;font-size:16px;line-height:1.65;color:var(--ink)}
+.vhf-t .vhf-q:first-child p{font:italic 400 clamp(19px,1.8vw,22px)/1.45 var(--serif)}
+/* In their words: one large, three small */
+.vhf-t .vhf-featured{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:start}
+.vhf-t .vhf-feat{margin:0;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:clamp(24px,3vw,38px);transition:transform .2s,box-shadow .2s}
+.vhf-t .vhf-feat:nth-child(3){border-top-color:var(--navy)}
+.vhf-t .vhf-feat:nth-child(4){border-top-color:var(--clay)}
+.vhf-t .vhf-feat p{margin:0 0 18px;font:400 clamp(17px,1.5vw,19px)/1.55 var(--serif);color:var(--ink)}
+.vhf-t .vhf-feat p::before{content:"\201C";display:block;font:700 64px/.6 var(--serif);margin:14px 0 6px;color:var(--clay)}
+.vhf-t .vhf-feat:first-child{grid-row:span 3;background:var(--navy-deep);border-color:var(--navy-deep);border-top-color:var(--tan)}
+.vhf-t .vhf-feat:first-child p{font-size:clamp(19px,1.9vw,23px);font-style:italic;color:var(--cream)}
+.vhf-t .vhf-feat:first-child p::before{color:var(--tan)}
+.vhf-t .vhf-feat:first-child .vhf-who{color:var(--tan)}
+.vhf-t .vhf-feat:first-child .vhf-who b{color:var(--cream)}
+/* CTA band */
+.vhf-t .vhf-ctaband{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(40px,6vw,80px) clamp(28px,6vw,72px) clamp(56px,7vw,96px);text-align:center}
+.vhf-t .vhf-ctaband h2{color:var(--cream)}
+.vhf-t .vhf-ctaband p{margin:0 auto;color:var(--cream);opacity:.9}
+.vhf-t .vhf-ctaband .vhf-eyebrow{justify-content:center;color:var(--tan)}
+.vhf-t .vhf-ctaband .vhf-actions{justify-content:center}
+/* Reveal */
+.vhf-t.vhf-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-t.vhf-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-t.vhf-anim .reveal{opacity:1;transform:none;transition:none}.vhf-t *{transition:none!important}}
+@media (max-width:800px){
+.vhf-t{font-size:16px}
+.vhf-t .vhf-hero{min-height:520px}
+.vhf-t .vhf-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+.vhf-t .vhf-hero figcaption{display:none}
+.vhf-t .vhf-featured{grid-template-columns:1fr}
+.vhf-t .vhf-feat:first-child{grid-row:auto}
+.vhf-t .vhf-actions,.vhf-t .vhf-mid{flex-direction:column}
+}
+/* Firefly stories (three.js): eight fireflies over the Blue Ridge take turns telling a story. */
+.vhf-t .vhf-ff .fld{position:relative;min-height:680px;border-radius:22px;overflow:hidden;isolation:isolate;background:radial-gradient(70% 60% at 70% 18%,#2f4560 0%,#1d2b3d 55%,#141d28 100%);color:var(--cream)}
+.vhf-t .vhf-ff canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.vhf-t .vhf-ff .hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:52%;z-index:1;pointer-events:none}
+.vhf-t .vhf-ff .head{position:relative;z-index:3;max-width:560px;padding:clamp(32px,5vw,60px);pointer-events:none}
+.vhf-t .vhf-ff .eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 "Work Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#e8b98f}
+.vhf-t .vhf-ff h1{font:600 clamp(32px,4vw,50px)/1.08 Fraunces,Georgia,serif;letter-spacing:-.015em;margin:0 0 14px}
+.vhf-t .vhf-ff h1 em{font-style:italic;font-weight:400;color:#f3d38a}
+.vhf-t .vhf-ff .head p{margin:0;max-width:44ch;color:#c9d1d9}
+/* The story a firefly is "telling" fades in over the dark field, then out again. No box. */
+.vhf-t .vhf-ff .say{position:absolute;z-index:3;left:50%;bottom:clamp(36px,6vw,64px);width:min(640px,calc(100% - 48px));transform:translateX(-50%);margin:0;text-align:center;pointer-events:none;opacity:0;transition:opacity .9s ease}
+.vhf-t .vhf-ff .say.on{opacity:1}
+.vhf-t .vhf-ff .say q{display:block;font:400 italic clamp(18px,2.1vw,23px)/1.5 Fraunces,Georgia,serif;color:#fbf6e4;text-shadow:0 0 18px rgba(243,211,138,.35),0 1px 2px rgba(0,0,0,.6);quotes:"\201C" "\201D"}
+.vhf-t .vhf-ff .say .who{display:block;margin-top:12px;font:600 12px/1.4 "Work Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#e8d79c}
+.vhf-t .vhf-ff .say .who span{display:block;margin-top:4px;font-weight:500;letter-spacing:.04em;text-transform:none;font-size:13px;color:#aeb8c2}
+/* Invisible, focusable hit targets that follow each story firefly (keyboard and screen readers). */
+.vhf-t .vhf-ff .hit{position:absolute;z-index:4;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer}
+.vhf-t .vhf-ff .hit:focus-visible{outline:2px solid #f3d38a;outline-offset:2px}
+.vhf-t .vhf-ff .tip{position:absolute;z-index:3;right:20px;top:20px;font:600 11px/1 "Work Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b9c2cb}
+/* The same stories as plain text: always there for screen readers and search, and shown on screen when three.js can't load. */
+.vhf-t .vhf-ff .list{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;list-style:none}
+.vhf-t .vhf-ff.no3d .list{position:relative;z-index:3;width:auto;height:auto;margin:0;padding:0 clamp(32px,5vw,60px) 60px;overflow:visible;clip:auto;white-space:normal;columns:2 300px;column-gap:28px}
+.vhf-t .vhf-ff .list li{break-inside:avoid;margin:0 0 18px;font:italic 16px/1.5 Fraunces,Georgia,serif;color:#e9e4d4}
+.vhf-t .vhf-ff .list li>span{display:block;margin-top:6px;font:500 13px/1.4 "Work Sans",sans-serif;font-style:normal;color:#aeb8c2}
+.vhf-t .vhf-ff .list b{font-weight:600}
+.vhf-t .vhf-ff .list .o::before{content:", "}
+.vhf-t .vhf-ff.no3d .say,.vhf-t .vhf-ff.no3d .tip,.vhf-t .vhf-ff.no3d .ffhelp,.vhf-t .vhf-ff.no3d .hits{display:none}
+@media (max-width:700px){.vhf-t .vhf-ff .fld{min-height:700px} .vhf-t .vhf-ff .tip{display:none}}
+.vhf-t .vhf-ff h1{color:var(--cream)}.vhf-t .vhf-ff .say q,.vhf-t .vhf-ff .say .who{max-width:none}
+</style>
+
+<div class="vhf-t">
+
+<section class="vhf-ff" aria-labelledby="vhf-title">
+  <div class="fld">
+    <div class="head">
+      <p class="eye">Testimonials</p>
+      <h1 id="vhf-title">Stories that <em>light up</em> the farm</h1>
+      <p>What veterans, volunteers and friends say about their time here.</p>
+    </div>
+    <svg class="hills" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path d="M0 118 C40 112 80 100 120 96 C170 92 200 104 240 108 C290 112 320 90 370 74 C400 66 430 70 460 80 C510 96 560 104 620 100 C680 96 720 84 760 80 C800 76 830 86 870 92 C930 100 980 88 1030 70 C1060 60 1090 66 1120 78 C1150 88 1180 92 1200 92 V360 H0Z" fill="#3a5170"/>
+      <path d="M0 160 C60 158 100 146 150 140 C210 134 250 150 300 156 C350 162 380 150 420 134 C450 124 490 120 530 128 C590 140 640 158 700 156 C750 154 780 136 830 130 C880 124 930 138 980 146 C1040 154 1090 138 1130 128 C1160 122 1185 126 1200 130 V360 H0Z" fill="#2f4562"/>
+      <path d="M0 200 C70 196 120 186 170 184 C240 182 280 198 340 204 C400 210 450 192 500 182 C540 174 580 178 620 188 C680 202 740 208 800 200 C850 194 890 180 940 176 C990 172 1030 186 1080 194 C1130 202 1170 196 1200 192 V360 H0Z" fill="#253851"/>
+      <path d="M0 246 C100 240 170 230 240 230 C320 230 370 246 450 250 C530 254 590 238 660 232 C730 226 800 236 870 244 C950 252 1030 246 1100 238 C1150 232 1180 234 1200 236 V360 H0Z" fill="#1d2c40"/>
+      <path d="M0 296 C180 286 340 292 500 290 C700 288 860 280 1000 286 C1100 290 1160 292 1200 290 V360 H0Z" fill="#1f271b"/>
+    </svg>
+    <canvas aria-hidden="true"></canvas>
+    <ul class="list">
+      <li><q>Great caring people. Truly focus on helping Veterans. &hellip; Complete cycle for the Veteran, body, mind, and soul.</q><span><b>Mark Trexler</b><span class="o">Survival Innovations Inc, Mills River, NC</span></span></li>
+      <li><q>Veteran's Healing Farm is an awesome retreat for Vets looking to interact, relax, communicate and be part of an amazing community.</q><span><b>Harpreet Cheema</b><span class="o">HealthBook, LLC, Arden, NC</span></span></li>
+      <li><q>Veterans Healing Farm is a good therapy facility for Veterans, who also learn how to grow a productive garden.</q><span><b>Wanda R Schwerer</b><span class="o">Aura Home Women Vets, Asheville, NC</span></span></li>
+      <li><q>I have volunteered here numerous times. &hellip; The people and atmosphere are always welcoming. Support your local veterans!</q><span><b>Valerie O'Brien</b><span class="o">Volunteer</span></span></li>
+      <li><q>They care about helping veterans. The folks at VHF exemplify servant leadership.</q><span><b>Jeff Herold</b><span class="o">Warrior Leadership LLC, Covington, GA</span></span></li>
+      <li><q>The Veterans Healing Farm is a phenomenal nonprofit that offers veterans free classes and the opportunity to be around other veterans who care about their well-being.</q><span><b>Lisa Rosencrans</b></span></li>
+      <li><q>Awesome place working to make a difference for veterans in our community.</q><span><b>David Ray</b></span></li>
+      <li><q>Phenomenal mission in a beautiful setting with amazing people. Highly recommend!</q><span><b>Sarah Fiel</b><span class="o">Home Theory, Kannapolis, NC</span></span></li>
+      <li><q>I felt the names under my fingers and a profound respect for all of them. &hellip; I won't forget.</q><span><b>Sukey Pratt</b><span class="o">Volunteer, Traveling Vietnam Wall</span></span></li>
+      <li><q>Thanks to those working the information tents, I was able to find two names from 29 loss in the war from my hometown Stamford, Connecticut.</q><span><b>Carl Z</b><span class="o">Traveling Vietnam Wall visitor</span></span></li>
+      <li><q>Great place growing vegetables by veterans!</q><span><b>Ronald Kuebler</b><span class="o">Hendersonville Hope Aktion Club, Flat Rock, NC</span></span></li>
+      <li><q>This organization is doing amazing things to help our Veterans&hellip; those at the Farm have a heart for our Veterans.</q><span><b>Selena Maxie</b><span class="o">Haven Farms Ministries, Denver, NC</span></span></li>
+    </ul>
+    <figure class="say" aria-hidden="true"><q></q><figcaption class="who"></figcaption></figure>
+    <span class="tip" aria-hidden="true">Hover, tap or Tab to a firefly</span>
+    <p class="sr ffhelp">Each firefly below is a button. Focus or press one to hear its story. All of the stories are also in the list above.</p>
+    <div class="hits" role="group" aria-label="Story fireflies"></div>
+    <p class="sr" aria-live="polite" data-ff-live></p>
+  </div>
+</section>
+
+<section class="vhf-pullsec reveal" aria-label="Featured quote">
+  <blockquote class="vhf-bigquote">
+    <p>&ldquo;I hope there are 1000s such places around the nation.&rdquo;</p>
+    <cite>E.G. Sebastian, LOYCAL, Hendersonville, NC</cite>
+  </blockquote>
+</section>
+
+<section class="vhf-sec vhf-dark reveal" aria-labelledby="vhf-vet-h">
+  <p class="vhf-eyebrow">A veteran's voice</p>
+  <h2 id="vhf-vet-h">A Marine veteran&rsquo;s <em>story</em></h2>
+  <p class="vhf-sec__intro">Robert LeHeup served two tours in Afghanistan with the Marine Corps. This is what he found at the farm.</p>
+  <figure class="vhf-story">
+    <p class="vhf-pull">&ldquo;The Veterans Healing Farm could have been one of these. It is not.&rdquo;</p>
+    <p>&ldquo;When I left the Marine Corps, having done two tours in Afghanistan in 2001 and 2002, I felt this evil in my very marrow. I let it define me. My suffering was mine and mine alone, my ability to thrive among my tribe undermined by a need to survive. Without guidance or a sense of hope, I let my trauma rot in my soul like a spiritual cancer. I looked around at those who were suffering equally and didn't care, because I couldn't afford to.</p>
+    <details>
+      <summary><span class="vhf-open">Read Robert's full story</span><span class="vhf-close">Show less</span></summary>
+      <p>With this in mind, several months ago I was approached by a man named Al Yeck, a retired Marine who runs an organization called the Veterans Healing Farm based out of Hendersonville, NC. Their mission is to enhance the mental, emotional, and physical well-being of our nation's Veterans and their families. A lot of nonprofits are cut-and-paste, set up to create a frenzy of posturing, where the measure of a person is how well they fit the box of what it is to be a veteran, rather than empowering us to leave that box and become individuals. They manufacture numbers to make themselves seem more impactful, stretch the idea of a &lsquo;program&rsquo; so minor efforts look significant, and ride the coattails of those they help in order to further their own validation, losing sight of their mission or ignoring it entirely. I know because I used to work for one. The Veterans Healing Farm could have been one of these.</p>
+      <p>It is not.</p>
+      <p>Instead, when I arrived, I was met with people from across demographics and generations, some who were veterans that served, some who were civilians in the midst of their own style of service. People who shared gratitude and appreciation for one another for doing our best in the fog of both war and peacetime. The seeming importance of the individual, which has carved itself into a cultural norm, was washed away, leaving behind the sort of reverence for one another that, in the right settings, would be considered inarguably holy. This was further underscored by the healing energy of the farm itself, where veterans from all walks of life are welcomed and given the style of freedom to heal in ways maybe not visible immediately, but certainly lasting. Offering the opportunity to explore themselves alone or in groups, this facility's program begins, continues, and culminates in a skipping stone of objective good. The veterans can learn on their own or together. They can be guided or guide. They have the chance to be taught how to make knives or farm honey. How to speak with one another or be okay in silence. I felt this immediately, as well as the whole time I was there.</p>
+      <p>After gathering myself, I walked through the crowd of what were now my brothers-at-arms, I found the names of my dead friends, and in spite of being surrounded by a hundred people, I cried even harder. Not just out of mourning, but out of the hope that reflected back at me, the shame when I realized I'd lost so much of it, and the opportunity to be a part of a tribe I'd never truly left.&rdquo;</p>
+    </details>
+    <figcaption class="vhf-who"><b>Robert LeHeup</b>U.S. Marine Corps veteran</figcaption>
+  </figure>
+</section>
+
+<section class="vhf-sec reveal" aria-labelledby="vhf-feat-h">
+  <p class="vhf-eyebrow">In their words</p>
+  <h2 id="vhf-feat-h">What our partners and neighbors <em>see</em></h2>
+  <div class="vhf-featured">
+    <figure class="vhf-feat">
+      <p>An amazing place for anyone to take a break from the frenzy of the world... It was amazing to hear about how our veterans benefit from the farm. I hope there are 1000s such places around the nation. I lost my 21 year old son in a car accident and I too was invited to go out regularly and "heal" - just sit on the farm, or get my hands dirty (which I love) and volunteer in one of the gardens. I think everyone in the community should be familiar with the VHF and support them; or if you need a break, hang out there in solitude or chat with some people who've been through tougher times than most of us can ever imagine.</p>
+      <figcaption class="vhf-who"><b>E.G. Sebastian</b>LOYCAL, Hendersonville, NC</figcaption>
+    </figure>
+    <figure class="vhf-feat">
+      <p>They are a wonderful asset for the Veteran Community; they are helping veterans with PTSD by agricultural therapy; they offer free training and fellowship; they give away thousands of pounds of produce and hundreds of bouquets of flowers to veterans every year; and they provide a family to many veterans.</p>
+      <figcaption class="vhf-who"><b>Don Blackwell</b>Raven's Wing Studios, East Flat Rock, NC</figcaption>
+    </figure>
+    <figure class="vhf-feat">
+      <p>I am delighted that our organization will be joining in partnership to serve more veterans. The VHF does amazing work for veterans and not one veteran ever has to put a hand in their pocket. This organization is dear to my heart and I cannot wait to see the transformations in veterans moving forward.</p>
+      <figcaption class="vhf-who"><b>Jock Brocas</b>The Holistic Network, Hendersonville, NC</figcaption>
+    </figure>
+    <figure class="vhf-feat">
+      <p>The Veterans Healing Farm is an amazing organization, helping Veterans to recover from trauma and mental health challenges and Al Yeck is a compassionate and knowledgeable leader. Highly recommend.</p>
+      <figcaption class="vhf-who"><b>Elaine Waddington Lamont</b>Women Warriors' Healing Garden, Ottawa, ON</figcaption>
+    </figure>
+  </div>
+  <div class="vhf-mid">
+    <a class="vhf-btn vhf-btn--navy" href="/donate">Donate <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-btn vhf-btn--outline" href="/volunteer">Volunteer</a>
+    <a class="vhf-btn vhf-btn--outline" href="/contact">Plan a visit</a>
+  </div>
+</section>
+
+<section class="vhf-sec reveal" aria-labelledby="vhf-wall">
+  <p class="vhf-eyebrow">Veterans Day weekend</p>
+  <h2 id="vhf-wall">The Traveling Vietnam Memorial Wall at the <em>farm</em></h2>
+  <p class="vhf-sec__intro">Over four days on Veterans Day weekend, 3,856 people came to the farm to see the Traveling Vietnam Memorial Wall and the 9/11 Memorial. Here is what some of them told us.</p>
+  <div class="vhf-cols">
+    <figure class="vhf-q"><p>&ldquo;Thank you&hellip; I was able to bring my Dad who is 90&hellip;101 Airborne Air Assault.. the volunteers were so gracious and kind in helping us find his friend that didn't make it home&hellip; Thank you for bringing this part of history for all to see.&rdquo;</p><figcaption class="vhf-who"><b>Saundra Watkins</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;The event was incredibly moving and powerful. I work at the VA and heard wonderful things about the traveling wall already. I was looking forward to sharing this experience with my family, especially showing my son the importance of honoring and remembering veterans we have lost. I knew the experience was going to be powerful but it was far more than what I expected.</p><p>When we arrived, the staff were friendly, welcoming, and made sure to answer any questions we had. The memorial was in a space that was open, which provided a sense of privacy but also made you feel like you were together with your community in honoring those we have lost. I went on a Sunday and met many veterans who also attended Saturday. They talked about how meaningful it was to see so many people join together for this event and not feel alone in grieving those they have lost. I am so grateful The Veterans Healing Farm provided this space for veterans and civilians to join together in order to honor and remember those we have lost. Thank you to everyone who supported this event and allowing the community to come together on Veterans Day weekend.&rdquo;</p><figcaption class="vhf-who"><b>Danielle Palumbo</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Visited the Vietnam Memorial on the last day, very moving. Thanks to those working the information tents, I was able to find two names from 29 loss in the war from my hometown Stamford, Connecticut. Richard Broadhurst being the first.&rdquo;</p><figcaption class="vhf-who"><b>Carl Z</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;I have visited the Vietnam Memorial in Washington, DC. One of the most powerful moments of feeling the results of War one can imagine. So, when my friends Julius and Sukey Pratt told me they were helping build the Wall here, I knew I had to go.</p><p>It was lightly raining that Saturday morning around 10a. As soon as I walked into the large, almost empty space the wall outlined in the foggy air, my eyes filled up. I started wondering how all these names would have changed the country. How they would have contributed to our today. How the sacrifice of these younger and older men and women devastated so many they left behind. Parents, spouses, children, cousins, friends. Finally I wondered if it may be possible to ever avoid such loses. Such horror.</p><p>Thank you for hosting this great event. It was very moving and a great opportunity to celebrate Veterans Day in this special way. Your site was perfect with plenty of parking and open space. I was able to share the experience with a Vietnam era vet.&rdquo;</p><figcaption class="vhf-who"><b>Rev. Karen Appleby</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Back in those days I was very anti war. Even joining in protests. My brother had emigrated to Canada legally because he didn't agree. So many years later I helped carry heavy panels to the memorial wall and then later back to their truck. I felt the names under my fingers and a profound respect for all of them.</p><p>Thank you for this experience and for the wall. Mostly for the people I met, veterans and families who shared the work and then all who came to the field to pay respect. I won't forget.&rdquo;</p><figcaption class="vhf-who"><b>Sukey Pratt</b>Volunteer</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;1st. Rate, the Traveling Vet. Wall Was hard to see again. 50yrs. Went faster than I wanted.&rdquo;</p><figcaption class="vhf-who"><b>Karen Pachete</b></figcaption></figure>
+  </div>
+</section>
+
+<section class="vhf-sec reveal" aria-labelledby="vhf-g1">
+  <p class="vhf-eyebrow">Body and mind</p>
+  <h2 id="vhf-g1">Healing through agricultural <em>therapy</em></h2>
+  <p class="vhf-sec__intro">Hands-on classes, fresh food and a quiet place to breathe, all at no cost to veterans and their families.</p>
+  <div class="vhf-grid">
+    <figure class="vhf-q"><p>&ldquo;Great caring people. Truly focus on helping Veterans. Offer classes that can help struggling veterans while at the same time provide healthy food for nourishment. Complete cycle for the Veteran, body, mind, and soul.&rdquo;</p><figcaption class="vhf-who"><b>Mark Trexler</b>Survival Innovations Inc, Mills River, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Veteran's Healing Farm is an awesome retreat for Vets looking to interact, relax, communicate and be part of an amazing community. Al is an amazing Director, co-ordinator and champion for the Veterans wellness!&rdquo;</p><figcaption class="vhf-who"><b>Harpreet Cheema</b>HealthBook, LLC, Arden, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Veterans Healing Farm is a good therapy facility for Veterans, who also learn how to grow a productive garden.&rdquo;</p><figcaption class="vhf-who"><b>Wanda R Schwerer</b>Aura Home Women Vets, Asheville, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;The Veterans Healing Farm does a very important function to help Veterans heal. I highly recommend Al Yeck and what his organization provides for veterans as well as our community.&rdquo;</p><figcaption class="vhf-who"><b>Dorian Dula</b>Hendersonville, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;VHF provides amazing opportunities for veterans to help them heal!&rdquo;</p><figcaption class="vhf-who"><b>Tara Burdette</b>Henderson County Republican Women's Club, Hendersonville, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Phenomenal mission in a beautiful setting with amazing people. Highly recommend!&rdquo;</p><figcaption class="vhf-who"><b>Sarah Fiel</b>Home Theory, Kannapolis, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;The Veterans Healing Farm is an INCREDIBLE facility!&rdquo;</p><figcaption class="vhf-who"><b>Kenny Hancock</b>CenterWell Home Health, Asheville, NC</figcaption></figure>
+  </div>
+</section>
+
+<section class="vhf-sec reveal" aria-labelledby="vhf-g2">
+  <p class="vhf-eyebrow">Our people</p>
+  <h2 id="vhf-g2">The people who make the farm <em>welcoming</em></h2>
+  <p class="vhf-sec__intro">What partners and volunteers say about Executive Director Al Yeck, our staff and the welcome they found.</p>
+  <div class="vhf-grid">
+    <figure class="vhf-q"><p>&ldquo;Al Yeck, Executive Director of the Veterans Healing Farm is a tireless advocate in support of veterans and the military community at-large.&rdquo;</p><figcaption class="vhf-who"><b>Tim Grutzius</b>Mind Body Badge Yoga and Wellness, LLC, Flat Rock, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;They care about helping veterans. The folks at VHF exemplify servant leadership.&rdquo;</p><figcaption class="vhf-who"><b>Jeff Herold</b>Warrior Leadership LLC, Covington, GA</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Al and the team at the farm are truly committed to changing the lives and supporting our veterans. Highly recommend following and supporting any way you can!&rdquo;</p><figcaption class="vhf-who"><b>Aaron Means</b>ACTIVATE Business Solutions, Brevard, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;The work that Al and his team are doing at Veterans Healing Farm is special. Well done!&rdquo;</p><figcaption class="vhf-who"><b>Annamarie Jakubielski</b>Discover Hometown Magazine, Horse Shoe, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;I have volunteered here numerous times. The mission that they support is worth your time supporting. The people and atmosphere are always welcoming. Support your local veterans!&rdquo;</p><figcaption class="vhf-who"><b>Valerie O'Brien</b>Volunteer</figcaption></figure>
+  </div>
+</section>
+
+<section class="vhf-sec reveal" aria-labelledby="vhf-g3">
+  <p class="vhf-eyebrow">Partners</p>
+  <h2 id="vhf-g3">Partners across the <em>region</em></h2>
+  <p class="vhf-sec__intro">Businesses, ministries and community groups who work alongside us, close to home and farther away.</p>
+  <div class="vhf-grid">
+    <figure class="vhf-q"><p>&ldquo;This organization is doing amazing things to help our Veterans, which is what our ministry is all about. We have met with Al and he and those at the Farm have a heart for our Veterans.&rdquo;</p><figcaption class="vhf-who"><b>Selena Maxie</b>Haven Farms Ministries, Denver, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;They are doing a much-needed work to the veteran community.&rdquo;</p><figcaption class="vhf-who"><b>Felicia Hadjesmaili</b>Fahma Humanitarian Organization International, Inc., McKinney, TX</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Doing good work to help Veterans, and impact our community.&rdquo;</p><figcaption class="vhf-who"><b>Henri Boyea</b>Radon Control Products, Hendersonville, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Great organization that is helping Veterans!&rdquo;</p><figcaption class="vhf-who"><b>Stephen Henderson</b>NC Veterans Writing Alliance Foundation, Asheville, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Awesome organization helping veterans!&rdquo;</p><figcaption class="vhf-who"><b>Chris Nobles</b>Semper Fi Design, Mountain Rest, SC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;They do amazing work!&rdquo;</p><figcaption class="vhf-who"><b>Stephanie Trost</b>Frontline Gardens, Madisonville, TN</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Great place growing vegetables by veterans!&rdquo;</p><figcaption class="vhf-who"><b>Ronald Kuebler</b>Hendersonville Hope Aktion Club, Flat Rock, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;For outstanding service to the veteran community.&rdquo;</p><figcaption class="vhf-who"><b>William Neugebauer</b>Retired, Hendersonville, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Awesome organization with an awesome leader.&rdquo;</p><figcaption class="vhf-who"><b>Joe Chao</b>Hendo Kickboxing &amp; Krav Maga, Hendersonville, NC</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Very good organization.&rdquo;</p><figcaption class="vhf-who"><b>Richard L Hazzard</b>Hendersonville Lions Club, Hendersonville, NC</figcaption></figure>
+  </div>
+</section>
+
+<section class="vhf-sec reveal" aria-labelledby="vhf-g4">
+  <p class="vhf-eyebrow">At the farm</p>
+  <h2 id="vhf-g4">Notes from volunteers and <em>visitors</em></h2>
+  <p class="vhf-sec__intro">People who have volunteered, taken a class or spent time at the farm.</p>
+  <div class="vhf-grid">
+    <figure class="vhf-q"><p>&ldquo;The Veterans Healing Farm is a phenomenal nonprofit that offers veterans free classes and the opportunity to be around other veterans who care about their well-being. I have taken some classes here and value the mission of this organization.&rdquo;</p><figcaption class="vhf-who"><b>Lisa Rosencrans</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Awesome place working to make a difference for veterans in our community. Highly recommend them if you are looking for a volunteer opportunity or know of a veteran in need of help!&rdquo;</p><figcaption class="vhf-who"><b>David Ray</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Excellent volunteer opportunities and great support for veterans.&rdquo;</p><figcaption class="vhf-who"><b>Warrior Mountain Wood Works</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;It is an awesome program for veterans.&rdquo;</p><figcaption class="vhf-who"><b>Kenny D</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Nice place, peaceful.&rdquo;</p><figcaption class="vhf-who"><b>John Bishop</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;They do great work.&rdquo;</p><figcaption class="vhf-who"><b>Robert McDowell</b>Aurora, CO</figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Love this place!&rdquo;</p><figcaption class="vhf-who"><b>Christine D. Bentley</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Amazing place.&rdquo;</p><figcaption class="vhf-who"><b>Bob Tallman</b></figcaption></figure>
+    <figure class="vhf-q"><p>&ldquo;Incredible.&rdquo;</p><figcaption class="vhf-who"><b>Kristin Davidson</b></figcaption></figure>
+  </div>
+</section>
+
+<section class="vhf-ctaband reveal" aria-labelledby="vhf-story">
+  <p class="vhf-eyebrow">Your story</p>
+  <h2 id="vhf-story">Has the farm been part of your <em>story</em>?</h2>
+  <p>If you&rsquo;re a veteran, family member, volunteer or partner, we&rsquo;d like to hear what the farm has meant to you. Email us a few lines and let us know if we may share them here.</p>
+  <div class="vhf-actions">
+    <a class="vhf-btn vhf-btn--light" href="mailto:veteranshealingfarm@gmail.com?subject=My%20Veterans%20Healing%20Farm%20story">Email us your story <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-btn vhf-btn--ghost" href="/donate">Donate</a>
+  </div>
+  <svg class="vhf-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>(function(){var w=document.querySelector('.vhf-t');if(!w)return;w.classList.add('is-on');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-anim');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}})();</script>
+<script type="module">
+(async()=>{
+const root=document.querySelector('.vhf-t .vhf-ff');if(!root)return;
+const fld=root.querySelector('.fld'),canvas=fld.querySelector('canvas'),hits=fld.querySelector('.hits'),live=fld.querySelector('[data-ff-live]');
+const say=fld.querySelector('.say'),sq=say.querySelector('q'),sw=say.querySelector('.who');
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* The stories live in the plain-text list in the HTML (readable without JS or WebGL); the fireflies tell them one at a time. */
+const STORIES=[...fld.querySelectorAll('.list li')].map(li=>[li.querySelector('q').textContent.trim(),li.querySelector('b').textContent.trim(),((li.querySelector('.o')||{}).textContent||'').trim()]);
+if(!STORIES.length)return;
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let THREE;
+try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js')}catch(e){root.classList.add('no3d');return}
+
+const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio||1,2));
+const scene=new THREE.Scene(),cam=new THREE.OrthographicCamera(0,1,0,1,-10,10);
+let W=1,H=1;
+
+/* Soft round glow, drawn once and shared by every firefly. */
+const glow=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d'),gr=g.createRadialGradient(64,64,0,64,64,64);
+  gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.1,'rgba(255,255,255,.95)');gr.addColorStop(.28,'rgba(255,255,255,.3)');gr.addColorStop(1,'rgba(255,255,255,0)');
+  g.fillStyle=gr;g.fillRect(0,0,128,128);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t})();
+
+const GREEN=new THREE.Color('#d8f27a'),WARM=new THREE.Color('#fff0a8'),rand=(a,b)=>a+Math.random()*(b-a);
+
+/* One flash: snaps on in about a tenth of a second, then fades out over half a second. x is seconds since it started. */
+const env=x=>x<0?0:x<.1?x/.1:Math.max(0,1-(x-.1)/.5)**2;
+/* The teller's slower glow: eases on, lingers, fades. */
+const envSlow=x=>x<0?0:x<.2?x/.2:Math.max(0,1-(x-.2)/1.1)**2;
+/* A firefly's own rhythm: dark most of the time, a single or double flash every few seconds. */
+const blink=(f,t)=>{const u=(t+f.off)%f.per;return Math.min(1,env(u)+(f.dbl?env(u-.45)*.8:0))};
+
+/* Eight fireflies, spread on a loose, staggered 4 x 2 grid between the heading and the story line. They share all the stories. */
+const N=8,mk=()=>({per:rand(4.5,8.5),off:rand(0,9),dbl:Math.random()<.3,ph:rand(0,6.3),spd:rand(.3,.9)});
+const ffs=Array.from({length:N},(_,i)=>{
+  const cols=4,cx=i%4,cy=i<4?0:1;
+  /* DoubleSide: the y-down camera flips sprite winding, and front-face culling would hide them. */
+  const m=new THREE.SpriteMaterial({map:glow,color:GREEN.clone(),side:THREE.DoubleSide,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending});
+  const sp=new THREE.Sprite(m);scene.add(sp);
+  const b=document.createElement('button');b.type='button';b.className='hit';b.setAttribute('aria-label',`Hear a story (firefly ${i+1} of ${N})`);hits.appendChild(b);
+  return{...mk(),sp,b,s:null,hx:.06+.88*(cx+.5+(cy?.2:-.2)+rand(-.12,.12))/cols,gy:(cy+.5+rand(-.25,.25))/2,hy:0,x:0,y:0,lift:0}});
+
+function size(){const b=fld.getBoundingClientRect();W=b.width;H=b.height;r.setSize(W,H,false);
+  const narrow=W<700;ffs.forEach(f=>f.hy=(narrow?.36:.32)+f.gy*(narrow?.24:.22));
+  cam.left=0;cam.right=W;cam.top=0;cam.bottom=H;cam.updateProjectionMatrix()}
+size();addEventListener('resize',size);
+
+/* The teller: one firefly at a time glows warmer and the next story fades in below.
+   It moves on by itself (not with reduced motion); hovering, tapping or tabbing to a firefly makes that one the teller. */
+let teller=null,toldAt=-99,nextAt=1.5,si=Math.floor(Math.random()*STORIES.length),swapT=0;
+const clock=new THREE.Clock();
+function tell(f,hold){
+  if(f===teller)return;teller=f;toldAt=clock.getElapsedTime();nextAt=RM?Infinity:toldAt+(hold?14:9);
+  f.s=STORIES[si++%STORIES.length];
+  clearTimeout(swapT);say.classList.remove('on');
+  swapT=setTimeout(()=>{const[q,n,o]=f.s;sq.textContent=q;sw.innerHTML=`${esc(n)}${o?`<span>${esc(o)}</span>`:''}`;say.classList.add('on')},say.textContent.trim()?650:200)}
+function quiet(){teller=null;clearTimeout(swapT);say.classList.remove('on')}
+/* Screen readers hear the story when someone focuses or presses a firefly, never on the automatic hand-offs. */
+const announce=f=>{if(!f.s)return;const[q,n,o]=f.s;live.textContent=`${q} ${n}${o?', '+o:''}`};
+const nextTeller=()=>{const rest=ffs.filter(f=>f!==teller);return rest[Math.floor(Math.random()*rest.length)]};
+
+let mx=-1e4,my=-1e4;
+const pick=()=>{let best=null,bd=Math.max(34,W/24);for(const f of ffs){const d=Math.hypot(f.x-mx,f.y-my);if(d<bd){bd=d;best=f}}return best};
+fld.addEventListener('pointermove',e=>{const b=fld.getBoundingClientRect();mx=e.clientX-b.left;my=e.clientY-b.top;const f=pick();fld.style.cursor=f?'pointer':'';if(f)tell(f,true)});
+fld.addEventListener('pointerleave',()=>{mx=my=-1e4});
+ffs.forEach(f=>{f.b.addEventListener('focus',()=>{tell(f,true);announce(f)});f.b.addEventListener('click',()=>{teller=null;tell(f,true);announce(f)})});
+addEventListener('keydown',e=>{if(e.key==='Escape')quiet()});
+
+/* Pause when scrolled away. */
+let vis=true,raf=0;new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis)loop()}).observe(fld);
+function loop(){cancelAnimationFrame(raf);if(!vis)return;raf=requestAnimationFrame(loop);
+  const t=clock.getElapsedTime();
+  if(t>nextAt)tell(nextTeller(),false);
+  for(const f of ffs){
+    const me=f===teller;
+    /* The teller glows slowly every 2.2 seconds while its story shows; the rest flash and go dark on their own time. */
+    const k=RM?(me?1:.45):me?envSlow((t-toldAt)%2.2):blink(f,t);
+    f.ph+=RM?0:.01*f.spd*(me?.2:1);
+    /* They drift slowly and climb a little while lit, like the J-shaped flash of eastern fireflies. */
+    f.lift+=(k-f.lift)*.2;
+    f.x=(f.hx+Math.sin(f.ph)*.03+Math.sin(f.ph*2.3)*.01)*W;f.y=(f.hy+Math.cos(f.ph*1.3)*.025)*H-f.lift*8;
+    const s=(W<700?30:Math.max(34,W/28))*(me?1.5:1)*(.6+.4*k);
+    f.sp.position.set(f.x,f.y,0);f.sp.scale.set(s,s,1);
+    /* Fade by opacity, not by darkening the color: a dark glow still writes alpha and shows as a black speck. */
+    f.sp.material.color.copy(me?WARM:GREEN);f.sp.material.opacity=Math.min(1,k*(me?1.2:1));f.sp.visible=k>.01;
+    f.b.style.transform=`translate(${f.x}px,${f.y}px)`}
+  r.render(scene,cam);
+}
+loop();
+})();
+</script>

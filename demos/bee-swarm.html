@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bee Swarm Demo</title>
+<!-- Demo only (Oct 26, 2026): three.js bee swarm for the VHF site. Not in the hub's PAGES; if adopted, the section moves into a content file scoped like the others. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--olive:#5c6642;--olive-deep:#3d4529;--navy:#3f5a78;--clay:#a8603e;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58}
+body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 "Work Sans",system-ui,sans-serif}
+.demo-note{max-width:1200px;margin:0 auto;padding:20px 24px 0;font-size:14px;color:var(--muted)}
+.vhf-bee{position:relative;max-width:1200px;margin:16px auto 64px;padding:0 24px}
+.vhf-bee .bz{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;min-height:560px;padding:clamp(36px,6vw,72px);border-radius:22px;background:radial-gradient(90% 120% at 80% 60%,#fbf3dc 0%,var(--paper) 55%);border:1px solid var(--line);overflow:hidden;isolation:isolate}
+.vhf-bee canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.vhf-bee .bz__txt{position:relative;z-index:1}
+.vhf-bee .eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 "Work Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-bee .eye::before{content:"";width:28px;height:2px;background:currentColor}
+.vhf-bee h2{font:600 clamp(32px,4vw,52px)/1.08 Fraunces,Georgia,serif;letter-spacing:-.015em;margin:0 0 18px}
+.vhf-bee h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-bee p{margin:0 0 16px;max-width:52ch;color:var(--muted)}
+.vhf-bee .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-bee .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 "Work Sans",sans-serif;text-decoration:none;border:2px solid var(--olive);background:var(--olive);color:var(--cream)}
+.vhf-bee .btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-bee .btn--o{background:transparent;color:var(--navy);border-color:var(--navy)}
+.vhf-bee .btn--o:hover{background:#e6ecf2}
+.vhf-bee .facts{display:flex;gap:28px;margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
+.vhf-bee .facts b{display:block;font:600 30px/1 Fraunces,serif;color:var(--olive-deep)}
+.vhf-bee .facts span{font-size:13.5px;color:var(--muted)}
+.vhf-bee .hive{position:relative;z-index:0;height:380px}
+.vhf-bee .tip{position:absolute;z-index:3;right:20px;bottom:16px;font:600 11px/1 "Work Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9a8f6c}
+@media (max-width:800px){.vhf-bee .bz{grid-template-columns:1fr}.vhf-bee .hive{height:240px;order:-1}.vhf-bee .tip{display:none}}
+</style>
+</head>
+<body>
+<p class="demo-note">Demo: three.js bee swarm. Move your cursor through the section, hover a button, leave it still to send them home to the bee box, or click to scatter the bees.</p>
+
+<section class="vhf-bee" aria-labelledby="bee-h">
+  <div class="bz">
+    <div class="bz__txt">
+      <p class="eye">Beekeeping</p>
+      <h2 id="bee-h">Tend the hive <em>with us</em></h2>
+      <p>Our Bee Squad keeps the farm's hives healthy alongside a lead beekeeper. Veterans learn hive inspections, honey harvest, and the calm, steady focus the work asks for.</p>
+      <p>No experience needed. We provide suits, tools, and plenty of patience.</p>
+      <div class="acts">
+        <a class="btn" href="/volunteer#bee-squad" data-land>Join the Bee Squad</a>
+        <a class="btn btn--o" href="/beekeeping" data-land>Learn about beekeeping</a>
+      </div>
+      <div class="facts"><div><b>Hives</b><span>tended by veterans</span></div><div><b>Honey</b><span>shared with our community</span></div></div>
+    </div>
+    <div class="hive" aria-hidden="true"></div>
+    <canvas aria-hidden="true"></canvas>
+    <span class="tip" aria-hidden="true">Move &middot; hover &middot; click</span>
+  </div>
+</section>
+
+<script type="module">
+const box=document.querySelector('.vhf-bee .bz'),canvas=box.querySelector('canvas'),hiveEl=box.querySelector('.hive');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let THREE;try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js')}catch(e){throw e}
+
+const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio||1,2));
+const scene=new THREE.Scene(),cam=new THREE.OrthographicCamera(0,1,0,-1,-800,800);cam.position.z=400;
+scene.add(new THREE.HemisphereLight('#fff6e0','#8a7a55',1.6));
+const sun=new THREE.DirectionalLight('#fff1d0',2.2);sun.position.set(-200,300,400);scene.add(sun);
+
+/* Geometry helper: merge parts, coloring each vertex. */
+const merge=list=>{let n=0;const parts=list.map(([g0,col])=>{const g=g0.index?g0.toNonIndexed():g0;g.computeVertexNormals();n+=g.attributes.position.count;return[g,col]});
+  const P=new Float32Array(n*3),N=new Float32Array(n*3),K=new Float32Array(n*3),c=new THREE.Color();let o=0;
+  for(const[g,col]of parts){const p=g.attributes.position.array,cnt=g.attributes.position.count;P.set(p,o*3);N.set(g.attributes.normal.array,o*3);
+    for(let i=0;i<cnt;i++){typeof col==='function'?col(c,p[i*3],p[i*3+1],p[i*3+2]):c.set(col);K.set([c.r,c.g,c.b],(o+i)*3)}o+=cnt}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(P,3));g.setAttribute('normal',new THREE.BufferAttribute(N,3));g.setAttribute('color',new THREE.BufferAttribute(K,3));return g};
+
+/* A round cartoon bee drawn side-on with thick ink outlines (an original bee in a hand-drawn storybook spirit).
+   +x is forward, +y is up, +z faces the viewer. About 28px from nose to stinger. */
+const GOLD=new THREE.Color('#f2b632'),DARK=new THREE.Color('#2b211a'),INK='#1b1510';
+/* Like merge(), but keeps each part's own smooth normals so the ink outline (pushed out along the normals) has no cracks. */
+const mergeSmooth=list=>{let n=0;const parts=list.map(([g0,col])=>{const g=g0.index?g0.toNonIndexed():g0;n+=g.attributes.position.count;return[g,col]});
+  const P=new Float32Array(n*3),Nn=new Float32Array(n*3),K=new Float32Array(n*3),c=new THREE.Color();let o=0;
+  for(const[g,col]of parts){const p=g.attributes.position.array,cnt=g.attributes.position.count;P.set(p,o*3);Nn.set(g.attributes.normal.array,o*3);
+    for(let i=0;i<cnt;i++){typeof col==='function'?col(c,p[i*3],p[i*3+1],p[i*3+2]):c.set(col);K.set([c.r,c.g,c.b],(o+i)*3)}o+=cnt}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(P,3));g.setAttribute('normal',new THREE.BufferAttribute(Nn,3));g.setAttribute('color',new THREE.BufferAttribute(K,3));return g};
+const eye=z=>[new THREE.SphereGeometry(2.5,14,10).scale(1,1.2,.6).translate(9.6,3.2,z),'#15100c'],shine=z=>[new THREE.SphereGeometry(.8,8,6).translate(10.4,4.3,z),'#ffffff'];
+const beeGeo=mergeSmooth([
+  [new THREE.SphereGeometry(1,22,16).scale(8.4,7.2,6.8).translate(-3.4,0,0),(c,x)=>c.copy(Math.floor((x+13.5)/3.5)%2?DARK:GOLD)],
+  [new THREE.SphereGeometry(5.4,18,14).translate(6.6,2.2,0),'#f2b632'],
+  eye(3.9),eye(-3.9),shine(5.3),shine(-5.3),
+  [new THREE.ConeGeometry(1.4,4.4,8).rotateZ(Math.PI/2).translate(-13.6,-.6,0),INK],
+  [new THREE.CylinderGeometry(.38,.38,5.4,5).rotateZ(-.55).translate(8.6,9,1.6),INK],[new THREE.CylinderGeometry(.38,.38,5.4,5).rotateZ(-.35).translate(7.4,9.2,-1.6),INK],
+  [new THREE.SphereGeometry(1,8,6).translate(10.1,11.3,1.6),INK],[new THREE.SphereGeometry(1,8,6).translate(8.4,11.6,-1.6),INK],
+  [new THREE.CylinderGeometry(.45,.35,4.4,5).rotateZ(.3).translate(-5.5,-7.6,2.6),INK],[new THREE.CylinderGeometry(.45,.35,4.4,5).rotateZ(.15).translate(-2,-8,2.8),INK],[new THREE.CylinderGeometry(.45,.35,4.4,5).translate(1.4,-7.6,2.6),INK]
+]);
+/* Two teardrop wings rooted on the back; the shader swings them about the root. */
+const wingGeo=mergeSmooth([
+  [new THREE.CircleGeometry(1,18).scale(3.6,6.6,1).translate(0,6.4,0).rotateZ(.45).translate(-2,6.2,2.2),'#fff'],
+  [new THREE.CircleGeometry(1,18).scale(3,5.6,1).translate(0,5.4,0).rotateZ(.85).translate(-3.2,6,-2.2),'#fff']
+]);
+
+const N=innerWidth<760?48:96,S=1.05;
+const ramp=new THREE.DataTexture(new Uint8Array([110,110,110,255,190,190,190,255,255,255,255,255]),3,1);ramp.minFilter=ramp.magFilter=THREE.NearestFilter;ramp.needsUpdate=true;
+const bodies=new THREE.InstancedMesh(beeGeo,new THREE.MeshToonMaterial({vertexColors:true,gradientMap:ramp}),N);
+/* Ink outline: the same bee drawn back-faces-only in ink, pushed out along its normals. */
+const outlineMat=new THREE.MeshBasicMaterial({color:INK,side:THREE.BackSide});outlineMat.onBeforeCompile=s=>{s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','vec3 transformed=position+normal*1.2;')};
+const outlines=new THREE.InstancedMesh(beeGeo,outlineMat,N);
+const U={uTime:{value:0}};
+/* Wing flap about the root at (-2,6); aFlap is the per-bee beat rate (fast in flight, slow when resting). The ink wings are drawn 16% larger. */
+const flapShader=(grow,dz)=>s=>{s.uniforms.uTime=U.uTime;s.vertexShader='uniform float uTime;attribute float aFlap;\n'+s.vertexShader.replace('#include <begin_vertex>',
+  `vec3 transformed=vec3(position);vec2 rt=vec2(-2.,6.);vec2 d=(transformed.xy-rt)*${grow};float a=sin(uTime*aFlap+instanceMatrix[3][0]*.37)*.7*min(aFlap/30.,1.)-.1*sign(position.z);float c=cos(a),sn=sin(a);transformed.xy=rt+vec2(c*d.x-sn*d.y,sn*d.x+c*d.y);transformed.z+=${dz};`)};
+const wingMat=new THREE.MeshBasicMaterial({color:'#eef7fb',side:THREE.DoubleSide});wingMat.onBeforeCompile=flapShader('1.0','0.0');
+const wingInkMat=new THREE.MeshBasicMaterial({color:INK,side:THREE.DoubleSide});/* The ink wing sits just behind the wing as seen from the viewer (pushed back in view space), so it stays an outline whichever way the bee faces. */
+wingInkMat.onBeforeCompile=s=>{flapShader('1.16','0.0')(s);s.vertexShader=s.vertexShader.replace('#include <project_vertex>','#include <project_vertex>'+String.fromCharCode(10)+'mvPosition.z-=0.8;gl_Position=projectionMatrix*mvPosition;')};wingInkMat.customProgramCacheKey=()=>'wingink';
+const wings=new THREE.InstancedMesh(wingGeo,wingMat,N),wingInk=new THREE.InstancedMesh(wingGeo,wingInkMat,N),flap=new Float32Array(N).fill(45);
+wingGeo.setAttribute('aFlap',new THREE.InstancedBufferAttribute(flap,1));
+/* Soft shadows give the swarm depth. */
+const shCv=document.createElement('canvas');shCv.width=shCv.height=64;{const g=shCv.getContext('2d'),gr=g.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,'rgba(60,45,20,.35)');gr.addColorStop(1,'rgba(60,45,20,0)');g.fillStyle=gr;g.fillRect(0,0,64,64)}
+const shadows=new THREE.InstancedMesh(new THREE.PlaneGeometry(26,12),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(shCv),transparent:true,depthWrite:false}),N);
+[outlines,bodies,wingInk,wings,shadows].forEach(m=>{m.frustumCulled=false;scene.add(m)});
+
+/* A Langstroth bee box like the farm's: white and pale-yellow painted deeps, a raw-wood super stenciled T3,
+   a telescoping lid with a brick on it, on a weathered plank stand with frames of comb and a fence T-post. */
+const hive=new THREE.Group();scene.add(hive);
+const BW=168,BD=134,wood=(c,o={})=>new THREE.MeshStandardMaterial({map:paint(c,o),roughness:.88});
+function paint(base,{label,hold=false,grain=70,w=256,h=150}={}){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const g=cv.getContext('2d');g.fillStyle=base;g.fillRect(0,0,w,h);
+  for(let i=0;i<grain;i++){g.strokeStyle=`rgba(${Math.random()<.5?'255,255,255':'90,70,40'},${.04+Math.random()*.07})`;g.lineWidth=1+Math.random()*2;const y=Math.random()*h;g.beginPath();g.moveTo(0,y);g.bezierCurveTo(w*.3,y+(Math.random()-.5)*6,w*.7,y+(Math.random()-.5)*6,w,y+(Math.random()-.5)*4);g.stroke()}
+  const e=g.createLinearGradient(0,0,0,h);e.addColorStop(0,'rgba(80,60,30,.2)');e.addColorStop(.07,'rgba(80,60,30,0)');e.addColorStop(.93,'rgba(80,60,30,0)');e.addColorStop(1,'rgba(80,60,30,.25)');g.fillStyle=e;g.fillRect(0,0,w,h);
+  if(hold){const hw=w*.34,hh=h*.12,x0=(w-hw)/2,y0=h*.22,gr=g.createLinearGradient(0,y0,0,y0+hh);gr.addColorStop(0,'rgba(40,28,12,.6)');gr.addColorStop(1,'rgba(40,28,12,.15)');g.fillStyle=gr;g.beginPath();g.roundRect(x0,y0,hw,hh,hh/2);g.fill()}
+  if(label){g.font='700 28px "Work Sans",Arial,sans-serif';g.fillStyle='rgba(28,28,28,.85)';g.textAlign='right';g.fillText(label,w-20,h-20)}
+  const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t}
+const part=(geo,mat,x,y,z,parent=hive)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);parent.add(m);return m};
+const hiveBox=(h,color,label,y)=>{const side=wood(color,{hold:true}),plain=wood(color),front=wood(color,{hold:true,label});part(new THREE.BoxGeometry(BW,h,BD),[side,side,plain,plain,front,plain],0,y+h/2,0)};
+/* Bottom board with a landing ledge and the dark entrance slot. */
+const raw=wood('#b48d5c');
+part(new THREE.BoxGeometry(BW+4,10,BD+28),raw,0,5,14);
+part(new THREE.BoxGeometry(BW-26,9,BD-6),new THREE.MeshBasicMaterial({color:'#1c140b'}),0,14.5,0);
+part(new THREE.BoxGeometry(13,9,BD),raw,-BW/2+6.5,14.5,0);part(new THREE.BoxGeometry(13,9,BD),raw,BW/2-6.5,14.5,0);
+hiveBox(96,'#f2efe6','VHF 1',19);hiveBox(96,'#efd98a','',115);hiveBox(60,'#d9b57a','T3',211);
+/* Telescoping lid with a metal top and a brick to hold it down. */
+part(new THREE.BoxGeometry(BW+12,16,BD+12),wood('#ebe8df'),0,279,0);
+part(new THREE.BoxGeometry(BW+14,2.5,BD+14),new THREE.MeshStandardMaterial({color:'#b9bec3',metalness:.65,roughness:.35}),0,288,0);
+const brick=part(new THREE.BoxGeometry(58,18,28),new THREE.MeshStandardMaterial({color:'#9b4b33',roughness:.95}),-18,298,8);brick.rotation.y=.35;
+/* Weathered plank stand on cinder blocks. */
+part(new THREE.BoxGeometry(BW+300,16,BD+44),wood('#8f8b80',{grain:120}),90,-8,6);
+const block=new THREE.MeshStandardMaterial({color:'#9c9a94',roughness:1});part(new THREE.BoxGeometry(60,50,BD),block,-120,-41,6);part(new THREE.BoxGeometry(60,50,BD),block,300,-41,6);
+/* Frames of capped comb standing on the stand. */
+const comb=(()=>{const cv=document.createElement('canvas');cv.width=cv.height=256;const g=cv.getContext('2d');g.fillStyle='#c98f26';g.fillRect(0,0,256,256);const r=9,dx=r*Math.sqrt(3);
+  for(let row=0,y=0;y<270;row++,y+=r*1.5)for(let x=row%2?dx/2:0;x<270;x+=dx){g.beginPath();for(let k=0;k<6;k++){const a=Math.PI/6+k*Math.PI/3;g.lineTo(x+Math.cos(a)*r*.9,y+Math.sin(a)*r*.9)}g.closePath();
+    g.fillStyle=Math.random()<.65?'#e9c77a':'#dfa33a';g.fill();g.strokeStyle='rgba(120,80,20,.5)';g.lineWidth=1.2;g.stroke()}
+  const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(1.6,1);return t})();
+const combMat=new THREE.MeshStandardMaterial({map:comb,roughness:.45}),barMat=wood('#c9a46e');
+[0,1,2].forEach(k=>{const f=new THREE.Group();f.position.set(BW/2+96+k*10,0,40-k*34);f.rotation.y=-.12+k*.05;hive.add(f);
+  part(new THREE.BoxGeometry(150,5,9),barMat,0,103,0,f);part(new THREE.BoxGeometry(6,98,9),barMat,-68,52,0,f);part(new THREE.BoxGeometry(6,98,9),barMat,68,52,0,f);part(new THREE.BoxGeometry(136,5,9),barMat,0,2.5,0,f);
+  part(new THREE.BoxGeometry(130,92,4),combMat,0,52,0,f)});
+/* Electric-fence T-post behind the hives, as in the farm photos. */
+part(new THREE.BoxGeometry(7,360,5),new THREE.MeshStandardMaterial({color:'#2f6e3c',roughness:.6,metalness:.3}),-150,114,-70);
+part(new THREE.BoxGeometry(10,22,8),new THREE.MeshStandardMaterial({color:'#f2f0e8',roughness:.7}),-150,300,-70);
+[40,130,220].forEach(y=>part(new THREE.BoxGeometry(14,10,10),new THREE.MeshStandardMaterial({color:'#f2c12e',roughness:.5}),-150,y,-66));
+hive.rotation.set(.12,-.42,0);
+
+/* Places bees rest: the landing ledge, the box fronts, the lid. Local coordinates, turned into page space in fit(). */
+const R0=Math.random,LOCAL=[];for(let k=0;k<120;k++){const m=k%5;LOCAL.push(m<2?new THREE.Vector3(-70+R0()*140,19,BD/2+6+R0()*18):m<4?new THREE.Vector3(-74+R0()*148,30+R0()*240,BD/2+8):new THREE.Vector3(-70+R0()*140,292,-50+R0()*100))}
+const home=[],hc=new THREE.Vector3(),ent=new THREE.Vector3(),ledge=new THREE.Vector3(),hiveInv=new THREE.Matrix4();
+/* Front faces of the solid parts (box stack, bottom board and ledge, table, frames) in hive coordinates [x0,x1,y0,y1,zFront].
+   Flying bees stay in a layer just in front of all of them, so they pass in front of the table and box, never behind or through. */
+const FRONTS=[[-BW/2-7,BW/2+7,0,308,BD/2+7],[-BW/2-2,BW/2+2,0,10,BD/2+28],[90-(BW+300)/2,90+(BW+300)/2,-66,0,6+(BD+44)/2],[BW/2+18,BW/2+190,0,106,48]];let zFront=0;
+let W=1,H=1,hs=1;
+const fit=()=>{W=box.clientWidth;H=box.clientHeight;r.setSize(W,H,false);cam.right=W;cam.bottom=-H;cam.updateProjectionMatrix();
+  const b=box.getBoundingClientRect(),h=hiveEl.getBoundingClientRect();hs=Math.min(1.05,h.height/390,h.width/520);
+  hive.scale.setScalar(hs);hive.position.set(h.left-b.left+h.width/2-80*hs,-(h.top-b.top+h.height/2)-120*hs,-120);hive.updateMatrixWorld(true);
+  hc.set(0,150,0);hive.localToWorld(hc);LOCAL.forEach((v,i)=>{home[i]=hive.localToWorld(v.clone())});ent.set(0,15,BD/2+4);hive.localToWorld(ent);ledge.set(0,22,BD/2+24);hive.localToWorld(ledge);hiveInv.copy(hive.matrixWorld).invert();
+  zFront=-1e9;for(const f of FRONTS)for(const x of[f[0],f[1]])for(const y of[f[2],f[3]]){const w=new THREE.Vector3(x,y,f[4]).applyMatrix4(hive.matrixWorld);zFront=Math.max(zFront,w.z+18)}};
+new ResizeObserver(fit).observe(box);fit();
+
+/* Bees. Each is in the box (hidden), out flying, or heading home. By default only a stray or two are out;
+   more come out to look as the pointer nears the box; clicking the box sends out the whole swarm. */
+const IN=0,OUT=1,HOME=2,state=new Uint8Array(N),yaw=new Float32Array(N).fill(.35),P=[],V=[],orbit=[];
+for(let i=0;i<N;i++){P.push(ent.clone());V.push(new THREE.Vector3());orbit.push({r:28+Math.random()*90,w:(Math.random()<.5?-1:1)*(1.2+Math.random()*1.8),ph:Math.random()*6.3,z:(Math.random()-.5)*60})}
+const homeT=new Float32Array(N);let swarmStart=0;
+let px=0,py=0,inside=false,landEl=null,near=0,swarm=false,swarmUntil=0,nextOut=0,nextHome=0,nextSwap=performance.now()/1000+7;
+const local=e=>{const b=box.getBoundingClientRect();return[e.clientX-b.left,-(e.clientY-b.top)]};
+const onHive=(x,y)=>{const b=box.getBoundingClientRect(),h=hiveEl.getBoundingClientRect();return x>h.left-b.left-16&&x<h.right-b.left+16&&-y>h.top-b.top-16&&-y<h.bottom-b.top+16};
+box.addEventListener('pointermove',e=>{[px,py]=local(e);inside=true;landEl=e.target.closest('[data-land]');
+  const d=Math.hypot(px-hc.x,py-hc.y);near=clamp(1-(d-140*hs)/260,0,1);box.style.cursor=onHive(px,py)?'pointer':'';if(swarm)swarmUntil=Math.min(swarmStart+60,Math.max(swarmUntil,performance.now()/1000+6))});
+box.addEventListener('pointerleave',()=>{inside=false;landEl=null;near=0;if(swarm)swarmUntil=Math.min(swarmUntil,performance.now()/1000+1.5)});
+box.addEventListener('pointerdown',e=>{const[cx,cy]=local(e),t=performance.now()/1000;
+  if(onHive(cx,cy)){if(!swarm)swarmStart=t;swarm=true;swarmUntil=Math.min(swarmStart+60,t+7);go()}
+  else if(swarm)for(let i=0;i<N;i++){if(state[i]!==OUT)continue;const d=Math.hypot(P[i].x-cx,P[i].y-cy)+1;V[i].x+=(P[i].x-cx)/d*700*Math.exp(-d/220);V[i].y+=(P[i].y-cy)/d*700*Math.exp(-d/220);orbit[i].landed=false}});
+const perim=(el,k,n)=>{const b=box.getBoundingClientRect(),e=el.getBoundingClientRect(),x0=e.left-b.left,y0=e.top-b.top,w=e.width,h=e.height,L=2*(w+h);let t=(k/n)*L;
+  if(t<w)return[x0+t,-y0];t-=w;if(t<h)return[x0+w,-(y0+t)];t-=h;if(t<w)return[x0+w-t,-(y0+h)];t-=w;return[x0,-(y0+h-t)]};
+
+const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),qr=new THREE.Quaternion(),Y=new THREE.Vector3(0,1,0),Z=new THREE.Vector3(0,0,1),sc=new THREE.Vector3(S,S,S),tgt=new THREE.Vector3(),st=new THREE.Vector3(),tmp=new THREE.Vector3(),ZERO=new THREE.Matrix4().makeScale(0,0,0);
+const go=()=>{};
+let prev=performance.now()/1000;
+function frame(){const t=performance.now()/1000,dt=Math.min(.033,t-prev);prev=t;U.uTime.value=t;
+  if(swarm&&t>swarmUntil){swarm=false;near=0}
+  let out=0;for(let i=0;i<N;i++)if(state[i]===OUT)out++;
+  const want=RM?2:swarm?N:2+Math.round(near*N*.35);
+  /* Bees come out of the entrance one at a time (a rush when swarming) and go home the same way. */
+  if(out<want&&t>=nextOut){const k=swarm?Math.min(6,want-out):1;for(let n=0,i=0;i<N&&n<k;i++)if(state[i]===IN){state[i]=OUT;P[i].copy(ent).add(tmp.set((Math.random()-.5)*60*hs,0,0));V[i].set((Math.random()-.5)*120,60+Math.random()*80,80);orbit[i].landed=false;n++}nextOut=t+(swarm?0:.14)}
+  if(out>want&&t>=nextHome){const k=swarm?1:Math.min(3,out-want);for(let n=0,i=N-1;i>=0&&n<k;i--)if(state[i]===OUT){state[i]=HOME;homeT[i]=t;n++}nextHome=t+(swarm?.08:.05)}
+  if(!swarm&&!near&&t>nextSwap){for(let i=0;i<N;i++)if(state[i]===OUT){state[i]=HOME;homeT[i]=t;break}nextSwap=t+7+Math.random()*5}
+  const landing=swarm&&inside&&landEl,landers=landing?Math.min(N,Math.round(2*(landEl.offsetWidth+landEl.offsetHeight)/16)):0;
+  let li=0;
+  for(let i=0;i<N;i++){const p=P[i],v=V[i],o=orbit[i];
+    if(RM){if(i<2){state[i]=OUT;p.copy(home[i*5%home.length]);o.landed=true}else state[i]=IN}
+    if(state[i]===IN){bodies.setMatrixAt(i,ZERO);outlines.setMatrixAt(i,ZERO);wings.setMatrixAt(i,ZERO);wingInk.setMatrixAt(i,ZERO);shadows.setMatrixAt(i,ZERO);continue}
+    let maxS=300,arrive=90,settle=false;
+    if(state[i]===HOME){/* Distance to the landing board measured on screen; flying bees sit in front of the box in depth. */const dl=Math.hypot(p.x-ledge.x,p.y-ledge.y);if(t-homeT[i]>10||p.distanceTo(ent)<9){state[i]=IN;i--;continue}
+      if(dl>24){tgt.copy(ledge);maxS=260;arrive=60}else{p.lerp(ent,Math.min(1,dt*2.5));v.multiplyScalar(.5);settle=true;o.landed=true;tgt.copy(ent)}}
+    else if(swarm&&landing&&li<landers){const pt=perim(landEl,li++,landers),e=landEl.getBoundingClientRect(),bb=box.getBoundingClientRect(),cx=e.left-bb.left+e.width/2,cy=-(e.top-bb.top+e.height/2),ox=pt[0]-cx,oy=pt[1]-cy,ol=Math.hypot(ox,oy)||1;tgt.set(pt[0]+ox/ol*9,pt[1]+oy/ol*9,30);settle=true;arrive=60}
+    else if(swarm&&landing){const b=box.getBoundingClientRect(),e=landEl.getBoundingClientRect(),a=t*o.w*.6+o.ph;tgt.set(e.left-b.left+e.width/2+Math.cos(a)*(e.width/2+34+o.r*.5),-(e.top-b.top+e.height/2)+Math.sin(a)*(e.height/2+30+o.r*.35),o.z+40)}
+    else if(swarm&&inside){const a=t*o.w+o.ph;tgt.set(px+Math.cos(a)*o.r,py+Math.sin(a*1.1)*o.r*.75,70+o.z+Math.sin(a)*30)}
+    else if(swarm||near>0){const a=t*o.w*.5+o.ph,gx=hc.x+(px-hc.x)*.3*near,gy=hc.y+(py-hc.y)*.3*near;maxS=220;tgt.set(gx+Math.cos(a)*(o.r*.9+90)*hs,gy+Math.sin(a*1.3)*(o.r*.6+50)*hs,80+o.z*.6+Math.sin(a)*40)}
+    else{/* A stray: drifts in front of the box and now and then sits on the landing board. */
+      if(Math.sin(t*.32+o.ph*5)>.3){tgt.copy(home[i*5%home.length]);settle=true;arrive=70;maxS=110}
+      else{const a=t*o.w*.25+o.ph;maxS=110;arrive=120;tgt.set(ledge.x+Math.cos(a)*(o.r+40)*hs,ledge.y+(70+Math.sin(a*1.7)*40)*hs,90+o.z*.5)}}
+    st.subVectors(tgt,p);const d=st.length();
+    if(settle&&d<3)o.landed=true;
+    if(RM||settle&&o.landed&&d<14){if(!RM)p.lerp(tgt,Math.min(1,dt*6));v.multiplyScalar(.6);p.x+=Math.sin(t*2+i)*.05;flap[i]+=(5-flap[i])*Math.min(1,dt*3)}
+    else{o.landed=false;flap[i]+=(46-flap[i])*Math.min(1,dt*5);
+      st.setLength(maxS*Math.min(1,d/arrive)).sub(v);
+      if(state[i]!==HOME)for(let j=0;j<N;j++){if(j===i||state[j]===IN)continue;tmp.subVectors(p,P[j]);const dd=tmp.lengthSq();if(dd<600&&dd>.01)st.addScaledVector(tmp,(600-dd)/dd*1.6)}
+      if(state[i]!==HOME){st.x+=Math.sin(t*2.3+i*1.7)*50;st.y+=Math.cos(t*1.9+i*2.3)*50}
+      if(st.length()>900)st.setLength(900);v.addScaledVector(st,dt*3.2);if(v.length()>maxS*1.3)v.setLength(maxS*1.3);p.addScaledVector(v,dt);
+      if(!(state[i]===HOME&&Math.hypot(p.x-ledge.x,p.y-ledge.y)<26)&&!(settle&&d<40)&&p.z<zFront){p.z=zFront;if(v.z<0)v.z=0}}
+    /* Side-on like a storybook bee: turn to face the way it flies, nose up when climbing, and bob. */
+    const face=v.x>14?.35:v.x<-14?Math.PI-.35:yaw[i];yaw[i]+=(face-yaw[i])*Math.min(1,dt*7);
+    const pitch=o.landed?0:clamp(v.y/420,-.45,.45);q.setFromAxisAngle(Y,yaw[i]);qr.setFromAxisAngle(Z,pitch);q.multiply(qr);
+    tmp.copy(p);if(!o.landed)tmp.y+=Math.sin(t*7+i*1.3)*1.6;
+    m4.compose(tmp,q,sc);bodies.setMatrixAt(i,m4);outlines.setMatrixAt(i,m4);wings.setMatrixAt(i,m4);wingInk.setMatrixAt(i,m4);
+    const lift=o.landed?.2:1;m4.compose(tmp.set(p.x+6+lift*8,p.y-10-lift*12,-300),q.identity(),sc.set(S*(.7+lift*.4),S*(.7+lift*.4),1));shadows.setMatrixAt(i,m4);sc.set(S,S,S)}
+  for(const m of[bodies,outlines,wings,wingInk,shadows])m.instanceMatrix.needsUpdate=true;wingGeo.attributes.aFlap.needsUpdate=true;
+  r.render(scene,cam);if(!RM)requestAnimationFrame(frame)}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+if(RM){orbit.forEach(o=>o.rest=true);for(let i=0;i<N;i++)P[i].copy(home[i]);}
+frame();
+</script>
+</body>
+</html>

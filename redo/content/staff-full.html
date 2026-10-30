@@ -1,0 +1,225 @@
+<!-- VHF Our Team (staff) page, full layout for one Squarespace Code block. Styles scoped to .vhf-s. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-s:not(.is-on){display:none}
+.vhf-s{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-text:#a45d3c;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  --r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-s *{box-sizing:border-box}
+.vhf-s img{max-width:100%;height:auto}
+.vhf-s .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.vhf-s a{text-decoration:none!important}
+.vhf-s h1,.vhf-s h2,.vhf-s h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-s h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-s h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-s h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-s h1 em,.vhf-s h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-s p{max-width:62ch}
+.vhf-s .vhf-s-sec{margin-top:var(--sec)}
+.vhf-s .vhf-s-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-s .vhf-s-eye::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-s .vhf-s-dark .vhf-s-eye,.vhf-s .vhf-s-hero .vhf-s-eye{color:var(--tan)}
+.vhf-s .vhf-s-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted);margin:0 0 32px}
+.vhf-s .vhf-s-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(420px,62vh,640px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.vhf-s .vhf-s-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vhf-s .vhf-s-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-s .vhf-s-hero__in{position:relative;padding:clamp(28px,6vw,72px);padding-bottom:clamp(44px,7vw,84px);max-width:760px}
+.vhf-s .vhf-s-hero h1{color:var(--cream)}
+.vhf-s .vhf-s-hero h1 em{color:var(--tan)}
+.vhf-s .vhf-s-hero p{margin:0;color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px)}
+.vhf-s .vhf-s-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+.vhf-s .vhf-s-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-s .vhf-s-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s,transform .18s}
+.vhf-s .vhf-s-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-s .vhf-s-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-s .vhf-s-btn:hover svg{transform:translateX(3px)}
+.vhf-s .vhf-s-btn--outline{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.vhf-s .vhf-s-btn--outline:hover{background:#e6ecf2;border-color:var(--navy)}
+.vhf-s .vhf-s-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-s .vhf-s-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-s .vhf-s-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-s .vhf-s-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-s a:focus-visible,.vhf-s button:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-s .vhf-s-dark a:focus-visible,.vhf-s .vhf-s-hero a:focus-visible,.vhf-s .vhf-s-cta a:focus-visible{outline-color:var(--tan)}
+.vhf-s .vhf-s-head{margin-bottom:36px}
+.vhf-s .vhf-s-head p{margin:0;color:var(--muted);font-size:clamp(17px,1.5vw,19px)}
+.vhf-s .vhf-s-dark{background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px);position:relative;overflow:hidden}
+.vhf-s .vhf-s-dark h2,.vhf-s .vhf-s-dark h3{color:var(--cream)}
+.vhf-s .vhf-s-dark p{color:var(--cream);opacity:.9}
+.vhf-s .vhf-s-quote{margin:0;position:relative;padding-top:36px}
+.vhf-s .vhf-s-quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font:700 96px/1 var(--serif);color:var(--clay);opacity:.85}
+.vhf-s .vhf-s-quote p{font:italic 400 clamp(22px,2.6vw,32px)/1.4 var(--serif);max-width:none;margin:0}
+.vhf-s .vhf-s-quote cite{display:block;margin-top:18px;font:600 12.5px/1.5 var(--sans);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--muted)}
+.vhf-s .vhf-s-split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.vhf-s .vhf-s-split>img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.vhf-s .vhf-s-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--clay-soft);color:#7d4329;font:600 12.5px/1.2 var(--sans);letter-spacing:.04em}
+.vhf-s .vhf-s-tag svg{width:13px;height:13px;flex:none}
+.vhf-s .vhf-s-tag--navy{background:#e6ecf2;color:var(--navy-deep)}
+.vhf-s .vhf-s-cta{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(40px,6vw,80px) clamp(24px,6vw,72px) clamp(56px,7vw,96px);text-align:center}
+.vhf-s .vhf-s-cta .vhf-s-eye{justify-content:center;color:var(--tan)}
+.vhf-s .vhf-s-cta h2{color:var(--cream)}
+.vhf-s .vhf-s-cta h2 em{color:var(--tan)}
+.vhf-s .vhf-s-cta p{margin:0 auto;color:var(--cream);opacity:.9}
+.vhf-s .vhf-s-cta .vhf-s-acts{justify-content:center}
+.vhf-s.vhf-s-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-s.vhf-s-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-s.vhf-s-anim .reveal{opacity:1;transform:none;transition:none}.vhf-s *{transition:none!important}}
+@media (max-width:800px){
+  .vhf-s{font-size:16px}
+  .vhf-s .vhf-s-split{grid-template-columns:1fr}
+  .vhf-s .vhf-s-split>img{aspect-ratio:16/10}
+  .vhf-s .vhf-s-hero{min-height:480px}
+  .vhf-s .vhf-s-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+  .vhf-s .vhf-s-acts{flex-direction:column;align-items:stretch}
+}
+
+.vhf-s .vhf-s-people{list-style:none;margin:0;padding:0;display:grid;gap:24px}
+.vhf-s .vhf-s-person{position:relative;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.vhf-s .vhf-s-person:nth-child(3n+2){border-top-color:var(--navy)}
+.vhf-s .vhf-s-person:nth-child(3n+3){border-top-color:var(--clay)}
+.vhf-s .vhf-s-person:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vhf-s .vhf-s-person h3{margin:0 0 4px}
+.vhf-s .vhf-s-role{margin:0;font:600 12.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-s .vhf-s-person .vhf-s-tag{align-self:flex-start}
+.vhf-s .vhf-s-hero--plain{min-height:clamp(360px,48vh,480px)}
+.vhf-s .vhf-s-hero--plain::before{background:radial-gradient(120% 90% at 100% 0%,rgba(138,148,103,.35) 0%,rgba(138,148,103,0) 60%),linear-gradient(90deg,rgba(38,44,26,.4),rgba(38,44,26,0))}
+
+.vhf-s .vhf-s-people{grid-template-columns:repeat(4,1fr)}
+.vhf-s .vhf-s-person img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#ebe7d8;filter:saturate(.92) contrast(1.02)}
+.vhf-s .vhf-s-person__body{display:flex;flex-direction:column;gap:10px;flex:1;padding:20px 22px 22px}
+.vhf-s .vhf-s-person__body h3{margin:0}
+.vhf-s .vhf-s-mail,.vhf-s .vhf-s-more{margin-top:auto;padding-top:6px;font-size:14px;font-weight:600;color:var(--navy)!important;overflow-wrap:anywhere}
+.vhf-s .vhf-s-more{color:var(--olive-deep)!important}
+.vhf-s .vhf-s-mail:hover,.vhf-s .vhf-s-more:hover{text-decoration:underline!important}
+.vhf-s .vhf-s-fin{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,48px);align-items:center;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--clay);border-radius:var(--r-lg);padding:clamp(28px,4vw,52px)}
+.vhf-s .vhf-s-fin p{margin:0;color:var(--muted)}
+.vhf-s .vhf-s-docs{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.vhf-s .vhf-s-docs a{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--cream);color:var(--ink)!important;font-weight:600;font-size:15px;transition:border-color .18s,background-color .18s}
+.vhf-s .vhf-s-docs a:hover{border-color:var(--olive);background:#f1efe4}
+.vhf-s .vhf-s-docs svg{width:24px;height:24px;flex:none;color:var(--clay)}
+.vhf-s .vhf-s-docs small{display:block;font-weight:400;font-size:13px;color:var(--muted)}
+@media (max-width:1000px){.vhf-s .vhf-s-people{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:800px){.vhf-s .vhf-s-fin{grid-template-columns:1fr}}
+@media (max-width:560px){
+  .vhf-s .vhf-s-people{grid-template-columns:1fr 1fr;gap:12px}
+  .vhf-s .vhf-s-person__body{padding:14px;gap:8px}
+  .vhf-s .vhf-s-person h3{font-size:17px}
+  .vhf-s .vhf-s-role{font-size:11px;letter-spacing:.1em}
+}
+.vhf-s .vhf-s-hero::before{z-index:1}
+.vhf-s .vhf-s-hero>:not(img){z-index:2}
+</style>
+
+<div class="vhf-s">
+
+<section class="vhf-s-hero" aria-labelledby="vhf-s-title">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910471420-G13FY2ZO07MI3TIE69E8/VHF%2B2.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910471420-G13FY2ZO07MI3TIE69E8/VHF%2B2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910471420-G13FY2ZO07MI3TIE69E8/VHF%2B2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910471420-G13FY2ZO07MI3TIE69E8/VHF%2B2.jpg?format=1000w 1000w" sizes="(min-width: 1240px) 1200px, 100vw" width="1000" height="1000" alt="Veterans Healing Farm staff, volunteers and friends gathered around the farm sign" fetchpriority="high" decoding="async">
+  <div class="vhf-s-hero__in">
+    <p class="vhf-s-eye">Our team</p>
+    <h1 id="vhf-s-title">Meet the team behind the <em>farm</em></h1>
+    <p>These are the people who run Veterans Healing Farm in Mills River, North Carolina. Many of our staff are veterans themselves.</p>
+  </div>
+  <svg class="vhf-s-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<section class="vhf-s-sec" aria-labelledby="vhf-s-staff-h">
+  <div class="vhf-s-head reveal">
+    <p class="vhf-s-eye">Staff</p>
+    <h2 id="vhf-s-staff-h">Our <em>staff</em></h2>
+    <p>From the fields and the hives to the office, these folks keep the farm running for veterans and their families.</p>
+  </div>
+  <ul class="vhf-s-people">
+    <li class="vhf-s-person reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/833fa8cf-bf1b-4111-8e2d-34d2ea01f9f2/_RCH4207-Enhanced.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/833fa8cf-bf1b-4111-8e2d-34d2ea01f9f2/_RCH4207-Enhanced.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/833fa8cf-bf1b-4111-8e2d-34d2ea01f9f2/_RCH4207-Enhanced.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/833fa8cf-bf1b-4111-8e2d-34d2ea01f9f2/_RCH4207-Enhanced.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/833fa8cf-bf1b-4111-8e2d-34d2ea01f9f2/_RCH4207-Enhanced.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/833fa8cf-bf1b-4111-8e2d-34d2ea01f9f2/_RCH4207-Enhanced.jpg?format=2500w 2500w" sizes="(min-width: 1000px) 290px, (min-width: 560px) 33vw, 50vw" width="2500" height="3707" style="object-position:70% 41%" alt="Alan Yeck, Executive Director, smiling outdoors with the mountains behind him" loading="lazy" decoding="async">
+      <div class="vhf-s-person__body">
+        <h3>Alan &ldquo;Al&rdquo; Yeck</h3>
+        <p class="vhf-s-role">Executive Director</p>
+        <span class="vhf-s-tag vhf-s-tag--navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>U.S. Marine Corps</span>
+        <a class="vhf-s-mail" href="mailto:director@veteranshealingfarm.org">Email Al <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </li>
+    <li class="vhf-s-person reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/edd9de13-77f7-4e94-8b3d-cca064506df8/365091452_681350410689969_5078521163789189892_n.jpg?format=750w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/edd9de13-77f7-4e94-8b3d-cca064506df8/365091452_681350410689969_5078521163789189892_n.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/edd9de13-77f7-4e94-8b3d-cca064506df8/365091452_681350410689969_5078521163789189892_n.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/edd9de13-77f7-4e94-8b3d-cca064506df8/365091452_681350410689969_5078521163789189892_n.jpg?format=1000w 843w" sizes="(min-width: 1000px) 290px, (min-width: 560px) 33vw, 50vw" width="843" height="1397" style="object-position:48% 10%" alt="Megan Landreth, Director of Operations, holding yellow squash in the farm pantry" loading="lazy" decoding="async">
+      <div class="vhf-s-person__body">
+        <h3>Megan Landreth</h3>
+        <p class="vhf-s-role">Director of Operations</p>
+        <span class="vhf-s-tag vhf-s-tag--navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>U.S. Air Force</span>
+        <a class="vhf-s-mail" href="mailto:veteranshealingfarm@gmail.com">Email Megan <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </li>
+    <li class="vhf-s-person reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/c5360b9f-e6b4-41a4-9626-73f8ee54e112/img_1711_08312022.jfif?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/c5360b9f-e6b4-41a4-9626-73f8ee54e112/img_1711_08312022.jfif?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/c5360b9f-e6b4-41a4-9626-73f8ee54e112/img_1711_08312022.jfif?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/c5360b9f-e6b4-41a4-9626-73f8ee54e112/img_1711_08312022.jfif?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/c5360b9f-e6b4-41a4-9626-73f8ee54e112/img_1711_08312022.jfif?format=1500w 1170w" sizes="(min-width: 1000px) 290px, (min-width: 560px) 33vw, 50vw" width="1170" height="658" style="object-position:38% 20%" alt="Michael Morano, Lead Beekeeper, holding up a capped honeycomb frame" loading="lazy" decoding="async">
+      <div class="vhf-s-person__body">
+        <h3>Michael Morano</h3>
+        <p class="vhf-s-role">Lead Beekeeper</p>
+        <span class="vhf-s-tag vhf-s-tag--navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>U.S. Coast Guard</span>
+        <a class="vhf-s-more" href="/beekeeping">Meet the Bee Keeping Squad <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </li>
+    <li class="vhf-s-person reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/06220807-b188-443b-9bac-716d10ec3aa3/IMG_2685.JPG?format=500w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/06220807-b188-443b-9bac-716d10ec3aa3/IMG_2685.JPG?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/06220807-b188-443b-9bac-716d10ec3aa3/IMG_2685.JPG?format=750w 720w" sizes="(min-width: 1000px) 290px, (min-width: 560px) 33vw, 50vw" width="720" height="1557" style="object-position:60% 26%" alt="Rebecca Vann, Director of Plant Medicine, among the plants in the garden" loading="lazy" decoding="async">
+      <div class="vhf-s-person__body">
+        <h3>Rebecca Vann</h3>
+        <p class="vhf-s-role">Director of Plant Medicine</p>
+        <a class="vhf-s-more" href="/herb-squad">Meet the Herb Squad <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </li>
+    <li class="vhf-s-person reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/2c034d1f-512e-4a89-8384-1fb3d03d7741/IMG_3613.jpeg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/2c034d1f-512e-4a89-8384-1fb3d03d7741/IMG_3613.jpeg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/2c034d1f-512e-4a89-8384-1fb3d03d7741/IMG_3613.jpeg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/2c034d1f-512e-4a89-8384-1fb3d03d7741/IMG_3613.jpeg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/2c034d1f-512e-4a89-8384-1fb3d03d7741/IMG_3613.jpeg?format=1500w 1467w" sizes="(min-width: 1000px) 290px, (min-width: 560px) 33vw, 50vw" width="1467" height="1192" alt="John Holloway, Director of Development" loading="lazy" decoding="async">
+      <div class="vhf-s-person__body">
+        <h3>John Holloway</h3>
+        <p class="vhf-s-role">Director of Development</p>
+        <a class="vhf-s-mail" href="mailto:john.holloway@veteranshealingfarm.org">Email John <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </li>
+    <li class="vhf-s-person reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f5e045df-3d42-4dfb-a3fa-5b23392b8e77/Maddie+McCann-+Flowers.jpg?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f5e045df-3d42-4dfb-a3fa-5b23392b8e77/Maddie+McCann-+Flowers.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f5e045df-3d42-4dfb-a3fa-5b23392b8e77/Maddie+McCann-+Flowers.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f5e045df-3d42-4dfb-a3fa-5b23392b8e77/Maddie+McCann-+Flowers.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f5e045df-3d42-4dfb-a3fa-5b23392b8e77/Maddie+McCann-+Flowers.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f5e045df-3d42-4dfb-a3fa-5b23392b8e77/Maddie+McCann-+Flowers.jpg?format=2500w 2500w" sizes="(min-width: 1000px) 290px, (min-width: 560px) 33vw, 50vw" width="2500" height="1667" alt="Maddie McCann, Director of Agriculture, in a field of zinnias" loading="lazy" decoding="async">
+      <div class="vhf-s-person__body">
+        <h3>Maddie McCann</h3>
+        <p class="vhf-s-role">Director of Agriculture</p>
+        <a class="vhf-s-more" href="/garden">Meet the Garden Group <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </li>
+    <li class="vhf-s-person reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/75b0aed9-cc14-4614-b1e8-77ef4baf3032/IMG_1750.JPG?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/75b0aed9-cc14-4614-b1e8-77ef4baf3032/IMG_1750.JPG?format=500w 500w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/75b0aed9-cc14-4614-b1e8-77ef4baf3032/IMG_1750.JPG?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/75b0aed9-cc14-4614-b1e8-77ef4baf3032/IMG_1750.JPG?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/75b0aed9-cc14-4614-b1e8-77ef4baf3032/IMG_1750.JPG?format=1500w 1157w" sizes="(min-width: 1000px) 290px, (min-width: 560px) 33vw, 50vw" width="1157" height="2085" style="object-position:11% 24%" alt="Brendan Jenness, Chief of Maintenance, holding a bird of prey on a gloved hand" loading="lazy" decoding="async">
+      <div class="vhf-s-person__body">
+        <h3>Brendan Jenness</h3>
+        <p class="vhf-s-role">Chief of Maintenance</p>
+        <span class="vhf-s-tag vhf-s-tag--navy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>U.S. Navy</span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="vhf-s-sec reveal" aria-labelledby="vhf-s-fin-h">
+  <div class="vhf-s-fin">
+    <div>
+      <p class="vhf-s-eye">Open books</p>
+      <h2 id="vhf-s-fin-h">Our public <em>financials</em></h2>
+      <p>Veterans Healing Farm is a 501(c)(3) nonprofit (EIN 46-5689396), and our books are open. Read our latest IRS Form 990 and our North Carolina charitable solicitation license.</p>
+    </div>
+    <ul class="vhf-s-docs">
+      <li><a href="/s/VHF-2024-Final-Form-990-for-Public-Inspection-2-94g9.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>2024 IRS Form 990<small>PDF<span class="sr"> (opens in a new tab)</span></small></span></a></li>
+      <li><a href="/s/Certificate-3-1.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>NC charitable solicitation license<small>PDF<span class="sr"> (opens in a new tab)</span></small></span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="vhf-s-cta" aria-labelledby="vhf-s-join">
+  <p class="vhf-s-eye">Get involved</p>
+  <h2 id="vhf-s-join">Work <em>alongside</em> us</h2>
+  <p>Our small staff counts on volunteers, partners and donors every day. Give, lend a hand in the gardens, or just say hello.</p>
+  <div class="vhf-s-acts">
+    <a class="vhf-s-btn vhf-s-btn--light" href="/donate">Donate<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-s-btn vhf-s-btn--ghost" href="/volunteer">Volunteer</a>
+    <a class="vhf-s-btn vhf-s-btn--ghost" href="/contact">Contact us</a>
+  </div>
+  <svg class="vhf-s-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>(function(){var w=document.querySelector('.vhf-s');w.classList.add('is-on');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-s-anim');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}})();</script>

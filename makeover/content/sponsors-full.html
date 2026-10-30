@@ -1,0 +1,205 @@
+<!-- VHF Sponsors page (/sponsors), full layout for one Squarespace Code block. Styles scoped to .vhf-sp. Built Oct 25, 2026 from the /sponsors-1 copy's four groups; logos are the live site's own images.
+     44 sponsors: the live page's 49 logos minus 5 repeats (HomeTrust Bank x2, Hendersonville Family Dental x2, Unbroken Spirit x3, Stephen and Kandy Rice x2).
+     To add a sponsor: upload the logo in Squarespace (any page's image block, then copy its URL), and copy one <li> line in the right group with the new URL and name in alt and title.
+     Two logos are unidentified and kept as is (Rob, Oct 25), with generic alt text. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-sp:not(.is-on){display:none}
+.vhf-sp{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a25c3b;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  --r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-sp *{box-sizing:border-box}
+.vhf-sp a{text-decoration:none!important}
+.vhf-sp h1,.vhf-sp h2{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-sp h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-sp h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-sp h1 em{font-style:italic;font-weight:400;color:var(--tan)}
+.vhf-sp p{max-width:62ch}
+.vhf-sp .sec{margin-top:var(--sec)}
+.vhf-sp section{scroll-margin-top:120px}
+.vhf-sp .vhf-sp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 24px;flex-wrap:wrap;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.vhf-sp .vhf-sp-head h2{margin:0}
+.vhf-sp .sec-intro{margin:0;font-size:clamp(16px,1.4vw,18px);line-height:1.6;color:var(--muted)}
+.vhf-sp .vhf-sp-count{font:600 12.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.vhf-sp .vhf-sp-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-sp .vhf-sp-eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+/* Hero */
+.vhf-sp .vhf-sp-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(420px,60vh,600px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.vhf-sp .vhf-sp-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.vhf-sp .vhf-sp-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.93) 0%,rgba(38,44,26,.74) 50%,rgba(38,44,26,.2) 100%)}
+.vhf-sp .vhf-sp-hero__in{position:relative;z-index:2;padding:clamp(28px,6vw,72px);padding-bottom:clamp(44px,7vw,88px);max-width:800px}
+.vhf-sp .vhf-sp-hero .vhf-sp-eyebrow{color:var(--tan)}
+.vhf-sp .vhf-sp-hero h1{color:var(--cream)}
+.vhf-sp .vhf-sp-hero p{margin:0;font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--cream);opacity:.92}
+.vhf-sp .vhf-sp-furrow{position:absolute;left:0;right:0;bottom:0;z-index:2;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+.vhf-sp .vhf-sp-jump{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0;padding:0;list-style:none}
+.vhf-sp .vhf-sp-jump a{display:block;padding:11px 18px;border-radius:999px;background:rgba(249,247,241,.1);border:1px solid rgba(249,247,241,.35);font:600 14px/1 var(--sans);color:var(--cream)!important;transition:background-color .18s,border-color .18s}
+.vhf-sp .vhf-sp-jump a:hover{background:rgba(249,247,241,.2);border-color:var(--cream)}
+/* Logo tiles */
+.vhf-sp .vhf-sp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:16px}
+.vhf-sp .vhf-sp-grid li{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;padding:22px;background:#fff;border:1px solid var(--line);border-radius:var(--r);transition:transform .2s,box-shadow .2s,border-color .2s}
+.vhf-sp .vhf-sp-grid li:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--tan)}
+.vhf-sp .vhf-sp-grid img{display:block;width:100%;height:100%;object-fit:contain;filter:grayscale(1) contrast(1.05);opacity:.88;transition:filter .25s,opacity .25s}
+.vhf-sp .vhf-sp-grid li:hover img{filter:none;opacity:1}
+.vhf-sp .vhf-sp-grid--few{grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),280px))}
+/* Tier accents */
+.vhf-sp .tier-1 .vhf-sp-grid li{border-top:3px solid var(--olive)}
+.vhf-sp .tier-2 .vhf-sp-grid li{border-top:3px solid var(--navy)}
+.vhf-sp .tier-3 .vhf-sp-grid li{border-top:3px solid var(--clay)}
+.vhf-sp .tier-4 .vhf-sp-grid li{border-top:3px solid var(--moss)}
+/* CTA band */
+.vhf-sp .vhf-sp-band{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(40px,6vw,80px) clamp(28px,6vw,72px) clamp(56px,7vw,96px);text-align:center}
+.vhf-sp .vhf-sp-band .vhf-sp-eyebrow{justify-content:center;color:var(--tan)}
+.vhf-sp .vhf-sp-band h2{color:var(--cream)}
+.vhf-sp .vhf-sp-band p{margin:0 auto 28px;color:var(--cream);opacity:.9}
+.vhf-sp .vhf-sp-acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.vhf-sp .vhf-sp-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--cream);background:var(--cream);color:var(--olive-deep)!important;transition:background-color .18s,border-color .18s}
+.vhf-sp .vhf-sp-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-sp .vhf-sp-btn:hover{background:#fff;border-color:#fff}
+.vhf-sp .vhf-sp-btn:hover svg{transform:translateX(3px)}
+.vhf-sp .vhf-sp-btn--outline{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-sp .vhf-sp-btn--outline:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-sp a:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-sp .vhf-sp-hero a:focus-visible,.vhf-sp .vhf-sp-band a:focus-visible{outline-color:var(--tan)}
+/* Reveal */
+.vhf-sp.vhf-sp-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-sp.vhf-sp-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-sp.vhf-sp-anim .reveal{opacity:1;transform:none;transition:none}.vhf-sp *{transition:none!important}}
+@media (max-width:800px){
+  .vhf-sp{font-size:16px}
+  .vhf-sp .vhf-sp-hero{min-height:500px}
+  .vhf-sp .vhf-sp-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.65) 60%,rgba(38,44,26,.3) 100%)}
+  .vhf-sp .vhf-sp-acts{flex-direction:column}
+}
+@media (max-width:520px){.vhf-sp .vhf-sp-grid,.vhf-sp .vhf-sp-grid--few{grid-template-columns:repeat(2,1fr);gap:10px}.vhf-sp .vhf-sp-grid li{padding:12px}}
+@media (hover:none){.vhf-sp .vhf-sp-grid img{filter:none;opacity:1}}
+</style>
+
+<div class="vhf-sp">
+
+<section class="vhf-sp-hero" aria-labelledby="vhf-sp-title">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910471420-G13FY2ZO07MI3TIE69E8/VHF%2B2.jpg?format=2500w" alt="" loading="eager">
+  <div class="vhf-sp-hero__in">
+  <p class="vhf-sp-eyebrow">Our sponsors</p>
+  <h1 id="vhf-sp-title">The farm grows on <em>generosity</em></h1>
+  <p>These foundations, businesses, clubs, and families make the farm's programs for veterans and their families possible. Thank you.</p>
+  <ul class="vhf-sp-jump">
+    <li><a href="#vhf-sp-foundations">Foundations</a></li>
+    <li><a href="#vhf-sp-businesses">Businesses</a></li>
+    <li><a href="#vhf-sp-clubs">Clubs and organizations</a></li>
+    <li><a href="#vhf-sp-individuals">Individuals and families</a></li>
+  </ul>
+  </div>
+  <svg class="vhf-sp-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<section class="sec tier-1 reveal" aria-labelledby="vhf-sp-foundations">
+  <div class="vhf-sp-head">
+    <div>
+      <p class="vhf-sp-eyebrow">Tier one</p>
+      <h2 id="vhf-sp-foundations">Foundations</h2>
+      <p class="sec-intro">Grants and foundation partners</p>
+    </div>
+    <span class="vhf-sp-count">7 sponsors</span>
+  </div>
+  <ul class="vhf-sp-grid">
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f2fbe241-c21e-4830-905b-fc956b834239/MCS+LOGO+FINAL.jpg?format=500w" alt="MCS Charitable Foundation" title="MCS Charitable Foundation" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/ff4389f7-4dc2-4631-94e8-69fca70ec399/veterans-foundation.jpeg?format=500w" alt="Veterans Foundation of North Carolina" title="Veterans Foundation of North Carolina" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a9c49a8c-1c20-4b68-a9e3-ecc367fbbe0c/CFHC_logo_HR.jpg?format=500w" alt="Community Foundation of Henderson County" title="Community Foundation of Henderson County" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/25297677-bd05-4c43-b4be-a5fe4c60ec85/clayne.png?format=500w" alt="Clayne Crawford Foundation" title="Clayne Crawford Foundation" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/c97ffd80-c86c-469b-ae70-2a30fbde571f/Newmans.jpeg?format=500w" alt="Newman&#x27;s Own Foundation" title="Newman&#x27;s Own Foundation" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/b82ad1d8-dde0-4277-a282-5fa6069ba30e/the+cannon+foundation.jpg?format=500w" alt="The Cannon Foundation" title="The Cannon Foundation" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/e4a50e29-f00a-4415-97bc-0716d8abbc73/bobo+woodruff.png?format=500w" alt="Bob Woodruff Foundation" title="Bob Woodruff Foundation" loading="lazy"></li>
+  </ul>
+</section>
+<section class="sec tier-2 reveal" aria-labelledby="vhf-sp-businesses">
+  <div class="vhf-sp-head">
+    <div>
+      <p class="vhf-sp-eyebrow">Tier two</p>
+      <h2 id="vhf-sp-businesses">Businesses</h2>
+      <p class="sec-intro">Local and national companies</p>
+    </div>
+    <span class="vhf-sp-count">26 sponsors</span>
+  </div>
+  <ul class="vhf-sp-grid">
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/c27f0616-a5cc-4d1a-830d-8a0cda155113/carolina-farm-credit-1080.jpeg?format=500w" alt="Farm Credit Carolina" title="Farm Credit Carolina" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/9f9b6e18-de64-4fa4-8a99-99080fff2ecb/327023546_551216783608067_4252278030153698120_n.png?format=500w" alt="Sponsor logo" loading="lazy"><!-- name unknown (live file 327023546_551216783608067_4252278030153698120_n.png); kept per Rob --></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/5d58f73b-8ce0-4ed5-83ba-95914db49053/Screenshot_20230921_072202_Gallery-removebg-preview.jpg?format=500w" alt="Sponsor logo" loading="lazy"><!-- name unknown (live file Screenshot_20230921_072202_Gallery-removebg-preview.jpg); kept per Rob --></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/d5ec1ede-8683-4cf6-bfa0-c03a6bdb0833/Logo9.png?format=500w" alt="Bryan Easler Toyota" title="Bryan Easler Toyota" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/d6c128e0-1f11-46c4-a138-df4445b50229/The_Home_Depot_CMYK_print.jpg?format=500w" alt="The Home Depot" title="The Home Depot" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/278bffe2-2afd-415d-b083-c66cdb00e989/PW_EagleLogo_CMYK_print.jpg?format=500w" alt="Pratt &amp; Whitney" title="Pratt &amp; Whitney" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/813c9350-eca6-41fa-aca1-6956b9e6fb4c/ARAlogo_NO_tag_final.jpg?format=500w" alt="Asheville Regional Airport" title="Asheville Regional Airport" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a6bcb4ad-1a62-4150-9c1e-b054d896cbf1/UNC.png?format=500w" alt="UNC Health Pardee" title="UNC Health Pardee" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/869658ba-37ce-4553-9327-edf18fe0ab25/1st.png?format=500w" alt="First Citizens Bank" title="First Citizens Bank" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/aa2a3228-0fa0-4aee-b92b-59d46d662753/acrs.png?format=500w" alt="American Cable &amp; Rigging Supply" title="American Cable &amp; Rigging Supply" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/3bbd97ec-8c15-45c3-8626-af5033824d17/adorno+law.png?format=500w" alt="Adorno Law PLLC" title="Adorno Law PLLC" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/e723a91c-7a4c-4575-a0dc-b9c34c53e290/AgSouthFC-CMYK.png?format=500w" alt="AgSouth Farm Credit" title="AgSouth Farm Credit" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/95956122-95af-4b20-aeef-abef5184bd24/bbm.png?format=500w" alt="Best Buy Metals" title="Best Buy Metals" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a1881cda-0ceb-4c37-be66-83f38e903911/champ.png?format=500w" alt="Champion Credit Union" title="Champion Credit Union" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/b44464fc-e346-4db2-91c3-59121b2ddb00/fit+club.png?format=500w" alt="Fit Club" title="Fit Club" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/3b0c9d92-1a3d-44b7-b166-ffe226584a6d/garage+auth.png?format=500w" alt="The Garage Authority" title="The Garage Authority" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/885115b2-614f-4f77-97ae-a03fe9ea5952/ge.png?format=500w" alt="GE Aerospace" title="GE Aerospace" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/bc61a1c7-e325-409a-ba2a-102030afe15d/hmrfd.png?format=500w" alt="Hendersonville | Mills River Family Dental" title="Hendersonville | Mills River Family Dental" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/4fec2e08-386a-44b4-a465-dfc305a354f2/hometrust.png?format=500w" alt="HomeTrust Bank" title="HomeTrust Bank" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/ff539912-21b6-483d-b1f1-2ff7715a9080/JFF.png?format=500w" alt="Johnson Family Farm" title="Johnson Family Farm" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/7680d37c-e9eb-4581-82f8-b640c9af6885/KC.png?format=500w" alt="Kimberly-Clark" title="Kimberly-Clark" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/d17d2832-79c4-4424-bcbe-03636e7a09b4/MaryS.png?format=500w" alt="Mary Sitton, eXp Realty" title="Mary Sitton, eXp Realty" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/405d763b-1a82-43ad-8d88-0c49998019ab/pma.png?format=500w" alt="Project Management Innovations" title="Project Management Innovations" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/11c46ca2-b538-40de-a6ad-1d6f4f708f12/salty+landing.png?format=500w" alt="The Salty Landing" title="The Salty Landing" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/b57b2e21-e0d3-4667-9d30-8885cbf26163/Sams.png?format=500w" alt="Sam&#x27;s Club" title="Sam&#x27;s Club" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/16e0bcad-52d7-4908-8424-6685c831b051/serenity.png?format=500w" alt="Serenity" title="Serenity" loading="lazy"></li>
+  </ul>
+</section>
+<section class="sec tier-3 reveal" aria-labelledby="vhf-sp-clubs">
+  <div class="vhf-sp-head">
+    <div>
+      <p class="vhf-sp-eyebrow">Tier three</p>
+      <h2 id="vhf-sp-clubs">Clubs and organizations</h2>
+      <p class="sec-intro">Civic clubs, veteran groups, and community organizations</p>
+    </div>
+    <span class="vhf-sp-count">10 sponsors</span>
+  </div>
+  <ul class="vhf-sp-grid">
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/6db050a4-9817-452e-b942-f14d5617c4ef/AARP.png?format=500w" alt="AARP Mountain Region" title="AARP Mountain Region" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a2129d9b-dd85-4075-a139-c851cd9ed7db/oht-loader.png?format=500w" alt="Operation Hat Trick" title="Operation Hat Trick" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/62ca0df8-1c79-40b3-b322-74ec4460cb58/Four+Seasons+Rotary_CMYK_print.jpg?format=500w" alt="Four Seasons Rotary" title="Four Seasons Rotary" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/25f6fa76-6db5-4761-8070-5137b513da8f/elks.png?format=500w" alt="Hendersonville Elks Lodge #1616" title="Hendersonville Elks Lodge #1616" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f676c1eb-38ac-4fbd-bab7-8b38fa7f75fe/download+%281%29.png?format=500w" alt="Rotary Club of Hendersonville" title="Rotary Club of Hendersonville" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a73c73be-c3cf-463c-a762-209d91c2cbe9/download+%282%29.jpg?format=500w" alt="Lions International" title="Lions International" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/e2926e7b-02c4-4570-8f3d-2af65cd71b1e/Asset+1.png?format=500w" alt="Unbroken Spirit" title="Unbroken Spirit" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/bd969eb3-176a-42c9-a3e9-e73cfdee34c1/moaa.png?format=500w" alt="WNC-MOAA (Military Officers Association of America)" title="WNC-MOAA (Military Officers Association of America)" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/7835e2cc-93d9-46fe-98b0-8c9b269f05e0/brdmcl.png?format=500w" alt="Blue Ridge Detachment, Marine Corps League" title="Blue Ridge Detachment, Marine Corps League" loading="lazy"></li>
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/7ad1163d-e059-44eb-804c-782e4d48c860/hendoRepub.png?format=500w" alt="Henderson County Republican Women&#x27;s Club" title="Henderson County Republican Women&#x27;s Club" loading="lazy"></li>
+  </ul>
+</section>
+<section class="sec tier-4 reveal" aria-labelledby="vhf-sp-individuals">
+  <div class="vhf-sp-head">
+    <div>
+      <p class="vhf-sp-eyebrow">Tier four</p>
+      <h2 id="vhf-sp-individuals">Individuals and families</h2>
+      <p class="sec-intro">Personal sponsors</p>
+    </div>
+    <span class="vhf-sp-count">1 sponsor</span>
+  </div>
+  <ul class="vhf-sp-grid vhf-sp-grid--few">
+      <li><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/cf9fb1c6-5145-4314-9ace-24e27f1b0213/Stephen+and+Kandy+Rice+names_CMYK_print.jpg?format=500w" alt="Lt Col Stephen T. and Kandy Rice" title="Lt Col Stephen T. and Kandy Rice" loading="lazy"></li>
+  </ul>
+</section>
+
+<section class="vhf-sp-band reveal" aria-labelledby="vhf-sp-join">
+  <p class="vhf-sp-eyebrow">Partner with us</p>
+  <h2 id="vhf-sp-join">Become a sponsor</h2>
+  <p>Interested in supporting veterans in Western North Carolina as a business, club, foundation, or family? We'd love to talk about what a partnership could look like.</p>
+  <div class="vhf-sp-acts">
+    <a class="vhf-sp-btn" href="/contact">Talk with us <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-sp-btn vhf-sp-btn--outline" href="/donate">Ways to give</a>
+  </div>
+  <svg class="vhf-sp-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>(function(){var w=document.querySelector('.vhf-sp');if(!w)return;w.classList.add('is-on');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-sp-anim');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}})();</script>

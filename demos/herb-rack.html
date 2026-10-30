@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Herb Rack Demo</title>
+<!-- Demo only (Oct 26, 2026): bundles of the herbs named on the Herb Squad page, hung upside down to dry over a photo of the farm's herb beds.
+     Brush past them and they swing; click one to crush a sprig. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--olive:#5c6642;--olive-deep:#3d4529;--clay:#a8603e;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.6 "Work Sans",system-ui,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:24px}
+.note{margin:0 0 14px;font-size:14px;color:var(--muted)}
+.rack{position:relative;height:clamp(520px,70vh,660px);border-radius:22px;overflow:hidden;isolation:isolate;color:var(--cream);background:#2d3320}
+.rack__photo{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);object-fit:cover;object-position:center 60%;filter:saturate(.85) blur(3px) brightness(.8)}
+.rack::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(36,30,20,.82) 0%,rgba(36,30,20,.5) 40%,rgba(30,36,20,.6) 70%,rgba(26,30,18,.94) 100%)}
+.rack canvas{position:absolute;inset:0;z-index:2;width:100%;height:100%;display:block}
+.rack__txt{position:absolute;z-index:3;left:clamp(20px,5vw,56px);bottom:clamp(20px,5vw,48px);max-width:520px;pointer-events:none}
+.eye{display:flex;align-items:center;gap:12px;margin:0 0 12px;font:600 12.5px/1 "Work Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--tan)}
+.eye::before{content:"";width:28px;height:2px;background:currentColor}
+.rack h2{font:600 clamp(30px,4vw,46px)/1.08 Fraunces,Georgia,serif;margin:0 0 10px;color:var(--cream)}
+.rack h2 em{font-style:italic;font-weight:400;color:var(--tan)}
+.rack p{margin:0;opacity:.9}
+.pill{position:absolute;z-index:4;left:0;top:0;pointer-events:none;white-space:nowrap;font:600 12px/1 "Work Sans",sans-serif;color:var(--ink);background:rgba(255,253,247,.92);padding:6px 10px;border-radius:999px;transform:translate(-50%,0);opacity:0;transition:opacity .2s}
+.info{position:absolute;z-index:5;left:0;top:0;width:240px;pointer-events:none;padding:12px 14px;border-radius:14px;background:rgba(255,253,247,.95);color:var(--ink);box-shadow:0 20px 40px -20px rgba(0,0,0,.7);transform:translate(-50%,0) translateY(6px);opacity:0;transition:opacity .25s,transform .25s}
+.info.on{opacity:1;transform:translate(-50%,0)}
+.info b{display:block;font:600 18px/1.2 Fraunces,serif}
+.info i{display:block;font-size:13px;color:var(--clay);margin-bottom:4px}
+.info span{font-size:13.5px;color:var(--muted);line-height:1.45}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="note">Demo: the herbs named on the Herb Squad page, hung upside down to dry over a photo of the farm's herb beds. Brush past the bundles to swing them; click one to crush a sprig.</p>
+  <section class="rack" id="rack" aria-label="Herbs drying on a rack">
+    <img class="rack__photo" src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/7b43c610-67d4-48ac-8124-96e454a716e6/IMG_1381.jpg?format=1500w" alt="Volunteers in sun hats tending the herb beds">
+    <canvas aria-hidden="true"></canvas>
+    <div class="rack__txt"><p class="eye">Herb Squad</p><h2>Hung to dry, <em>the old way</em></h2><p>Medicinal herbs from the farm's beds, bundled and hung upside down.</p></div>
+    <div class="pill" id="pill"></div>
+    <div class="info" id="info" role="status" aria-live="polite"></div>
+  </section>
+</div>
+
+<script type="module">
+const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js');
+const box=document.getElementById('rack'),canvas=box.querySelector('canvas'),pill=document.getElementById('pill'),info=document.getElementById('info');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio||1,2));r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,1,500);
+scene.add(new THREE.HemisphereLight('#fff2d8','#3a3020',1.25));
+const sun=new THREE.DirectionalLight('#ffe2b0',2.4);sun.position.set(-30,40,40);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-50,right:50,top:20,bottom:-30});scene.add(sun);
+
+/* Geometry helpers: merge parts with per-part colors (flat-shaded, hand-made look). */
+const merge=list=>{let n=0;const ps=list.map(([g0,c])=>{const g=g0.index?g0.toNonIndexed():g0;g.deleteAttribute('normal');g.computeVertexNormals();n+=g.attributes.position.count;return[g,c]});
+  const P=new Float32Array(n*3),Nn=new Float32Array(n*3),K=new Float32Array(n*3),c=new THREE.Color();let o=0;
+  for(const[g,col]of ps){const cnt=g.attributes.position.count;P.set(g.attributes.position.array,o*3);Nn.set(g.attributes.normal.array,o*3);c.set(col);for(let i=0;i<cnt;i++)K.set([c.r,c.g,c.b],(o+i)*3);o+=cnt}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(P,3));g.setAttribute('normal',new THREE.BufferAttribute(Nn,3));g.setAttribute('color',new THREE.BufferAttribute(K,3));return g};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),DOWN=new THREE.Vector3(0,-1,0),q=new THREE.Quaternion(),rnd=(a,b)=>a+Math.random()*(b-a),pick=a=>a[Math.random()*a.length|0];
+/* A stem hanging from the tie point along direction d, length L; returns the part and its tip. */
+const stem=(d,L,r0,col)=>{r0*=.5;const g=new THREE.CylinderGeometry(r0*.7,r0,L,5,1,true).translate(0,-L/2,0);q.setFromUnitVectors(DOWN,d);g.applyQuaternion(q);return[[g,col],d.clone().multiplyScalar(L)]};
+const dirs=(n,spread)=>[...Array(n)].map((_,i)=>{const a=i/n*6.283+rnd(-.3,.3),s=rnd(.04,spread);return new THREE.Vector3(Math.sin(s)*Math.cos(a),-Math.cos(s),Math.sin(s)*Math.sin(a)).normalize()});
+const at=(g,v)=>g.translate(v.x,v.y,v.z);
+const ball=(r,col,v,sx=1,sy=1,sz=1)=>[at(new THREE.IcosahedronGeometry(r*.68,0).scale(sx,sy,sz),v),col];
+const leaf=(v,d,len,col)=>{len*=.72;const g=new THREE.IcosahedronGeometry(1,1).scale(len*.32,len*.03,len);g.rotateY(rnd(0,6.28));g.rotateX(rnd(-.6,.6));return[at(g,v),col]};
+
+/* The herbs listed on the Herb Squad page. Each bundle hangs heads-down from a twine loop. */
+const HERBS=[
+ {name:'Echinacea',latin:'Echinacea purpurea',note:'Purple coneflower, native to eastern North America.',c:['#c9609a','#8a4b1f'],build(){const P=[];for(const d of dirs(7,.28)){const[s,tip]=stem(d,rnd(7,9),.09,'#566b2f');P.push(s);P.push(ball(.5,'#7a3f17',tip,1,1.2,1));
+   for(let k=0;k<11;k++){const a=k/11*6.283,g=new THREE.BoxGeometry(.07,.85,.015).translate(0,.42,0);g.rotateX(.55);g.rotateY(a);P.push([at(g,tip.clone().add(new THREE.Vector3(0,.2,0))),'#c9609a'])}
+   for(let k=0;k<2;k++)P.push(leaf(tip.clone().multiplyScalar(rnd(.3,.6)),d,rnd(1,1.4),'#4f6a2c'))}return P}},
+ {name:'Valerian',latin:'Valeriana officinalis',note:'Clusters of sweet-scented white and pale pink flowers.',c:['#f2dfe6','#e8c8d4'],build(){const P=[];for(const d of dirs(6,.22)){const[s,tip]=stem(d,rnd(8,10),.08,'#5f7136');P.push(s);
+   for(let k=0;k<14;k++)P.push(ball(rnd(.14,.22),pick(['#f4e6ea','#ead0da','#f8f2ee']),tip.clone().add(new THREE.Vector3(rnd(-.8,.8),rnd(-.4,.3),rnd(-.8,.8)))));P.push(leaf(tip.clone().multiplyScalar(.45),d,1.6,'#56703a'))}return P}},
+ {name:'Skullcap',latin:'Scutellaria lateriflora',note:'Small blue-violet flowers along the stem; a native mint-family herb.',c:['#6d6cc8','#8f8be0'],build(){const P=[];for(const d of dirs(9,.25)){const L=rnd(7,9),[s,tip]=stem(d,L,.06,'#5b7037');P.push(s);
+   for(let t=.25;t<1;t+=.13){const v=tip.clone().multiplyScalar(t);P.push(leaf(v,d,.7,'#5d7a3a'));P.push(ball(.16,pick(['#6d6cc8','#8784dc','#5a58b4']),v.clone().add(new THREE.Vector3(rnd(-.3,.3),0,rnd(-.3,.3))),1,1.6,1))}}return P}},
+ {name:'Lemon balm',latin:'Melissa officinalis',note:'Mint-family leaves with a bright lemon scent.',c:['#7aa83f','#9cc35a'],build(){const P=[];for(const d of dirs(8,.3)){const L=rnd(6.5,8.5),[s,tip]=stem(d,L,.07,'#5f7f2f');P.push(s);
+   for(let t=.2;t<=1;t+=.16)P.push(leaf(tip.clone().multiplyScalar(t),d,rnd(.9,1.3),pick(['#6f9d38','#7fae45','#5f8c30'])))}return P}},
+ {name:'Chamomile',latin:'Matricaria chamomilla',note:'Small white daisies with golden centers.',c:['#fbf7ec','#f0c33a'],build(){const P=[];for(const d of dirs(12,.32)){const[s,tip]=stem(d,rnd(6,8),.05,'#7a9142');P.push(s);
+   const head=tip.clone();P.push(ball(.2,'#f0c33a',head,1,.8,1));P.push([at(new THREE.CylinderGeometry(.3,.3,.03,10),head.clone().add(new THREE.Vector3(0,.08,0))),'#fbf7ec']);
+   const side=tip.clone().multiplyScalar(.75).add(new THREE.Vector3(rnd(-.6,.6),0,rnd(-.6,.6)));P.push(ball(.16,'#f0c33a',side));P.push([at(new THREE.CylinderGeometry(.24,.24,.03,10),side.clone().add(new THREE.Vector3(0,.07,0))),'#fbf7ec'])}return P}},
+ {name:'Black cohosh',latin:'Actaea racemosa',note:'Tall white flower spikes; native to Appalachian woods.',c:['#f4efe0','#e6dcc2'],build(){const P=[];for(const d of dirs(5,.18)){const L=rnd(10,12),[s,tip]=stem(d,L,.08,'#5a6b34');P.push(s);
+   for(let t=.55;t<=1;t+=.035)P.push(ball(rnd(.13,.2),pick(['#f6f1e2','#ece4cc','#fffaf0']),tip.clone().multiplyScalar(t).add(new THREE.Vector3(rnd(-.25,.25),0,rnd(-.25,.25)))));
+   P.push(leaf(tip.clone().multiplyScalar(.3),d,1.8,'#4c6430'))}return P}},
+ {name:'Ginseng',latin:'Panax quinquefolius',note:'American ginseng root, native to Appalachian forests.',c:['#d9bd8e','#c4a06a'],build(){const P=[];for(const d of dirs(4,.2)){const L=rnd(4.5,6);const g=new THREE.ConeGeometry(.24,L,7).rotateX(Math.PI).translate(0,-L/2,0);q.setFromUnitVectors(DOWN,d);g.applyQuaternion(q);P.push([g,'#d9bd8e']);
+   const tip=d.clone().multiplyScalar(L*.7);for(let k=0;k<2;k++){const dd=d.clone().add(new THREE.Vector3(rnd(-.5,.5),0,rnd(-.5,.5))).normalize(),f=new THREE.ConeGeometry(.08,2.4,5).rotateX(Math.PI).translate(0,-1.2,0);q.setFromUnitVectors(DOWN,dd);f.applyQuaternion(q);P.push([at(f,tip),'#cfae7c'])}}return P}},
+ {name:'Goldenseal',latin:'Hydrastis canadensis',note:'Bright yellow root of a native woodland plant.',c:['#d9a520','#b07c22'],build(){const P=[];for(const d of dirs(5,.22)){const L=rnd(3.5,5),[s]=stem(d,L,.32,'#9a6a2a');P.push(s);
+   for(let t=.2;t<=1;t+=.2)P.push(ball(rnd(.3,.45),pick(['#b07c22','#c48f2a','#8f6420']),d.clone().multiplyScalar(L*t)));P.push(ball(.32,'#f2c418',d.clone().multiplyScalar(L)))
+   for(let k=0;k<6;k++){const dd=d.clone().add(new THREE.Vector3(rnd(-.7,.7),0,rnd(-.7,.7))).normalize(),f=new THREE.CylinderGeometry(.015,.03,rnd(1.5,2.5),4).translate(0,-1,0);q.setFromUnitVectors(DOWN,dd);f.applyQuaternion(q);P.push([at(f,d.clone().multiplyScalar(L*rnd(.3,.9))),'#c9a25a'])}}return P}}
+];
+
+/* The beam, twine and bundles. */
+const woodTex=(()=>{const cv=document.createElement('canvas');cv.width=512;cv.height=64;const x=cv.getContext('2d');x.fillStyle='#6b4f34';x.fillRect(0,0,512,64);
+  for(let i=0;i<90;i++){x.strokeStyle=`rgba(${Math.random()<.5?'40,26,14':'150,118,82'},${.15+Math.random()*.25})`;x.lineWidth=1+Math.random()*2;const y=Math.random()*64;x.beginPath();x.moveTo(0,y);x.bezierCurveTo(170,y+rnd(-4,4),340,y+rnd(-4,4),512,y+rnd(-3,3));x.stroke()}
+  const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;return t})();
+const beam=new THREE.Mesh(new THREE.BoxGeometry(120,2.6,2.6),new THREE.MeshStandardMaterial({map:woodTex,roughness:.9}));beam.position.y=0;beam.castShadow=true;scene.add(beam);
+const mat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85,flatShading:true});
+const twineMat=new THREE.MeshStandardMaterial({color:'#c9ab7a',roughness:1});
+const B=HERBS.map((h,i)=>{const g=new THREE.Group(),tl=rnd(2,3.6);const tw=new THREE.Mesh(new THREE.CylinderGeometry(.035,.035,tl,5).translate(0,-tl/2-1.3,0),twineMat);g.add(tw);
+  const tie=new THREE.Mesh(new THREE.TorusGeometry(.26,.08,6,14).rotateX(Math.PI/2),twineMat);tie.position.y=-tl-1.3;g.add(tie);
+  const body=new THREE.Mesh(merge(h.build()),mat);body.position.y=-tl-1.3;body.rotation.y=rnd(0,6.28);body.castShadow=true;g.add(body);
+  g.scale.setScalar(1.0);scene.add(g);return{h,g,len:(tl+9),ax:0,az:0,vx:0,vz:0,ph:Math.random()*6.28,shake:0}});
+
+/* Petals and leaf bits for the crush effect. */
+const MAXP=260,petals=new THREE.InstancedMesh(new THREE.PlaneGeometry(.16,.26),new THREE.MeshStandardMaterial({side:THREE.DoubleSide,roughness:.8}),MAXP);petals.frustumCulled=false;scene.add(petals);
+const PT=[...Array(MAXP)].map(()=>({life:0,p:new THREE.Vector3(),v:new THREE.Vector3(),rot:new THREE.Euler(),spin:new THREE.Vector3()}));
+const col=new THREE.Color(),m4=new THREE.Matrix4(),pq=new THREE.Quaternion(),ps=new THREE.Vector3(),ZERO=new THREE.Matrix4().makeScale(0,0,0);
+let pi=0;const burst=(b)=>{const o=new THREE.Vector3(0,-b.len*.75,0).applyEuler(b.g.rotation).add(b.g.position);
+  for(let k=0;k<22;k++){const p=PT[pi];pi=(pi+1)%MAXP;p.life=rnd(2.2,3.6);p.p.copy(o).add(new THREE.Vector3(rnd(-1.5,1.5),rnd(-2,2),rnd(-1,1)));p.v.set(rnd(-1.6,1.6),rnd(.4,2),rnd(-1,1.4));p.rot.set(rnd(0,6),rnd(0,6),rnd(0,6));p.spin.set(rnd(-4,4),rnd(-4,4),rnd(-4,4));
+    petals.setColorAt((pi+MAXP-1)%MAXP,col.set(pick(b.h.c)))}petals.instanceColor.needsUpdate=true};
+
+/* Layout: spread the bundles along the beam and fit the camera to the width. */
+let W=1,H=1,count=HERBS.length;
+const fit=()=>{W=box.clientWidth;H=box.clientHeight;r.setSize(W,H,false);cam.aspect=W/H;
+  count=W<560?5:W<860?6:HERBS.length;const span=count*7;B.forEach((b,i)=>{b.g.visible=i<count;b.g.position.set(-span/2+3.5+i*7,0,0)});
+  /* Fit the beam's width, then aim so the beam sits near the top of the frame. */
+  const vFov=cam.fov*Math.PI/180,d=Math.max((span+6)/2/Math.tan(vFov/2)/cam.aspect,40),hh=Math.tan(vFov/2)*d,yc=-.74*hh;
+  cam.position.set(0,yc,d);cam.lookAt(0,yc,0);cam.updateProjectionMatrix()};
+new ResizeObserver(fit).observe(box);fit();
+
+/* Pointer: brushing past a bundle pushes it; clicking crushes a sprig. */
+const scr=new THREE.Vector3(),bundleAt=(x,y)=>{let best=null,bd=1e9;B.forEach(b=>{if(!b.g.visible)return;scr.set(0,-b.len*.6,0).applyEuler(b.g.rotation).add(b.g.position).project(cam);
+  const sx=(scr.x+1)/2*W,sy=(1-scr.y)/2*H,dx=Math.abs(x-sx),dy=y-sy;if(dx<55&&dy>-H*.28&&dy<H*.2&&dx<bd){bd=dx;best=b}});return best};
+let lx=null,ly=null,lt=0,hoverB=null;
+box.addEventListener('pointermove',e=>{const bb=box.getBoundingClientRect(),x=e.clientX-bb.left,y=e.clientY-bb.top,t=performance.now();
+  if(lx!==null){const dt=Math.max(8,t-lt),vx=(x-lx)/dt,vy=(y-ly)/dt;const b=bundleAt(x,y);if(b&&!RM){b.vz-=clamp(vx,-1.5,1.5)*.16;b.vx+=clamp(vy,-1.5,1.5)*.04}}
+  lx=x;ly=y;lt=t;hoverB=bundleAt(x,y);box.style.cursor=hoverB?'pointer':''});
+box.addEventListener('pointerleave',()=>{lx=null;hoverB=null});
+let infoT=0;box.addEventListener('click',e=>{const bb=box.getBoundingClientRect(),b=bundleAt(e.clientX-bb.left,e.clientY-bb.top);if(!b)return;
+  b.shake=1;b.vz+=rnd(-.15,.15);burst(b);info.innerHTML=`<b>${b.h.name}</b><i>${b.h.latin}</i><span>${b.h.note}</span>`;info.classList.add('on');infoT=performance.now()+4500;info._b=b});
+
+let prev=performance.now()/1000;
+function frame(){const t=performance.now()/1000,dt=Math.min(.033,t-prev);prev=t;
+  B.forEach((b,i)=>{if(!RM){const breeze=Math.sin(t*.5+b.ph)*.012+Math.sin(t*1.1+b.ph*2)*.006;
+      b.vz+=(-b.az*5-b.vz*2.6+breeze)*dt;b.vx+=(-b.ax*5-b.vx*2.6)*dt;b.az=clamp(b.az+b.vz*dt,-.22,.22);b.ax=clamp(b.ax+b.vx*dt,-.12,.12);b.shake=Math.max(0,b.shake-dt*2.5)}
+    b.g.rotation.set(b.ax+Math.sin(t*30)*.008*b.shake,0,b.az+Math.sin(t*27)*.012*b.shake)});
+  PT.forEach((p,k)=>{if(p.life<=0){petals.setMatrixAt(k,ZERO);return}p.life-=dt;p.v.y-=dt*3.2;p.v.multiplyScalar(1-dt*.9);p.v.x+=Math.sin(t*3+k)*dt*2;p.p.addScaledVector(p.v,dt);
+    p.rot.x+=p.spin.x*dt;p.rot.y+=p.spin.y*dt;p.rot.z+=p.spin.z*dt;pq.setFromEuler(p.rot);m4.compose(p.p,pq,ps.setScalar(Math.min(1,p.life)));petals.setMatrixAt(k,m4)});
+  petals.instanceMatrix.needsUpdate=true;
+  r.render(scene,cam);
+  const place=(el,b,dy)=>{scr.set(0,-b.len-1.5,0).applyEuler(b.g.rotation).add(b.g.position).project(cam);el.style.left=((scr.x+1)/2*W)+'px';el.style.top=((1-scr.y)/2*H+dy)+'px'};
+  if(hoverB&&!info.classList.contains('on')){pill.textContent=hoverB.h.name;place(pill,hoverB,6);pill.style.opacity=1}else pill.style.opacity=0;
+  if(info.classList.contains('on')){place(info,info._b,8);if(performance.now()>infoT)info.classList.remove('on')}
+  if(!RM)requestAnimationFrame(frame)}
+frame();if(RM)new ResizeObserver(()=>frame()).observe(box);
+</script>
+</body>
+</html>

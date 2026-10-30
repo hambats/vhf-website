@@ -1,0 +1,484 @@
+@import (css) url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap");
+
+/*------------------------------------
+ *   VARIABLES
+ *------------------------------------*/
+
+
+/**GLOBAL COLORS**/
+
+@light: #f9f7f1;
+@earth: #a59d7a;
+@green: #5c6642;
+@blue: #3f5a78;
+@red: #c15656;
+@dark: #262622;
+
+
+/**OTHER VARIABLES**/
+
+@mobile:~"only screen and (max-width: 767px)";
+@desktop:~"only screen and (min-width: 768px)";
+@tablet: ~"only screen and (max-width: 1024px) and (min-width:768px)";
+@desktopXL: ~"only screen and (min-width: 1649px)";
+
+
+
+
+/*------------------------------------
+ *   FONTS
+ *------------------------------------*/
+
+h4 {
+
+  font-weight: 300 !important;
+}
+
+
+
+
+/*------------------------------------
+ *   GLOBAL
+ *------------------------------------*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/*------------------------------------
+ *   HEADER & FOOTER (new look, native) — "Field Journal" makeover
+ *   Approximates site/new-header.html and site/new-footer.html using Squarespace's own
+ *   header and footer so the nav editor keeps working. Structure (crisis strip, footer
+ *   columns) is built in the editor; this only restyles it.
+ *------------------------------------*/
+
+@olive-deep: #3d4529;
+@moss: #8a9467;
+@navy-deep: #2b3f56;
+@paper: #fffdf7;
+@line: #e4dfcc;
+@tan: #ddd6b8;
+@clay: #a8603e;
+@ink: #262622;
+@serif: "Fraunces", "Epilogue", Georgia, serif;
+@sans: "Work Sans", system-ui, sans-serif;
+
+// crisis strip = Squarespace announcement bar: calm navy-deep, never alarm red
+.sqs-announcement-bar, .header-announcement-bar-wrapper .sqs-announcement-bar {
+  background: @navy-deep !important;
+  color: @light !important;
+  font-family: @sans;
+  font-size: 13.5px;
+
+  .sqs-announcement-bar-text { padding: .6em 1.25em; }
+  .sqs-announcement-bar-text p { font-size: 13.5px !important; line-height: 1.45; margin: 0; color: @light !important; font-weight: 500; }
+  .sqs-announcement-bar-text a { color: @tan !important; font-weight: 600; text-decoration: underline !important; text-underline-offset: 3px; }
+  .sqs-announcement-bar-text a:hover { color: #fff !important; }
+  // whole bar is one link (Squarespace's click-through URL): visible keyboard focus
+  .sqs-announcement-bar-url:focus-visible, a:focus-visible { outline: 3px solid @tan !important; outline-offset: -3px; }
+  // a crisis line should not be dismissible: hide the close "x"
+  .sqs-announcement-bar-close { display: none !important; }
+}
+
+// header bar
+#header .header-background { background: @light !important; box-shadow: 0 1px 0 @line; }
+
+// site title (text wordmark, if shown) in Fraunces
+#header .header-title-text a {
+  font-family: @serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -.015em;
+  color: @olive-deep !important;
+}
+
+#header .header-nav-item a,
+#header .header-nav-item button {
+  font-family: @sans;
+  font-size: 16px;
+  font-weight: 500;
+  color: @ink !important;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transition: background-color .15s, color .15s;
+}
+
+#header .header-nav-item a:hover,
+#header .header-nav-item button:hover,
+#header .header-nav-item--folder:hover > button,
+#header .header-nav-item--folder:focus-within > button {
+  background: #ecede2;
+  color: @olive-deep !important;
+}
+
+#header a:focus-visible, #header button:focus-visible { outline: 3px solid @blue; outline-offset: 2px; }
+
+// dropdown panels: paper card with an olive top accent
+.header-nav-folder-content {
+  background: @paper !important;
+  border: 1px solid @line;
+  border-top: 3px solid @green;
+  border-radius: 14px;
+  padding: 8px !important;
+  margin-top: 8px;
+  box-shadow: 0 24px 48px -28px rgba(38, 38, 34, .5);
+
+  .header-nav-folder-item a {
+    display: block;
+    color: @ink !important;
+    font-size: 15px;
+    padding: 9px 12px;
+    border-radius: 6px;
+
+    &:hover { background: #ecede2; color: @olive-deep !important; }
+  }
+}
+
+// mobile menu overlay: Fraunces folder titles
+.header-menu {
+  background: @light !important;
+  .header-menu-nav-item a, .header-menu-nav-item > a {
+    font-family: @serif !important;
+    font-weight: 600;
+    color: @olive-deep !important;
+  }
+}
+
+// Donate pill (olive primary, matches the system's primary button)
+#header .header-actions-action--cta .btn,
+#header .header-actions-action--cta a {
+  background: @green !important;
+  border: 2px solid @green !important;
+  color: @light !important;
+  border-radius: 999px !important;
+  padding: 13px 24px;
+  font: 600 15px/1 @sans;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: background-color .18s, border-color .18s;
+
+  &:hover { background: @olive-deep !important; border-color: @olive-deep !important; }
+}
+
+// footer: olive-deep panel, furrow motif along the top, cream text, tan eyebrow headings
+@furrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 28' preserveAspectRatio='none'%3E%3Cpath d='M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14' fill='none' stroke='%23ddd6b8' stroke-opacity='.35' stroke-width='1.5'/%3E%3C/svg%3E");
+
+#footer-sections {
+  position: relative;
+  background: @olive-deep;
+  color: @light;
+  margin-top: clamp(64px, 9vw, 120px);
+  padding-top: 28px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 28px;
+    background: @furrow no-repeat center / 100% 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  section, .section-background { background: transparent !important; }
+  h1, h2, h3, h4, p, li, a { color: @light !important; }
+  h1, h2, h3 { font-family: @serif !important; font-weight: 600 !important; letter-spacing: -.01em; }
+  a:hover { color: #fff !important; text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 3px solid @tan; outline-offset: 3px; }
+  h4 {
+    font: 600 12.5px/1 @sans !important;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: @tan !important;
+  }
+  .sqs-button-element--primary, .sqs-block-button-element {
+    background: @light !important;
+    border: 2px solid @light !important;
+    color: @olive-deep !important;
+    border-radius: 999px !important;
+    font: 600 15px/1 @sans !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    &:hover { background: #fff !important; }
+  }
+}
+
+/*------------------------------------
+ *   SITE-WIDE TYPE & BUTTONS (Field Journal)
+ *   Fraunces headings and pill buttons on native blocks; Code blocks carry their own.
+ *------------------------------------*/
+
+h1, h2, h3,
+.sqs-block-html h1, .sqs-block-html h2, .sqs-block-html h3 {
+  font-family: @serif;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  text-wrap: balance;
+}
+
+.sqs-button-element--primary,
+.sqs-button-element--secondary,
+.sqs-button-element--tertiary,
+.newsletter-form-button {
+  border-radius: 999px !important;
+  font-family: @sans !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transition: background-color .18s, border-color .18s, color .18s;
+}
+#page .sqs-button-element--primary { background: @green; border: 2px solid @green; color: @light; }
+#page .sqs-button-element--primary:hover { background: @olive-deep; border-color: @olive-deep; }
+#page .sqs-button-element--secondary { background: @blue; border: 2px solid @blue; color: #fff; }
+#page .sqs-button-element--secondary:hover { background: @navy-deep; border-color: @navy-deep; }
+#page .sqs-button-element--tertiary { background: transparent; border: 2px solid @blue; color: @blue; }
+#page .sqs-button-element--tertiary:hover { background: #e6ecf2; }
+
+/*------------------------------------
+ *   HOMEPAGE
+ *------------------------------------*/
+
+//------image outlines (hero, newsletter sections)
+
+section[data-section-id="6850576029ed022b4bf386e1"], section[data-section-id="68517edd35a00c21c39138f2"] {
+
+    .fluid-image-animation-wrapper {
+
+      border: 1px solid @line;
+      border-radius: 14px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+
+
+}
+
+
+//-------list borders
+
+section[data-section-id="68517b4f8715c0265c71cefa"] {
+
+  .user-items-list-item-container {
+
+    .list-item {
+
+      border: 1px solid @line;
+      border-top: 3px solid @clay;
+      border-radius: 14px;
+      background: @paper;
+      box-sizing: border-box;
+    }
+  }
+}
+
+//-------gallery borders
+
+.gallery-reel-list {
+
+  .gallery-reel-item {
+
+    border-left: 2px solid @light;
+    border-right: 2px solid @light;
+  }
+}
+
+
+/*------------------------------------
+ *   HOME (COPY)  /home-1
+ *------------------------------------*/
+
+// the Code block section kept an 8-row grid, leaving ~76px of dead space under the CTA band
+section[data-section-id="6adb7a2327680c4b7cccc30a"] .fluid-engine {
+  grid-template-rows: auto !important;
+
+  .fe-block {
+    grid-row: 1 / 2 !important;
+  }
+}
+
+// native newsletter section (stays native so the form posts to Squarespace): replace the
+// scattered fluid-engine layout with a sign-up card beside a 3-photo mosaic, in the new look
+@nl-card: ~".fe-block-fdd7c1b9f6ef38e61d71";
+@nl-greenhouse: ~".fe-block-0cc325f78685c9788581";
+@nl-bees: ~".fe-block-8eaeea3b3af9b5834118";
+@nl-workshop: ~".fe-block-ea7eadb293856435e9ff";
+
+section[data-section-id="6adb79cb5e1a8251ddbf9e2c"] {
+  min-height: 0 !important;
+
+  .section-border { display: none; }
+
+  .content-wrapper {
+    padding: 0 0 clamp(48px, 7vw, 88px) !important;
+    min-height: 0 !important;
+  }
+
+  // matches the Code block's 1200px column above
+  .fluid-engine {
+    display: grid !important;
+    grid-template-columns: 1.35fr 1fr 1fr !important;
+    grid-template-rows: 210px 210px !important;
+    gap: 12px !important;
+    padding-inline: ~"max(4vw, (100% - 1200px) / 2)" !important;
+  }
+
+  .fe-block { margin: 0 !important; height: auto !important; }
+  @{nl-card}       { grid-area: 1 / 1 / 3 / 2 !important; display: flex; }
+  @{nl-greenhouse} { grid-area: 1 / 2 / 2 / 4 !important; }
+  @{nl-bees}       { grid-area: 2 / 2 / 3 / 3 !important; }
+  @{nl-workshop}   { grid-area: 2 / 3 / 3 / 4 !important; }
+
+  .image-block {
+    &, .sqs-block-content, .fluid-image-component-root, .fluid-image-animation-wrapper,
+    .fluid-image-container, .js-content-mode-element-wrapper {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .fluid-image-container { border-radius: 14px; overflow: hidden; }
+    img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+  }
+
+  .newsletter-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: @paper;
+    border: 1px solid @line !important;
+    border-top: 5px solid @green !important;
+    border-radius: 18px !important;
+    padding: clamp(24px, 3vw, 40px) !important;
+  }
+  .newsletter-form-field-element { border-radius: 999px !important; border-color: @line !important; padding-inline: 20px !important; }
+  .newsletter-form-button { border-radius: 999px !important; }
+
+  @media @mobile {
+    .fluid-engine {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto 140px 160px !important;
+      padding-inline: 6vw !important;
+    }
+    @{nl-card}       { grid-area: 1 / 1 / 2 / 3 !important; }
+    @{nl-greenhouse} { grid-area: 2 / 1 / 3 / 3 !important; }
+    @{nl-bees}       { grid-area: 3 / 1 / 4 / 2 !important; }
+    @{nl-workshop}   { grid-area: 3 / 2 / 4 / 3 !important; }
+  }
+}
+
+
+/*------------------------------------
+ *   LUNCHEON 2025
+ *------------------------------------*/
+
+
+//image border
+
+#block-18e245bd554517b11d1f{
+
+  border: 1px solid @line;
+  border-radius: 14px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+/* Default - remove any existing border */
+section[data-section-id="69df9a368df44951fbb432b7"]{
+.user-items-list-simple .list-item {
+  border: 2px solid transparent;
+  border-radius: 14px;
+   background-color: @paper;
+}
+
+/* Green - 1st and 4th items */
+.user-items-list-simple .list-item:nth-child(3n+1) {
+  border-color: @green;
+}
+
+/* Clay - 2nd and 5th items */
+.user-items-list-simple .list-item:nth-child(3n+2) {
+  border-color: @clay;
+}
+
+/* Blue - 3rd and 6th items */
+.user-items-list-simple .list-item:nth-child(3n) {
+  border-color: @blue;
+  }}
+
+
+
+.embed-block-wrapper {
+  padding-bottom: 0 !important;
+  position: relative !important;
+  height: auto !important;
+}
+
+.embed-block-wrapper > * {
+  position: relative !important;
+}
+
+
+
+
+/*------------------------------------
+ *   PROGRAMS (COPY)
+ *------------------------------------*/
+
+// close the gap between the two Code-block sections (part A ends, Clay & Camaraderie starts)
+section[data-section-id="6adb700fe4871100bba83f1e"] .content-wrapper {
+  padding-bottom: 0 !important;
+}
+
+section[data-section-id="6adb71575c584261bfac08a9"] .content-wrapper {
+  padding-top: 0 !important;
+
+  @media @mobile {
+    padding-top: 48px !important;
+  }
+}
+
+
+/*------------------------------------
+ *   BOARD (COPY)  /board-1
+ *------------------------------------*/
+
+// the copied section kept the old page's 77-row grid; size the one Code block to its content instead
+section[data-section-id="6adbacc2c9b12d5083df0eb2"] .fluid-engine {
+  grid-template-rows: auto !important;
+
+  .fe-block {
+    grid-row: 1 / 2 !important;
+  }
+}
+
+
+/*------------------------------------
+ *   SPONSORS (COPY)  /sponsors-1
+ *   hybrid: four native gallery sections, one per group; the heading and intro
+ *   line above each are CSS so staff only manage the logos
+ *------------------------------------*/
+
+// the heading is absolutely placed in padding added above each gallery (a pseudo-element
+// in flow would become a flex item beside the gallery, since these sections are display:flex)
+.sponsor-group(@title) {
+  position: relative;
+  padding-top: 96px !important;
+
+  &::before {
+    content: @title;
+    position: absolute;
+    z-index: 5;
+    top: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font: 600 clamp(26px, 3vw, 36px)/1.15 @serif;
+    color: @blue;
+  }
+}
+
+section[data-section-id="6adb90f67b16e47154086307"] { .sponsor-group("Foundations"); }
+section[data-section-id="6adbb042347937372ba31f11"] { .sponsor-group("Businesses"); }
+section[data-section-id="6adbb03e9a4f775b4d596d78"] { .sponsor-group("Clubs and organizations"); }
+section[data-section-id="6adbb02bae0b4520687efc60"] { .sponsor-group("Individuals and families"); }

@@ -1,0 +1,223 @@
+<!-- VHF In the News page (/news), full layout for one Squarespace Code block. Styles scoped to .vhf-nw. Built Oct 25, 2026 from the live /news list (50 stories).
+     Dropped from the live list: the Director of Development job posting PDF (role filled), two dead links (Parade Deck, Constant Contact podcast), and one duplicate (Tribune agri-therapy story).
+     Dates come from each outlet's page; stories without a published date show the year only (placed by their order on the live list). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-nw:not(.is-on){display:none}
+.vhf-nw{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;--serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;--r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-nw *{box-sizing:border-box}
+.vhf-nw a{text-decoration:none!important}
+.vhf-nw h1,.vhf-nw h2,.vhf-nw h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-nw h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-nw h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-nw h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-nw h1 em,.vhf-nw h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-nw p{max-width:62ch}
+.vhf-nw .sec{margin-top:var(--sec)}
+.vhf-nw .sec-intro{margin:0 0 26px;color:var(--muted)}
+.vhf-nw-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-nw-eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-nw-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+.vhf-nw-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s}
+.vhf-nw-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-nw-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-nw-btn:hover svg{transform:translateX(3px)}
+.vhf-nw-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-nw-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-nw-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-nw-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-nw-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-nw a:focus-visible,.vhf-nw summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-nw-dark a:focus-visible,.vhf-nw-band a:focus-visible,.vhf-nw-hero a:focus-visible{outline-color:var(--tan)}
+.vhf-nw-band{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px) clamp(28px,6vw,72px) clamp(52px,7vw,88px);scroll-margin-top:120px}
+.vhf-nw-band h2{color:var(--cream)}
+.vhf-nw-band p{margin:0;color:var(--cream);opacity:.9}
+.vhf-nw-band .vhf-nw-eyebrow{color:var(--tan)}
+.vhf-nw.vhf-nw-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-nw.vhf-nw-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-nw.vhf-nw-anim .reveal{opacity:1;transform:none;transition:none}.vhf-nw *{transition:none!important}}
+@media (max-width:800px){.vhf-nw{font-size:16px}.vhf-nw-acts{flex-direction:column;align-items:stretch}}
+.vhf-nw-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.vhf-nw-chips a{padding:9px 18px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font:600 14px/1 var(--sans);color:var(--navy)!important;transition:border-color .18s,background-color .18s}
+.vhf-nw-chips a:hover{border-color:var(--navy);background:#e6ecf2}
+.vhf-nw-year{border-top:1px solid var(--line);scroll-margin-top:120px}
+.vhf-nw-year:last-of-type{border-bottom:1px solid var(--line)}
+.vhf-nw-year summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:16px;padding:22px 4px}
+.vhf-nw-year summary::-webkit-details-marker{display:none}
+.vhf-nw-year summary span{font:600 clamp(28px,3vw,38px)/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.vhf-nw-year summary small{font:600 12.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--clay)}
+.vhf-nw-year summary::after{content:"";margin-left:auto;width:10px;height:10px;border-right:2px solid var(--olive);border-bottom:2px solid var(--olive);transform:rotate(45deg);transition:transform .18s;align-self:center}
+.vhf-nw-year[open] summary::after{transform:rotate(-135deg)}
+.vhf-nw-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(420px,62vh,620px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.vhf-nw-hero figure{margin:0;position:absolute;inset:0}
+.vhf-nw-hero figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vhf-nw-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-nw-hero__text{position:relative;z-index:2;padding:clamp(28px,6vw,72px) clamp(28px,6vw,72px) clamp(52px,7vw,88px);max-width:760px}
+.vhf-nw-hero .vhf-nw-eyebrow{color:var(--tan)}
+.vhf-nw-hero h1{color:var(--cream)}
+.vhf-nw-hero h1 em{color:var(--tan)}
+.vhf-nw-hero p{margin:0;font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--cream);opacity:.92}
+.vhf-nw-hero .vhf-nw-furrow{z-index:2}
+.vhf-nw-award{display:grid;grid-template-columns:minmax(0,.85fr) 1.15fr;gap:clamp(28px,5vw,64px);align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(20px,3vw,32px);box-shadow:var(--shadow)}
+.vhf-nw-award img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r)}
+.vhf-nw-award>div{padding:clamp(4px,2vw,24px) clamp(4px,2vw,24px) clamp(4px,2vw,24px) 0}
+.vhf-nw-award small{display:inline-block;margin-bottom:18px;padding:6px 12px;border-radius:999px;background:var(--clay-soft);color:#7d4329;font:600 12.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.vhf-nw-award h2{margin-bottom:16px}
+.vhf-nw-award p{margin:0;font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:var(--ink)}
+.vhf-nw-list{list-style:none;margin:0 0 30px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:18px}
+.vhf-nw-list li:nth-child(3n+2) a{border-top-color:var(--navy)}
+.vhf-nw-list li:nth-child(3n+3) a{border-top-color:var(--clay)}
+.vhf-nw-list a{display:flex;flex-direction:column;gap:12px;height:100%;padding:22px 24px 24px;border-radius:var(--r);background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);color:var(--ink)!important;transition:transform .2s,box-shadow .2s}
+.vhf-nw-list a:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vhf-nw-list b{order:2;font:600 clamp(19px,1.8vw,22px)/1.28 var(--serif);letter-spacing:-.005em;text-wrap:balance}
+.vhf-nw-meta{order:1;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font-size:14px;color:var(--muted)}
+.vhf-nw-out{font:600 12.5px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--clay)}
+.vhf-nw-date::before{content:"·";margin-right:12px;color:var(--muted)}
+.vhf-nw-k{order:3;margin-top:auto;align-self:flex-start;font:600 11px/1 var(--sans);font-style:normal;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:#e6ecf2;color:var(--navy-deep)}
+.vhf-nw-k--radio,.vhf-nw-k--podcast{background:var(--clay-soft);color:#7d4329}
+.vhf-nw-k--magazine,.vhf-nw-k--interview{background:#e7ead9;color:var(--olive-deep)}
+.vhf-nw-k--news{background:#ece8dc;color:#4a4a44}
+.vhf-nw-band p{margin:0 0 4px}
+@media (max-width:800px){
+.vhf-nw-hero{min-height:480px}
+.vhf-nw-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+.vhf-nw-award{grid-template-columns:1fr}
+.vhf-nw-award img{aspect-ratio:16/11}
+.vhf-nw-award>div{padding:0 4px 8px}
+}
+</style>
+
+<div class="vhf-nw">
+
+<section class="vhf-nw-hero" aria-labelledby="vhf-nw-title">
+  <figure>
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/810f8168-e9f0-44e4-b1e7-ebf59acced2c/20230222_161707.jpg?format=1000w" alt="A video crew setting up cameras for an interview on the farm's covered porch">
+  </figure>
+  <div class="vhf-nw-hero__text">
+    <p class="vhf-nw-eyebrow">In the news</p>
+    <h1 id="vhf-nw-title">The farm in the <em>news</em></h1>
+    <p>TV, radio, newspapers, and magazines on the farm's work with veterans and their families, from the search for a new home to recovery after Hurricane Helene.</p>
+  </div>
+  <svg class="vhf-nw-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<section class="sec reveal" aria-labelledby="vhf-nw-award-h">
+  <p class="vhf-nw-eyebrow">Featured</p>
+  <div class="vhf-nw-award">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/7c6ad4c9-1d4c-46b8-a9f8-cea12c09cb42/8184a349d511591ad47b7d3e4d94af30_0.jpeg?format=500w" alt="Glass award reading Henderson County Chamber of Commerce Nonprofit of the Year 2023, presented by AdventHealth Hendersonville" loading="lazy">
+    <div>
+      <small>Award</small>
+      <h2 id="vhf-nw-award-h">Nonprofit of the Year, 2023</h2>
+      <p>Veterans Healing Farm received the Henderson County Chamber of Commerce's Nonprofit of the Year award, presented by AdventHealth Hendersonville. To our wonderful veteran community of volunteers: this honor reflects all the dedication and heart you give to the farm. Thank you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="vhf-nw-all">
+  <p class="vhf-nw-eyebrow">Press coverage</p>
+  <h2 id="vhf-nw-all">Every story</h2>
+  <p class="sec-intro">Each story opens on the outlet's own site.</p>
+  <nav class="vhf-nw-chips" aria-label="Jump to a year"><a href="#news-2026">2026</a><a href="#news-2025">2025</a><a href="#news-2024">2024</a><a href="#news-2023">2023</a><a href="#news-2022">2022</a></nav>
+  <details class="vhf-nw-year" id="news-2026" open>
+    <summary><span>2026</span><small>5 stories</small></summary>
+    <ul class="vhf-nw-list">
+<!-- 2026: newest first. To add a story, copy a line and change the link, type, title, outlet, and date. -->
+      <li><a href="https://wlos.com/news/local/veterans-women-luncheon-community-western-north-carolina" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Luncheon honors women veterans, shares stories</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Aug 30, 2026</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/veteran-support-groups-meet-veterans-healing-farm-strengthen-north-carolina-care-services-resources-working-group-collaboration-lab-network" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Veteran support groups meet at Veterans Healing Farm to strengthen NC network</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Aug 18, 2026</span></span></a></li>
+      <li><a href="https://www.wncw.org/podcast/friday-feature-of-the-week/2026-08-03/veterans-healing-farm" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>Feature of the Week: Veterans Healing Farm</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WNCW / BPR</span><span class="vhf-nw-date">Aug 3, 2026</span></span></a></li>
+      <li><a href="https://www.wtzq.com/show/local-focus/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>Local Focus: all episodes</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WTZQ Local Focus</span><span class="vhf-nw-date">Radio show</span></span></a></li>
+      <li><a href="https://mymix965.com/podcasts/veterans-healing-farm-5-31-2026/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>Interview with the Executive Director, Asheville Media Group</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Asheville Media Group</span><span class="vhf-nw-date">Jun 1, 2026</span></span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-nw-year" id="news-2025" open>
+    <summary><span>2025</span><small>4 stories</small></summary>
+    <ul class="vhf-nw-list">
+<!-- 2025: newest first. To add a story, copy a line and change the link, type, title, outlet, and date. -->
+      <li><a href="https://www.biltmorebeacon.com/news/veterans-healing-farm-offers-serenity-to-veterans-and-their-families/article_567e0d54-adaf-4b20-aeba-c4f947f1f5b9.html" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Veterans Healing Farm offers serenity to veterans and their families</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Biltmore Beacon</span><span class="vhf-nw-date">Nov 10, 2025</span></span></a></li>
+      <li><a href="https://blueridgecountry.com/newsstand/magazine/growing-peace/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--magazine">Magazine</em><b>Growing Peace</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Blue Ridge Country</span><span class="vhf-nw-date">Sep 1, 2025</span></span></a></li>
+      <li><a href="/s/Guardias-Vol-1-Issue-2-Final_0-compressed.pdf"><em class="vhf-nw-k vhf-nw-k--magazine">Magazine</em><b>‘Shared Culture’: A Community United for Our Veterans</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Guardians magazine</span><span class="vhf-nw-date">2025</span></span></a></li>
+      <li><a href="https://tribpapers.com/archive/2025/02/community/expanding-care-vhf-becomes-official-va-telehealth-outpost/65992/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Expanding Care: VHF Becomes Official VA Telehealth Outpost</b><span class="vhf-nw-meta"><span class="vhf-nw-out">The Tribune Papers</span><span class="vhf-nw-date">Feb 24, 2025</span></span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-nw-year" id="news-2024">
+    <summary><span>2024</span><small>25 stories</small></summary>
+    <ul class="vhf-nw-list">
+<!-- 2024: newest first. To add a story, copy a line and change the link, type, title, outlet, and date. -->
+      <li><a href="https://www.youtube.com/watch?v=Q8egRJM8sXk" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Hurricane Helene recovery: Veterans Healing Farm helps North Carolinians in need</b><span class="vhf-nw-meta"><span class="vhf-nw-out">NewsNation</span><span class="vhf-nw-date">Fall 2024</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/veterans-healing-farm-finds-new-meaning-work-offers-hope-hurricane-helene-veterans-day-army-mills-river-neighbors-america#" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Veterans Healing Farm finds new meaning in work after Helene</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Nov 11, 2024</span></span></a></li>
+      <li><a href="https://podcasters.spotify.com/pod/show/judi-verveful-moolten/episodes/Veterans-Healing-Farm-ft--Alan-Yeck-e2qjhbd" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--podcast">Podcast</em><b>Veterans Healing Farm, featuring Alan Yeck</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Grateful Mindset Radio Show</span><span class="vhf-nw-date">Nov 5, 2024</span></span></a></li>
+      <li><a href="https://militaryluggage.com/blog/honoring-hidden-heroes-sits-down-with-veterans-healing-farm/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--interview">Interview</em><b>Honoring Hidden Heroes Sits Down With Veterans Healing Farm</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Honoring Hidden Heroes</span><span class="vhf-nw-date">Sep 30, 2024</span></span></a></li>
+      <li><a href="https://www.hendersonvillelightning.com/m/index.php?page=9&amp;item=14367" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>We’re Home!</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Hendersonville Lightning</span><span class="vhf-nw-date">Sep 24, 2024</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/veterans-healing-farm-finds-new-home-in-henderson-county-alan-yeck-ptsd-military-mills-river-hendersonville-army-navy-air-force-marines-suicide-prevention" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Veterans Healing Farm finds new home in Henderson County</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Sep 23, 2024</span></span></a></li>
+      <li><a href="https://www.wspa.com/news/veteran-organization-in-urgent-need-of-new-home-calling-on-community-for-help/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Veteran organization in urgent need of new home, calling on community for help</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WSPA 7News</span><span class="vhf-nw-date">Summer 2024</span></span></a></li>
+      <li><a href="https://828newsnow.com/news/228822-time-running-out-on-veterans-healing-farm-lease/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Time running out on Veterans Healing Farm lease</b><span class="vhf-nw-meta"><span class="vhf-nw-out">828 News Now</span><span class="vhf-nw-date">Jul 9, 2024</span></span></a></li>
+      <li><a href="https://www.wtzq.com/episode/7-9-24-great-smoky-mtns-region-auto-club/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>Great Smoky Mountains Region Auto Club</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WTZQ Local Focus</span><span class="vhf-nw-date">Jul 9, 2024</span></span></a></li>
+      <li><a href="https://www.hendersonvillelightning.com/community-news/14108-healing-farm-seeks-site-to-continue-its-support-of-veterans-families.html" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Healing Farm seeks site to continue its support of veterans, families</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Hendersonville Lightning</span><span class="vhf-nw-date">Jul 8, 2024</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/veterans-healing-farm-place-of-comfort-healing-peace-veteran-impact-need-urgently-seeking-new-home-henderson-county-lease-not-renewed" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Veteran shares urgency to continue healing farm ‘place of comfort, healing’ for so many</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Jun 15, 2024</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/veterans-healing-farm-hoping-find-new-home-buncombe-county-henderson-hendersonville-alan-yeck-ptsd#" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>VHF Hopes to find new home in Buncombe</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Jun 13, 2024</span></span></a></li>
+      <li><a href="https://simplebooklet.com/ateaseveteransmagazinesummer2024#page=81" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--magazine">Magazine</em><b>Mind, Body, and Soul: The Healing Power of Dirt</b><span class="vhf-nw-meta"><span class="vhf-nw-out">At Ease Veterans Magazine</span><span class="vhf-nw-date">Summer 2024</span></span></a></li>
+      <li><a href="https://tribpapers.com/archive/2024/05/community/veterans-resource-fair-connecting-vets-to-helpful-resources/62035/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Veteran’s Resource Fair: Connecting Vets to Helpful Resources</b><span class="vhf-nw-meta"><span class="vhf-nw-out">The Tribune Papers</span><span class="vhf-nw-date">May 25, 2024</span></span></a></li>
+      <li><a href="https://www.wtzq.com/episode/5-22-24-veterans-healing-farm-veterans-resource-fair/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>Veterans Healing Farm: Veterans Resource Fair</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WTZQ Local Focus</span><span class="vhf-nw-date">May 22, 2024</span></span></a></li>
+      <li><a href="https://www.wsoctv.com/news/local/carolina-strong-local-farm-offers-solace-veterans/G4NWIEXLQVA2LDU7YS27E3BPZE/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Carolina Strong: Local Farm Offers Solace for Veterans</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WSOC-TV</span><span class="vhf-nw-date">Apr 26, 2024</span></span></a></li>
+      <li><a href="https://828newsnow.com/news/228822-on-the-clock-veterans-healing-farm-needs-help-for-a-new-home/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>On the clock: Veterans Healing Farm needs help for a new home</b><span class="vhf-nw-meta"><span class="vhf-nw-out">828 News Now</span><span class="vhf-nw-date">Apr 26, 2024</span></span></a></li>
+      <li><a href="https://www.hendersonvillelightning.com/news/13831-ukraine-visitors-get-first-hand-look-at-u-s-veterans-services.html" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Ukraine visitors get first-hand look at U.S. veterans services</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Hendersonville Lightning</span><span class="vhf-nw-date">Apr 17, 2024</span></span></a></li>
+      <li><a href="https://mountainx.com/living/veterans-healing-farm-searches-for-new-site-in-henderson-county/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Veterans Healing Farm searches for new site in Henderson County</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Mountain Xpress</span><span class="vhf-nw-date">Apr 10, 2024</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/ukrainian-delegation-turns-to-hendersonville-nonprofit-for-insights-on-healing-war-vets-veterans-healing-farm-hart-rehabilitation-center-yuliy-morosov-of-hart-rehabilitation-center-of-kryvyi-rih" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Ukrainian delegation turns to Hendersonville nonprofit for insights on healing war vets</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Apr 10, 2024</span></span></a></li>
+      <li><a href="https://tribpapers.com/archive/2024/03/community/veterans-healing-farm-seeks-new-home/60855/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Veterans Healing Farm Seeks New Home</b><span class="vhf-nw-meta"><span class="vhf-nw-out">The Tribune Papers</span><span class="vhf-nw-date">Mar 20, 2024</span></span></a></li>
+      <li><a href="https://www.wtzq.com/episode/3-12-24-veterans-healing-farm/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>Local Focus: Veterans Healing Farm</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WTZQ Local Focus</span><span class="vhf-nw-date">Mar 12, 2024</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/veterans-healing-farm-seeks-new-home-nonprofit-eyes-larger-space-amid-forced-relocation-henderson-county-executive-director-alan-yeck-5-million-goal" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Veterans Healing Farm Seeks New Home Amid Forced Relocation</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Mar 7, 2024</span></span></a></li>
+      <li><a href="https://www.hendersonvillelightning.com/news/13634-veterans-healing-farm-needs-a-new-location.html" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Veterans Healing Farm is searching for a new home</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Hendersonville Lightning</span><span class="vhf-nw-date">Feb 29, 2024</span></span></a></li>
+      <li><a href="https://www.carolinacountry.com/issues/2024/departments/feature-story/plant-grow-heal" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--magazine">Magazine</em><b>Plant, Grow, Heal</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Carolina Country</span><span class="vhf-nw-date">Jan 19, 2024</span></span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-nw-year" id="news-2023">
+    <summary><span>2023</span><small>10 stories</small></summary>
+    <ul class="vhf-nw-list">
+<!-- 2023: newest first. To add a story, copy a line and change the link, type, title, outlet, and date. -->
+      <li><a href="https://wlos.com/news/local/henderson-county-honors-heroes-vietnam-traveling-memorial-wall-draws-poignant-reflections#" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Henderson County honors heroes: Vietnam Traveling Memorial Wall draws poignant reflections</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Nov 10, 2023</span></span></a></li>
+      <li><a href="https://www.bpr.org/bpr-news/2023-11-10/a-traveling-vietnam-memorial-wall-stops-in-hendersonville-for-the-weekend" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>A traveling Vietnam memorial wall stops in Hendersonville for the weekend</b><span class="vhf-nw-meta"><span class="vhf-nw-out">BPR News</span><span class="vhf-nw-date">Nov 10, 2023</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/vietnam-traveling-memorial-wall-set-up-henderson-county-veterans-day-weekend-24-hours-a-day-ceremony-emotional-experience-veteran-healing-farm" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Vietnam Traveling Memorial Wall set up in Henderson County for Veterans Day Weekend</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Nov 9, 2023</span></span></a></li>
+      <li><a href="https://www.blueridgenow.com/story/news/local/2023/10/20/traveling-vietnam-wall-makes-stop-in-hendersonville-for-veterans-day/71206016007/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>How to see the Vietnam Traveling Memorial Wall as it makes a stop in Hendersonville</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Times-News</span><span class="vhf-nw-date">Nov 2023</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/ecusta-trail-groundbreaking-veterans-healing-farm-henderson-county-highly-anticipated-excitement-connect-brevard-first-phase#" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Henderson County celebrates groundbreaking of highly anticipated Ecusta Trail</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Oct 28, 2023</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/henderson-county-set-to-break-ground-on-first-section-of-19-mile-ecusta-trail?fbclid=IwAR0CwfGe8MLp6a_2OnR7FC2SBkZsPdg8nMLiVuHDl3bZacwH0-iNp8yFjhw" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Ecusta Trail Ribbon Cutting at the Veterans Healing Farm</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Oct 23, 2023</span></span></a></li>
+      <li><a href="https://www.blueridgenow.com/story/news/nonprofits/2023/05/11/meet-the-2023-bearfootin-bears-20-new-bears-unveiled-to-the-public/70203915007/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Veterans Healing Farm ‘Bearfootin’ Bear’ gets $10,000 bid</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Times-News</span><span class="vhf-nw-date">2023</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/barbers-and-bourbon-third-annual-veterans-healing-farm-fundraising-benefit-event-vet-suicide-prevention-healing-urban-gastronome-rabbit-rabbit-cultivated-cocktails-" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>3rd annual Barbers &amp; Bourbon event raises money for veteran suicide prevention and healing</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Jun 4, 2023</span></span></a></li>
+      <li><a href="https://www.youtube.com/watch?v=5yg0mFk5miw" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Warrior Canine Connection partners with Veterans Healing Farm</b><span class="vhf-nw-meta"><span class="vhf-nw-out">FOX Carolina</span><span class="vhf-nw-date">May 30, 2023</span></span></a></li>
+      <li><a href="https://www.foxcarolina.com/video/2023/05/23/veterans-resource-fair-hendersonville/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Veterans Resource Fair in Hendersonville</b><span class="vhf-nw-meta"><span class="vhf-nw-out">FOX Carolina</span><span class="vhf-nw-date">May 23, 2023</span></span></a></li>
+    </ul>
+  </details>
+  <details class="vhf-nw-year" id="news-2022">
+    <summary><span>2022</span><small>6 stories</small></summary>
+    <ul class="vhf-nw-list">
+<!-- 2022: newest first. To add a story, copy a line and change the link, type, title, outlet, and date. -->
+      <li><a href="https://simplebooklet.com/ateaseveteransmagazinefall2022#page=1" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--magazine">Magazine</em><b>Fall 2022 issue</b><span class="vhf-nw-meta"><span class="vhf-nw-out">At Ease Veterans Magazine</span><span class="vhf-nw-date">Fall 2022</span></span></a></li>
+      <li><a href="https://spectrumlocalnews.com/nc/charlotte/news/2022/08/31/veterans-healing-farm" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Healing Farm supports physical and mental health of veterans</b><span class="vhf-nw-meta"><span class="vhf-nw-out">Spectrum News 1</span><span class="vhf-nw-date">Aug 31, 2022</span></span></a></li>
+      <li><a href="https://tribpapers.com/archive/2022/07/community/veterans-healing-farm-helps-veterans-through-agri-therapy/47899/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--news">News</em><b>Veterans Healing Farm Helps Veterans Through Agri-therapy</b><span class="vhf-nw-meta"><span class="vhf-nw-out">The Tribune Papers</span><span class="vhf-nw-date">Jul 10, 2022</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/memorial-day-veterans-healing-farm-hendersonville-service-north-carolina-writing-alliance-foundation-brothers-and-sisters-like-these-holiday-weekend-honor-sacrifice-freedom" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>&quot;Honoring the sacrifice for freedom&quot; Veterans Healing Farm holds memorial service</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">May 28, 2022</span></span></a></li>
+      <li><a href="https://www.wtzq.com/episode/veterans-healing-farm/" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--radio">Radio</em><b>Local Focus: Veterans Healing Farm</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WTZQ Local Focus</span><span class="vhf-nw-date">Feb 2022</span></span></a></li>
+      <li><a href="https://wlos.com/news/local/families-with-veterans-healing-farm-pack-welcome-bags-for-afghan-refugees-coming-to-wnc" target="_blank" rel="noopener"><em class="vhf-nw-k vhf-nw-k--tv">TV</em><b>Families with Veterans Healing Farm pack welcome bags for Afghan refugees coming to WNC</b><span class="vhf-nw-meta"><span class="vhf-nw-out">WLOS News 13</span><span class="vhf-nw-date">Jan 15, 2022</span></span></a></li>
+    </ul>
+  </details>
+</section>
+
+<section class="vhf-nw-band reveal" aria-labelledby="vhf-nw-press">
+  <p class="vhf-nw-eyebrow">For reporters</p>
+  <h2 id="vhf-nw-press">Working on a story?</h2>
+  <p>We're glad to talk with reporters about the farm, our programs, and the veterans we serve.</p>
+  <div class="vhf-nw-acts">
+    <a class="vhf-nw-btn vhf-nw-btn--light" href="/contact">Contact us <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-nw-btn vhf-nw-btn--ghost" href="/newsletters">Read our newsletters</a>
+  </div>
+  <svg class="vhf-nw-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>
+(function(){
+  var w=document.querySelector('.vhf-nw');w.classList.add('is-on');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-nw-anim');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}
+  w.querySelectorAll('.vhf-nw-chips a').forEach(function(a){a.addEventListener('click',function(){var d=w.querySelector(a.getAttribute('href'));if(d)d.open=true})});
+})();
+</script>

@@ -1,0 +1,240 @@
+<!-- VHF Contact page, full layout for one Squarespace Code block. Styles scoped to .vhf-c. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-c{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a25c3b;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;--serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;--r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-c *{box-sizing:border-box}
+.vhf-c a{text-decoration:none!important}
+.vhf-c h1,.vhf-c h2,.vhf-c h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-c h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-c h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-c h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-c h1 em,.vhf-c h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-c p{max-width:62ch}
+.vhf-c .vhf-c-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-c .vhf-c-eye::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-c .vhf-c-dark .vhf-c-eye{color:var(--tan)}
+.vhf-c .vhf-c-hero{position:relative;overflow:hidden;border-radius:var(--r-lg);background:var(--paper);border:1px solid var(--line);padding:clamp(28px,6vw,72px) clamp(24px,6vw,72px) clamp(44px,7vw,84px)}
+.vhf-c .vhf-c-hero h1{margin-bottom:18px}
+.vhf-c .vhf-c-hero>p,.vhf-c .vhf-c-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted);margin:0}
+.vhf-c .vhf-c-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;color:var(--olive);opacity:.18;pointer-events:none}
+.vhf-c .vhf-c-dark .vhf-c-furrow{color:var(--tan);opacity:.35}
+.vhf-c .vhf-c-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;cursor:pointer;transition:background-color .18s,border-color .18s}
+.vhf-c .vhf-c-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-c .vhf-c-btn--navy{background:var(--navy);border-color:var(--navy)}
+.vhf-c .vhf-c-btn--navy:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.vhf-c .vhf-c-btn--outline{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.vhf-c .vhf-c-btn--outline:hover{background:#e6ecf2;border-color:var(--navy)}
+.vhf-c .vhf-c-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-c .vhf-c-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-c .vhf-c-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-c .vhf-c-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-c a:focus-visible,.vhf-c button:focus-visible,.vhf-c summary:focus-visible,.vhf-c input:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-c .vhf-c-dark a:focus-visible,.vhf-c .vhf-c-dark button:focus-visible{outline-color:var(--tan)}
+.vhf-c .vhf-c-dark{position:relative;overflow:hidden;background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px)}
+.vhf-c .vhf-c-dark h2,.vhf-c .vhf-c-dark h3{color:var(--cream)}
+.vhf-c .vhf-c-dark p{color:var(--cream);opacity:.9}
+.vhf-c .vhf-c-crisisbox{background:#e6ecf2;border:1px solid #cdd8e4;border-left:4px solid var(--navy);border-radius:var(--r-sm);color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.vhf-c *{transition:none!important}}
+@media (max-width:800px){.vhf-c{font-size:16px}}
+.vhf-c .sec{margin-top:var(--sec)}
+.vhf-c .sec-intro{margin:0 0 28px;color:var(--muted)}
+.vhf-c .vhf-c-hero{display:flex;align-items:flex-end;min-height:clamp(420px,58vh,600px);padding:0;border:0;background:var(--olive-deep);color:var(--cream)}
+.vhf-c .vhf-c-hero figure{position:absolute;inset:0;margin:0}
+.vhf-c .vhf-c-hero img{display:block;width:100%;height:100%;object-fit:cover}
+.vhf-c .vhf-c-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-c .vhf-c-hero__text{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:760px}
+.vhf-c .vhf-c-hero .vhf-c-eye{color:var(--tan)}
+.vhf-c .vhf-c-hero h1{color:var(--cream)}
+.vhf-c .vhf-c-hero h1 em{color:var(--tan)}
+.vhf-c .vhf-c-hero__text>p{color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px);margin:0}
+.vhf-c .vhf-c-hero a:focus-visible{outline-color:var(--tan)}
+.vhf-c .vhf-c-hero .vhf-c-furrow{z-index:2;color:var(--tan);opacity:.35}
+.vhf-c .vhf-c-status{display:inline-flex;align-items:center;gap:8px;margin-top:26px;padding:9px 16px;border-radius:999px;background:rgba(249,247,241,.14);border:1px solid rgba(249,247,241,.25);font:600 14px/1.2 var(--sans);color:var(--cream);visibility:hidden}
+.vhf-c .vhf-c-status i{width:9px;height:9px;border-radius:50%;background:var(--tan);flex:none}
+.vhf-c .vhf-c-status.open i{background:#9fd28a}
+.vhf-c .vhf-c-ways{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vhf-c .vhf-c-way{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:28px;color:var(--ink)!important;transition:transform .2s,box-shadow .2s}
+.vhf-c .vhf-c-way:nth-child(2){border-top-color:var(--navy)}
+.vhf-c .vhf-c-way:nth-child(3){border-top-color:var(--clay)}
+.vhf-c a.vhf-c-way:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vhf-c .vhf-c-way svg{width:44px;height:44px;padding:10px;border-radius:50%;background:var(--cream);border:1px solid var(--line);color:var(--olive);margin-bottom:18px}
+.vhf-c .vhf-c-way b{font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay);margin-bottom:10px}
+.vhf-c .vhf-c-way span.v{font:600 clamp(20px,1.9vw,24px)/1.25 var(--serif);color:var(--ink);overflow-wrap:anywhere}
+.vhf-c .vhf-c-way span.v.sm{font-size:clamp(16px,1.4vw,19px)}
+.vhf-c .vhf-c-way small{margin-top:10px;font-size:15px;color:var(--muted);line-height:1.5}
+.vhf-c .vhf-c-way em{margin-top:auto;padding-top:18px;display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--sans);font-style:normal;color:var(--navy)}
+.vhf-c .vhf-c-way em::after{content:"\2192";transition:transform .18s}
+.vhf-c a.vhf-c-way:hover em::after{transform:translateX(3px)}
+.vhf-c .vhf-c-visit{display:grid;grid-template-columns:1fr 1.4fr;gap:22px;align-items:stretch}
+.vhf-c .vhf-c-hours{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(24px,3vw,34px)}
+.vhf-c .vhf-c-hours h3{margin:0 0 12px}
+.vhf-c .vhf-c-hours table{width:100%;border-collapse:collapse;font-size:15.5px}
+.vhf-c .vhf-c-hours td{padding:11px 0;border-bottom:1px solid var(--line)}
+.vhf-c .vhf-c-hours td:last-child{text-align:right;color:var(--muted)}
+.vhf-c .vhf-c-hours tr.today td{font-weight:600;color:var(--ink)}
+.vhf-c .vhf-c-hours tr.today td:first-child::after{content:" (today)";font-weight:500;color:var(--clay)}
+.vhf-c .vhf-c-hours address{font-style:normal;margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);font-size:15.5px;line-height:1.6}
+.vhf-c .vhf-c-hours address a{color:var(--navy)!important;font-weight:600;border-bottom:1.5px solid currentColor}
+.vhf-c .vhf-c-map{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);min-height:380px;background:#e8e4d6}
+.vhf-c .vhf-c-map iframe{display:block;width:100%;height:100%;min-height:380px;border:0}
+.vhf-c .vhf-c-links{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.vhf-c .vhf-c-link{display:block;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px;color:var(--ink)!important;transition:transform .2s,border-color .2s,box-shadow .2s}
+.vhf-c .vhf-c-link:hover{border-color:var(--olive);transform:translateY(-3px);box-shadow:var(--shadow)}
+.vhf-c .vhf-c-link b{display:block;font:600 19px/1.2 var(--serif);margin-bottom:6px}
+.vhf-c .vhf-c-link span{font-size:14px;line-height:1.45;color:var(--muted)}
+.vhf-c .vhf-c-foot{margin-top:var(--sec);display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.vhf-c .vhf-c-foot h2{font-size:clamp(26px,2.8vw,34px)}
+.vhf-c .vhf-c-social{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(28px,4vw,44px)}
+.vhf-c .vhf-c-social ul{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.vhf-c .vhf-c-social a{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:var(--cream);border:1px solid var(--line);font:600 14.5px/1 var(--sans);color:var(--ink)!important;transition:border-color .18s}
+.vhf-c .vhf-c-social a:hover{border-color:var(--navy)}
+.vhf-c .vhf-c-social svg{width:18px;height:18px;color:var(--navy)}
+.vhf-c .vhf-c-crisis{border-radius:var(--r-lg);border-left-width:5px;padding:clamp(28px,4vw,44px)}
+.vhf-c .vhf-c-crisis .vhf-c-eye{color:var(--navy)}
+.vhf-c .vhf-c-crisis h2{color:var(--navy-deep)}
+.vhf-c .vhf-c-crisis p{margin:0 0 20px;color:#3a4654}
+.vhf-c .vhf-c-crisis .acts{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:960px){.vhf-c .vhf-c-links{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:800px){
+.vhf-c .vhf-c-hero{min-height:480px}
+.vhf-c .vhf-c-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+.vhf-c .vhf-c-ways,.vhf-c .vhf-c-visit,.vhf-c .vhf-c-foot{grid-template-columns:1fr}
+.vhf-c .vhf-c-links{grid-template-columns:1fr 1fr}
+.vhf-c .vhf-c-map,.vhf-c .vhf-c-map iframe{min-height:280px}
+.vhf-c .vhf-c-crisis .acts{flex-direction:column}
+}
+.vhf-c:not(.is-on){display:none}
+.vhf-c.vhf-c-anim>.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-c.vhf-c-anim>.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-c.vhf-c-anim>.reveal{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="vhf-c" id="vhf-c">
+
+<section class="vhf-c-hero" aria-labelledby="vhf-c-title">
+  <div class="vhf-c-hero__text">
+    <p class="vhf-c-eye">Contact us</p>
+    <h1 id="vhf-c-title">Get in touch</h1>
+    <p>Questions about programs, volunteering, donating, or coming out for a visit? Call, email, or stop by. We'd love to hear from you.</p>
+    <span class="vhf-c-status" id="vhf-c-status" aria-live="polite"><i></i><span></span></span>
+  </div>
+  <svg class="vhf-c-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  <figure>
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/246956cc-d80f-460d-8dd4-850906881b75/DSCF3190_social.jpg?format=1000w" alt="Veterans and neighbors gathered on the lawn in front of the farmhouse">
+
+  </figure>
+</section>
+
+<section class="sec" aria-label="Ways to reach us">
+  <div class="vhf-c-ways">
+    <a class="vhf-c-way" href="tel:8285956111">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      <b>Call</b>
+      <span class="v">(828) 595-6111</span>
+      <small>Best during farm hours, Tuesday to Friday.</small>
+      <em>Tap to call</em>
+    </a>
+    <a class="vhf-c-way" href="mailto:operations@veteranshealingfarm.org">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <b>Email</b>
+      <span class="v sm">operations@veteranshealingfarm.org</span>
+      <small>For anything at all, including volunteering and partnerships.</small>
+      <em>Send an email</em>
+    </a>
+    <a class="vhf-c-way" href="https://www.google.com/maps/search/?api=1&amp;query=138+Kimzey+Road+Mills+River+NC+28759" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <b>Visit &amp; mail</b>
+      <span class="v">138 Kimzey Road<br>Mills River, NC 28759</span>
+      <small>This is also our mailing address.</small>
+      <em>Get directions</em>
+    </a>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="vhf-c-visit-h">
+  <p class="vhf-c-eye">Come by</p>
+  <h2 id="vhf-c-visit-h">Plan a visit</h2>
+  <p class="sec-intro">Stop by during farm hours. Saturday hours vary, so please call ahead.</p>
+  <div class="vhf-c-visit">
+    <div class="vhf-c-hours">
+      <h3>Farm hours</h3>
+      <table>
+        <tbody>
+          <tr data-d="0"><td>Sunday</td><td>Closed</td></tr>
+          <tr data-d="1"><td>Monday</td><td>Closed</td></tr>
+          <tr data-d="2"><td>Tuesday</td><td>8:30am to 4:30pm</td></tr>
+          <tr data-d="3"><td>Wednesday</td><td>8:30am to 4:30pm</td></tr>
+          <tr data-d="4"><td>Thursday</td><td>8:30am to 4:30pm</td></tr>
+          <tr data-d="5"><td>Friday</td><td>8:30am to 4:30pm</td></tr>
+          <tr data-d="6"><td>Saturday</td><td>Varies, please call</td></tr>
+        </tbody>
+      </table>
+      <address>Veterans Healing Farm<br>138 Kimzey Road<br>Mills River, NC 28759<br><a href="https://www.google.com/maps/search/?api=1&amp;query=138+Kimzey+Road+Mills+River+NC+28759" target="_blank" rel="noopener">Open in Google Maps</a></address>
+    </div>
+    <div class="vhf-c-map">
+      <iframe title="Map showing Veterans Healing Farm at 138 Kimzey Road, Mills River, NC" src="https://maps.google.com/maps?q=138%20Kimzey%20Road%2C%20Mills%20River%2C%20NC%2028759&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="vhf-c-q">
+  <p class="vhf-c-eye">Quick links</p>
+  <h2 id="vhf-c-q">Looking for something specific?</h2>
+  <p class="sec-intro">These pages may answer your question faster.</p>
+  <div class="vhf-c-links">
+    <a class="vhf-c-link" href="/faq"><b>FAQ</b><span>Quick answers to common questions</span></a>
+    <a class="vhf-c-link" href="/programs"><b>Programs</b><span>What we offer veterans and families</span></a>
+    <a class="vhf-c-link" href="/volunteer"><b>Volunteer</b><span>Squads, committees, and how to sign up</span></a>
+    <a class="vhf-c-link" href="/events"><b>Events</b><span>Workshops and upcoming dates</span></a>
+    <a class="vhf-c-link" href="/donate"><b>Donate</b><span>Support the farm and its programs</span></a>
+    <a class="vhf-c-link" href="/news"><b>Press</b><span>News coverage and media</span></a>
+  </div>
+</section>
+
+<section class="vhf-c-foot">
+  <div class="vhf-c-social" aria-labelledby="vhf-c-follow">
+    <h2 id="vhf-c-follow">Follow along</h2>
+    <p class="sec-intro" style="margin:0">See what's growing and what's coming up.</p>
+    <ul>
+      <li><a href="https://www.facebook.com/veteranshealingfarm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg>Facebook</a></li>
+      <li><a href="https://www.instagram.com/veteranshealingfarm/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@veteranshealingfa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3c.4 2.4 1.9 4 4 4.3v3.2c-1.5 0-2.9-.5-4-1.2V15a6 6 0 1 1-6-6v3.3a2.8 2.8 0 1 0 2.8 2.7V3H16z"/></svg>TikTok</a></li>
+      <li><a href="https://www.youtube.com/@VeteransHealingFarm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12a31 31 0 0 0 .4 3.8 3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8zM10 15V9l5.2 3L10 15z"/></svg>YouTube</a></li>
+    </ul>
+  </div>
+  <div class="vhf-c-crisis vhf-c-crisisbox" aria-labelledby="vhf-c-crisis-h">
+    <p class="vhf-c-eye">Veterans Crisis Line</p>
+    <h2 id="vhf-c-crisis-h">In crisis or need help now?</h2>
+    <p>Please don't wait for a reply from us. The Veterans Crisis Line is free, confidential, and open 24/7. In an emergency, call 911.</p>
+    <div class="acts">
+      <a class="vhf-c-btn vhf-c-btn--navy" href="tel:988">Call 988, then press 1</a>
+      <a class="vhf-c-btn vhf-c-btn--outline" href="sms:838255">Text 838255</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('vhf-c');
+  if(!root||root.getAttribute('data-ready'))return;
+  root.setAttribute('data-ready','1');
+  try{
+    var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    var map={};for(var i=0;i<parts.length;i++)map[parts[i].type]=parts[i].value;
+    var days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    var d=days[map.weekday];var mins=(parseInt(map.hour,10)%24)*60+parseInt(map.minute,10);
+    var row=root.querySelector('tr[data-d="'+d+'"]');if(row)row.className='today';
+    var st=document.getElementById('vhf-c-status');var label=st.querySelector('span');
+    if(d>=2&&d<=5&&mins>=510&&mins<990){st.className='vhf-c-status open';label.textContent='Open now until 4:30pm';}
+    else if(d===6){label.textContent='Saturday hours vary, please call';}
+    else{label.textContent='Closed now. Open Tuesday to Friday, 8:30am to 4:30pm';}
+    st.style.visibility='visible';
+  }catch(e){}
+})();
+</script>
+<script>(function(){var w=document.querySelector(".vhf-c");if(!w)return;w.classList.add("is-on");
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver"in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+[].slice.call(w.children,1).forEach(function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add("reveal");io.observe(el)}});w.classList.add("vhf-c-anim")}})();</script>

@@ -1,0 +1,257 @@
+<!-- VHF Our Mission & Farm page, full layout for one Squarespace Code block. Styles scoped to .vhf-a. "Field Journal" makeover (see DESIGN.md). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-a:not(.is-on){display:none}
+.vhf-a{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;
+  --serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;
+  --r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);
+  font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-a *{box-sizing:border-box}
+.vhf-a a{text-decoration:none!important}
+.vhf-a h1,.vhf-a h2,.vhf-a h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-a h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-a h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-a h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-a h1 em,.vhf-a h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-a p{max-width:62ch}
+.vhf-a .vhf-a-sec{margin-top:var(--sec)}
+.vhf-a .vhf-a-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-a .vhf-a-eye::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-a .vhf-a-dark .vhf-a-eye,.vhf-a .vhf-a-hero .vhf-a-eye{color:var(--tan)}
+.vhf-a .vhf-a-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted);margin:0 0 32px}
+.vhf-a .vhf-a-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(420px,62vh,640px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.vhf-a .vhf-a-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vhf-a .vhf-a-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-a .vhf-a-hero__in{position:relative;padding:clamp(28px,6vw,72px);padding-bottom:clamp(44px,7vw,84px);max-width:760px}
+.vhf-a .vhf-a-hero h1{color:var(--cream)}
+.vhf-a .vhf-a-hero h1 em{color:var(--tan)}
+.vhf-a .vhf-a-hero p{margin:0;color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px)}
+.vhf-a .vhf-a-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+.vhf-a .vhf-a-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vhf-a .vhf-a-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;transition:background-color .18s,border-color .18s,transform .18s}
+.vhf-a .vhf-a-btn svg{width:16px;height:16px;transition:transform .18s}
+.vhf-a .vhf-a-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-a .vhf-a-btn:hover svg{transform:translateX(3px)}
+.vhf-a .vhf-a-btn--outline{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.vhf-a .vhf-a-btn--outline:hover{background:#e6ecf2;border-color:var(--navy)}
+.vhf-a .vhf-a-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-a .vhf-a-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-a .vhf-a-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-a .vhf-a-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-a a:focus-visible,.vhf-a button:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-a .vhf-a-dark a:focus-visible,.vhf-a .vhf-a-hero a:focus-visible,.vhf-a .vhf-a-cta a:focus-visible{outline-color:var(--tan)}
+.vhf-a .vhf-a-head{margin-bottom:36px}
+.vhf-a .vhf-a-head p{margin:0;color:var(--muted);font-size:clamp(17px,1.5vw,19px)}
+.vhf-a .vhf-a-dark{background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px);position:relative;overflow:hidden}
+.vhf-a .vhf-a-dark h2,.vhf-a .vhf-a-dark h3{color:var(--cream)}
+.vhf-a .vhf-a-dark p{color:var(--cream);opacity:.9}
+.vhf-a .vhf-a-quote{margin:0;position:relative;padding-top:36px}
+.vhf-a .vhf-a-quote::before{content:"\201C";position:absolute;top:-18px;left:-4px;font:700 96px/1 var(--serif);color:var(--clay);opacity:.85}
+.vhf-a .vhf-a-quote p{font:italic 400 clamp(22px,2.6vw,32px)/1.4 var(--serif);max-width:none;margin:0}
+.vhf-a .vhf-a-quote cite{display:block;margin-top:18px;font:600 12.5px/1.5 var(--sans);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--muted)}
+.vhf-a .vhf-a-split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.vhf-a .vhf-a-split>img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.vhf-a .vhf-a-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--clay-soft);color:#7d4329;font:600 12.5px/1.2 var(--sans);letter-spacing:.04em}
+.vhf-a .vhf-a-tag svg{width:13px;height:13px;flex:none}
+.vhf-a .vhf-a-tag--navy{background:#e6ecf2;color:var(--navy-deep)}
+.vhf-a .vhf-a-cta{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(40px,6vw,80px) clamp(24px,6vw,72px) clamp(56px,7vw,96px);text-align:center}
+.vhf-a .vhf-a-cta .vhf-a-eye{justify-content:center;color:var(--tan)}
+.vhf-a .vhf-a-cta h2{color:var(--cream)}
+.vhf-a .vhf-a-cta p{margin:0 auto;color:var(--cream);opacity:.9}
+.vhf-a .vhf-a-cta .vhf-a-acts{justify-content:center}
+.vhf-a.vhf-a-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-a.vhf-a-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-a.vhf-a-anim .reveal{opacity:1;transform:none;transition:none}.vhf-a *{transition:none!important}}
+@media (max-width:800px){
+  .vhf-a{font-size:16px}
+  .vhf-a .vhf-a-split{grid-template-columns:1fr}
+  .vhf-a .vhf-a-split>img{aspect-ratio:16/10}
+  .vhf-a .vhf-a-hero{min-height:480px}
+  .vhf-a .vhf-a-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+  .vhf-a .vhf-a-acts{flex-direction:column;align-items:stretch}
+}
+
+.vhf-a .vhf-a-mv{position:relative;z-index:3;display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:-48px clamp(16px,4vw,48px) 0}
+.vhf-a .vhf-a-mv>div{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:clamp(24px,3vw,36px);box-shadow:var(--shadow)}
+.vhf-a .vhf-a-mv>div:last-child{border-top:3px solid var(--navy)}
+.vhf-a .vhf-a-mv>div:first-child{border-top:3px solid var(--olive)}
+.vhf-a .vhf-a-mv b{display:flex;align-items:center;gap:12px;margin-bottom:14px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-a .vhf-a-mv b::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-a .vhf-a-mv p{margin:0;font:400 clamp(20px,2vw,26px)/1.4 var(--serif);color:var(--ink)}
+.vhf-a .vhf-a-story .vhf-a-tag{margin-bottom:18px}
+.vhf-a .vhf-a-story p{margin:0 0 16px}
+.vhf-a .vhf-a-pillars{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vhf-a .vhf-a-pillars li{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;font-size:15px;line-height:1.45;color:var(--muted)}
+.vhf-a .vhf-a-pillars svg{width:24px;height:24px;flex:none;color:var(--olive);margin-top:1px}
+.vhf-a .vhf-a-pillars b{display:block;font:600 18px/1.3 var(--serif);color:var(--ink);margin-bottom:2px}
+.vhf-a .vhf-a-quotewrap{max-width:900px;margin-left:auto;margin-right:auto;padding:clamp(28px,4vw,48px) clamp(20px,5vw,64px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.vhf-a .vhf-a-give{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,48px);align-items:center;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--clay);border-radius:var(--r-lg);padding:clamp(28px,4vw,52px)}
+.vhf-a .vhf-a-give p{margin:0;color:var(--muted)}
+.vhf-a .vhf-a-give ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.vhf-a .vhf-a-give li{padding:9px 14px;border-radius:999px;background:#e9ecdf;color:#3e4630;font-size:14.5px;font-weight:600}
+.vhf-a .vhf-a-impact .vhf-a-head p{color:var(--cream)}
+.vhf-a .vhf-a-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,36px) 28px}
+.vhf-a .vhf-a-stat{border-top:1px solid rgba(221,214,184,.3);padding-top:18px}
+.vhf-a .vhf-a-stat b{display:block;font:600 clamp(36px,4.4vw,56px)/1 var(--serif);color:var(--tan);margin-bottom:10px;letter-spacing:-.01em}
+.vhf-a .vhf-a-stat span{display:block;font-size:15px;line-height:1.45;color:var(--cream)}
+.vhf-a .vhf-a-stat small{display:block;margin-top:6px;font-size:13px;line-height:1.45;color:var(--cream);opacity:.72}
+.vhf-a .vhf-a-statfoot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-top:40px;padding-top:22px;border-top:1px solid rgba(221,214,184,.3);font-size:14px;color:var(--cream)}
+.vhf-a .vhf-a-statfoot span{opacity:.8}
+.vhf-a .vhf-a-statfoot a{color:var(--tan)!important;font-weight:600;border-bottom:2px solid currentColor;padding-bottom:2px}
+.vhf-a .vhf-a-gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:230px 230px;gap:14px}
+.vhf-a .vhf-a-gallery img{display:block;width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+.vhf-a .vhf-a-gallery img:first-child{grid-row:span 2;border-radius:var(--r-lg)}
+.vhf-a .vhf-a-gallery-cta{margin-top:24px}
+.vhf-a .vhf-a-visit{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.vhf-a .vhf-a-card{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:clamp(24px,3vw,34px)}
+.vhf-a .vhf-a-card+.vhf-a-card{border-top-color:var(--navy)}
+.vhf-a .vhf-a-card p{margin:0 0 18px}
+.vhf-a .vhf-a-card .vhf-a-tag{margin-bottom:20px}
+@media (max-width:960px){.vhf-a .vhf-a-stats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:800px){
+  .vhf-a .vhf-a-mv{margin:20px 0 0}
+  .vhf-a .vhf-a-mv,.vhf-a .vhf-a-give,.vhf-a .vhf-a-visit,.vhf-a .vhf-a-pillars{grid-template-columns:1fr}
+  .vhf-a .vhf-a-gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .vhf-a .vhf-a-gallery img{aspect-ratio:1/1;height:auto}
+  .vhf-a .vhf-a-gallery img:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10}
+}
+.vhf-a .vhf-a-hero::before{z-index:1}
+.vhf-a .vhf-a-hero>:not(img){z-index:2}
+</style>
+
+<div class="vhf-a">
+
+<section class="vhf-a-hero" aria-labelledby="vhf-a-title">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/246956cc-d80f-460d-8dd4-850906881b75/DSCF3190_social.jpg?format=2500w" alt="Veterans and neighbors gathered on the lawn in front of the farmhouse">
+  <div class="vhf-a-hero__in">
+    <p class="vhf-a-eye">Our mission &amp; farm</p>
+    <h1 id="vhf-a-title">A place to grow, heal, and <em>belong</em></h1>
+    <p>Since 2013, Veterans Healing Farm in Mills River, NC has offered veterans and their families a safe, peaceful place to heal through the land and each other.</p>
+  </div>
+  <svg class="vhf-a-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<div class="vhf-a-mv">
+  <div><b>Our mission</b><p>To enhance the mental, emotional, and physical well-being of our nation's veterans and their families.</p></div>
+  <div><b>Our vision</b><p>An end to the veteran suicide crisis that continues across the country.</p></div>
+</div>
+
+<section class="vhf-a-sec vhf-a-split vhf-a-story reveal" aria-labelledby="vhf-a-story-h">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751909347934-8TBEDU8GJJII40ZOOQ4L/480863704_661347979894456_6107354767809560301_n.jpg?format=1500w" alt="Three people holding power tools beside a large Veterans Healing Farm sign" loading="lazy">
+  <div>
+    <span class="vhf-a-tag">Established 2013</span>
+    <h2 id="vhf-a-story-h">Our story</h2>
+    <p>John and Nicole Mahshie founded Veterans Healing Farm in 2013. Today our focus is on improving veteran mental health.</p>
+    <p>We do that by creating a safe, peaceful environment that fosters healing and camaraderie. Our programs center on brain health.</p>
+    <ul class="vhf-a-pillars">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20c-2-3-2-8 2-11 3-2 7-2 9-5 1 5 0 10-4 13-2 2-5 3-7 3z"/><path d="M7 20c2-4 5-7 9-9"/></svg><span><b>Agritherapy</b>Organic farming, beekeeping, and medicinal herbs</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 13.5s1.3 2 3.5 2 3.5-2 3.5-2"/><path d="M9 9.5h.01M15 9.5h.01"/></svg><span><b>Therapies</b>Therapeutic activities for body and mind</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13"/><path d="M2 19h20"/><path d="M8 9h8M8 13h5"/></svg><span><b>Workshops</b>Hands-on learning on the farm</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span><b>Live events</b>Gatherings that build community</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="vhf-a-sec vhf-a-quotewrap reveal">
+  <blockquote class="vhf-a-quote">
+    <p>&ldquo;A place where hands find purpose in the earth, where stories are shared without judgment, and where the quiet strength of community helps heal wounds both seen and unseen.&rdquo;</p>
+    <cite>&mdash; Alan J. Yeck, Executive Director, 2025 Year-End Report</cite>
+  </blockquote>
+</div>
+
+<section class="vhf-a-sec reveal" aria-labelledby="vhf-a-give-h">
+  <div class="vhf-a-give">
+    <div>
+      <p class="vhf-a-eye">Giving back</p>
+      <h2 id="vhf-a-give-h">Everything we grow goes back</h2>
+      <p>Everything grown at the farm is donated back to our veteran community. We regularly distribute produce to these organizations and others in need.</p>
+    </div>
+    <ul aria-label="Organizations that receive our produce">
+      <li>Charles George VA Medical Center</li>
+      <li>Veterans Restoration Quarters</li>
+      <li>IAM Food Pantry</li>
+      <li>Hendersonville Rescue Mission</li>
+      <li>The Storehouse</li>
+      <li>SafeLight Women's Shelter / Dandelion Caf&eacute;</li>
+      <li>Carolina Reserve of Laurel Park and Hendersonville</li>
+      <li>The Landing</li>
+    </ul>
+  </div>
+</section>
+
+<section class="vhf-a-sec vhf-a-dark vhf-a-impact reveal" aria-labelledby="vhf-a-impact-h">
+  <div class="vhf-a-head">
+    <p class="vhf-a-eye">By the numbers</p>
+    <h2 id="vhf-a-impact-h">Our impact in 2026</h2>
+    <p>A look at one year on the farm, from our <a href="/s/VHF_Impact-Report-2026.pdf" target="_blank" rel="noopener">2026 Year-End Report</a>. Everything we provided remained at no cost to veterans and their families.</p>
+  </div>
+  <div class="vhf-a-stats">
+    <div class="vhf-a-stat"><b>2,683 lbs</b><span>of fresh produce grown and donated</span><small>To veterans and community organizations</small></div>
+    <div class="vhf-a-stat"><b>500+</b><span>flower bouquets grown and donated</span></div>
+    <div class="vhf-a-stat"><b>96</b><span>therapeutic workshops</span><small>From pottery and blacksmithing to Mental Health First Aid</small></div>
+    <div class="vhf-a-stat"><b>852</b><span>participants</span></div>
+    <div class="vhf-a-stat"><b>411</b><span>volunteers</span><small>Who gave their time, talents, and energy</small></div>
+    <div class="vhf-a-stat"><b>2,235</b><span>herbal products</span><small>Provided at no cost to our veteran community</small></div>
+    <div class="vhf-a-stat"><b>46</b><span>medicinal plants grown</span></div>
+    <div class="vhf-a-stat"><b>15 gal</b><span>of honey harvested</span></div>
+  </div>
+  <div class="vhf-a-statfoot">
+    <span>Figures are from our <a href="/s/VHF_Impact-Report-2026.pdf" target="_blank" rel="noopener">2026 Year-End Report</a>. The 2025 report is available to download.</span>
+    <a href="/s/VHF_Impact-Report-2026.pdf" target="_blank" rel="noopener">Download the 2026 Year-End Report (PDF)</a>
+  </div>
+</section>
+
+<section class="vhf-a-sec reveal" aria-labelledby="vhf-a-life-h">
+  <div class="vhf-a-head">
+    <p class="vhf-a-eye">Field notes</p>
+    <h2 id="vhf-a-life-h">Life on the farm</h2>
+    <p>Healing and community go hand in hand here. From planting herbs and tending bees to sharing meals and laughter at seasonal events, every moment on the farm nurtures well-being and connection.</p>
+  </div>
+  <div class="vhf-a-gallery">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910489251-3Q9Y69DR6VLQS62IW0T0/VHF%2B3.jpg?format=1500w" alt="Veterans and volunteers gathered around the Veterans Healing Farm sign" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910501996-Y4PZ4TNV1XKY64YRQX0B/VHF%2B4.jpg?format=500w" alt="Volunteers at a table of farm produce" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910517895-3X8IM72HOIY5C4FNI866/VHF%2B5.jpg?format=500w" alt="Volunteers building a wooden box on a post in the field" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910548959-TRZG4Z8XXXRP5EG0FD9T/VHF%2B7.jpg?format=500w" alt="Guests gathered at an event in front of the farm's red barn" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910558872-EAZHQ4F31F8ERAQIABNL/VHF%2B8.jpg?format=500w" alt="A gathering of veterans at the farm" loading="lazy">
+  </div>
+  <div class="vhf-a-gallery-cta"><a class="vhf-a-btn vhf-a-btn--outline" href="/galleries">View photo galleries<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+</section>
+
+<section class="vhf-a-sec reveal" aria-labelledby="vhf-a-visit-h">
+  <div class="vhf-a-head">
+    <p class="vhf-a-eye">Come see us</p>
+    <h2 id="vhf-a-visit-h">Visit the farm</h2>
+  </div>
+  <div class="vhf-a-visit">
+    <div class="vhf-a-card">
+      <h3>Our location</h3>
+      <p>Veterans Healing Farm<br>138 Kimzey Road<br>Mills River, NC 28759</p>
+      <span class="vhf-a-tag vhf-a-tag--navy">Tours by appointment only</span><br>
+      <a class="vhf-a-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=138+Kimzey+Rd+Mills+River+NC+28759" target="_blank" rel="noopener">Get directions<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="vhf-a-card">
+      <h3>Schedule a tour</h3>
+      <p>We'd love to show you around. Call or email to set up a time.</p>
+      <p><a href="tel:8285956111" style="color:var(--navy);font-weight:600">(828) 595-6111</a><br><a href="mailto:veteranshealingfarm@gmail.com?subject=Tour%20request" style="color:var(--navy);font-weight:600">veteranshealingfarm@gmail.com</a></p>
+      <a class="vhf-a-btn vhf-a-btn--outline" href="/contact">Contact us</a>
+    </div>
+  </div>
+</section>
+
+<section class="vhf-a-cta" aria-labelledby="vhf-a-join">
+  <p class="vhf-a-eye">Get involved</p>
+  <h2 id="vhf-a-join">Want to join us in making a difference?</h2>
+  <p>Give, lend a hand, or partner with us. Every bit of support helps veterans and their families heal.</p>
+  <div class="vhf-a-acts">
+    <a class="vhf-a-btn vhf-a-btn--light" href="/donate">Donate<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-a-btn vhf-a-btn--ghost" href="/volunteer">Volunteer</a>
+    <a class="vhf-a-btn vhf-a-btn--ghost" href="/sponsors">Sponsor us</a>
+  </div>
+  <svg class="vhf-a-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>(function(){var w=document.querySelector('.vhf-a');w.classList.add('is-on');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-a-anim');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}})();</script>

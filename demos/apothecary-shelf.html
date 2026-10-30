@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apothecary Shelf Demo</title>
+<!-- Demo only (Oct 29, 2026): Rebecca's 46 medicinal plants (her Oct 28 list) as labeled jars on the farm apothecary's shelves.
+     Tap a jar and its label turns to show the Latin name. Each jar is a real button, so the list reads fine without the picture. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+body{margin:0;background:#f9f7f1;color:#262622;font:16px/1.6 "Work Sans",system-ui,sans-serif}
+.vhf-ap{--olive:#5c6642;--olive-deep:#3d4529;--clay:#a8603e;--clay-text:#a45d3c;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--ink:#262622;--muted:#5f5f58;--wood:#8a6a48;--wood-deep:#6b4f33;max-width:1200px;margin:0 auto;padding:clamp(24px,5vw,56px) 16px}
+.vhf-ap *{box-sizing:border-box}
+.vhf-ap .eye{display:flex;align-items:center;gap:12px;margin:0 0 14px;font:600 12.5px/1 var(--sans,"Work Sans");letter-spacing:.16em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-ap .eye::before{content:"";width:28px;height:2px;background:currentColor}
+.vhf-ap h2{font:600 clamp(28px,3.4vw,44px)/1.1 "Fraunces",Georgia,serif;margin:0 0 12px;letter-spacing:-.01em}
+.vhf-ap h2 em{font-weight:400;color:var(--clay)}
+.vhf-ap .lead{margin:0 0 32px;max-width:62ch;color:var(--muted);font-size:clamp(17px,1.5vw,19px)}
+.vhf-ap .cab{background:linear-gradient(#efe6d6,#e7dcc8);border:1px solid #d9ccb2;border-radius:22px;padding:clamp(18px,3vw,32px) clamp(14px,3vw,32px) 8px;box-shadow:0 24px 48px -32px rgba(38,38,34,.45)}
+.vhf-ap ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));column-gap:10px;row-gap:0}
+.vhf-ap li{position:relative;display:flex;justify-content:center;padding:14px 0 18px}
+.vhf-ap li::after{content:"";position:absolute;left:-6px;right:-6px;bottom:0;height:12px;background:linear-gradient(var(--wood),var(--wood-deep));box-shadow:0 6px 8px -6px rgba(38,38,34,.6)}
+.vhf-ap .jar{all:unset;cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;width:90px;}
+.vhf-ap .lid{width:52px;height:12px;border-radius:4px 4px 2px 2px;background:linear-gradient(#7a5b3c,#5a4029);box-shadow:inset 0 2px 0 rgba(255,255,255,.18)}
+.vhf-ap .glass{position:relative;width:80px;height:96px;margin-top:-1px;border-radius:10px 10px 14px 14px;background:linear-gradient(90deg,rgba(255,255,255,.55),rgba(255,255,255,.12) 30%,rgba(255,255,255,0) 60%,rgba(255,255,255,.25)),var(--c);border:1.5px solid rgba(38,38,34,.18);display:flex;align-items:center;justify-content:center}
+.vhf-ap .label{position:relative;width:72px;height:50px}
+.vhf-ap .label.turn{animation:vhf-ap-turn .4s ease}
+@keyframes vhf-ap-turn{0%,100%{transform:scaleX(1)}50%{transform:scaleX(0)}}
+.vhf-ap .label>span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:3px;background:#fffdf7;border:1px solid #d9ccb2;border-radius:3px;transition:opacity 0s .2s;font:600 10.5px/1.15 "Fraunces",Georgia,serif;color:var(--ink);hyphens:auto;-webkit-hyphens:auto}
+.vhf-ap .label>span.back{opacity:0;font:italic 400 10px/1.15 "Fraunces",Georgia,serif;color:var(--clay-text)}
+.vhf-ap .jar[aria-pressed="true"] .front{opacity:0}
+.vhf-ap .jar[aria-pressed="true"] .back{opacity:1}
+.vhf-ap .jar:hover .glass{filter:brightness(1.06)}
+.vhf-ap .jar:focus-visible .glass{outline:3px solid #3f5a78;outline-offset:3px}
+.vhf-ap .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.vhf-ap .note{margin:18px 4px 0;font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.vhf-ap .label.turn{animation:none}.vhf-ap .label>span{transition:none}}
+</style>
+</head>
+<body>
+<section class="vhf-ap" aria-labelledby="vhf-ap-h">
+  <p class="eye">The apothecary</p>
+  <h2 id="vhf-ap-h">46 plants on the <em>shelf</em></h2>
+  <p class="lead">Everything the Medicinal Herb Squad grew in 2026, from the herb beds to the farm's free apothecary. Tap a jar to turn its label.</p>
+  <div class="cab"><ul id="vhf-ap-list"></ul></div>
+  <p class="note">Plant list from Rebecca Vann, Director of Plant Medicine.</p>
+</section>
+<script>
+(function(){
+/* [common name, Latin name, jar tint] — names exactly as Rebecca sent them */
+var P=[["Anamarena","Anemarrhena asphodeloides (Zhi Mu)","#e9dfc0"],["Anise Hyssop","Agastache foeniculum","#b9a6cf"],["Blue Vervain","Verbena hastata","#9fa9d6"],["Butterfly Pea","Clitoria ternatea","#6f86c9"],["Calendula","Calendula officinalis","#f0b54a"],["California Poppy","Eschscholzia californica","#f1a04a"],["Catnip","Nepeta cataria","#b7c9a0"],["Chamomile","Matricaria recutita","#f1e19a"],["Chinese Chrysanthemum","Chrysanthemum morifolium (Ju Hua)","#efd77a"],["Clary Sage","Salvia sclarea","#c9b6d8"],["Comfrey","Symphytum officinale","#93ab7c"],["Dan Shen","Salvia miltiorrhiza","#c98b6b"],["Dandelion","Taraxacum officinale","#f2d35b"],["Echinacea Angustifolia","Echinacea angustifolia","#d9a0b8"],["Echinacea Purpurea","Echinacea purpurea","#d48aa8"],["Elecampane","Inula helenium","#e9c768"],["Ginger","Zingiber officinale","#e6c48f"],["Grindelia","Grindelia robusta","#e7cf5c"],["Hibiscus","Hibiscus sabdariffa","#c95b62"],["Lady's Mantle","Alchemilla vulgaris","#b9cc8e"],["Lavender","Lavendula spp.","#a99ad2"],["Lemon Balm","Melissa officinalis","#c3d89a"],["Lemon Verbena","Aloysia citrodora","#d3dc9a"],["Lemongrass","Cymbopogon citratus","#cfd8a0"],["Marigold","Tagetes spp.","#ee9f3c"],["Marshmallow","Althaea officinalis","#ecd9dc"],["Meadowsweet","Filipendula ulmaria","#eee6c9"],["Mullein","Verbascum thapsus","#c9d0a8"],["Nettle","Urtica diocia","#8fa874"],["Passionflower","Passiflora incarnata","#a58cc4"],["Plantain, Broad Leaf","Plantago major","#a3b886"],["Plantain, Long Leaf","Plantago lanceolata","#b0c290"],["Red Root","Ceanothus americanus","#b9786a"],["Rue","Ruta graveolens","#b6c48f"],["Sage","Salvia officinalis","#b4c2a6"],["Self Heal","Prunella vulgaris","#a796c6"],["Scullcap","Scutellaria lateriflora","#a9b6d6"],["Sochan","Rudbeckia laciniata","#e8cf62"],["Spilanthes","Acmella acmella","#dcc75a"],["St. John's Wort","Hypericum perforatum","#e9b84a"],["Stachys","Stachys officinalis","#c99ac0"],["Tulsi Kapoor","Ocimum africanum","#b49cc0"],["Tulsi","Ocimum tenuiflorum","#a98fb8"],["Valerian","Valeriana officinalis","#e6d6dc"],["Wormwood","Artemisia absinthium","#c3ccb8"],["Yarrow","Achillea millefolium","#ece7d4"]];
+var ul=document.getElementById('vhf-ap-list'),h='';
+P.forEach(function(p){h+='<li><button class="jar" type="button" aria-pressed="false" style="--c:'+p[2]+'"><span class="lid" aria-hidden="true"></span><span class="glass"><span class="label"><span class="front">'+p[0]+'</span><span class="back" aria-hidden="true">'+p[1]+'</span></span></span><span class="sr">, '+p[1]+'</span></button></li>'});
+ul.innerHTML=h;
+ul.addEventListener('click',function(e){var b=e.target.closest('.jar');if(!b)return;var l=b.querySelector('.label');l.classList.remove('turn');void l.offsetWidth;l.classList.add('turn');b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true')});
+})();
+</script>
+</body>
+</html>

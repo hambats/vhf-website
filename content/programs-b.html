@@ -1,0 +1,151 @@
+<!-- VHF Programs page, part B (Clay & Camaraderie, Workshops, Events, CTA). Second Squarespace Code block on the Programs page. Styles scoped to .vhf-g2. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-g2{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;--serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;--r:14px;--r-lg:22px;--sec:clamp(64px,9vw,120px);font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-g2:not(.is-on){display:none}
+.vhf-g2 *{box-sizing:border-box}
+.vhf-g2 a{text-decoration:none!important}
+.vhf-g2 h2,.vhf-g2 h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-g2 h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-g2 p{max-width:62ch}
+.vhf-g2 .sec{margin-top:var(--sec);scroll-margin-top:120px}
+.vhf-g2 .sec-intro{margin:0 0 24px;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted)}
+.vhf-g2-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-g2-eye::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-g2-band .vhf-g2-eye{color:var(--tan)}
+.vhf-g2-split{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.vhf-g2-chips h3{margin:20px 0 10px;font:600 12.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.vhf-g2-chips ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.vhf-g2-chips li{padding:8px 14px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:14.5px}
+.vhf-g2-asist{margin-top:24px;padding:18px 22px;border-radius:6px;background:#e6ecf2;border-left:4px solid var(--navy);color:var(--navy-deep);font-size:15.5px;line-height:1.55}
+.vhf-g2-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.vhf-g2-stat{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:var(--r);padding:18px 20px}
+.vhf-g2-stat b{display:block;font:600 clamp(32px,3.6vw,46px)/1 var(--serif);margin-bottom:8px;color:var(--navy-deep)}
+.vhf-g2-stat span{font-size:14px;color:var(--muted)}
+.vhf-g2-pics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vhf-g2-pics img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r)}
+.vhf-g2-pics img:first-child{grid-column:1/-1;aspect-ratio:16/9;border-radius:var(--r-lg)}
+.vhf-g2-list{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:12px}
+.vhf-g2-list li{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;font-size:16px;line-height:1.5}
+.vhf-g2-list svg{width:26px;height:26px;flex:none;color:var(--clay);margin-top:1px}
+.vhf-g2-list b{display:block;font:600 19px/1.3 var(--serif);margin-bottom:2px}
+.vhf-g2-quote{margin:0;padding-left:18px;border-left:3px solid var(--clay);font:italic 400 clamp(19px,2vw,23px)/1.45 var(--serif);color:var(--ink)}
+.vhf-g2-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--navy);background:var(--navy);color:var(--cream)!important;transition:background-color .18s,border-color .18s}
+.vhf-g2-btn:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.vhf-g2-btn--clay{background:#7a3f24;border-color:#7a3f24}
+.vhf-g2-btn--clay:hover{background:#5e2f1a;border-color:#5e2f1a}
+.vhf-g2-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-g2-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-g2-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7)}
+.vhf-g2-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-g2 a:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-g2-band a:focus-visible{outline-color:var(--tan)}
+.vhf-g2-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:28px}
+.vhf-g2-clay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--clay);border-radius:var(--r-lg);padding:clamp(18px,3vw,32px)}
+.vhf-g2-clayphoto{margin:0}
+.vhf-g2-clayphoto img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 45%;border-radius:var(--r)}
+.vhf-g2-host{margin:0 0 16px;font:600 15px/1.4 var(--sans);color:#8a4d30}
+.vhf-g2-clay p.lead{margin:0;font-size:17px;line-height:1.65}
+.vhf-g2-more{font:600 15px/1.2 var(--sans);color:#7a3f24!important;border-bottom:2px solid currentColor;padding-bottom:3px}
+.vhf-g2-band{position:relative;overflow:hidden;margin-top:var(--sec);background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(40px,6vw,80px) clamp(28px,6vw,72px) clamp(52px,7vw,92px)}
+.vhf-g2-band h2{color:var(--cream)}
+.vhf-g2-band p{margin:0;font-size:18px;opacity:.9}
+.vhf-g2-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+.vhf-g2.vhf-g2-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-g2.vhf-g2-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-g2.vhf-g2-anim .reveal{opacity:1;transform:none}.vhf-g2 *{transition:none!important}}
+@media (max-width:860px){
+.vhf-g2{font-size:16px}
+.vhf-g2-clay,.vhf-g2-split{grid-template-columns:1fr}
+.vhf-g2-acts{flex-direction:column;align-items:stretch}
+.vhf-g2-more{align-self:flex-start}
+}
+@media (max-width:480px){.vhf-g2-stats{grid-template-columns:1fr}}
+</style>
+
+<div class="vhf-g2">
+
+<section class="sec" id="clay-camaraderie" aria-labelledby="vhf-g2-clay">
+  <div class="vhf-g2-clay reveal">
+    <figure class="vhf-g2-clayphoto"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=1000w" alt="Veterans, family members, and volunteers working with clay around a big table in the farm's sunlit pottery studio" loading="lazy"></figure>
+    <div>
+      <p class="vhf-g2-eye">Pottery studio</p>
+      <h2 id="vhf-g2-clay">Clay &amp; Camaraderie</h2>
+      <p class="vhf-g2-host">With resident potter Sophia Lauterbach</p>
+      <p class="lead">Pottery for active-duty service members, veterans, their families, and VHF volunteers: beginner hand-building workshops, open studio for past students, and seasonal projects. No experience needed.</p>
+      <div class="vhf-g2-acts"><a class="vhf-g2-btn vhf-g2-btn--clay" href="/events">See pottery dates</a><a class="vhf-g2-more" href="/clay">More about Clay &amp; Camaraderie &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="workshops" aria-labelledby="vhf-g2-work">
+  <div class="vhf-g2-split">
+    <div>
+      <p class="vhf-g2-eye">Learn by doing</p>
+      <h2 id="vhf-g2-work">Workshops</h2>
+      <p class="sec-intro">Every workshop we offer is designed to heal, whether it's an actual therapy or a therapeutic, hands-on experience.</p>
+      <div class="vhf-g2-chips">
+        <h3>Therapies</h3>
+        <ul><li>Equine</li><li>Canine</li><li>Art</li><li>Music</li><li>Neurofeedback</li></ul>
+        <h3>Therapeutic experiences</h3>
+        <ul><li>Blacksmithing</li><li>Canning</li><li>Herbal medicine</li><li>Mushroom growing</li><li>Jam making</li><li>Pottery</li><li>And many more</li></ul>
+      </div>
+      <p class="vhf-g2-asist"><b>Suicide prevention training:</b> we also offer life-saving suicide prevention classes, open to everyone in Western North Carolina.</p>
+      <div class="vhf-g2-stats">
+        <div class="vhf-g2-stat"><b>96</b><span>workshops in 2026</span></div>
+        <div class="vhf-g2-stat"><b>852</b><span>participants in 2026</span></div>
+        <div class="vhf-g2-stat"><b>411</b><span>volunteers in 2026</span></div>
+      </div>
+      <div class="vhf-g2-acts"><a class="vhf-g2-btn" href="/events">View upcoming workshops</a></div>
+    </div>
+    <div class="vhf-g2-pics reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/3a1f19a7-c8ab-4642-bd93-7d5780f70f12/20220923_155759.jpg?format=1000w" alt="Graduates holding certificates from an Applied Suicide Intervention Skills Training (ASIST) class at the farm" loading="lazy">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/9c59f137-20ad-4ee9-bf3b-10003a45264f/20241106_110437+%281%29.jpg?format=750w" alt="Veterans gathered around tables during an indoor workshop" loading="lazy">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/0d6afb29-658e-4e2b-9ea9-5e8090bc5fb8/IMG_5591.jpg?format=750w" alt="Volunteers planting in rows of the farm field" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="events" aria-labelledby="vhf-g2-ev">
+  <div class="vhf-g2-split">
+    <div class="vhf-g2-pics reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/b758acfd-7831-4c1c-b430-e955566c534d/20250222_194705.jpg?format=1000w" alt="Veterans smiling together in the stands at a hockey game outing" loading="lazy">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/26f50280-a6da-4b2d-b8e1-adec5178f0b0/IMG_1304.jpg?format=750w" alt="Two veterans holding up a trout on a fly fishing trip" loading="lazy">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a757e289-97c4-4d37-960c-2e945163befc/20220501_132438%281%29.jpg?format=750w" alt="Motorcycles parked on the lawn during a farm event" loading="lazy">
+    </div>
+    <div>
+      <p class="vhf-g2-eye">Community</p>
+      <h2 id="vhf-g2-ev">Events</h2>
+      <p class="sec-intro">From powerful moments of remembrance to fun-filled outings, our events connect veterans with support, community, and joy.</p>
+      <ul class="vhf-g2-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M10 21v-6h4v6"/></svg><span><b>Annual Veterans Resource Fair</b>40+ service organizations, live music, and food trucks.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg><span><b>Traveling Vietnam Memorial Wall &amp; 9/11 Memorial</b>Hosted at the farm, with 3,856 attendees over four days.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20l6-10 4 6 3-4 5 8z"/><circle cx="17" cy="6" r="2"/></svg><span><b>Adventures</b>Fly fishing, hiking, kayaking, baseball, and hockey games.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="9" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="17" cy="9" r="2"/><path d="M8 17c0-3 2-5 4-5s4 2 4 5-2 3-4 3-4 0-4-3z"/></svg><span><b>Free vet clinics</b>Care for veterans' dogs.</span></li>
+      </ul>
+      <p class="vhf-g2-quote">We're all about bringing veterans into the community, and making them feel seen, supported, and celebrated.</p>
+      <div class="vhf-g2-acts"><a class="vhf-g2-btn" href="/events">View upcoming events</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="vhf-g2-band reveal" aria-labelledby="vhf-g2-cta">
+  <p class="vhf-g2-eye">Get involved</p>
+  <h2 id="vhf-g2-cta">Want to experience one of our programs firsthand?</h2>
+  <p>Find a workshop or event on our calendar, join a volunteer squad, or support these programs with a gift.</p>
+  <div class="vhf-g2-acts">
+    <a class="vhf-g2-btn vhf-g2-btn--light" href="/events">Explore events &amp; workshops</a>
+    <a class="vhf-g2-btn vhf-g2-btn--ghost" href="/volunteer">Volunteer</a>
+    <a class="vhf-g2-btn vhf-g2-btn--ghost" href="/donate">Donate</a>
+  </div>
+  <svg class="vhf-g2-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+</div>
+<script>
+/* Content stays hidden in the Squarespace editor (scripts off there), so the block is sized small and grows to fit on the live page. */
+(function(){var r=document.querySelectorAll('.vhf-g2');for(var i=0;i<r.length;i++){var w=r[i];w.classList.add('is-on');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-g2-anim');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}}})();
+</script>

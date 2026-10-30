@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Herb Patch Demo</title>
+<!-- Demo only (Oct 29, 2026), second pass: Rebecca's 46 medicinal plants growing in raised beds below the Blue Ridge, drawn in the
+     same hand-inked storybook spirit as the bee (heavy wobbly ink, hatched shadows, muted parchment colors, crooked wood).
+     Hover or tap a plant for its name; each bed's wooden sign shows which letters it holds. Every plant is a focusable button. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IM+Fell+English:ital@0;1&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+body{margin:0;background:#f9f7f1;color:#262622;font:16px/1.6 "Work Sans",system-ui,sans-serif}
+.vhf-hp{--ink:#241a12;--clay:#a8603e;--clay-text:#a45d3c;--muted:#5f5f58;max-width:1200px;margin:0 auto;padding:clamp(24px,5vw,56px) 16px}
+.vhf-hp *{box-sizing:border-box}
+.vhf-hp .eye{display:flex;align-items:center;gap:12px;margin:0 0 14px;font:600 12.5px/1 "Work Sans",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--clay-text)}
+.vhf-hp .eye::before{content:"";width:28px;height:2px;background:currentColor}
+.vhf-hp h2{font:600 clamp(28px,3.4vw,44px)/1.1 "Fraunces",Georgia,serif;margin:0 0 12px;letter-spacing:-.01em}
+.vhf-hp h2 em{font-weight:400;color:var(--clay)}
+.vhf-hp .lead{margin:0 0 28px;max-width:62ch;color:var(--muted);font-size:clamp(17px,1.5vw,19px)}
+.vhf-hp .scene{position:relative;overflow:hidden;border:3.5px solid var(--ink);border-radius:20px 30px 22px 34px/30px 20px 34px 22px;background:linear-gradient(#e9dcbc 0%,#e3d1a8 30%,#d9c494 100%);box-shadow:inset 0 0 90px rgba(60,38,16,.45),0 24px 48px -32px rgba(38,38,34,.6)}
+.vhf-hp .scene::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.5;background:repeating-linear-gradient(-32deg,transparent 0 9px,rgba(90,60,30,.07) 9px 10px),radial-gradient(130% 100% at 50% 45%,transparent 55%,rgba(50,30,12,.35) 100%)}
+.vhf-hp .sky{display:block;width:100%;height:auto}
+.vhf-hp .bed{position:relative;overflow-x:auto;overflow-y:hidden;margin-top:-92px;scrollbar-width:thin}
+.vhf-hp .bed:first-of-type{margin-top:-120px}.vhf-hp .bed:last-of-type{margin-bottom:8px}
+.vhf-hp .bed svg{display:block;width:100%;min-width:780px;height:auto;overflow:visible}
+.vhf-hp .pl{cursor:pointer;outline:none}
+.vhf-hp .pl .sway{transform-box:fill-box;transform-origin:50% 100%;animation:vhf-hp-sway var(--d,7s) ease-in-out var(--dl,0s) infinite alternate}
+@keyframes vhf-hp-sway{from{transform:rotate(calc(var(--a,1.6deg)*-1))}to{transform:rotate(var(--a,1.6deg))}}
+.vhf-hp .pl.rustle .sway{animation:vhf-hp-rustle .55s ease}
+@keyframes vhf-hp-rustle{0%,100%{transform:rotate(0)}20%{transform:rotate(-7deg)}55%{transform:rotate(6deg)}80%{transform:rotate(-2deg)}}
+.vhf-hp .pl .glow{opacity:0;transition:opacity .2s}
+.vhf-hp .pl:hover .glow,.vhf-hp .pl:focus-visible .glow,.vhf-hp .pl.on .glow{opacity:1}
+.vhf-hp .tip{position:absolute;z-index:5;left:0;top:0;min-width:150px;max-width:240px;padding:10px 14px 11px;text-align:center;background:#f4e8cb;border:3px solid var(--ink);border-radius:8px 14px 9px 13px/12px 8px 14px 9px;box-shadow:0 10px 18px -10px rgba(36,26,18,.6);transform:translate(-50%,-100%) rotate(-1.2deg);pointer-events:none;opacity:0;transition:opacity .15s}
+.vhf-hp .tip.show{opacity:1}
+.vhf-hp .tip::after{content:"";position:absolute;left:50%;bottom:-11px;width:16px;height:16px;background:#f4e8cb;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
+.vhf-hp .tip b{display:block;font:400 21px/1.1 "IM Fell English",Georgia,serif;color:#2b1a0e}
+.vhf-hp .tip i{display:block;margin-top:3px;font:italic 400 15px/1.2 "IM Fell English",Georgia,serif;color:var(--clay-text)}
+.vhf-hp .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.vhf-hp .note{margin:16px 4px 0;font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.vhf-hp .pl .sway,.vhf-hp .pl.rustle .sway{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <filter id="vhf-hp-wob" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.6"/></filter>
+    <pattern id="vhf-hp-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="7" stroke="#241a12" stroke-width="1.6"/></pattern>
+  </defs>
+</svg>
+<section class="vhf-hp" aria-labelledby="vhf-hp-h">
+  <p class="eye">The herb patch</p>
+  <h2 id="vhf-hp-h">46 plants, one <em>patch</em></h2>
+  <p class="lead">Everything the Medicinal Herb Squad grew in 2026, bed by bed. Hover or tap a plant to meet it.</p>
+  <div class="scene" id="vhf-hp-scene">
+    <svg class="sky" viewBox="0 0 1200 230" aria-hidden="true" focusable="false"><g filter="url(#vhf-hp-wob)">
+      <circle cx="960" cy="78" r="34" fill="#efc76a" stroke="#241a12" stroke-width="3"/>
+      <path d="M0 150 Q110 92 230 128 T470 112 T700 120 T940 98 T1200 126 L1200 230 L0 230Z" fill="#9aa6a0" stroke="#241a12" stroke-width="3"/>
+      <path d="M0 176 Q140 128 300 160 T620 150 T900 160 T1200 148 L1200 230 L0 230Z" fill="#7f8f78" stroke="#241a12" stroke-width="3"/>
+      <path d="M0 204 Q180 170 380 192 T760 186 T1200 196 L1200 230 L0 230Z" fill="#6c7a52" stroke="#241a12" stroke-width="3"/>
+      <path d="M180 64 q10 -8 20 0 q10 -8 20 0 M700 50 q8 -6 16 0 q8 -6 16 0" fill="none" stroke="#241a12" stroke-width="2.4" stroke-linecap="round"/>
+    </g></svg>
+    <div id="vhf-hp-beds"></div>
+    <div class="tip" id="vhf-hp-tip" role="status" aria-live="polite"><b></b><i></i></div>
+  </div>
+  <p class="note">Plant list from Rebecca Vann, Director of Plant Medicine.</p>
+</section>
+<script>
+(function(){
+var INK='#241a12';
+var P=[
+["Anamarena","Anemarrhena asphodeloides (Zhi Mu)","grassSpike","#d9c9a6","#8a8f5a"],
+["Anise Hyssop","Agastache foeniculum","spike","#8f74b0","#7c8a52"],
+["Blue Vervain","Verbena hastata","candelabra","#6f6fb0","#71804c"],
+["Butterfly Pea","Clitoria ternatea","vine","#3f5aa8","#6f8a4c"],
+["Calendula","Calendula officinalis","daisy","#e19a2e","#7a8a4c"],
+["California Poppy","Eschscholzia californica","cup","#e58a2a","#8ea08a"],
+["Catnip","Nepeta cataria","spike","#cfc3d8","#8a9a78"],
+["Chamomile","Matricaria recutita","daisies","#f4efe0","#8b9a56"],
+["Chinese Chrysanthemum","Chrysanthemum morifolium (Ju Hua)","pompom","#e8c95a","#6f7f48"],
+["Clary Sage","Salvia sclarea","spike","#c7a9c9","#8a9478"],
+["Comfrey","Symphytum officinale","bells","#8a5a8a","#5f7a3e"],
+["Dan Shen","Salvia miltiorrhiza","spike","#8a68b0","#6f8a4a"],
+["Dandelion","Taraxacum officinale","rosette","#ecc53a","#6f8f3e"],
+["Echinacea Angustifolia","Echinacea angustifolia","cone","#c98aa8","#6f7f48"],
+["Echinacea Purpurea","Echinacea purpurea","cone","#c06a8f","#6f7f48"],
+["Elecampane","Inula helenium","daisy","#e2b53a","#7a8a50"],
+["Ginger","Zingiber officinale","reeds","#d9b46a","#6f8f4a"],
+["Grindelia","Grindelia robusta","daisy","#e0b030","#7f8a4a"],
+["Hibiscus","Hibiscus sabdariffa","cup","#a83a3a","#5f7a3e"],
+["Lady's Mantle","Alchemilla vulgaris","mantle","#cfd27a","#88a05a"],
+["Lavender","Lavendula spp.","spike","#8e7bbf","#8e9a7a"],
+["Lemon Balm","Melissa officinalis","bush","#e8e4c8","#86a24e"],
+["Lemon Verbena","Aloysia citrodora","bush","#f0ead6","#8aa056"],
+["Lemongrass","Cymbopogon citratus","grass","#b8c070","#8aa45a"],
+["Marigold","Tagetes spp.","pompom","#e07a24","#5f7a3e"],
+["Marshmallow","Althaea officinalis","bells","#ecd2d8","#8a9c78"],
+["Meadowsweet","Filipendula ulmaria","umbel","#f1ead2","#6f8048"],
+["Mullein","Verbascum thapsus","tallspike","#e8cc4a","#a4ab8a"],
+["Nettle","Urtica diocia","bush","#c8c8a0","#4f6a34"],
+["Passionflower","Passiflora incarnata","vine","#9a7ec0","#6f8a4c"],
+["Plantain, Broad Leaf","Plantago major","rosette","#8a7a4a","#6f8a44"],
+["Plantain, Long Leaf","Plantago lanceolata","rosette","#6a5a3a","#7a8f4a"],
+["Red Root","Ceanothus americanus","umbel","#f3efe4","#5f7a3e"],
+["Rue","Ruta graveolens","daisies","#e2cf5a","#8aa09a"],
+["Sage","Salvia officinalis","bush","#a98fc8","#98a88a"],
+["Self Heal","Prunella vulgaris","spike","#7a5aa8","#6f8a4a"],
+["Scullcap","Scutellaria lateriflora","bells","#8a9ad0","#6f8a4a"],
+["Sochan","Rudbeckia laciniata","daisy","#e8c040","#6f8048"],
+["Spilanthes","Acmella acmella","buttons","#e8b83a","#5f7a3e"],
+["St. John's Wort","Hypericum perforatum","daisies","#ecc23a","#6f8a44"],
+["Stachys","Stachys officinalis","spike","#b85a8a","#6f8a4a"],
+["Tulsi Kapoor","Ocimum africanum","spike","#c8b0d0","#7a9a4e"],
+["Tulsi","Ocimum tenuiflorum","spike","#9a6a9a","#6a7a44"],
+["Valerian","Valeriana officinalis","umbel","#ead6dc","#6f8048"],
+["Wormwood","Artemisia absinthium","feathery","#d8d6a8","#a8b0a0"],
+["Yarrow","Achillea millefolium","umbel","#f2ecd8","#7f8a52"]];
+function rng(seed){return function(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}}
+function f(n){return Math.round(n*10)/10}
+var S='stroke="'+INK+'" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"';
+/* Tapered stem: a filled shape, thick at the soil and thin at the tip, with an ink edge. */
+function stem(x,y0,y1,bend){var cx=x+bend,cy=(y0+y1)/2,ex=x+bend*.4,w=2.6;
+  return '<path d="M'+f(x-w)+' '+y0+' Q'+f(cx-w*.7)+' '+f(cy)+' '+f(ex-.8)+' '+y1+' L'+f(ex+.8)+' '+y1+' Q'+f(cx+w*.7)+' '+f(cy)+' '+f(x+w)+' '+y0+'Z" fill="#5b6a3a" '+S+'/>'}
+/* Leaf with an inked midrib. */
+function leaf(x,y,ang,len,w,c){var r=ang*Math.PI/180,ex=x+Math.cos(r)*len,ey=y+Math.sin(r)*len,nx=-Math.sin(r)*w,ny=Math.cos(r)*w,mx=(x+ex)/2,my=(y+ey)/2;
+  return '<path d="M'+f(x)+' '+f(y)+' Q'+f(mx+nx)+' '+f(my+ny)+' '+f(ex)+' '+f(ey)+' Q'+f(mx-nx)+' '+f(my-ny)+' '+f(x)+' '+f(y)+'Z" fill="'+c+'" '+S+'/>'+
+    (len>12?'<path d="M'+f(x)+' '+f(y)+' L'+f(x+(ex-x)*.78)+' '+f(y+(ey-y)*.78)+'" stroke="'+INK+'" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>':'')}
+function dot(x,y,r,c){return '<circle cx="'+f(x)+'" cy="'+f(y)+'" r="'+f(r)+'" fill="'+c+'" '+S+'/>'}
+function petals(x,y,n,len,w,c,R){var s='';for(var i=0;i<n;i++)s+=leaf(x,y,i*360/n+R()*12,len,w,c);return s}
+function draw(shape,fc,lc,R){
+  var g='',top=34+R()*10,cx=60;
+  switch(shape){
+  case 'daisy': case 'cone':
+    g+=stem(cx,104,top,8-R()*16)+leaf(cx,86,200+R()*20,22,6,lc)+leaf(cx,78,-20-R()*20,22,6,lc);
+    g+=petals(cx+2,top,shape==='cone'?10:12,shape==='cone'?17:15,4,fc,R)+dot(cx+2,top,shape==='cone'?7:6,shape==='cone'?'#7a4a2a':'#c98a2a');break;
+  case 'daisies':
+    for(var i=0;i<3;i++){var x=cx-18+i*18,t=top+12+R()*18;g+=stem(x,104,t,R()*10-5)+petals(x,t,shape==='daisies'?9:8,9,3,fc,R)+dot(x,t,3.6,'#e2b43a')}
+    g+=leaf(cx,96,200,18,5,lc)+leaf(cx,96,-20,18,5,lc);break;
+  case 'pompom':
+    g+=stem(cx,104,top+6,R()*10-5)+leaf(cx,88,205,20,6,lc)+leaf(cx,84,-25,20,6,lc);
+    for(var k=0;k<14;k++){var a=k/14*Math.PI*2;g+=dot(cx+Math.cos(a)*9,top+6+Math.sin(a)*8,5.2,fc)}g+=dot(cx,top+6,6,fc);break;
+  case 'spike': case 'tallspike':
+    var n=shape==='tallspike'?1:3;
+    for(var j=0;j<n;j++){var xx=n===1?cx:cx-16+j*16,tt=(shape==='tallspike'?18:top)+R()*12;g+=stem(xx,104,tt,R()*8-4);
+      for(var q=0;q<(shape==='tallspike'?9:6);q++)g+=dot(xx+(q%2?3:-3),tt+q*5.6,shape==='tallspike'?4.4:3.6,fc)}
+    g+=leaf(cx,98,200,22,7,lc)+leaf(cx,98,-20,22,7,lc)+leaf(cx,92,250,16,6,lc);break;
+  case 'candelabra':
+    g+=stem(cx,104,top+10,0);for(var b=-1;b<=1;b++){var bx=cx+b*16;g+='<path d="M'+cx+' 76 Q'+bx+' 70 '+bx+' '+(top+6)+'" fill="none" '+S+'/>';for(var q2=0;q2<5;q2++)g+=dot(bx,top+6+q2*5,3,fc)}
+    g+=leaf(cx,92,205,20,5,lc)+leaf(cx,92,-25,20,5,lc);break;
+  case 'umbel':
+    g+=stem(cx,104,top+14,R()*8-4)+leaf(cx,94,205,22,6,lc)+leaf(cx,86,-25,22,6,lc);
+    for(var u=-3;u<=3;u++){var ux=cx+u*6,uy=top+8+Math.abs(u)*2.4;g+='<path d="M'+cx+' '+(top+16)+' L'+f(ux)+' '+f(uy)+'" '+S+' fill="none"/>'+dot(ux,uy-2,3.6,fc)+dot(ux+2.5,uy-6,3,fc)}break;
+  case 'cup':
+    g+=stem(cx,104,top+8,R()*10-5)+leaf(cx,96,200,20,6,lc)+leaf(cx,92,-20,20,6,lc);
+    g+='<path d="M'+(cx-16)+' '+(top-4)+' Q'+(cx-18)+' '+(top+18)+' '+cx+' '+(top+14)+' Q'+(cx+18)+' '+(top+18)+' '+(cx+16)+' '+(top-4)+' Q'+cx+' '+(top+6)+' '+(cx-16)+' '+(top-4)+'Z" fill="'+fc+'" '+S+'/>'+dot(cx,top+6,3,'#3a2a1a');break;
+  case 'bells':
+    g+=stem(cx,104,top,R()*10-5);for(var e=0;e<4;e++){var ey2=top+6+e*9,ex2=cx+(e%2?9:-9);g+='<path d="M'+cx+' '+(ey2-4)+' L'+ex2+' '+ey2+'" '+S+' fill="none"/><path d="M'+(ex2-4)+' '+ey2+' Q'+ex2+' '+(ey2+11)+' '+(ex2+4)+' '+ey2+'Z" fill="'+fc+'" '+S+'/>'}
+    g+=leaf(cx,98,195,26,9,lc)+leaf(cx,98,-15,26,9,lc);break;
+  case 'rosette':
+    for(var r2=0;r2<6;r2++)g+=leaf(cx,103,180+r2*36+R()*10-180*(r2>2?0:0),24,shape==='rosette'?8:6,lc);
+    g+=stem(cx-6,100,top+14,-4)+stem(cx+8,100,top+20,5);g+=dot(cx-8,top+14,4.4,fc)+dot(cx+10,top+20,4.4,fc);break;
+  case 'bush':
+    g+=stem(cx,104,58,-4)+stem(cx-14,104,66,-8)+stem(cx+14,104,64,8);for(var l2=0;l2<10;l2++){var lx=cx-20+R()*40,ly=58+R()*40;g+=leaf(lx,ly,(lx<cx?200:-20)+R()*30-15,15,7,lc)}
+    for(var p2=0;p2<3;p2++)g+=dot(cx-14+p2*14,52+R()*10,2.6,fc);break;
+  case 'grass': case 'grassSpike': case 'reeds':
+    for(var gb=0;gb<7;gb++){var gx=cx-12+gb*4,gt=top-6+R()*22,gbend=(gb-3)*5;g+='<path d="M'+gx+' 104 Q'+(gx+gbend*.5)+' '+(gt+30)+' '+(gx+gbend)+' '+gt+'" fill="none" stroke="'+INK+'" stroke-width="4.6" stroke-linecap="round"/><path d="M'+gx+' 104 Q'+(gx+gbend*.5)+' '+(gt+30)+' '+(gx+gbend)+' '+gt+'" fill="none" stroke="'+lc+'" stroke-width="2" stroke-linecap="round"/>'}
+    if(shape==='grassSpike')g+=stem(cx+4,104,top-12,6)+dot(cx+7,top-10,3.4,fc)+dot(cx+6,top-4,3.4,fc)+dot(cx+5,top+2,3.4,fc);
+    if(shape==='reeds')g+=leaf(cx-6,70,200,18,5,lc)+leaf(cx+6,64,-20,18,5,lc);break;
+  case 'vine':
+    g+='<path d="M'+(cx+16)+' 104 L'+(cx+14)+' 22" fill="none" stroke="'+INK+'" stroke-width="6" stroke-linecap="round"/><path d="M'+(cx+16)+' 104 L'+(cx+14)+' 22" fill="none" stroke="#a8804c" stroke-width="3" stroke-linecap="round"/>';
+    g+='<path d="M'+(cx-10)+' 104 C'+(cx+30)+' 90 '+(cx-26)+' 70 '+(cx+12)+' 58 S'+(cx-20)+' 34 '+(cx+12)+' 26" fill="none" '+S+'/>';
+    g+=leaf(cx,86,200,16,6,lc)+leaf(cx-4,62,-30,16,6,lc)+leaf(cx+4,44,200,14,5,lc);
+    g+=petals(cx-12,46,5,9,4,fc,R)+dot(cx-12,46,3,'#f0e6c0')+petals(cx+4,74,5,8,3.6,fc,R)+dot(cx+4,74,2.6,'#f0e6c0');break;
+  case 'mantle':
+    for(var m=0;m<5;m++){var mx=cx-20+m*10,my=82+(m%2)*8;g+=dot(mx,my,11,lc)}
+    for(var m2=0;m2<6;m2++)g+=dot(cx-14+m2*6,54+R()*8,2.4,fc);g+=stem(cx-8,80,56,-2)+stem(cx+8,80,58,3);break;
+  case 'buttons':
+    g+=leaf(cx,96,200,22,8,lc)+leaf(cx,96,-20,22,8,lc);
+    for(var bt=0;bt<3;bt++){var bx2=cx-16+bt*16,by=top+10+R()*18;g+=stem(bx2,100,by,R()*8-4)+'<ellipse cx="'+bx2+'" cy="'+f(by)+'" rx="5" ry="7" fill="'+fc+'" '+S+'/>'+dot(bx2,by-5,2.6,'#a8401e')}break;
+  case 'feathery':
+    g+=stem(cx,104,top,0);for(var fe=0;fe<6;fe++){var fy=top+8+fe*10;g+=leaf(cx,fy,205,16-fe*.6,3,lc)+leaf(cx,fy,-25,16-fe*.6,3,lc)}
+    for(var fd=0;fd<5;fd++)g+=dot(cx-6+fd*3,top-2+(fd%2)*3,2.2,fc);break;
+  }
+  return g;
+}
+
+/* Five raised beds, alphabetical, with a sign on each. */
+var BEDS=[[0,9],[9,18],[18,27],[27,37],[37,46]];
+var host=document.getElementById('vhf-hp-beds'),out='';
+BEDS.forEach(function(b,bi){
+  var list=P.slice(b[0],b[1]),R0=rng(bi*31+5),W=1200,soil=232;
+  var s='<div class="bed"><svg viewBox="0 0 1200 300" role="group" aria-label="Bed '+(bi+1)+': '+list[0][0]+' to '+list[list.length-1][0]+'"><g filter="url(#vhf-hp-wob)">';
+  // the raised bed: soil, two plank boards with grain and nails, hatched shadow beneath
+  s+='<ellipse cx="610" cy="292" rx="560" ry="10" fill="url(#vhf-hp-hatch)" opacity=".35"/>';
+  s+='<path d="M60 '+soil+' Q300 '+(soil-14)+' 600 '+(soil-8)+' T1160 '+(soil-4)+' L1160 '+(soil+10)+' L60 '+(soil+10)+'Z" fill="#5a3f28" '+S+'/>';
+  for(var t=0;t<16;t++){var tx=110+R0()*1020;s+='<path d="M'+f(tx)+' '+(soil-3)+' l-5 -11 M'+f(tx)+' '+(soil-3)+' l1 -14 M'+f(tx)+' '+(soil-3)+' l6 -10" stroke="#4f6a34" stroke-width="2.6" stroke-linecap="round" fill="none"/>'}
+  for(var c=0;c<26;c++){var cx=80+R0()*1060;s+='<path d="M'+f(cx)+' '+f(soil-2-R0()*6)+' q4 -4 8 0" fill="none" stroke="'+INK+'" stroke-width="1.6"/>'}
+  s+='<path d="M50 '+(soil+8)+' L1170 '+(soil+4)+' L1172 '+(soil+34)+' L48 '+(soil+38)+'Z" fill="#a47a4c" '+S+'/>';
+  s+='<path d="M48 '+(soil+38)+' L1172 '+(soil+34)+' L1170 '+(soil+62)+' L52 '+(soil+64)+'Z" fill="#8e6538" '+S+'/>';
+  for(var gl=0;gl<9;gl++){var gx=90+gl*120+R0()*40,gy=soil+18+R0()*36;s+='<path d="M'+f(gx)+' '+f(gy)+' q30 -3 60 1" fill="none" stroke="'+INK+'" stroke-width="1.4" opacity=".55"/>'}
+  [62,1158].forEach(function(nx){s+=dot(nx,soil+22,2.6,'#3a3a36')+dot(nx,soil+50,2.6,'#3a3a36')});
+  // the sign post at the left end
+  var first=list[0][0].charAt(0),last=list[list.length-1][0].charAt(0);
+  s+='<path d="M28 '+(soil+60)+' L34 '+(soil-70)+'" stroke="'+INK+'" stroke-width="9" stroke-linecap="round"/><path d="M28 '+(soil+60)+' L34 '+(soil-70)+'" stroke="#8e6538" stroke-width="5" stroke-linecap="round"/>';
+  s+='<path d="M4 '+(soil-112)+' L72 '+(soil-118)+' L74 '+(soil-74)+' L6 '+(soil-70)+'Z" fill="#b98a57" '+S+'/>';
+  s+='<text x="39" y="'+(soil-86)+'" text-anchor="middle" transform="rotate(-4 39 '+(soil-92)+')" font-family="IM Fell English, Georgia, serif" font-size="22" fill="#2b1a0e">'+first+(last!==first?'\u2013'+last:'')+'</text>';
+  // plants, spread along the bed with a little jitter, alternating back and front rows
+  var n=list.length,gap=(W-200)/n;
+  list.forEach(function(p,i){var gi=b[0]+i,R=rng(gi*7919+13);
+    var x=150+gap*(i+.5)+(R()*24-12),back=i%2===0,y=soil+(back?-6:6)+R()*4,sc=(back?1.7:1.95)+R()*.2;
+    var d=(6+R()*4).toFixed(1)+'s',dl=(-R()*6).toFixed(1)+'s',a=(1+R()*1.4).toFixed(2)+'deg';
+    s+='<g class="pl" tabindex="0" role="button" aria-pressed="false" data-i="'+gi+'" aria-label="'+p[0].replace(/"/g,'&quot;')+', '+p[1].replace(/"/g,'&quot;')+'">'+
+       '<ellipse class="glow" cx="'+f(x)+'" cy="'+f(y)+'" rx="'+f(34*sc)+'" ry="'+f(9*sc)+'" fill="#f3d98a" opacity=".0" stroke="'+INK+'" stroke-width="2" stroke-dasharray="4 6"/>'+
+       '<ellipse cx="'+f(x+8)+'" cy="'+f(y+2)+'" rx="'+f(26*sc)+'" ry="'+f(5*sc)+'" fill="url(#vhf-hp-hatch)" opacity=".45"/>'+
+       '<g transform="translate('+f(x)+' '+f(y)+') scale('+f(sc)+') translate(-60 -104)"><g class="sway" style="--d:'+d+';--dl:'+dl+';--a:'+a+'">'+draw(p[2],p[3],p[4],R)+'</g></g></g>';
+  });
+  s+='</g></svg></div>';out+=s;
+});
+host.innerHTML=out;
+
+/* Tooltip: hover or focus shows it; a tap or Enter pins it until another plant is picked. */
+var scene=document.getElementById('vhf-hp-scene'),tip=document.getElementById('vhf-hp-tip'),pinned=null;
+function show(g){var p=P[+g.getAttribute('data-i')],r=g.getBoundingClientRect(),sr=scene.getBoundingClientRect();
+  tip.querySelector('b').textContent=p[0];tip.querySelector('i').textContent=p[1];
+  var x=Math.min(Math.max(r.left+r.width/2-sr.left,110),sr.width-110);tip.style.left=x+'px';tip.style.top=(r.top-sr.top-6)+'px';tip.classList.add('show')}
+function hide(){if(!pinned)tip.classList.remove('show')}
+function pick(g){if(pinned&&pinned!==g){pinned.classList.remove('on');pinned.setAttribute('aria-pressed','false')}
+  var on=pinned!==g;pinned=on?g:null;g.classList.toggle('on',on);g.setAttribute('aria-pressed',on?'true':'false');
+  g.classList.remove('rustle');void g.getBoundingClientRect();g.classList.add('rustle');if(on)show(g);else tip.classList.remove('show')}
+host.addEventListener('mouseover',function(e){var g=e.target.closest('.pl');if(g&&!pinned)show(g)});
+host.addEventListener('mouseout',function(e){var g=e.target.closest('.pl');if(g&&!g.contains(e.relatedTarget))hide()});
+host.addEventListener('focusin',function(e){var g=e.target.closest('.pl');if(g)show(g)});
+host.addEventListener('focusout',hide);
+host.addEventListener('click',function(e){var g=e.target.closest('.pl');if(g)pick(g)});
+host.addEventListener('keydown',function(e){var g=e.target.closest('.pl');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pick(g)}});
+host.addEventListener('scroll',function(){if(pinned)show(pinned)},true);
+})();
+</script>
+</body>
+</html>

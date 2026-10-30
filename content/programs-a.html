@@ -1,0 +1,131 @@
+<!-- VHF Programs page, part A (hero, program overview, Agritherapy). One Squarespace Code block. Styles scoped to .vhf-g.
+     Part B (Clay & Camaraderie, Workshops, Events, CTA) is a second Code block in the next section. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-g{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a8603e;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;--serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-g:not(.is-on){display:none}
+.vhf-g *{box-sizing:border-box}
+.vhf-g a{text-decoration:none!important}
+.vhf-g h1,.vhf-g h2,.vhf-g h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-g h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-g h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-g h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-g h1 em{font-style:italic;font-weight:400;color:var(--tan)}
+.vhf-g p{max-width:62ch}
+.vhf-g .sec{margin-top:var(--sec);scroll-margin-top:120px}
+.vhf-g .sec-intro{margin:0 0 32px;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted)}
+.vhf-g-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-g-eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-g-hero .vhf-g-eyebrow,.vhf-g-band .vhf-g-eyebrow{color:var(--tan)}
+.vhf-g-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(420px,62vh,640px);border-radius:var(--r-lg);overflow:hidden;color:var(--cream);background:var(--olive-deep)}
+.vhf-g-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vhf-g-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,44,26,.92) 0%,rgba(38,44,26,.7) 45%,rgba(38,44,26,.15) 100%)}
+.vhf-g-hero__text{position:relative;z-index:2;padding:clamp(28px,6vw,72px);max-width:760px}
+.vhf-g-hero h1{color:var(--cream)}
+.vhf-g-hero p{margin:0;color:var(--cream);opacity:.92;font-size:clamp(17px,1.6vw,20px)}
+.vhf-g-furrow{position:absolute;left:0;right:0;bottom:0;z-index:2;width:100%;height:28px;opacity:.35;color:var(--tan);pointer-events:none}
+.vhf-g-ways{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:clamp(28px,4vw,48px)}
+.vhf-g-way,.vhf-g-group{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--c,var(--olive));border-radius:var(--r);overflow:hidden;color:var(--ink)!important;transition:transform .2s,box-shadow .2s}
+.vhf-g-way:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vhf-g-way img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.vhf-g-way__b{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
+.vhf-g-way b{font:600 22px/1.2 var(--serif);margin-bottom:6px}
+.vhf-g-way span{flex:1;font-size:15px;line-height:1.5;color:var(--muted)}
+.vhf-g-way em,.vhf-g-more{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font:600 15px/1.2 var(--sans);font-style:normal;color:var(--navy)!important}
+.vhf-g-way em{color:var(--c,var(--olive))!important}
+.vhf-g-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vhf-g-group{padding:26px}
+.vhf-g-group:nth-child(2){--c:var(--navy)}
+.vhf-g-group:nth-child(3){--c:var(--clay)}
+.vhf-g-group img{width:64px;height:64px;object-fit:contain;margin-bottom:14px}
+.vhf-g-group p{margin:0;flex:1;font-size:15.5px;line-height:1.65;color:var(--muted)}
+.vhf-g-more{align-self:flex-start;border-bottom:2px solid currentColor;padding-bottom:3px}
+.vhf-g-band{position:relative;overflow:hidden;margin-top:22px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(28px,5vw,52px) clamp(28px,5vw,56px) clamp(40px,6vw,64px)}
+.vhf-g-band b{display:block;font:600 clamp(36px,5vw,60px)/1 var(--serif);color:var(--tan);margin-bottom:10px}
+.vhf-g-band span{display:block;font-size:16px;color:var(--cream);opacity:.9;max-width:44ch}
+.vhf-g-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--cream);background:var(--cream);color:var(--olive-deep)!important;white-space:nowrap;transition:background-color .18s}
+.vhf-g-btn:hover{background:#fff;border-color:#fff}
+.vhf-g-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.vhf-g-photos img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r)}
+.vhf-g a:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-g-band a:focus-visible{outline-color:var(--tan)}
+.vhf-g.vhf-g-anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-g.vhf-g-anim .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-g.vhf-g-anim .reveal{opacity:1;transform:none}.vhf-g *{transition:none!important}}
+@media (max-width:960px){.vhf-g-ways{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:800px){
+.vhf-g{font-size:16px}
+.vhf-g-hero{min-height:480px}
+.vhf-g-hero::before{background:linear-gradient(0deg,rgba(38,44,26,.94) 0%,rgba(38,44,26,.6) 60%,rgba(38,44,26,.25) 100%)}
+.vhf-g-groups,.vhf-g-band{grid-template-columns:1fr}
+.vhf-g-btn{justify-content:center}
+.vhf-g-photos{grid-template-columns:1fr 1fr}
+.vhf-g-photos img:last-child{display:none}
+}
+@media (max-width:480px){.vhf-g-ways{grid-template-columns:1fr}}
+</style>
+
+<div class="vhf-g">
+
+<section class="vhf-g-hero" aria-labelledby="vhf-g-title">
+  <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/1751910402181-CRYELGSY05GHJJR3JHRY/VHF+1.jpg?format=2500w" alt="Veterans and volunteers holding an American flag together outdoors at the farm">
+  <div class="vhf-g-hero__text">
+    <p class="vhf-g-eyebrow">Our programs</p>
+    <h1 id="vhf-g-title">Hands-on healing, <em>side by side</em></h1>
+    <p>Our farm-based programs support veterans through hands-on healing, meaningful connection, and a wide range of therapeutic experiences.</p>
+  </div>
+  <svg class="vhf-g-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<nav class="vhf-g-ways" aria-label="Our programs">
+  <a class="vhf-g-way reveal" href="#agritherapy" style="--c:var(--olive)"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/806b12dd-9d42-4fec-bb42-4336d4b2a1d6/programs.jpg?format=750w" alt="" loading="lazy"><span class="vhf-g-way__b"><b>Agritherapy</b><span>Gardens, beehives, and medicinal herbs, tended together.</span><em>Explore &darr;</em></span></a>
+  <a class="vhf-g-way reveal" href="#clay" style="--c:var(--clay)"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a46b1692-b0f8-4746-93e8-fd1b19f9ff1c/clay-camaraderie-studio.jpg?format=750w" alt="" loading="lazy"><span class="vhf-g-way__b"><b>Clay &amp; Camaraderie</b><span>Pottery with our resident potter, Sophia Lauterbach.</span><em>Explore &darr;</em></span></a>
+  <a class="vhf-g-way reveal" href="#workshops" style="--c:var(--navy)"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/9c59f137-20ad-4ee9-bf3b-10003a45264f/20241106_110437+%281%29.jpg?format=750w" alt="" loading="lazy"><span class="vhf-g-way__b"><b>Workshops</b><span>Therapies and therapeutic experiences, all designed to heal.</span><em>Explore &darr;</em></span></a>
+  <a class="vhf-g-way reveal" href="#events" style="--c:var(--olive-deep)"><img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/b758acfd-7831-4c1c-b430-e955566c534d/20250222_194705.jpg?format=750w" alt="" loading="lazy"><span class="vhf-g-way__b"><b>Events</b><span>Remembrance, outings, and community gatherings.</span><em>Explore &darr;</em></span></a>
+</nav>
+
+<section class="sec" id="agritherapy" aria-labelledby="vhf-g-agri">
+  <p class="vhf-g-eyebrow">Grow together</p>
+  <h2 id="vhf-g-agri">Agritherapy</h2>
+  <p class="sec-intro">Three volunteer groups manage our produce and flower gardens, beehives, and medicinal plants. The healing comes from working together in the soil.</p>
+  <div class="vhf-g-groups">
+    <article class="vhf-g-group reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/fb289a97-6d08-456c-83b7-796dcd265132/8.png?format=300w" alt="" loading="lazy">
+      <h3>Garden Group</h3>
+      <p>We grow produce and flower bouquets that are donated to veterans and caregivers at the Charles George VA Medical Center, SafeLight Women's Shelter, IAM Food Pantry, Hendersonville Rescue Mission, the Storehouse, SafeLight's Dandelion Caf&eacute;, Carolina Reserve of Laurel Park and Hendersonville, The Landing, and the Veterans Restoration Quarters, a shelter for veterans experiencing homelessness in Asheville. Because the healing comes from the process of working together in the soil, everything we grow is a byproduct to be shared with our veteran community.</p>
+      <a class="vhf-g-more" href="/garden">Meet the Garden Group &rarr;</a>
+    </article>
+    <article class="vhf-g-group reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/f93a5d0a-ff79-4167-ab30-950ccf5aefaa/9.png?format=300w" alt="" loading="lazy">
+      <h3>Bee Squad</h3>
+      <p>Veteran beekeeping is more than just harvesting honey. It's a powerful form of healing and connection. Working with bees teaches patience, focus, and calm, offering veterans a peaceful, purposeful activity that supports both mental health and the environment. From building hives to tending colonies, veterans gain hands-on skills while helping local ecosystems. Plus, the honey's pretty sweet too!</p>
+      <a class="vhf-g-more" href="/beekeeping">Meet the Bee Squad &rarr;</a>
+    </article>
+    <article class="vhf-g-group reveal">
+      <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/d92e1065-56bb-490c-b84e-61117476e150/10.png?format=300w" alt="" loading="lazy">
+      <h3>Medicinal Herb Squad</h3>
+      <p>The Medicinal Herb Squad grows 46 medicinal plants and crafts them into teas, tinctures, salves, and balms, made specifically for our veteran community. For many veterans, the top challenges are sleep, anxiety, and inflammation. The goal of our plant medicine program is to offer natural, plant-based relief instead of just another pill.</p>
+      <a class="vhf-g-more" href="/herb-squad">Meet the Herb Squad &rarr;</a>
+    </article>
+  </div>
+  <div class="vhf-g-band reveal">
+    <div><b>Nearly 80,000 lbs of produce</b><span>grown and donated to our veteran community to date, plus hundreds of bouquets</span></div>
+    <a class="vhf-g-btn" href="/volunteer">Become a volunteer &rarr;</a>
+    <svg class="vhf-g-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </div>
+  <div class="vhf-g-photos">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/a81a1139-a0ea-4d47-863f-59504ef5400d/IMG_1380.jpg?format=750w" alt="A volunteer leading a group through the farm's garden beds" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/eeb7b182-bd29-4d20-ada3-347b2355ecc9/20220822_125037.jpg?format=750w" alt="Crates of freshly harvested tomatoes and peppers" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/6477470669facb6ffbb41557/806b12dd-9d42-4fec-bb42-4336d4b2a1d6/programs.jpg?format=750w" alt="Beekeepers in protective suits tending hives at the farm" loading="lazy">
+  </div>
+</section>
+
+<div id="clay" style="scroll-margin-top:120px"></div>
+</div>
+<script>
+/* Content stays hidden in the Squarespace editor (scripts off there), so the block is sized small and grows to fit on the live page. */
+(function(){var r=document.querySelectorAll('.vhf-g');for(var i=0;i<r.length;i++){var w=r[i];w.classList.add('is-on');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){w.classList.add('vhf-g-anim');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+w.querySelectorAll('.reveal').forEach(function(el){io.observe(el)})}}})();
+</script>

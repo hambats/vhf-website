@@ -1,0 +1,471 @@
+<!-- VHF FAQ page, full layout for one Squarespace Code block. Styles scoped to .vhf-f. Answers use only facts stated on the other content pages; the FAQPage JSON-LD at the bottom mirrors the visible questions and answers, so update both together. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+.vhf-f{--olive:#5c6642;--olive-deep:#3d4529;--moss:#8a9467;--navy:#3f5a78;--navy-deep:#2b3f56;--clay:#a25c3b;--clay-soft:#f3e4da;--cream:#f9f7f1;--paper:#fffdf7;--tan:#ddd6b8;--line:#e4dfcc;--ink:#262622;--muted:#5f5f58;--serif:"Fraunces","Epilogue",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif;--r-sm:6px;--r:14px;--r-lg:22px;--shadow:0 24px 48px -32px rgba(38,38,34,.45);--sec:clamp(64px,9vw,120px);font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--ink);max-width:1200px;margin:0 auto}
+.vhf-f *{box-sizing:border-box}
+.vhf-f a{text-decoration:none!important}
+.vhf-f h1,.vhf-f h2,.vhf-f h3{font-family:var(--serif);font-weight:600;color:var(--ink);margin:0 0 .4em;text-wrap:balance}
+.vhf-f h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.vhf-f h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;letter-spacing:-.01em}
+.vhf-f h3{font-size:clamp(20px,2vw,24px);line-height:1.25}
+.vhf-f h1 em,.vhf-f h2 em{font-style:italic;font-weight:400;color:var(--clay)}
+.vhf-f p{max-width:62ch}
+.vhf-f .vhf-f-eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.vhf-f .vhf-f-eye::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.vhf-f .vhf-f-dark .vhf-f-eye{color:var(--tan)}
+.vhf-f .vhf-f-hero{position:relative;overflow:hidden;border-radius:var(--r-lg);background:var(--paper);border:1px solid var(--line);padding:clamp(28px,6vw,72px) clamp(24px,6vw,72px) clamp(44px,7vw,84px)}
+.vhf-f .vhf-f-hero h1{margin-bottom:18px}
+.vhf-f .vhf-f-hero>p,.vhf-f .vhf-f-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--muted);margin:0}
+.vhf-f .vhf-f-furrow{position:absolute;left:0;right:0;bottom:0;width:100%;height:28px;color:var(--olive);opacity:.18;pointer-events:none}
+.vhf-f .vhf-f-dark .vhf-f-furrow{color:var(--tan);opacity:.35}
+.vhf-f .vhf-f-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);border:2px solid var(--olive);background:var(--olive);color:var(--cream)!important;cursor:pointer;transition:background-color .18s,border-color .18s}
+.vhf-f .vhf-f-btn:hover{background:var(--olive-deep);border-color:var(--olive-deep)}
+.vhf-f .vhf-f-btn--navy{background:var(--navy);border-color:var(--navy)}
+.vhf-f .vhf-f-btn--navy:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.vhf-f .vhf-f-btn--outline{background:transparent;border-color:var(--navy);color:var(--navy)!important}
+.vhf-f .vhf-f-btn--outline:hover{background:#e6ecf2;border-color:var(--navy)}
+.vhf-f .vhf-f-btn--light{background:var(--cream);border-color:var(--cream);color:var(--olive-deep)!important}
+.vhf-f .vhf-f-btn--light:hover{background:#fff;border-color:#fff}
+.vhf-f .vhf-f-btn--ghost{background:transparent;border-color:rgba(249,247,241,.7);color:var(--cream)!important}
+.vhf-f .vhf-f-btn--ghost:hover{background:rgba(249,247,241,.12);border-color:var(--cream)}
+.vhf-f a:focus-visible,.vhf-f button:focus-visible,.vhf-f summary:focus-visible,.vhf-f input:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.vhf-f .vhf-f-dark a:focus-visible,.vhf-f .vhf-f-dark button:focus-visible{outline-color:var(--tan)}
+.vhf-f .vhf-f-dark{position:relative;overflow:hidden;background:var(--olive-deep);color:var(--cream);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px)}
+.vhf-f .vhf-f-dark h2,.vhf-f .vhf-f-dark h3{color:var(--cream)}
+.vhf-f .vhf-f-dark p{color:var(--cream);opacity:.9}
+.vhf-f .vhf-f-crisisbox{background:#e6ecf2;border:1px solid #cdd8e4;border-left:4px solid var(--navy);border-radius:var(--r-sm);color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.vhf-f *{transition:none!important}}
+@media (max-width:800px){.vhf-f{font-size:16px}}
+.vhf-f:not(.is-on){display:none}
+.vhf-f .sec{scroll-margin-top:110px}
+.vhf-f .sec+.sec{margin-top:clamp(40px,5vw,64px)}
+.vhf-f .sec h2{font-size:clamp(26px,2.8vw,36px);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.vhf-f .vhf-f-hero p a{color:var(--navy)!important;font-weight:600;border-bottom:1.5px solid currentColor}
+.vhf-f .vhf-f-search{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.vhf-f .vhf-f-search input{flex:1 1 280px;max-width:540px;padding:14px 20px;border-radius:999px;border:1.5px solid var(--line);font:400 16px var(--sans);color:var(--ink);background:var(--cream)}
+.vhf-f .vhf-f-search input:focus{border-color:var(--olive)}
+.vhf-f .vhf-f-search button{padding:13px 22px;border-radius:999px;border:2px solid var(--navy);background:transparent;color:var(--navy);font:600 15px/1 var(--sans);cursor:pointer;transition:background-color .18s}
+.vhf-f .vhf-f-search button:hover{background:#e6ecf2}
+.vhf-f .vhf-f-crisis{margin-top:22px;padding:18px 22px;font-size:16px;line-height:1.6}
+.vhf-f .vhf-f-crisis b{color:var(--navy-deep)}
+.vhf-f .vhf-f-crisis a{color:var(--navy)!important;font-weight:600;border-bottom:1.5px solid currentColor}
+.vhf-f .vhf-f-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start;margin-top:var(--sec)}
+.vhf-f .vhf-f-side{position:sticky;top:110px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px}
+.vhf-f .vhf-f-side .vhf-f-eye{margin-bottom:14px}
+.vhf-f .vhf-f-topics{margin:0;padding:0;list-style:none;display:grid;gap:2px}
+.vhf-f .vhf-f-topics a{display:block;padding:9px 12px;border-radius:var(--r-sm);font:500 15px/1.3 var(--sans);color:var(--ink)!important;border-left:3px solid transparent;transition:background-color .15s,border-color .15s}
+.vhf-f .vhf-f-topics a:hover{background:var(--cream);border-left-color:var(--clay)}
+.vhf-f .vhf-f-list{display:grid;gap:12px}
+.vhf-f details{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);transition:border-color .18s,box-shadow .18s}
+.vhf-f details:hover{border-color:#d3cdb4}
+.vhf-f details[open]{border-color:var(--olive);box-shadow:var(--shadow)}
+.vhf-f details[hidden]{display:none}
+.vhf-f summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;padding:20px 24px;font:600 clamp(18px,1.6vw,20px)/1.35 var(--serif);color:var(--ink)}
+.vhf-f summary::-webkit-details-marker{display:none}
+.vhf-f summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;background:var(--cream);border:1px solid var(--line);color:var(--olive);font:500 20px/28px var(--sans);text-align:center;transition:background-color .18s,color .18s}
+.vhf-f details[open] summary::after{content:"2";background:var(--olive);border-color:var(--olive);color:var(--cream)}
+.vhf-f .ans{padding:0 24px 22px;font-size:16.5px;line-height:1.7;color:#3c3c36}
+.vhf-f .ans p{margin:0 0 12px}
+.vhf-f .ans ul{margin:0 0 12px;padding-left:20px;max-width:62ch}
+.vhf-f .ans li{margin:0 0 4px}
+.vhf-f .ans a{color:var(--navy)!important;font-weight:500;border-bottom:1px solid currentColor}
+.vhf-f .ans .go{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none;max-width:none}
+.vhf-f .ans .go li{margin:0}
+.vhf-f .ans .go a{display:inline-block;padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:var(--cream);font:600 14px/1 var(--sans);color:var(--navy)!important}
+.vhf-f .ans .go a:hover{border-color:var(--navy)}
+.vhf-f .vhf-f-none{display:none;margin-top:16px;padding:18px 22px;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted)}
+.vhf-f .vhf-f-none a{color:var(--navy)!important;border-bottom:1px solid currentColor}
+.vhf-f .vhf-f-more{margin-top:var(--sec);display:grid;grid-template-columns:1.3fr 1fr;gap:22px;align-items:stretch}
+.vhf-f .vhf-f-ask p{margin:0 0 4px}
+.vhf-f .vhf-f-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.vhf-f .vhf-f-map{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(28px,4vw,44px)}
+.vhf-f .vhf-f-map h2{font-size:clamp(24px,2.4vw,30px)}
+.vhf-f .vhf-f-map ul{margin:14px 0 0;padding:0;list-style:none;columns:2;column-gap:22px}
+.vhf-f .vhf-f-map li{margin:0 0 10px;break-inside:avoid}
+.vhf-f .vhf-f-map a{color:var(--navy)!important;font-weight:500;font-size:15.5px}
+.vhf-f .vhf-f-map a:hover{border-bottom:1px solid currentColor}
+@media (max-width:900px){
+.vhf-f .vhf-f-layout{grid-template-columns:1fr}
+.vhf-f .vhf-f-side{position:static}
+.vhf-f .vhf-f-topics{display:flex;flex-wrap:wrap;gap:8px}
+.vhf-f .vhf-f-topics a{border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:var(--cream)}
+.vhf-f .vhf-f-topics a:hover{border-left-color:var(--line)}
+.vhf-f .vhf-f-more{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+.vhf-f summary{padding:16px 18px;font-size:17px}
+.vhf-f .ans{padding:0 18px 18px}
+.vhf-f .vhf-f-acts{flex-direction:column}
+}
+.vhf-f.vhf-f-anim>.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.vhf-f.vhf-f-anim>.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.vhf-f.vhf-f-anim>.reveal{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="vhf-f" id="vhf-f">
+
+<section class="vhf-f-hero" aria-labelledby="vhf-f-title">
+  <p class="vhf-f-eye">Frequently asked questions</p>
+  <h1 id="vhf-f-title">Questions about the farm</h1>
+  <p>Quick answers about visiting, our <a href="/programs">programs</a>, <a href="/volunteer">volunteering</a>, <a href="/donate">giving</a>, and how we work. Can't find yours? <a href="/contact">Contact us</a> or call <a href="tel:8285956111">(828) 595-6111</a>.</p>
+  <div class="vhf-f-search">
+    <label for="vhf-f-q" style="position:absolute;left:-9999px">Search the questions</label>
+    <input id="vhf-f-q" type="search" placeholder="Search the questions, e.g. cost, family, bees" autocomplete="off">
+    <button type="button" id="vhf-f-all">Open all answers</button>
+  </div>
+  <svg class="vhf-f-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+</section>
+
+<div class="vhf-f-crisis vhf-f-crisisbox" role="note"><b>In crisis or need help now?</b> Don't wait for a reply from us. Call <a href="tel:988">988, then press 1</a>, text <a href="sms:838255">838255</a>, or <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">chat online</a> with the Veterans Crisis Line. It's free, confidential, and open 24/7. In an emergency, call <a href="tel:911">911</a>.</div>
+
+<div class="vhf-f-layout">
+<nav class="vhf-f-side" aria-label="FAQ topics">
+  <p class="vhf-f-eye">Topics</p>
+  <ul class="vhf-f-topics" aria-label="Jump to a topic">
+    <li><a href="#faq-basics">The basics</a></li>
+    <li><a href="#faq-visit">Visiting</a></li>
+    <li><a href="#faq-programs">Programs &amp; events</a></li>
+    <li><a href="#faq-volunteer">Volunteering</a></li>
+    <li><a href="#faq-give">Giving</a></li>
+    <li><a href="#faq-about">About us</a></li>
+    <li><a href="#faq-help">Getting help</a></li>
+  </ul>
+</nav>
+<div class="vhf-f-main">
+
+<section class="sec" id="faq-basics" aria-labelledby="faq-basics-h">
+  <h2 id="faq-basics-h">The basics</h2>
+  <div class="vhf-f-list">
+    <details>
+      <summary>What is Veterans Healing Farm?</summary>
+      <div class="ans">
+        <p>A 501(c)(3) nonprofit farm in Mills River, North Carolina, founded in 2013 by John and Nicole Mahshie. Our mission is to enhance the mental, emotional, and physical well-being of our nation's veterans and their families, and our vision is an end to the veteran suicide crisis.</p>
+        <p>We do that through farm-based therapy (agritherapy), pottery, therapeutic workshops, and community events, in a safe, peaceful place to heal.</p>
+        <ul class="go"><li><a href="/about">Our mission &amp; farm</a></li><li><a href="/programs">Our programs</a></li><li><a href="/testimonials">Stories from the farm</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Do I have to be a veteran?</summary>
+      <div class="ans">
+        <p>Our programs are for veterans and their families. Some, like <a href="/programs#clay">Clay &amp; Camaraderie</a> pottery, are also open to active-duty service members and VHF volunteers, and our suicide prevention classes are open to everyone in Western North Carolina.</p>
+        <p>You don't have to be a veteran to <a href="/volunteer">volunteer</a>. Our community is veterans, families, caregivers, and anyone who just wants to help.</p>
+        <ul class="go"><li><a href="/programs">See programs</a></li><li><a href="/volunteer">Volunteer</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Can family members come too?</summary>
+      <div class="ans">
+        <p>Yes. We serve veterans <em>and</em> their families, and family members are welcome in our programs, workshops, and <a href="/events">events</a>. Caregivers and family members are also welcome to <a href="/volunteer#vhf-v-squads">join a volunteer squad</a>.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Does it cost anything?</summary>
+      <div class="ans">
+        <p>Our programs are at no cost to veterans and their families. In 2026, everything the farm provided was free to veterans, from workshops to produce, flowers, and herbal products (see <a href="/about">our 2026 impact</a>).</p>
+        <p>One small note: some workshops, including <a href="/programs#clay">pottery</a>, register through Regpack, which adds a $1 system charge. Cancellations there must be made at least 72 hours ahead.</p>
+        <ul class="go"><li><a href="/events">Find a workshop</a></li><li><a href="/donate">Help keep it free</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Is this therapy?</summary>
+      <div class="ans">
+        <p>Our programs center on brain health and healing through hands-on work and peer connection. Some workshops are actual therapies (equine, canine, art, music, and neurofeedback), and others are therapeutic experiences like blacksmithing, canning, herbal medicine, and pottery. See the full list under <a href="/programs#workshops">Workshops</a>.</p>
+        <p>The farm supports care but doesn't replace it. For clinical help, the VA's free <a href="/resources">mental health apps</a> and the <a href="https://www.veteranscrisisline.net/" target="_blank" rel="noopener">Veterans Crisis Line</a> are good places to start.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="faq-visit" aria-labelledby="faq-visit-h">
+  <h2 id="faq-visit-h">Visiting the farm</h2>
+  <div class="vhf-f-list">
+    <details>
+      <summary>Where is the farm?</summary>
+      <div class="ans">
+        <p>138 Kimzey Road, Mills River, NC 28759, in Western North Carolina. It's also our mailing address.</p>
+        <ul class="go"><li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=138+Kimzey+Rd+Mills+River+NC+28759" target="_blank" rel="noopener">Get directions</a></li><li><a href="/contact">Map &amp; contact details</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>When is the farm open?</summary>
+      <div class="ans">
+        <p>Tuesday to Friday, 8:30am to 4:30pm. Saturday hours vary, so please call ahead at <a href="tel:8285956111">(828) 595-6111</a>. We're closed Sundays and Mondays.</p>
+        <ul class="go"><li><a href="/contact">Farm hours</a></li><li><a href="/events">Event calendar</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Can I get a tour?</summary>
+      <div class="ans">
+        <p>Yes. Tours are by appointment. Call <a href="tel:8285956111">(828) 595-6111</a> or <a href="mailto:veteranshealingfarm@gmail.com?subject=Tour%20request">email us</a> to set up a time.</p>
+        <ul class="go"><li><a href="/about">About the farm</a></li><li><a href="/galleries">Photo galleries</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Do I need to sign up before I come?</summary>
+      <div class="ans">
+        <p>It depends on what you're coming for:</p>
+        <ul>
+          <li><b>Workshops and events:</b> some ask you to sign up ahead. Open the event on our <a href="/events">calendar</a> and use its Register button if it has one.</li>
+          <li><b>Volunteering:</b> start with our short <a href="https://docs.google.com/forms/d/e/1FAIpQLSdch1--q6vjJnXZubbxmRi--Pvere9oscqMA7M7La46CGwf5A/viewform?usp=header" target="_blank" rel="noopener">volunteer form</a>, then come out during farm hours. There's no set schedule.</li>
+          <li><b>A tour:</b> by appointment, so <a href="/contact">contact us</a> first.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="faq-programs" aria-labelledby="faq-programs-h">
+  <h2 id="faq-programs-h">Programs &amp; events</h2>
+  <div class="vhf-f-list">
+    <details>
+      <summary>What programs do you offer?</summary>
+      <div class="ans">
+        <ul>
+          <li><a href="/programs#agritherapy">Agritherapy</a>: the vegetable and flower gardens, beehives, and medicinal herbs, tended together.</li>
+          <li><a href="/programs#clay">Clay &amp; Camaraderie</a>: pottery with our resident potter, Sophia Lauterbach.</li>
+          <li><a href="/programs#workshops">Workshops</a>: therapies and therapeutic, hands-on experiences.</li>
+          <li><a href="/programs#events">Events</a>: remembrance, outings, and community gatherings.</li>
+        </ul>
+        <ul class="go"><li><a href="/programs">All programs</a></li><li><a href="/events">Upcoming dates</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>How do I find upcoming workshops and events?</summary>
+      <div class="ans">
+        <p>Everything is on our <a href="/events">event calendar</a>, where you can filter by workshops, volunteer groups, wellness, and community events, and register. You can also <a href="https://calendar.google.com/calendar/u/0/r?cid=vhf2023calendar@gmail.com" target="_blank" rel="noopener">add our calendar to Google Calendar</a> so new dates show up on your phone.</p>
+        <p>Regular groups, like the Garden Group and Herb Volunteer Group, are listed under <a href="/events#vhf-e-regular">regular gatherings</a>.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Do I need experience for the workshops or pottery?</summary>
+      <div class="ans">
+        <p>No. Beginner workshops need no experience. <a href="/programs#clay">Clay &amp; Camaraderie</a> starts with a 4-week beginner hand-building workshop, and past students can come back for open studio. Seasonal workshops, like our two-part holiday ornament workshop, need no pottery experience either.</p>
+        <ul class="go"><li><a href="/events">See pottery dates</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Do you offer suicide prevention training?</summary>
+      <div class="ans">
+        <p>Yes. We offer life-saving suicide prevention classes, open to everyone in Western North Carolina, and Mental Health First Aid is among our workshops. Watch the <a href="/events">calendar</a> for the next class, or <a href="/contact">contact us</a> to ask.</p>
+      </div>
+    </details>
+    <details>
+      <summary>What happens to everything the farm grows?</summary>
+      <div class="ans">
+        <p>It's all given back. Our produce, flower bouquets, honey, and herbal products go to our veteran community and local organizations, including the Charles George VA Medical Center, the Veterans Restoration Quarters in Asheville, IAM Food Pantry, Hendersonville Rescue Mission, the Storehouse, and SafeLight Women's Shelter.</p>
+        <p>In 2026 that was 2,683 lbs of produce and more than 500 bouquets (from our <a href="/about">2026 Year-End Report</a>).</p>
+        <ul class="go"><li><a href="/programs#agritherapy">About agritherapy</a></li></ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="faq-volunteer" aria-labelledby="faq-volunteer-h">
+  <h2 id="faq-volunteer-h">Volunteering</h2>
+  <div class="vhf-f-list">
+    <details>
+      <summary>How do I start volunteering?</summary>
+      <div class="ans">
+        <p>Three steps: fill out our short <a href="https://docs.google.com/forms/d/e/1FAIpQLSdch1--q6vjJnXZubbxmRi--Pvere9oscqMA7M7La46CGwf5A/viewform?usp=header" target="_blank" rel="noopener">volunteer form</a>, <a href="/volunteer#vhf-v-squads">pick a squad</a>, and come out to the farm during farm hours.</p>
+        <ul class="go"><li><a href="/volunteer#vhf-v-how">How to get started</a></li><li><a href="/volunteer">Volunteer page</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>How much time do I have to give, and do I need experience?</summary>
+      <div class="ans">
+        <p>There's no required time and no experience needed. Come when you can, help with what interests you, and learn as you go. Every squad teaches as you go.</p>
+      </div>
+    </details>
+    <details>
+      <summary>What volunteer squads are there?</summary>
+      <div class="ans">
+        <ul>
+          <li><a href="/garden">Garden Group</a>, with Maddie McCann: vegetables and flowers, including the bouquets we give out at the VA.</li>
+          <li><a href="/volunteer#herb-squad">Medicinal Herb Squad</a>, led by Rebecca Vann, Plant Medicine Director.</li>
+          <li><a href="/volunteer#bee-squad">Bee Squad</a>, with our Lead Beekeeper.</li>
+        </ul>
+        <p>You can join more than one. All of them are on the <a href="/volunteer#vhf-v-squads">Volunteer page</a>.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Can I help without doing farm work?</summary>
+      <div class="ans">
+        <p>Yes. Volunteer committees run the back end of the farm: marketing, social media, events, membership, website development, fundraising, and community outreach. New members are welcome and needed. <a href="mailto:veteranshealingfarm@gmail.com?subject=Committee%20volunteer">Email us</a> to join one.</p>
+        <ul class="go"><li><a href="/volunteer">Committees</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Can my business or group volunteer or partner with you?</summary>
+      <div class="ans">
+        <p>We'd love that. See <a href="/sponsors">sponsorship and partnership</a>, or <a href="mailto:veteranshealingfarm@gmail.com?subject=Partnership">email us</a> to talk about working together.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="faq-give" aria-labelledby="faq-give-h">
+  <h2 id="faq-give-h">Giving</h2>
+  <div class="vhf-f-list">
+    <details>
+      <summary>How can I donate?</summary>
+      <div class="ans">
+        <p>Online gifts are handled securely through PayPal, one time or monthly. You don't need a PayPal account: you can pay by card.</p>
+        <ul class="go"><li><a href="https://www.paypal.com/donate/?hosted_button_id=HBZS92KCQGMUL" target="_blank" rel="noopener">Donate today</a></li><li><a href="/donate">Ways to give</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Are there other ways to give?</summary>
+      <div class="ans">
+        <ul>
+          <li>Pick supplies from our <a href="https://a.co/03oqI0PZ" target="_blank" rel="noopener">Amazon wish list</a>, and Amazon ships them to the farm.</li>
+          <li><a href="/volunteer">Give your time</a> on a squad or committee.</li>
+          <li>Wear your support with gear from our <a href="https://veteranshealingfarm.myspreadshop.com/all" target="_blank" rel="noopener">online shop</a>.</li>
+          <li>Businesses can <a href="/sponsors">become a sponsor</a>.</li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary>Is my gift tax-deductible?</summary>
+      <div class="ans">
+        <p>Veterans Healing Farm is a registered 501(c)(3) nonprofit. Our IRS Form 990s and our North Carolina charitable solicitation license are public. For advice on your own taxes, please check with your tax advisor.</p>
+        <ul class="go"><li><a href="/i990-forms">Form 990s</a></li><li><a href="/s/Certificate-3-1.pdf" target="_blank" rel="noopener">Solicitation license (PDF)</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>How is the money used?</summary>
+      <div class="ans">
+        <p>We have a very small staff, many of them veterans, and 411 volunteers in 2026, so most grants and donations go straight into the farm, its programs, and events. Your gift supports agritherapy, workshops, and events.</p>
+        <ul class="go"><li><a href="/about">Our 2026 impact</a></li><li><a href="/s/VHF_Impact-Report-2025_Draft2.pdf" target="_blank" rel="noopener">2025 Year-End Report (PDF)</a></li><li><a href="/i990-forms">Form 990s</a></li></ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="faq-about" aria-labelledby="faq-about-h">
+  <h2 id="faq-about-h">About us</h2>
+  <div class="vhf-f-list">
+    <details>
+      <summary>Who runs the farm?</summary>
+      <div class="ans">
+        <p>A small staff led by Executive Director Alan "Al" Yeck, many of them veterans, and a volunteer board of veterans and community professionals.</p>
+        <ul class="go"><li><a href="/staff-new">Our team</a></li><li><a href="/board">Board of directors</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>Where can I see photos, news, and updates?</summary>
+      <div class="ans">
+        <ul>
+          <li><a href="/galleries">Photo galleries</a> and <a href="/news">news coverage</a></li>
+          <li><a href="https://www.facebook.com/veteranshealingfarm" target="_blank" rel="noopener">Facebook</a>, <a href="https://www.instagram.com/veteranshealingfarm/" target="_blank" rel="noopener">Instagram</a>, and <a href="https://www.youtube.com/@VeteransHealingFarm" target="_blank" rel="noopener">YouTube</a></li>
+          <li>Our email updates: sign up at the bottom of our <a href="/">home page</a>.</li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary>Can I share my story about the farm?</summary>
+      <div class="ans">
+        <p>Please do. If the farm has been part of your life as a veteran, family member, volunteer, or partner, <a href="mailto:veteranshealingfarm@gmail.com?subject=My%20Veterans%20Healing%20Farm%20story">send us your story</a>. You can read others on our <a href="/testimonials">testimonials page</a>.</p>
+      </div>
+    </details>
+    <details>
+      <summary>How do you handle my information?</summary>
+      <div class="ans">
+        <p>We don't sell your personal information, and our site doesn't use advertising cookies. Please don't send medical or mental health details through our website, forms, or email; we'll talk with you in person or by phone. Details are in our <a href="/privacy-policy">privacy policy</a>.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec" id="faq-help" aria-labelledby="faq-help-h">
+  <h2 id="faq-help-h">Getting help</h2>
+  <div class="vhf-f-list">
+    <details>
+      <summary>I'm a veteran in crisis. Who do I call?</summary>
+      <div class="ans">
+        <p>Call the Veterans Crisis Line at <a href="tel:988">988, then press 1</a>, text <a href="sms:838255">838255</a>, or <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener">chat online</a>. It's free, confidential, open 24/7, and you don't have to be enrolled in VA care. In an emergency, call <a href="tel:911">911</a> or go to your nearest emergency room.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Are there apps that can help with PTSD, sleep, or stress?</summary>
+      <div class="ans">
+        <p>Yes. Our <a href="/resources">Resources page</a> lists 11 free apps from the U.S. Department of Veterans Affairs, including <a href="https://www.ptsd.va.gov/appvid/mobile/ptsdcoach_app.asp" target="_blank" rel="noopener">PTSD Coach</a>, <a href="https://www.ptsd.va.gov/appvid/mobile/insomnia_coach.asp" target="_blank" rel="noopener">Insomnia Coach</a>, <a href="https://www.ptsd.va.gov/appvid/mobile/mindfulcoach_app.asp" target="_blank" rel="noopener">Mindfulness Coach</a>, and <a href="https://www.ptsd.va.gov/appvid/mobile/VetChange_app.asp" target="_blank" rel="noopener">VetChange</a>.</p>
+        <ul class="go"><li><a href="/resources">All 11 apps</a></li></ul>
+      </div>
+    </details>
+    <details>
+      <summary>I'm not sure where to start. Can you help?</summary>
+      <div class="ans">
+        <p>Yes. Come out to the farm during farm hours or give us a call at <a href="tel:8285956111">(828) 595-6111</a>. We'll help you find the right support, and you don't have to figure it out alone.</p>
+        <ul class="go"><li><a href="/contact">Contact us</a></li><li><a href="/programs">Programs</a></li></ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<p class="vhf-f-none" id="vhf-f-none" role="status">No questions match that search. Try another word, or <a href="/contact">ask us directly</a>.</p>
+</div>
+</div>
+
+<section class="vhf-f-more">
+  <div class="vhf-f-ask vhf-f-dark" aria-labelledby="vhf-f-ask-h">
+    <p class="vhf-f-eye">Ask us</p>
+    <h2 id="vhf-f-ask-h">Still have a question?</h2>
+    <p>Call during farm hours, Tuesday to Friday, or email us anytime. We'd love to hear from you.</p>
+    <div class="vhf-f-acts">
+      <a class="vhf-f-btn vhf-f-btn--light" href="tel:8285956111">Call (828) 595-6111</a>
+      <a class="vhf-f-btn vhf-f-btn--ghost" href="mailto:veteranshealingfarm@gmail.com?subject=Question">Email us</a>
+      <a class="vhf-f-btn vhf-f-btn--ghost" href="/contact">Contact page</a>
+    </div>
+    <svg class="vhf-f-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </div>
+  <nav class="vhf-f-map" aria-labelledby="vhf-f-map-h">
+    <p class="vhf-f-eye">Site map</p>
+    <h2 id="vhf-f-map-h">Explore the site</h2>
+    <ul>
+      <li><a href="/about">Our mission &amp; farm</a></li>
+      <li><a href="/programs">Programs</a></li>
+      <li><a href="/events">Event calendar</a></li>
+      <li><a href="/volunteer">Volunteer</a></li>
+      <li><a href="/donate">Donate</a></li>
+      <li><a href="/sponsors">Sponsors</a></li>
+      <li><a href="/resources">Resources</a></li>
+      <li><a href="/testimonials">Testimonials</a></li>
+      <li><a href="/staff-new">Our team</a></li>
+      <li><a href="/board">Board</a></li>
+      <li><a href="/galleries">Galleries</a></li>
+      <li><a href="/news">News</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/privacy-policy">Privacy policy</a></li>
+    </ul>
+  </nav>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var r=document.querySelectorAll('.vhf-f');for(var i=0;i<r.length;i++)r[i].classList.add('is-on');
+  var root=document.getElementById('vhf-f');
+  if(!root||root.getAttribute('data-ready'))return;
+  root.setAttribute('data-ready','1');
+  var items=root.querySelectorAll('details'),q=document.getElementById('vhf-f-q'),all=document.getElementById('vhf-f-all'),none=document.getElementById('vhf-f-none');
+  function filter(){
+    var t=q.value.trim().toLowerCase(),shown=0;
+    for(var i=0;i<items.length;i++){var ok=!t||items[i].textContent.toLowerCase().indexOf(t)>-1;items[i].hidden=!ok;if(ok)shown++;if(t&&ok)items[i].open=true;}
+    var secs=root.querySelectorAll('section.sec');for(var j=0;j<secs.length;j++)secs[j].hidden=!secs[j].querySelector('details:not([hidden])');
+    none.style.display=shown?'none':'block';
+  }
+  q.addEventListener('input',filter);
+  all.addEventListener('click',function(){var open=all.getAttribute('data-open')!=='1';for(var i=0;i<items.length;i++)if(!items[i].hidden)items[i].open=open;all.setAttribute('data-open',open?'1':'0');all.textContent=open?'Close all answers':'Open all answers';});
+  // Open the question a link points at (e.g. /faq#faq-give) or the first question of that topic.
+  var h=location.hash&&document.getElementById(location.hash.slice(1));if(h){var d=h.tagName==='DETAILS'?h:h.querySelector('details');if(d)d.open=true;}
+})();
+</script>
+<script>(function(){var w=document.querySelector(".vhf-f");if(!w)return;w.classList.add("is-on");
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"IntersectionObserver"in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+[].slice.call(w.children,1).forEach(function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add("reveal");io.observe(el)}});w.classList.add("vhf-f-anim")}})();</script>
+<!-- FAQ-LD --><!-- FAQPage structured data: generated from the questions above; regenerate with: node scripts/faq-jsonld.mjs -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Veterans Healing Farm?","acceptedAnswer":{"@type":"Answer","text":"A 501(c)(3) nonprofit farm in Mills River, North Carolina, founded in 2013 by John and Nicole Mahshie. Our mission is to enhance the mental, emotional, and physical well-being of our nation's veterans and their families, and our vision is an end to the veteran suicide crisis. We do that through farm-based therapy (agritherapy), pottery, therapeutic workshops, and community events, in a safe, peaceful place to heal."}},{"@type":"Question","name":"Do I have to be a veteran?","acceptedAnswer":{"@type":"Answer","text":"Our programs are for veterans and their families. Some, like Clay & Camaraderie pottery, are also open to active-duty service members and VHF volunteers, and our suicide prevention classes are open to everyone in Western North Carolina. You don't have to be a veteran to volunteer. Our community is veterans, families, caregivers, and anyone who just wants to help."}},{"@type":"Question","name":"Can family members come too?","acceptedAnswer":{"@type":"Answer","text":"Yes. We serve veterans and their families, and family members are welcome in our programs, workshops, and events. Caregivers and family members are also welcome to join a volunteer squad."}},{"@type":"Question","name":"Does it cost anything?","acceptedAnswer":{"@type":"Answer","text":"Our programs are at no cost to veterans and their families. In 2026, everything the farm provided was free to veterans, from workshops to produce, flowers, and herbal products (see our 2026 impact). One small note: some workshops, including pottery, register through Regpack, which adds a $1 system charge. Cancellations there must be made at least 72 hours ahead."}},{"@type":"Question","name":"Is this therapy?","acceptedAnswer":{"@type":"Answer","text":"Our programs center on brain health and healing through hands-on work and peer connection. Some workshops are actual therapies (equine, canine, art, music, and neurofeedback), and others are therapeutic experiences like blacksmithing, canning, herbal medicine, and pottery. See the full list under Workshops. The farm supports care but doesn't replace it. For clinical help, the VA's free mental health apps and the Veterans Crisis Line are good places to start."}},{"@type":"Question","name":"Where is the farm?","acceptedAnswer":{"@type":"Answer","text":"138 Kimzey Road, Mills River, NC 28759, in Western North Carolina. It's also our mailing address."}},{"@type":"Question","name":"When is the farm open?","acceptedAnswer":{"@type":"Answer","text":"Tuesday to Friday, 8:30am to 4:30pm. Saturday hours vary, so please call ahead at (828) 595-6111. We're closed Sundays and Mondays."}},{"@type":"Question","name":"Can I get a tour?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tours are by appointment. Call (828) 595-6111 or email us to set up a time."}},{"@type":"Question","name":"Do I need to sign up before I come?","acceptedAnswer":{"@type":"Answer","text":"It depends on what you're coming for: Workshops and events: some ask you to sign up ahead. Open the event on our calendar and use its Register button if it has one. Volunteering: start with our short volunteer form, then come out during farm hours. There's no set schedule. A tour: by appointment, so contact us first."}},{"@type":"Question","name":"What programs do you offer?","acceptedAnswer":{"@type":"Answer","text":"Agritherapy: the vegetable and flower gardens, beehives, and medicinal herbs, tended together. Clay & Camaraderie: pottery with our resident potter, Sophia Lauterbach. Workshops: therapies and therapeutic, hands-on experiences. Events: remembrance, outings, and community gatherings."}},{"@type":"Question","name":"How do I find upcoming workshops and events?","acceptedAnswer":{"@type":"Answer","text":"Everything is on our event calendar, where you can filter by workshops, volunteer groups, wellness, and community events, and register. You can also add our calendar to Google Calendar so new dates show up on your phone. Regular groups, like the Garden Group and Herb Volunteer Group, are listed under regular gatherings."}},{"@type":"Question","name":"Do I need experience for the workshops or pottery?","acceptedAnswer":{"@type":"Answer","text":"No. Beginner workshops need no experience. Clay & Camaraderie starts with a 4-week beginner hand-building workshop, and past students can come back for open studio. Seasonal workshops, like our two-part holiday ornament workshop, need no pottery experience either."}},{"@type":"Question","name":"Do you offer suicide prevention training?","acceptedAnswer":{"@type":"Answer","text":"Yes. We offer life-saving suicide prevention classes, open to everyone in Western North Carolina, and Mental Health First Aid is among our workshops. Watch the calendar for the next class, or contact us to ask."}},{"@type":"Question","name":"What happens to everything the farm grows?","acceptedAnswer":{"@type":"Answer","text":"It's all given back. Our produce, flower bouquets, honey, and herbal products go to our veteran community and local organizations, including the Charles George VA Medical Center, the Veterans Restoration Quarters in Asheville, IAM Food Pantry, Hendersonville Rescue Mission, the Storehouse, and SafeLight Women's Shelter. In 2026 that was 2,683 lbs of produce and more than 500 bouquets (from our 2026 Year-End Report)."}},{"@type":"Question","name":"How do I start volunteering?","acceptedAnswer":{"@type":"Answer","text":"Three steps: fill out our short volunteer form, pick a squad, and come out to the farm during farm hours."}},{"@type":"Question","name":"How much time do I have to give, and do I need experience?","acceptedAnswer":{"@type":"Answer","text":"There's no required time and no experience needed. Come when you can, help with what interests you, and learn as you go. Every squad teaches as you go."}},{"@type":"Question","name":"What volunteer squads are there?","acceptedAnswer":{"@type":"Answer","text":"Garden Group, with Maddie McCann: vegetables and flowers, including the bouquets we give out at the VA. Medicinal Herb Squad, led by Rebecca Vann, Plant Medicine Director. Bee Squad, with our Lead Beekeeper. You can join more than one. All of them are on the Volunteer page."}},{"@type":"Question","name":"Can I help without doing farm work?","acceptedAnswer":{"@type":"Answer","text":"Yes. Volunteer committees run the back end of the farm: marketing, social media, events, membership, website development, fundraising, and community outreach. New members are welcome and needed. Email us to join one."}},{"@type":"Question","name":"Can my business or group volunteer or partner with you?","acceptedAnswer":{"@type":"Answer","text":"We'd love that. See sponsorship and partnership, or email us to talk about working together."}},{"@type":"Question","name":"How can I donate?","acceptedAnswer":{"@type":"Answer","text":"Online gifts are handled securely through PayPal, one time or monthly. You don't need a PayPal account: you can pay by card."}},{"@type":"Question","name":"Are there other ways to give?","acceptedAnswer":{"@type":"Answer","text":"Pick supplies from our Amazon wish list, and Amazon ships them to the farm. Give your time on a squad or committee. Wear your support with gear from our online shop. Businesses can become a sponsor."}},{"@type":"Question","name":"Is my gift tax-deductible?","acceptedAnswer":{"@type":"Answer","text":"Veterans Healing Farm is a registered 501(c)(3) nonprofit. Our IRS Form 990s and our North Carolina charitable solicitation license are public. For advice on your own taxes, please check with your tax advisor."}},{"@type":"Question","name":"How is the money used?","acceptedAnswer":{"@type":"Answer","text":"We have a very small staff, many of them veterans, and 411 volunteers in 2026, so most grants and donations go straight into the farm, its programs, and events. Your gift supports agritherapy, workshops, and events."}},{"@type":"Question","name":"Who runs the farm?","acceptedAnswer":{"@type":"Answer","text":"A small staff led by Executive Director Alan \"Al\" Yeck, many of them veterans, and a volunteer board of veterans and community professionals."}},{"@type":"Question","name":"Where can I see photos, news, and updates?","acceptedAnswer":{"@type":"Answer","text":"Photo galleries and news coverage Facebook, Instagram, and YouTube Our email updates: sign up at the bottom of our home page."}},{"@type":"Question","name":"Can I share my story about the farm?","acceptedAnswer":{"@type":"Answer","text":"Please do. If the farm has been part of your life as a veteran, family member, volunteer, or partner, send us your story. You can read others on our testimonials page."}},{"@type":"Question","name":"How do you handle my information?","acceptedAnswer":{"@type":"Answer","text":"We don't sell your personal information, and our site doesn't use advertising cookies. Please don't send medical or mental health details through our website, forms, or email; we'll talk with you in person or by phone. Details are in our privacy policy."}},{"@type":"Question","name":"I'm a veteran in crisis. Who do I call?","acceptedAnswer":{"@type":"Answer","text":"Call the Veterans Crisis Line at 988, then press 1, text 838255, or chat online. It's free, confidential, open 24/7, and you don't have to be enrolled in VA care. In an emergency, call 911 or go to your nearest emergency room."}},{"@type":"Question","name":"Are there apps that can help with PTSD, sleep, or stress?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our Resources page lists 11 free apps from the U.S. Department of Veterans Affairs, including PTSD Coach, Insomnia Coach, Mindfulness Coach, and VetChange."}},{"@type":"Question","name":"I'm not sure where to start. Can you help?","acceptedAnswer":{"@type":"Answer","text":"Yes. Come out to the farm during farm hours or give us a call at (828) 595-6111. We'll help you find the right support, and you don't have to figure it out alone."}}]}
+</script>
