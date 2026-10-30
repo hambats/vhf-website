@@ -44,7 +44,7 @@ iframe{flex:1;width:100%;border:0;background:#f9f7f1;min-height:70vh}
 <nav aria-label="Generated files">
   <h2>Page copies (unlinked)</h2>
   <div id="list"></div>
-  <h2>Writing</h2>
+  <h2 id="docsHd">Writing</h2>
   <div id="docs"></div>
   <h2>Live-site edits (no file)</h2>
   <ul class="done">
@@ -170,7 +170,9 @@ view.addEventListener('load',function(){
   });
 });
 var btns=PAGES.map(function(p){return add(list,p)});
-DOCS.forEach(function(p){add(document.getElementById('docs'),p)});
+// Online copy (GitHub Pages) shows only the core pages; the Writing docs stay local.
+if(location.hostname.endsWith('.github.io')){document.getElementById('docsHd').remove();document.getElementById('docs').remove()}
+else DOCS.forEach(function(p){add(document.getElementById('docs'),p)});
 var start=decodeURIComponent(location.hash.slice(1));if(start.indexOf(MK)===0){mk=true;start=start.slice(MK.length)}
 var i=PAGES.findIndex(function(p){return p.f===start});
 show(PAGES[i<0?0:i],btns[i<0?0:i]);
