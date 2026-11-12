@@ -59,6 +59,7 @@
 .vhf-t .vhf-dark h2 em,.vhf-t .vhf-ctaband h2 em{color:var(--tan)}
 .vhf-t .vhf-dark .vhf-sec__intro{color:var(--cream);opacity:.85}
 .vhf-t .vhf-story{margin:0}
+.vhf-t .vhf-story+.vhf-story{margin-top:56px;padding-top:48px;border-top:1px solid rgba(221,214,184,.3)}
 .vhf-t .vhf-story p{margin:0 0 16px;font-size:17px;line-height:1.75;color:var(--cream);opacity:.92}
 .vhf-t .vhf-story p.vhf-pull{margin:0 0 26px;max-width:28ch;font:italic 400 clamp(26px,3.2vw,40px)/1.25 var(--serif);color:var(--tan);opacity:1}
 .vhf-t .vhf-story details{margin:8px 0 24px}
@@ -111,9 +112,10 @@
 .vhf-t .vhf-feat:first-child{grid-row:auto}
 .vhf-t .vhf-actions,.vhf-t .vhf-mid{flex-direction:column}
 }
-/* Firefly stories (three.js): eight fireflies over the Blue Ridge take turns telling a story. */
+/* Firefly stories (three.js): a meadow of fireflies under the Blue Ridge; eight of them take turns telling a story. */
 .vhf-t .vhf-ff .fld{position:relative;min-height:680px;border-radius:22px;overflow:hidden;isolation:isolate;background:radial-gradient(70% 60% at 70% 18%,#2f4560 0%,#1d2b3d 55%,#141d28 100%);color:var(--cream)}
-.vhf-t .vhf-ff canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.vhf-t .vhf-ff canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;mix-blend-mode:screen}
+.vhf-t .vhf-ff.no3d canvas{display:none}
 .vhf-t .vhf-ff .hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:52%;z-index:1;pointer-events:none}
 .vhf-t .vhf-ff .head{position:relative;z-index:3;max-width:560px;padding:clamp(32px,5vw,60px);pointer-events:none}
 .vhf-t .vhf-ff .eye{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:600 12.5px/1 "Work Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#e8b98f}
@@ -189,9 +191,9 @@
 </section>
 
 <section class="vhf-sec vhf-dark reveal" aria-labelledby="vhf-vet-h">
-  <p class="vhf-eyebrow">A veteran's voice</p>
-  <h2 id="vhf-vet-h">A Marine veteran&rsquo;s <em>story</em></h2>
-  <p class="vhf-sec__intro">Robert LeHeup served two tours in Afghanistan with the Marine Corps. This is what he found at the farm.</p>
+  <p class="vhf-eyebrow">In their own words</p>
+  <h2 id="vhf-vet-h">Stories from veterans and our <em>board</em></h2>
+  <p class="vhf-sec__intro">Two Marine Corps veterans and a longtime board member on what the farm has meant to them.</p>
   <figure class="vhf-story">
     <p class="vhf-pull">&ldquo;The Veterans Healing Farm could have been one of these. It is not.&rdquo;</p>
     <p>&ldquo;When I left the Marine Corps, having done two tours in Afghanistan in 2001 and 2002, I felt this evil in my very marrow. I let it define me. My suffering was mine and mine alone, my ability to thrive among my tribe undermined by a need to survive. Without guidance or a sense of hope, I let my trauma rot in my soul like a spiritual cancer. I looked around at those who were suffering equally and didn't care, because I couldn't afford to.</p>
@@ -203,6 +205,16 @@
       <p>After gathering myself, I walked through the crowd of what were now my brothers-at-arms, I found the names of my dead friends, and in spite of being surrounded by a hundred people, I cried even harder. Not just out of mourning, but out of the hope that reflected back at me, the shame when I realized I'd lost so much of it, and the opportunity to be a part of a tribe I'd never truly left.&rdquo;</p>
     </details>
     <figcaption class="vhf-who"><b>Robert LeHeup</b>U.S. Marine Corps veteran</figcaption>
+  </figure>
+  <figure class="vhf-story">
+    <p class="vhf-pull">&ldquo;I know how powerful having a place and a community really is.&rdquo;</p>
+    <p>&ldquo;I first came to the farm looking for a way to connect with like-minded people. I went to an art therapy class and met Al (the executive director). He showed me around afterwards and told me that I belonged here. That the Veterans Healing Farm was my home, and I could come back any time I needed it. When he explained that the mission was to end veteran suicide, everything clicked for me. As a USMC veteran, I have lost more people I have served with to suicide than anything else, and as someone who has had their own struggles with thoughts of suicide, I know how powerful having a place and a community really is. I do not have the words for what this place truly means to me, and I love having the opportunity to give back to an impactful organization.&rdquo;</p>
+    <figcaption class="vhf-who"><b>Gabi</b>U.S. Marine Corps veteran</figcaption>
+  </figure>
+  <figure class="vhf-story">
+    <p class="vhf-pull">&ldquo;It has been an honor to play a small role in helping the Farm become a model that others now emulate.&rdquo;</p>
+    <p>&ldquo;I have had the privilege to serve on the board of directors for the Veterans Healing Farm for six years. During that time, I have watched it grow from a fledgling effort on a small piece of leased land to a flourishing, multi-faceted non-profit firmly planted on its forever home land. It has been an honor to play a small role in helping the Farm become a model that others now emulate. I finish my term knowing it is in wonderful hands, and I encourage everyone to come out and see what all the excitement is about!&rdquo;</p>
+    <figcaption class="vhf-who"><b>Jeanine Davis</b>Our Tiny Farm in Etowah and NCSU Mountain Horticultural Crops Research &amp; Extension Center in Mills River</figcaption>
   </figure>
 </section>
 
@@ -316,7 +328,7 @@
   <h2 id="vhf-story">Has the farm been part of your <em>story</em>?</h2>
   <p>If you&rsquo;re a veteran, family member, volunteer or partner, we&rsquo;d like to hear what the farm has meant to you. Email us a few lines and let us know if we may share them here.</p>
   <div class="vhf-actions">
-    <a class="vhf-btn vhf-btn--light" href="mailto:veteranshealingfarm@gmail.com?subject=My%20Veterans%20Healing%20Farm%20story">Email us your story <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="vhf-btn vhf-btn--light" href="mailto:operations@veteranshealingfarm.org?subject=My%20Veterans%20Healing%20Farm%20story">Email us your story <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     <a class="vhf-btn vhf-btn--ghost" href="/donate">Donate</a>
   </div>
   <svg class="vhf-furrow" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 6 300 22 T600 22 T900 22 T1200 22 M0 14 Q150 -2 300 14 T600 14 T900 14 T1200 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -338,48 +350,87 @@ const STORIES=[...fld.querySelectorAll('.list li')].map(li=>[li.querySelector('q
 if(!STORIES.length)return;
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-let THREE;
-try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js')}catch(e){root.classList.add('no3d');return}
+let THREE,r;
+try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js');
+  /* Opaque black canvas, blended onto the night with mix-blend-mode:screen, and never cleared:
+     each frame only dims the last one, so every light leaves a short trail like a long-exposure photo. */
+  r=new THREE.WebGLRenderer({canvas,antialias:false,alpha:false,preserveDrawingBuffer:true})}catch(e){root.classList.add('no3d');return}
+const DPR=Math.min(devicePixelRatio||1,2);r.setPixelRatio(DPR);r.autoClear=false;r.setClearColor(0x000000,1);
+const gl=r.getContext(),MAXPT=(gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE)||[1,64])[1]/DPR;
+const scene=new THREE.Scene(),cam=new THREE.Camera();
+let W=1,H=1,narrow=false;
+const rand=(a,b)=>a+Math.random()*(b-a);
 
-const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio||1,2));
-const scene=new THREE.Scene(),cam=new THREE.OrthographicCamera(0,1,0,1,-10,10);
-let W=1,H=1;
+/* Two full-screen passes fade the previous frame (a multiply, then a tiny subtract so it reaches true black). */
+const quad=new THREE.PlaneGeometry(2,2),qv='void main(){gl_Position=vec4(position.xy,0.,1.);}',qf='uniform vec4 uC;void main(){gl_FragColor=uC;}';
+const fadeM=new THREE.ShaderMaterial({uniforms:{uC:{value:new THREE.Vector4(0,0,0,.1)}},vertexShader:qv,fragmentShader:qf,transparent:true,depthTest:false,depthWrite:false});
+const subM=new THREE.ShaderMaterial({uniforms:{uC:{value:new THREE.Vector4(.004,.004,.004,0)}},vertexShader:qv,fragmentShader:qf,transparent:true,depthTest:false,depthWrite:false,
+  blending:THREE.CustomBlending,blendEquation:THREE.ReverseSubtractEquation,blendSrc:THREE.OneFactor,blendDst:THREE.OneFactor});
+[fadeM,subM].forEach((m,i)=>{const q=new THREE.Mesh(quad,m);q.frustumCulled=false;q.renderOrder=i;scene.add(q)});
 
-/* Soft round glow, drawn once and shared by every firefly. */
-const glow=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d'),gr=g.createRadialGradient(64,64,0,64,64,64);
-  gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.1,'rgba(255,255,255,.95)');gr.addColorStop(.28,'rgba(255,255,255,.3)');gr.addColorStop(1,'rgba(255,255,255,0)');
-  g.fillStyle=gr;g.fillRect(0,0,128,128);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t})();
+/* Every light is one point in a single buffer: x, y in pixels, a size and a color already scaled by its brightness.
+   "Max" blending keeps the brightest value, so steady lights don't pile up and flashes stay crisp. */
+const MAXP=420,pos=new Float32Array(MAXP*3),siz=new Float32Array(MAXP),col=new Float32Array(MAXP*3);
+const geo=new THREE.BufferGeometry();
+geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('aSize',new THREE.BufferAttribute(siz,1));geo.setAttribute('aColor',new THREE.BufferAttribute(col,3));
+const ptM=new THREE.ShaderMaterial({uniforms:{uRes:{value:new THREE.Vector2(1,1)},uDpr:{value:DPR}},
+  vertexShader:'attribute float aSize;attribute vec3 aColor;uniform vec2 uRes;uniform float uDpr;varying vec3 vC;void main(){vC=aColor;gl_Position=vec4(position.x/uRes.x*2.-1.,1.-position.y/uRes.y*2.,0.,1.);gl_PointSize=aSize*uDpr;}',
+  /* A soft glow with a small hot core. */
+  fragmentShader:'varying vec3 vC;void main(){float d=length(gl_PointCoord-.5)*2.;if(d>1.)discard;float a=(exp(-d*d*14.)+.34*exp(-d*d*3.2))*smoothstep(1.,.55,d);gl_FragColor=vec4(vC*a+vec3(dot(vC,vec3(.33)))*exp(-d*d*60.)*.5,1.);}',
+  transparent:true,depthTest:false,depthWrite:false,blending:THREE.CustomBlending,blendEquation:THREE.MaxEquation,blendSrc:THREE.OneFactor,blendDst:THREE.OneFactor});
+const pts=new THREE.Points(geo,ptM);pts.frustumCulled=false;pts.renderOrder=2;scene.add(pts);
+let n=0;
+const put=(x,y,s,c,k)=>{if(n>=MAXP||k<=.004)return;pos[n*3]=x;pos[n*3+1]=y;siz[n]=Math.min(s,MAXPT);col[n*3]=c[0]*k;col[n*3+1]=c[1]*k;col[n*3+2]=c[2]*k;n++};
 
-const GREEN=new THREE.Color('#d8f27a'),WARM=new THREE.Color('#fff0a8'),rand=(a,b)=>a+Math.random()*(b-a);
+const GREEN=[.85,.95,.48],WARM=[1,.94,.66],GHOST=[.5,.88,.78],STAR=[.8,.84,.9];
 
 /* One flash: snaps on in about a tenth of a second, then fades out over half a second. x is seconds since it started. */
 const env=x=>x<0?0:x<.1?x/.1:Math.max(0,1-(x-.1)/.5)**2;
+/* A quicker flicker, for the fireflies that flash in bursts. */
+const envQ=x=>x<0?0:x<.05?x/.05:Math.max(0,1-(x-.05)/.2)**2;
 /* The teller's slower glow: eases on, lingers, fades. */
 const envSlow=x=>x<0?0:x<.2?x/.2:Math.max(0,1-(x-.2)/1.1)**2;
-/* A firefly's own rhythm: dark most of the time, a single or double flash every few seconds. */
-const blink=(f,t)=>{const u=(t+f.off)%f.per;return Math.min(1,env(u)+(f.dbl?env(u-.45)*.8:0))};
+/* A firefly's own rhythm: dark most of the time, then a single flash, a double flash, or a quick burst of five. */
+const blink=(f,t)=>{const u=(t+f.off)%f.per;
+  if(f.type===2){let k=0;for(let j=0;j<5;j++)k=Math.max(k,envQ(u-j*.28));return k}
+  return Math.min(1,env(u)+(f.type===1?env(u-.45)*.8:0))};
 
-/* Eight fireflies, spread on a loose, staggered 4 x 2 grid between the heading and the story line. They share all the stories. */
-const N=8,mk=()=>({per:rand(4.5,8.5),off:rand(0,9),dbl:Math.random()<.3,ph:rand(0,6.3),spd:rand(.3,.9)});
+narrow=fld.getBoundingClientRect().width<700;
+
+/* Stars over the ridges, slowly twinkling. */
+const stars=Array.from({length:narrow?50:100},()=>{const y=Math.random()**1.6;return{x:Math.random(),y:.02+y*.46,k:rand(.25,.75)*(1-y*.7),s:rand(3,6),ph:rand(0,6.3),sp:rand(.4,1.6)}});
+
+/* The meadow: a field of smaller fireflies at different depths. Far ones are small, dim and sit up near the ridges;
+   near ones are bigger, brighter and wander more. */
+const amb=Array.from({length:narrow?34:72},()=>{const d=Math.random()**1.5,far=d<.4,q=Math.random();
+  return{d,hx:rand(.02,.98),hy:far?rand(.42,.72):rand(.5,.96),per:rand(4.5,9.5),off:rand(0,10),type:q<.6?0:q<.85?1:2,
+    ph:rand(0,6.3),spd:rand(.25,.6),lift:0,poke:-9,burst:-99,x:0,y:0}});
+
+/* Blue ghosts (Phausis reticulata, a western North Carolina firefly): they don't flash. They hold a steady
+   blue-green glow and float low over the ground. */
+const ghosts=Array.from({length:narrow?4:7},()=>({x:rand(0,1),hy:rand(.8,.95),v:rand(9,18)*(Math.random()<.5?-1:1),ph:rand(0,6.3),cyc:rand(26,44),off:rand(0,40)}));
+
+/* Eight story fireflies, spread on a loose, staggered 4 x 2 grid between the heading and the story line. They share all the stories. */
+const N=8;
 const ffs=Array.from({length:N},(_,i)=>{
   const cols=4,cx=i%4,cy=i<4?0:1;
-  /* DoubleSide: the y-down camera flips sprite winding, and front-face culling would hide them. */
-  const m=new THREE.SpriteMaterial({map:glow,color:GREEN.clone(),side:THREE.DoubleSide,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending});
-  const sp=new THREE.Sprite(m);scene.add(sp);
   const b=document.createElement('button');b.type='button';b.className='hit';b.setAttribute('aria-label',`Hear a story (firefly ${i+1} of ${N})`);hits.appendChild(b);
-  return{...mk(),sp,b,s:null,hx:.06+.88*(cx+.5+(cy?.2:-.2)+rand(-.12,.12))/cols,gy:(cy+.5+rand(-.25,.25))/2,hy:0,x:0,y:0,lift:0}});
+  return{per:rand(4.5,8.5),off:rand(0,9),type:Math.random()<.3?1:0,ph:rand(0,6.3),spd:rand(.3,.9),b,s:null,
+    hx:.06+.88*(cx+.5+(cy?.2:-.2)+rand(-.12,.12))/cols,gy:(cy+.5+rand(-.25,.25))/2,hy:0,x:0,y:0,lift:0}});
 
-function size(){const b=fld.getBoundingClientRect();W=b.width;H=b.height;r.setSize(W,H,false);
-  const narrow=W<700;ffs.forEach(f=>f.hy=(narrow?.36:.32)+f.gy*(narrow?.24:.22));
-  cam.left=0;cam.right=W;cam.top=0;cam.bottom=H;cam.updateProjectionMatrix()}
+function size(){const b=fld.getBoundingClientRect();W=b.width;H=b.height;r.setSize(W,H,false);r.clear();
+  narrow=W<700;ffs.forEach(f=>f.hy=(narrow?.36:.32)+f.gy*(narrow?.24:.22));ptM.uniforms.uRes.value.set(W,H)}
 size();addEventListener('resize',size);
 
 /* The teller: one firefly at a time glows warmer and the next story fades in below.
-   It moves on by itself (not with reduced motion); hovering, tapping or tabbing to a firefly makes that one the teller. */
-let teller=null,toldAt=-99,nextAt=1.5,si=Math.floor(Math.random()*STORIES.length),swapT=0;
+   It moves on by itself (not with reduced motion); hovering, tapping or tabbing to a firefly makes that one the teller.
+   The story is carried over: a spark flies from the last teller to the next one, which lights when it lands. */
+let teller=null,toldAt=-99,nextAt=1.5,si=Math.floor(Math.random()*STORIES.length),swapT=0,courier=null;
 const clock=new THREE.Clock();
 function tell(f,hold){
-  if(f===teller)return;teller=f;toldAt=clock.getElapsedTime();nextAt=RM?Infinity:toldAt+(hold?14:9);
+  if(f===teller)return;const now=clock.getElapsedTime(),prev=teller;teller=f;toldAt=now;
+  if(prev&&!RM){const dur=hold?.45:.8;courier={x0:prev.x,y0:prev.y,t0:now,dur,arc:Math.min(110,40+Math.hypot(f.x-prev.x,f.y-prev.y)*.25)};toldAt=now+dur}
+  nextAt=RM?Infinity:toldAt+(hold?14:9);
   f.s=STORIES[si++%STORIES.length];
   clearTimeout(swapT);say.classList.remove('on');
   swapT=setTimeout(()=>{const[q,n,o]=f.s;sq.textContent=q;sw.innerHTML=`${esc(n)}${o?`<span>${esc(o)}</span>`:''}`;say.classList.add('on')},say.textContent.trim()?650:200)}
@@ -388,31 +439,69 @@ function quiet(){teller=null;clearTimeout(swapT);say.classList.remove('on')}
 const announce=f=>{if(!f.s)return;const[q,n,o]=f.s;live.textContent=`${q} ${n}${o?', '+o:''}`};
 const nextTeller=()=>{const rest=ffs.filter(f=>f!==teller);return rest[Math.floor(Math.random()*rest.length)]};
 
-let mx=-1e4,my=-1e4;
+let mx=-1e4,my=-1e4,px=0,py=0;
 const pick=()=>{let best=null,bd=Math.max(34,W/24);for(const f of ffs){const d=Math.hypot(f.x-mx,f.y-my);if(d<bd){bd=d;best=f}}return best};
-fld.addEventListener('pointermove',e=>{const b=fld.getBoundingClientRect();mx=e.clientX-b.left;my=e.clientY-b.top;const f=pick();fld.style.cursor=f?'pointer':'';if(f)tell(f,true)});
+fld.addEventListener('pointermove',e=>{const b=fld.getBoundingClientRect();mx=e.clientX-b.left;my=e.clientY-b.top;const f=pick();fld.style.cursor=f?'pointer':'';if(f)tell(f,true);
+  /* Meadow fireflies answer a passing pointer with a flash, so moving across the field leaves a wake of light. */
+  if(!RM){const t=clock.getElapsedTime();for(const a of amb)if(t-a.poke>1.4&&Math.hypot(a.x-mx,a.y-my)<70)a.poke=t+rand(0,.18)}});
 fld.addEventListener('pointerleave',()=>{mx=my=-1e4});
 ffs.forEach(f=>{f.b.addEventListener('focus',()=>{tell(f,true);announce(f)});f.b.addEventListener('click',()=>{teller=null;tell(f,true);announce(f)})});
 addEventListener('keydown',e=>{if(e.key==='Escape')quiet()});
 
+/* Every so often the whole meadow falls dark, then flashes together six times in a ripple across the valley,
+   the way the synchronous fireflies of the Smokies do. */
+let waveAt=11,muteA=-1,muteB=-1;
+const PULSE=.62,burst=(f,t)=>{const v=t-f.burst;if(v<0||v>PULSE*6+.6)return 0;const j=Math.min(5,Math.floor(v/PULSE));return env(v-j*PULSE)};
+
 /* Pause when scrolled away. */
-let vis=true,raf=0;new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis)loop()}).observe(fld);
+let vis=true,raf=0,last=0;new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis)loop()}).observe(fld);
 function loop(){cancelAnimationFrame(raf);if(!vis)return;raf=requestAnimationFrame(loop);
-  const t=clock.getElapsedTime();
+  const t=clock.getElapsedTime(),dt=Math.min(.05,Math.max(.001,t-last));last=t;n=0;
+  fadeM.uniforms.uC.value.w=RM?1:1-Math.exp(-dt/.38);
   if(t>nextAt)tell(nextTeller(),false);
+  if(!RM&&t>waveAt){const dir=Math.random()<.5;for(const f of amb)f.burst=t+1.1+(dir?f.hx:1-f.hx)*1.3+rand(0,.07);muteA=t+.5;muteB=t+1.1+1.3+PULSE*6+2;waveAt=t+rand(34,50)}
+  const muted=t>muteA&&t<muteB,sc=narrow?.7:1;
+  /* The pointer shifts near fireflies a little more than far ones. */
+  px+=((mx>-1e3?mx/W-.5:0)-px)*.04;py+=((my>-1e3?my/H-.5:0)-py)*.04;
+
+  for(const s of stars)put(s.x*W,s.y*H,s.s,STAR,s.k*(RM?.8:.6+.4*Math.sin(t*s.sp+s.ph)));
+
+  for(const f of amb){
+    const k=RM?.3:Math.min(1,Math.max(muted?0:blink(f,t),burst(f,t),env(t-f.poke)));
+    if(!RM)f.ph+=dt*f.spd;
+    /* They climb while lit, like the J-shaped flash of eastern fireflies; the fading frame draws the stroke. */
+    f.lift+=(k-f.lift)*Math.min(1,dt*9);
+    const ax=(18+f.d*46)*sc;
+    f.x=f.hx*W+Math.sin(f.ph)*ax+Math.sin(f.ph*2.3+1.7)*ax*.35-px*f.d*26;
+    f.y=f.hy*H+Math.cos(f.ph*1.3)*ax*.45-(RM?0:f.lift*(8+f.d*16))-py*f.d*12;
+    put(f.x,f.y,(16+f.d*30)*sc*(.7+.3*k),GREEN,k*(.6+.4*f.d))}
+
+  for(const g of ghosts){
+    if(!RM){g.x+=g.v*dt/W;if(g.x>1.06)g.x=-.06;else if(g.x<-.06)g.x=1.06}
+    const c=((t+g.off)%g.cyc)/g.cyc,k=RM?.6:Math.max(0,Math.min(1,c/.08,(.78-c)/.12));
+    put(g.x*W-px*18,g.hy*H+Math.sin(t*.45+g.ph)*9,25*sc,GHOST,k*.7)}
+
+  const base=(narrow?46:Math.max(56,W/18));
   for(const f of ffs){
     const me=f===teller;
-    /* The teller glows slowly every 2.2 seconds while its story shows; the rest flash and go dark on their own time. */
-    const k=RM?(me?1:.45):me?envSlow((t-toldAt)%2.2):blink(f,t);
-    f.ph+=RM?0:.01*f.spd*(me?.2:1);
-    /* They drift slowly and climb a little while lit, like the J-shaped flash of eastern fireflies. */
-    f.lift+=(k-f.lift)*.2;
-    f.x=(f.hx+Math.sin(f.ph)*.03+Math.sin(f.ph*2.3)*.01)*W;f.y=(f.hy+Math.cos(f.ph*1.3)*.025)*H-f.lift*8;
-    const s=(W<700?30:Math.max(34,W/28))*(me?1.5:1)*(.6+.4*k);
-    f.sp.position.set(f.x,f.y,0);f.sp.scale.set(s,s,1);
-    /* Fade by opacity, not by darkening the color: a dark glow still writes alpha and shows as a black speck. */
-    f.sp.material.color.copy(me?WARM:GREEN);f.sp.material.opacity=Math.min(1,k*(me?1.2:1));f.sp.visible=k>.01;
+    /* The teller keeps a low glow and swells every 2.2 seconds while its story shows; the rest flash and go dark on their own time. */
+    const k=RM?(me?1:.45):me?(t<toldAt?0:.32+.68*envSlow((t-toldAt)%2.2)):blink(f,t);
+    if(!RM)f.ph+=dt*.6*f.spd*(me?.2:1);
+    f.lift+=(k-f.lift)*Math.min(1,dt*12);
+    f.x=(f.hx+Math.sin(f.ph)*.03+Math.sin(f.ph*2.3)*.01)*W;f.y=(f.hy+Math.cos(f.ph*1.3)*.025)*H-(me||RM?0:f.lift*10);
+    const s=base*(me?1.6:1)*(.6+.4*k);
+    if(me&&k>0){
+      /* A wide, faint aura, and three small sparks that circle the teller. */
+      put(f.x,f.y,Math.min(narrow?230:360,W*.42),WARM,.2*k);
+      if(!RM)for(let j=0;j<3;j++){const a=t*1.7+j*2.094,rr=s*.42+Math.sin(t*1.3+j*2)*4;put(f.x+Math.cos(a)*rr,f.y+Math.sin(a)*rr*.62,11,WARM,.8*k)}}
+    put(f.x,f.y,s,me?WARM:GREEN,Math.min(1,k*(me?1.2:1)));
     f.b.style.transform=`translate(${f.x}px,${f.y}px)`}
+
+  if(courier){const u=(t-courier.t0)/courier.dur;
+    if(u>=1||!teller)courier=null;
+    else{const e=u*u*(3-2*u);put(courier.x0+(teller.x-courier.x0)*e,courier.y0+(teller.y-courier.y0)*e-Math.sin(Math.PI*e)*courier.arc,36,WARM,1)}}
+
+  geo.attributes.position.needsUpdate=geo.attributes.aSize.needsUpdate=geo.attributes.aColor.needsUpdate=true;geo.setDrawRange(0,n);
   r.render(scene,cam);
 }
 loop();
