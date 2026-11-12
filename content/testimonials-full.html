@@ -70,6 +70,13 @@
 .vhf-t .vhf-story details[open] .vhf-open,.vhf-t .vhf-story details:not([open]) .vhf-close{display:none}
 .vhf-t .vhf-story .vhf-who{color:var(--tan)}
 .vhf-t .vhf-story .vhf-who b{color:var(--cream)}
+/* Gabi's story: its own light card, tucked right under the dark band */
+.vhf-t .vhf-dark+.vhf-story2{margin-top:24px}
+.vhf-t .vhf-story2{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r-lg);padding:clamp(32px,6vw,80px)}
+.vhf-t .vhf-story2 .vhf-story p{color:var(--ink)}
+.vhf-t .vhf-story2 .vhf-story p.vhf-pull{color:var(--olive)}
+.vhf-t .vhf-story2 .vhf-story .vhf-who{color:var(--muted)}
+.vhf-t .vhf-story2 .vhf-story .vhf-who b{color:var(--ink)}
 /* Quote cards (masonry via CSS columns) */
 .vhf-t .vhf-who{margin-top:auto;font-size:14px;line-height:1.45;color:var(--muted)}
 .vhf-t .vhf-who b{display:block;font:600 12.5px/1.5 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
@@ -86,9 +93,10 @@
 .vhf-t .vhf-feat{margin:0;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--olive);border-radius:var(--r);padding:clamp(24px,3vw,38px);transition:transform .2s,box-shadow .2s}
 .vhf-t .vhf-feat:nth-child(3){border-top-color:var(--navy)}
 .vhf-t .vhf-feat:nth-child(4){border-top-color:var(--clay)}
+.vhf-t .vhf-feat:nth-child(5){border-top-color:var(--olive)}
 .vhf-t .vhf-feat p{margin:0 0 18px;font:400 clamp(17px,1.5vw,19px)/1.55 var(--serif);color:var(--ink)}
 .vhf-t .vhf-feat p::before{content:"\201C";display:block;font:700 64px/.6 var(--serif);margin:14px 0 6px;color:var(--clay)}
-.vhf-t .vhf-feat:first-child{grid-row:span 3;background:var(--navy-deep);border-color:var(--navy-deep);border-top-color:var(--tan)}
+.vhf-t .vhf-feat:first-child{grid-row:span 4;background:var(--navy-deep);border-color:var(--navy-deep);border-top-color:var(--tan)}
 .vhf-t .vhf-feat:first-child p{font-size:clamp(19px,1.9vw,23px);font-style:italic;color:var(--cream)}
 .vhf-t .vhf-feat:first-child p::before{color:var(--tan)}
 .vhf-t .vhf-feat:first-child .vhf-who{color:var(--tan)}
@@ -192,8 +200,8 @@
 
 <section class="vhf-sec vhf-dark reveal" aria-labelledby="vhf-vet-h">
   <p class="vhf-eyebrow">In their own words</p>
-  <h2 id="vhf-vet-h">Stories from veterans and our <em>board</em></h2>
-  <p class="vhf-sec__intro">Two Marine Corps veterans and a longtime board member on what the farm has meant to them.</p>
+  <h2 id="vhf-vet-h">Stories from our <em>veterans</em></h2>
+  <p class="vhf-sec__intro">Two Marine Corps veterans on what the farm has meant to them.</p>
   <figure class="vhf-story">
     <p class="vhf-pull">&ldquo;The Veterans Healing Farm could have been one of these. It is not.&rdquo;</p>
     <p>&ldquo;When I left the Marine Corps, having done two tours in Afghanistan in 2001 and 2002, I felt this evil in my very marrow. I let it define me. My suffering was mine and mine alone, my ability to thrive among my tribe undermined by a need to survive. Without guidance or a sense of hope, I let my trauma rot in my soul like a spiritual cancer. I looked around at those who were suffering equally and didn't care, because I couldn't afford to.</p>
@@ -206,15 +214,12 @@
     </details>
     <figcaption class="vhf-who"><b>Robert LeHeup</b>U.S. Marine Corps veteran</figcaption>
   </figure>
+</section>
+<section class="vhf-sec vhf-story2 reveal" aria-label="Gabi, U.S. Marine Corps veteran">
   <figure class="vhf-story">
     <p class="vhf-pull">&ldquo;I know how powerful having a place and a community really is.&rdquo;</p>
     <p>&ldquo;I first came to the farm looking for a way to connect with like-minded people. I went to an art therapy class and met Al (the executive director). He showed me around afterwards and told me that I belonged here. That the Veterans Healing Farm was my home, and I could come back any time I needed it. When he explained that the mission was to end veteran suicide, everything clicked for me. As a USMC veteran, I have lost more people I have served with to suicide than anything else, and as someone who has had their own struggles with thoughts of suicide, I know how powerful having a place and a community really is. I do not have the words for what this place truly means to me, and I love having the opportunity to give back to an impactful organization.&rdquo;</p>
     <figcaption class="vhf-who"><b>Gabi</b>U.S. Marine Corps veteran</figcaption>
-  </figure>
-  <figure class="vhf-story">
-    <p class="vhf-pull">&ldquo;It has been an honor to play a small role in helping the Farm become a model that others now emulate.&rdquo;</p>
-    <p>&ldquo;I have had the privilege to serve on the board of directors for the Veterans Healing Farm for six years. During that time, I have watched it grow from a fledgling effort on a small piece of leased land to a flourishing, multi-faceted non-profit firmly planted on its forever home land. It has been an honor to play a small role in helping the Farm become a model that others now emulate. I finish my term knowing it is in wonderful hands, and I encourage everyone to come out and see what all the excitement is about!&rdquo;</p>
-    <figcaption class="vhf-who"><b>Jeanine Davis</b>Our Tiny Farm in Etowah and NCSU Mountain Horticultural Crops Research &amp; Extension Center in Mills River</figcaption>
   </figure>
 </section>
 
@@ -237,6 +242,10 @@
     <figure class="vhf-feat">
       <p>The Veterans Healing Farm is an amazing organization, helping Veterans to recover from trauma and mental health challenges and Al Yeck is a compassionate and knowledgeable leader. Highly recommend.</p>
       <figcaption class="vhf-who"><b>Elaine Waddington Lamont</b>Women Warriors' Healing Garden, Ottawa, ON</figcaption>
+    </figure>
+    <figure class="vhf-feat">
+      <p>I have had the privilege to serve on the board of directors for the Veterans Healing Farm for six years. During that time, I have watched it grow from a fledgling effort on a small piece of leased land to a flourishing, multi-faceted non-profit firmly planted on its forever home land. It has been an honor to play a small role in helping the Farm become a model that others now emulate. I finish my term knowing it is in wonderful hands, and I encourage everyone to come out and see what all the excitement is about!</p>
+      <figcaption class="vhf-who"><b>Jeanine Davis</b>Our Tiny Farm in Etowah and NCSU Mountain Horticultural Crops Research &amp; Extension Center in Mills River</figcaption>
     </figure>
   </div>
   <div class="vhf-mid">
